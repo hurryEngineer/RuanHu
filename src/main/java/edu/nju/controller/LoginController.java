@@ -1,5 +1,6 @@
 package edu.nju.controller;
 
+import edu.nju.model.Users;
 import edu.nju.modelService.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,14 +31,20 @@ public class LoginController {
     @ResponseBody
     public String loginVerify(@RequestParam("account") String account, @RequestParam("password") String password,
                               Model model, HttpSession session){
-        String user =  loginService.verifyLogin(account, password);
+        Users user =  loginService.verifyLogin(account, password);
         if (user!=null) {
             session.setAttribute("user",user);
             model.addAttribute("user",user);
-            return user;
+            return user.getId()+"";
         } else {
            return "login failed";
         }
+    }
+
+    @RequestMapping("/logout")
+    @ResponseBody
+    public String logout(){
+        return "";
     }
 
 

@@ -1,6 +1,7 @@
 package edu.nju.controller;
 
 import edu.nju.model.MarkedText;
+import edu.nju.model.Question;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
