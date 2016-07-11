@@ -4,10 +4,19 @@
     "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-    <property name="connection.url"/>
-    <property name="connection.driver_class"/>
-    <property name="connection.username"/>
-    <property name="connection.password"/>
+    <property name="connection.url">jdbc:mysql://110.173.17.140:3306/RuanHu</property>
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="current_session_context_class">thread</property>
+    <mapping class="edu.nju.model.AnswerEntity"/>
+    <mapping class="edu.nju.model.AnswerCommentsEntity"/>
+    <mapping class="edu.nju.model.AnswerVotesEntity"/>
+    <mapping class="edu.nju.model.CommentEntity"/>
+    <mapping class="edu.nju.model.QuestionEntity"/>
+    <mapping class="edu.nju.model.QuestionCommentsEntity"/>
+    <mapping class="edu.nju.model.QuestionVotesEntity"/>
+    <mapping class="edu.nju.model.UsersEntity"/>
+    <mapping class="edu.nju.model.VoteEntity"/>
+
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>
