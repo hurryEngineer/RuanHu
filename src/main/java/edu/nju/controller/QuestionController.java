@@ -1,5 +1,7 @@
 package edu.nju.controller;
 
+import edu.nju.model.MarkedText;
+import edu.nju.model.Question;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +24,7 @@ public class QuestionController {
 
     @RequestMapping(value = "/ask",method = RequestMethod.POST)
     void newQuestion(String title, MarkedText description, String tagNames, boolean watching,
-                            List<Long> attachmentsIds){}
+                     List<Long> attachmentsIds){}
 
     @RequestMapping(value = "/ask",method = RequestMethod.GET)
     void newQuestion(){}
