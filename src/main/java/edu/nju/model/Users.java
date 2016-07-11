@@ -12,13 +12,14 @@ import java.sql.Timestamp;
 @Entity
 public class Users {
     private long id;
-    private Timestamp birthDate;
-    private Timestamp createdAt;
+    private Timestamp birthday;
     private String email;
     private String location;
     private String name;
     private String password;
     private String photoUri;
+    private String description;
+    private Timestamp createdAt;
 
     @Id
     @Column(name = "id")
@@ -31,23 +32,13 @@ public class Users {
     }
 
     @Basic
-    @Column(name = "birthDate")
-    public Timestamp getBirthDate() {
-        return birthDate;
+    @Column(name = "birthday")
+    public Timestamp getBirthday() {
+        return birthday;
     }
 
-    public void setBirthDate(Timestamp birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    @Basic
-    @Column(name = "createdAt")
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
+    public void setBirthday(Timestamp birthday) {
+        this.birthday = birthday;
     }
 
     @Basic
@@ -91,13 +82,33 @@ public class Users {
     }
 
     @Basic
-    @Column(name = "photoUri")
+    @Column(name = "photo_uri")
     public String getPhotoUri() {
         return photoUri;
     }
 
     public void setPhotoUri(String photoUri) {
         this.photoUri = photoUri;
+    }
+
+    @Basic
+    @Column(name = "description")
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Basic
+    @Column(name = "created_at")
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override
@@ -108,13 +119,14 @@ public class Users {
         Users users = (Users) o;
 
         if (id != users.id) return false;
-        if (birthDate != null ? !birthDate.equals(users.birthDate) : users.birthDate != null) return false;
-        if (createdAt != null ? !createdAt.equals(users.createdAt) : users.createdAt != null) return false;
+        if (birthday != null ? !birthday.equals(users.birthday) : users.birthday != null) return false;
         if (email != null ? !email.equals(users.email) : users.email != null) return false;
         if (location != null ? !location.equals(users.location) : users.location != null) return false;
         if (name != null ? !name.equals(users.name) : users.name != null) return false;
         if (password != null ? !password.equals(users.password) : users.password != null) return false;
         if (photoUri != null ? !photoUri.equals(users.photoUri) : users.photoUri != null) return false;
+        if (description != null ? !description.equals(users.description) : users.description != null) return false;
+        if (createdAt != null ? !createdAt.equals(users.createdAt) : users.createdAt != null) return false;
 
         return true;
     }
@@ -122,13 +134,14 @@ public class Users {
     @Override
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (birthDate != null ? birthDate.hashCode() : 0);
-        result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
+        result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (location != null ? location.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (photoUri != null ? photoUri.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         return result;
     }
 }

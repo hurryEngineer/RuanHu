@@ -13,7 +13,7 @@ public class AnswerComments {
     private long commentsId;
 
     @Id
-    @Column(name = "Answer_id")
+    @Column(name = "answer_id")
     public long getAnswerId() {
         return answerId;
     }

@@ -13,9 +13,9 @@ import java.sql.Timestamp;
 public class Vote {
     private long id;
     private String type;
+    private Long authorId;
     private Timestamp createdAt;
     private Timestamp lastUpdatedAt;
-    private Long authorId;
 
     @Id
     @Column(name = "id")
@@ -38,7 +38,17 @@ public class Vote {
     }
 
     @Basic
-    @Column(name = "createdAt")
+    @Column(name = "author_id")
+    public Long getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
+    }
+
+    @Basic
+    @Column(name = "created_at")
     public Timestamp getCreatedAt() {
         return createdAt;
     }
@@ -48,23 +58,13 @@ public class Vote {
     }
 
     @Basic
-    @Column(name = "lastUpdatedAt")
+    @Column(name = "last_updated_at")
     public Timestamp getLastUpdatedAt() {
         return lastUpdatedAt;
     }
 
     public void setLastUpdatedAt(Timestamp lastUpdatedAt) {
         this.lastUpdatedAt = lastUpdatedAt;
-    }
-
-    @Basic
-    @Column(name = "author_id")
-    public Long getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(Long authorId) {
-        this.authorId = authorId;
     }
 
     @Override
@@ -76,10 +76,10 @@ public class Vote {
 
         if (id != vote.id) return false;
         if (type != null ? !type.equals(vote.type) : vote.type != null) return false;
+        if (authorId != null ? !authorId.equals(vote.authorId) : vote.authorId != null) return false;
         if (createdAt != null ? !createdAt.equals(vote.createdAt) : vote.createdAt != null) return false;
         if (lastUpdatedAt != null ? !lastUpdatedAt.equals(vote.lastUpdatedAt) : vote.lastUpdatedAt != null)
             return false;
-        if (authorId != null ? !authorId.equals(vote.authorId) : vote.authorId != null) return false;
 
         return true;
     }
@@ -88,9 +88,9 @@ public class Vote {
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (authorId != null ? authorId.hashCode() : 0);
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         result = 31 * result + (lastUpdatedAt != null ? lastUpdatedAt.hashCode() : 0);
-        result = 31 * result + (authorId != null ? authorId.hashCode() : 0);
         return result;
     }
 }

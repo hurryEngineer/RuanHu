@@ -13,7 +13,7 @@ public class AnswerVotes {
     private long votesId;
 
     @Id
-    @Column(name = "Answer_id")
+    @Column(name = "answer_id")
     public long getAnswerId() {
         return answerId;
     }

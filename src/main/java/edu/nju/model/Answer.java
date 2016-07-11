@@ -13,11 +13,11 @@ import java.sql.Timestamp;
 public class Answer {
     private long id;
     private String content;
-    private Timestamp createdAt;
-    private Timestamp lastUpdatedAt;
-    private long voteCount;
     private Long authorId;
     private Long questionId;
+    private Timestamp createdAt;
+    private Timestamp lastUpdatedAt;
+    private Long voteCount;
 
     @Id
     @Column(name = "id")
@@ -40,36 +40,6 @@ public class Answer {
     }
 
     @Basic
-    @Column(name = "createdAt")
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    @Basic
-    @Column(name = "lastUpdatedAt")
-    public Timestamp getLastUpdatedAt() {
-        return lastUpdatedAt;
-    }
-
-    public void setLastUpdatedAt(Timestamp lastUpdatedAt) {
-        this.lastUpdatedAt = lastUpdatedAt;
-    }
-
-    @Basic
-    @Column(name = "voteCount")
-    public long getVoteCount() {
-        return voteCount;
-    }
-
-    public void setVoteCount(long voteCount) {
-        this.voteCount = voteCount;
-    }
-
-    @Basic
     @Column(name = "author_id")
     public Long getAuthorId() {
         return authorId;
@@ -89,6 +59,36 @@ public class Answer {
         this.questionId = questionId;
     }
 
+    @Basic
+    @Column(name = "created_at")
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    @Basic
+    @Column(name = "last_updated_at")
+    public Timestamp getLastUpdatedAt() {
+        return lastUpdatedAt;
+    }
+
+    public void setLastUpdatedAt(Timestamp lastUpdatedAt) {
+        this.lastUpdatedAt = lastUpdatedAt;
+    }
+
+    @Basic
+    @Column(name = "vote_count")
+    public Long getVoteCount() {
+        return voteCount;
+    }
+
+    public void setVoteCount(Long voteCount) {
+        this.voteCount = voteCount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -97,13 +97,13 @@ public class Answer {
         Answer answer = (Answer) o;
 
         if (id != answer.id) return false;
-        if (voteCount != answer.voteCount) return false;
         if (content != null ? !content.equals(answer.content) : answer.content != null) return false;
+        if (authorId != null ? !authorId.equals(answer.authorId) : answer.authorId != null) return false;
+        if (questionId != null ? !questionId.equals(answer.questionId) : answer.questionId != null) return false;
         if (createdAt != null ? !createdAt.equals(answer.createdAt) : answer.createdAt != null) return false;
         if (lastUpdatedAt != null ? !lastUpdatedAt.equals(answer.lastUpdatedAt) : answer.lastUpdatedAt != null)
             return false;
-        if (authorId != null ? !authorId.equals(answer.authorId) : answer.authorId != null) return false;
-        if (questionId != null ? !questionId.equals(answer.questionId) : answer.questionId != null) return false;
+        if (voteCount != null ? !voteCount.equals(answer.voteCount) : answer.voteCount != null) return false;
 
         return true;
     }
@@ -112,11 +112,11 @@ public class Answer {
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (content != null ? content.hashCode() : 0);
-        result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
-        result = 31 * result + (lastUpdatedAt != null ? lastUpdatedAt.hashCode() : 0);
-        result = 31 * result + (int) (voteCount ^ (voteCount >>> 32));
         result = 31 * result + (authorId != null ? authorId.hashCode() : 0);
         result = 31 * result + (questionId != null ? questionId.hashCode() : 0);
+        result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
+        result = 31 * result + (lastUpdatedAt != null ? lastUpdatedAt.hashCode() : 0);
+        result = 31 * result + (voteCount != null ? voteCount.hashCode() : 0);
         return result;
     }
 }

@@ -13,9 +13,9 @@ import java.sql.Timestamp;
 public class Comment {
     private long id;
     private String content;
+    private long authorId;
     private Timestamp createdAt;
     private Timestamp lastUpdatedAt;
-    private long authorId;
 
     @Id
     @Column(name = "id")
@@ -38,7 +38,17 @@ public class Comment {
     }
 
     @Basic
-    @Column(name = "createdAt")
+    @Column(name = "author_id")
+    public long getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(long authorId) {
+        this.authorId = authorId;
+    }
+
+    @Basic
+    @Column(name = "created_at")
     public Timestamp getCreatedAt() {
         return createdAt;
     }
@@ -48,23 +58,13 @@ public class Comment {
     }
 
     @Basic
-    @Column(name = "lastUpdatedAt")
+    @Column(name = "last_updated_at")
     public Timestamp getLastUpdatedAt() {
         return lastUpdatedAt;
     }
 
     public void setLastUpdatedAt(Timestamp lastUpdatedAt) {
         this.lastUpdatedAt = lastUpdatedAt;
-    }
-
-    @Basic
-    @Column(name = "author_id")
-    public long getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(long authorId) {
-        this.authorId = authorId;
     }
 
     @Override
@@ -88,9 +88,9 @@ public class Comment {
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (content != null ? content.hashCode() : 0);
+        result = 31 * result + (int) (authorId ^ (authorId >>> 32));
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         result = 31 * result + (lastUpdatedAt != null ? lastUpdatedAt.hashCode() : 0);
-        result = 31 * result + (int) (authorId ^ (authorId >>> 32));
         return result;
     }
 }

@@ -11,7 +11,7 @@ public class AnswerVotesPK implements Serializable {
     private long answerId;
     private long votesId;
 
-    @Column(name = "Answer_id")
+    @Column(name = "answer_id")
     @Id
     public long getAnswerId() {
         return answerId;
