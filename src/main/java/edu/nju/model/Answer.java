@@ -18,6 +18,7 @@ public class Answer {
     private Timestamp createdAt;
     private Timestamp lastUpdatedAt;
     private Long voteCount;
+    private Integer lucky;
 
     @Id
     @Column(name = "id")
@@ -89,6 +90,16 @@ public class Answer {
         this.voteCount = voteCount;
     }
 
+    @Basic
+    @Column(name = "lucky")
+    public Integer getLucky() {
+        return lucky;
+    }
+
+    public void setLucky(Integer lucky) {
+        this.lucky = lucky;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -104,6 +115,7 @@ public class Answer {
         if (lastUpdatedAt != null ? !lastUpdatedAt.equals(answer.lastUpdatedAt) : answer.lastUpdatedAt != null)
             return false;
         if (voteCount != null ? !voteCount.equals(answer.voteCount) : answer.voteCount != null) return false;
+        if (lucky != null ? !lucky.equals(answer.lucky) : answer.lucky != null) return false;
 
         return true;
     }
@@ -117,6 +129,7 @@ public class Answer {
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         result = 31 * result + (lastUpdatedAt != null ? lastUpdatedAt.hashCode() : 0);
         result = 31 * result + (voteCount != null ? voteCount.hashCode() : 0);
+        result = 31 * result + (lucky != null ? lucky.hashCode() : 0);
         return result;
     }
 }

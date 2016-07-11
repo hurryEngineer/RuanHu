@@ -4,6 +4,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -12,7 +13,6 @@ import java.sql.Timestamp;
 @Entity
 public class Users {
     private long id;
-    private Timestamp birthday;
     private String email;
     private String location;
     private String name;
@@ -20,6 +20,7 @@ public class Users {
     private String photoUri;
     private String description;
     private Timestamp createdAt;
+    private Date birthDate;
 
     @Id
     @Column(name = "id")
@@ -29,16 +30,6 @@ public class Users {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    @Basic
-    @Column(name = "birthday")
-    public Timestamp getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Timestamp birthday) {
-        this.birthday = birthday;
     }
 
     @Basic
@@ -111,6 +102,16 @@ public class Users {
         this.createdAt = createdAt;
     }
 
+    @Basic
+    @Column(name = "birth_date")
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -119,7 +120,6 @@ public class Users {
         Users users = (Users) o;
 
         if (id != users.id) return false;
-        if (birthday != null ? !birthday.equals(users.birthday) : users.birthday != null) return false;
         if (email != null ? !email.equals(users.email) : users.email != null) return false;
         if (location != null ? !location.equals(users.location) : users.location != null) return false;
         if (name != null ? !name.equals(users.name) : users.name != null) return false;
@@ -127,6 +127,7 @@ public class Users {
         if (photoUri != null ? !photoUri.equals(users.photoUri) : users.photoUri != null) return false;
         if (description != null ? !description.equals(users.description) : users.description != null) return false;
         if (createdAt != null ? !createdAt.equals(users.createdAt) : users.createdAt != null) return false;
+        if (birthDate != null ? !birthDate.equals(users.birthDate) : users.birthDate != null) return false;
 
         return true;
     }
@@ -134,7 +135,6 @@ public class Users {
     @Override
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (location != null ? location.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
@@ -142,6 +142,7 @@ public class Users {
         result = 31 * result + (photoUri != null ? photoUri.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
+        result = 31 * result + (birthDate != null ? birthDate.hashCode() : 0);
         return result;
     }
 }
