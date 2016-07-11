@@ -5,4 +5,6 @@ package edu.nju.modelService;
  */
 public interface LoginService {
 
+    public String verifyLogin(String account, String password);
+
 }
