@@ -1,5 +1,10 @@
 package edu.nju.controller;
 
+<<<<<<< HEAD
+=======
+import edu.nju.model.MarkedText;
+import edu.nju.model.Question;
+>>>>>>> dda36c0c1e3ada17e3b95c8a2c67d4b1614ac302
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
