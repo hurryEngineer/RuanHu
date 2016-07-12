@@ -2,6 +2,7 @@ package edu.nju.data.daoImpl;
 
 import edu.nju.RuanHuApplication;
 import edu.nju.data.dao.UserDAO;
+import edu.nju.data.util.VerifyResult;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class UserDAOImplTest {
 
     @Test
     public void exists() throws Exception {
-        String username = "ss14";
+        String username = "ch";
         if(!userDAO.exists(username)){
             fail("exists()--------");
         }
@@ -34,10 +35,32 @@ public class UserDAOImplTest {
     @Test
     public void verify() throws Exception {
 
+        String name = "ch";
+        String pw = "123456";
+        if(!userDAO.verify(name,pw)){
+            fail("verify()-------");
+        }else{
+            System.out.println("name : "+name);
+            System.out.println("pw : "+pw);
+        }
+
     }
 
     @Test
     public void login() throws Exception {
+        String name = "ch";
+        String pw = "123456";
+        String name1 = "ch1";
+        String pw1 = "1234567";
+        VerifyResult success = userDAO.login(name,pw);
+        VerifyResult inexist =userDAO.login(name1,pw);
+        VerifyResult incorrect = userDAO.login(name,pw1);
+        if(success!=VerifyResult.SUCCESS  ||
+                inexist !=VerifyResult.INEXISTENCE  ||
+                   incorrect !=VerifyResult.INCORRECT){
+            fail("login()-----------");
+        }
+
 
     }
 
