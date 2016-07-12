@@ -1,6 +1,8 @@
 package edu.nju.controller;
 
 import edu.nju.RuanHuApplication;
+import edu.nju.web.controller.QuestionController;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

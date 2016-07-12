@@ -1,8 +1,9 @@
 package edu.nju.model.login;
 
 import edu.nju.RuanHuApplication;
-import edu.nju.model.Users;
-import edu.nju.modelService.LoginService;
+import edu.nju.data.entity.Users;
+import edu.nju.logic.service.LoginService;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

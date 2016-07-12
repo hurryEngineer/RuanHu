@@ -1,7 +1,9 @@
 package edu.nju.controller;
 
 import edu.nju.RuanHuApplication;
-import edu.nju.modelService.LoginService;
+import edu.nju.logic.service.LoginService;
+import edu.nju.web.controller.LoginController;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
