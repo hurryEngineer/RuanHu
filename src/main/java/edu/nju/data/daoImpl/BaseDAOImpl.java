@@ -20,7 +20,6 @@ public class BaseDAOImpl implements BaseDAO {
     @Override
     public void insert(Object obj) {
         em.persist(obj);
-
     }
 
     @Override

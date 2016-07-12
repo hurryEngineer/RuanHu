@@ -26,6 +26,31 @@ public class QuestionDAOImpl implements QuestionDAO {
     private static String tableName = "Question";
 
     @Override
+    public void save(Question question) {
+
+        baseDAO.insert(question);
+
+    }
+
+    @Override
+    public void deleteByQuestionID(long questionID) {
+        baseDAO.delete(Question.class,questionID);
+    }
+
+    @Override
+    public void deleteByAuthorID(long authorID) {
+        Query query = em.createQuery("delete from Question as q where q.authorId = ?1");
+        query.setParameter(1,authorID);
+        query.executeUpdate();
+    }
+
+    @Override
+    public void update(Question question) {
+        baseDAO.update(question);
+
+    }
+
+    @Override
     public Question getQuestionByID(long QuestionID) {
         return (Question) baseDAO.load(Question.class, QuestionID);
     }

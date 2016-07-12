@@ -26,6 +26,49 @@ public class QuestionDAOImplTest {
     QuestionDAO questionDAO;
 
     @Test
+    public void save() throws Exception {
+        Question question = new Question();
+        question.setAuthorId(new Long(2));
+        question.setTitle("q3");
+        question.setContent("c3");
+//        question.setId(3);
+
+        questionDAO.save(question);
+
+    }
+
+    @Test
+    public void deleteByQuestionID() throws Exception {
+        long id =3;
+        Question temp = questionDAO.getQuestionByID(id);
+        questionDAO.deleteByQuestionID(id);
+        if(questionDAO.getQuestionByID(id)!=null){
+            fail("null");
+        }
+        questionDAO.save(temp);
+    }
+
+    @Test
+    public void deleteByAuthorID() throws Exception {
+        long authorid =1;
+        questionDAO.deleteByQuestionID(authorid);
+
+    }
+
+    @Test
+    public void update() throws Exception {
+        Question question = new Question();
+        question.setAuthorId(new Long(2));
+        question.setTitle("q4");
+        question.setContent("c4");
+        question.setId(3);
+        questionDAO.update(question);
+
+    }
+
+
+
+    @Test
     public void getQuestionByID() throws Exception {
         long id =1 ;
         Question question = questionDAO.getQuestionByID(id);
