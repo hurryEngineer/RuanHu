@@ -19,26 +19,26 @@ public class BaseDAOImpl implements BaseDAO {
 
     @Override
     public void insert(Object obj) {
+        em.persist(obj);
 
     }
 
     @Override
-    public void delete(Object obj) {
+    public void delete( Class<?> c, long id) {
+        Object ob =load(c,id);
+        em.remove(ob);
 
     }
 
     @Override
     public void update(Object obj) {
-
+        em.merge(obj);
     }
 
     @Override
-    public void load(Class<?> c, int id) {
-
+    public Object load(Class<?> c, long id) {
+            return em.find(c,id);
     }
 
-    @Override
-    public boolean contains(Object obj) {
-        return false;
-    }
+
 }

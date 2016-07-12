@@ -10,17 +10,17 @@ import java.util.List;
 
 public interface BaseDAO {
     /**
-     * 向数据库中插入对象
+     * 向数据库中插入对象,不检查是否有重复
      * @param obj
      */
     void insert(Object obj);
 
     /**
      * 从数据库中删除对象
-     * @param obj
+     * @param
      * @return
      */
-    void delete(Object obj);
+    void delete(Class<?> c,long id);
 
     /**
      * 更新数据库中的对象
@@ -33,15 +33,7 @@ public interface BaseDAO {
      * @param c   e.g load(Answer.class , 1)
      * @param id
      */
-    void load(Class<?> c, int id);
-
-
-    /**
-     *
-     */
-    boolean contains(Object obj);
-
-
+    Object load(Class<?> c, long id);
 
 
 }
