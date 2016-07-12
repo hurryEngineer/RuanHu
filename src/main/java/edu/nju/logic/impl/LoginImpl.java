@@ -1,10 +1,12 @@
 package edu.nju.logic.impl;
 
 import edu.nju.data.dao.UserDAO;
+import edu.nju.data.entity.User;
 import edu.nju.data.util.VerifyResult;
 import edu.nju.logic.service.LoginService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -12,7 +14,7 @@ import org.springframework.stereotype.Repository;
  * @author cuihao
  * @see edu.nju.logic.service.LoginService
  */
-@Repository
+@Component
 public class LoginImpl implements LoginService{
     @Autowired
     private UserDAO userDAO;
