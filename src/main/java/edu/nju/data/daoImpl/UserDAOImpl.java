@@ -5,7 +5,6 @@ import edu.nju.data.dao.UserDAO;
 import edu.nju.data.entity.User;
 import edu.nju.data.util.VerifyResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.SystemEnvironmentPropertySource;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -64,7 +63,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User getUserByName(String username) {
-        Query query = em.createQuery( " from user where name = ?1" );
+        Query query = em.createQuery( "from "+tableName+" where name = ?1" );
         query.setParameter(1,username);
         return (User) query.getSingleResult();
     }

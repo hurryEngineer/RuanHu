@@ -2,6 +2,7 @@ package edu.nju.data.daoImpl;
 
 import edu.nju.RuanHuApplication;
 import edu.nju.data.dao.UserDAO;
+import edu.nju.data.entity.User;
 import edu.nju.data.util.VerifyResult;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +20,7 @@ import static org.junit.Assert.*;
 @SpringApplicationConfiguration(classes = RuanHuApplication.class)
 @WebAppConfiguration
 public class UserDAOImplTest {
+
 
     @Autowired
     UserDAO userDAO;
@@ -71,6 +73,12 @@ public class UserDAOImplTest {
 
     @Test
     public void getUserByName() throws Exception {
+
+        String username = "ch";
+        User user = userDAO.getUserByName(username);
+        if(user==null){
+            fail("--");
+        }
 
     }
 
