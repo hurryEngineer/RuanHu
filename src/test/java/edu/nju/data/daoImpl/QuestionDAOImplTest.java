@@ -50,8 +50,12 @@ public class QuestionDAOImplTest {
 
     @Test
     public void deleteByAuthorID() throws Exception {
-        long authorid =1;
-        questionDAO.deleteByQuestionID(authorid);
+        Long authorid =new Long (1);
+        int right=2;
+        int result=questionDAO.deleteByAuthorID(authorid);
+        if(result!=right){
+            fail();
+        }
 
     }
 
@@ -70,7 +74,7 @@ public class QuestionDAOImplTest {
 
     @Test
     public void getQuestionByID() throws Exception {
-        long id =1 ;
+        long id = 1;
         Question question = questionDAO.getQuestionByID(id);
         String title = "q1";
         String content = "c1";

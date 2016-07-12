@@ -34,14 +34,17 @@ public class QuestionDAOImpl implements QuestionDAO {
 
     @Override
     public void deleteByQuestionID(long questionID) {
+
         baseDAO.delete(Question.class,questionID);
+
     }
 
     @Override
-    public void deleteByAuthorID(long authorID) {
-        Query query = em.createQuery("delete from Question as q where q.authorId = ?1");
+    public int  deleteByAuthorID(long authorID) {
+        Query query = em.createQuery("delete  Question where authorId = ?1");
         query.setParameter(1,authorID);
-        query.executeUpdate();
+        int result = query.executeUpdate();
+        return result;
     }
 
     @Override

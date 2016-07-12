@@ -21,10 +21,10 @@ public interface QuestionDAO {
     void deleteByQuestionID(long questionID);
 
     /**
-     * 删除一个用户的全部问题
+     * 删除一个用户的全部问题,返回删除的问题数
      * @param authorID
      */
-    void deleteByAuthorID(long authorID);
+    int deleteByAuthorID(long authorID);
 
     /**
      * 更新一个问题
