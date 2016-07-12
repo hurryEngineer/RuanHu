@@ -25,8 +25,6 @@ public class LoginImpTest {
 
     @Test
     public void verifyLogin() throws Exception {
-        VerifyResult users = loginService.verifyLogin("","");
-        Assert.assertTrue(users==null);
         VerifyResult verifyResult = loginService.verifyLogin("","");
         Assert.assertTrue(verifyResult==VerifyResult.INEXISTENCE);
         verifyResult = loginService.verifyLogin("ch","1234567");
