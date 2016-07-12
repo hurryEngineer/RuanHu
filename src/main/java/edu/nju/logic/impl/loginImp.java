@@ -1,8 +1,11 @@
 package edu.nju.logic.impl;
 
+import edu.nju.data.dao.UserDAO;
 import edu.nju.data.entity.Users;
+import edu.nju.data.util.VerifyResult;
 import edu.nju.logic.service.LoginService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,9 +14,16 @@ import org.springframework.stereotype.Component;
  * @see edu.nju.logic.service.LoginService
  */
 @Component
-public class loginImp implements LoginService{
+public class LoginImp implements LoginService{
+    @Autowired
+    private UserDAO userDAO;
     @Override
-    public Users verifyLogin(String account, String password) {
-        return null;
+    public VerifyResult verifyLogin(String account, String password) {
+        return userDAO.login(account,password);
+    }
+
+    @Override
+    public Users getCurrentUser(String account) {
+        return userDAO.getUserByName(account);
     }
 }
