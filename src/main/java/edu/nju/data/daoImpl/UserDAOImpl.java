@@ -2,7 +2,6 @@ package edu.nju.data.daoImpl;
 
 import edu.nju.data.dao.BaseDAO;
 import edu.nju.data.dao.UserDAO;
-import edu.nju.data.entity.Users;
 import edu.nju.data.util.VerifyResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,7 +25,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean exists(String username) {
-        Query query = em.createQuery( "from users where name = ?1" );
+        Query query = em.createQuery( "from user where name = ?1" );
         query.setParameter(1,username);
         String pw = (String) query.getSingleResult();
 
@@ -40,7 +39,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public boolean verify(String username, String password)
     {
-        Query query = em.createQuery( "select password from users where name = ?1" );
+        Query query = em.createQuery( "select password from user where name = ?1" );
         query.setParameter(1,username);
         String pw = (String) query.getSingleResult();
         if( pw.equals(password) ){
@@ -60,10 +59,10 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public Users getUserByName(String username) {
-        Query query = em.createQuery( " from users where name = ?1" );
+    public User getUserByName(String username) {
+        Query query = em.createQuery( " from user where name = ?1" );
         query.setParameter(1,username);
-        return (Users) query.getSingleResult();
+        return (User) query.getSingleResult();
     }
 
 

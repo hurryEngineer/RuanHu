@@ -7,18 +7,19 @@
     <property name="connection.url">jdbc:mysql://110.173.17.140:3306/RuanHu</property>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="current_session_context_class">thread</property>
-    <mapping class="edu.nju.model.Answer"/>
-    <mapping class="edu.nju.model.AnswerComments"/>
-    <mapping class="edu.nju.model.AnswerVotes"/>
-    <mapping class="edu.nju.model.Comment"/>
-    <mapping class="edu.nju.model.Question"/>
-    <mapping class="edu.nju.model.QuestionComments"/>
-    <mapping class="edu.nju.model.QuestionVotes"/>
-    <mapping class="edu.nju.model.Users"/>
-    <mapping class="edu.nju.model.Vote"/>
+    <property name="packagesToScan" >entity</property>
+      <mapping class="edu.nju.data.entity.Answer"/>
+      <mapping class="edu.nju.data.entity.AnswerComments"/>
+      <mapping class="edu.nju.data.entity.AnswerVotes"/>
+      <mapping class="edu.nju.data.entity.Comment"/>
+      <mapping class="edu.nju.data.entity.Question"/>
+      <mapping class="edu.nju.data.entity.QuestionComments"/>
+      <mapping class="edu.nju.data.entity.QuestionVotes"/>
+      <mapping class="edu.nju.data.entity.Vote"/>
+      <mapping class="edu.nju.data.entity.User"/>
 
 
-    <!-- DB schema will be updated if needed -->
+      <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>
 </hibernate-configuration>

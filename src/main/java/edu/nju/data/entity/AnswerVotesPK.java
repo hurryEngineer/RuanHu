@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
- * Created by ss14 on 2016/7/11.
+ * Created by ss14 on 2016/7/12.
  */
 public class AnswerVotesPK implements Serializable {
     private long answerId;

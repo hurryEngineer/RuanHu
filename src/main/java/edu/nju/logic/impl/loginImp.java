@@ -1,6 +1,5 @@
 package edu.nju.logic.impl;
 
-import edu.nju.data.entity.Users;
 import edu.nju.logic.service.LoginService;
 
 import org.springframework.stereotype.Component;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class loginImp implements LoginService{
     @Override
-    public Users verifyLogin(String account, String password) {
+    public User verifyLogin(String account, String password) {
         return null;
     }
 }

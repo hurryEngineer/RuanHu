@@ -1,6 +1,5 @@
 package edu.nju.web.controller;
 
-import edu.nju.data.entity.Users;
 import edu.nju.logic.service.LoginService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +31,7 @@ public class LoginController {
     @ResponseBody
     public String loginVerify(@RequestParam("account") String account, @RequestParam("password") String password,
                               Model model, HttpSession session){
-        Users user =  loginService.verifyLogin(account, password);
+        User user =  loginService.verifyLogin(account, password);
         if (user!=null) {
             session.setAttribute("user",user);
             model.addAttribute("user",user);

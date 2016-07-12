@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import java.sql.Timestamp;
 
 /**
- * Created by ss14 on 2016/7/11.
+ * Created by ss14 on 2016/7/12.
  */
 @Entity
 public class Vote {

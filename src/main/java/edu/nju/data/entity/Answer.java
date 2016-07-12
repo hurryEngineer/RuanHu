@@ -1,14 +1,12 @@
 package edu.nju.data.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by ss14 on 2016/7/11.
+ * Created by ss14 on 2016/7/12.
  */
+
 @Entity
 public class Answer {
     private long id;

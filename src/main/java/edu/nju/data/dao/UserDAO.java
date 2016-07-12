@@ -1,6 +1,5 @@
 package edu.nju.data.dao;
 
-import edu.nju.data.entity.Users;
 import edu.nju.data.util.VerifyResult;
 
 /**
@@ -14,6 +13,6 @@ public interface UserDAO {
 
     VerifyResult login(String username, String password);
 
-    Users getUserByName(String username);
+    User getUserByName(String username);
 
 }
