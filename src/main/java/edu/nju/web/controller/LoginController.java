@@ -45,7 +45,9 @@ public class LoginController {
 
     @RequestMapping("/logout")
     @ResponseBody
-    public String logout(){
+    public String logout(HttpSession session){
+        session.removeAttribute("user");
+        session.invalidate();
         return "";
     }
 
