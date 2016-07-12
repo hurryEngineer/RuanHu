@@ -6,7 +6,9 @@ import edu.nju.logic.service.LoginService;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by cuihao on 2016/7/11.
+ * 登陆实现
+ * @author cuihao
+ * @see edu.nju.logic.service.LoginService
  */
 @Component
 public class loginImp implements LoginService{
