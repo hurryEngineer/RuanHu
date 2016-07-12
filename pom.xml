@@ -44,12 +44,12 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-velocity</artifactId>
 		</dependency>
 
 		<dependency>
@@ -62,30 +62,6 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
-		<!--&lt;!&ndash; https://mvnrepository.com/artifact/org.hibernate/hibernate-core 
-			&ndash;&gt; -->
-		<!--<dependency> -->
-		<!--<groupId>org.hibernate</groupId> -->
-		<!--<artifactId>hibernate-core</artifactId> -->
-		<!--<version>5.2.1.Final</version> -->
-		<!--</dependency> -->
-
-		<!--&lt;!&ndash; https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager 
-			&ndash;&gt; -->
-		<!--<dependency> -->
-		<!--<groupId>org.hibernate</groupId> -->
-		<!--<artifactId>hibernate-entitymanager</artifactId> -->
-		<!--<version>5.2.1.Final</version> -->
-		<!--</dependency> -->
-
-
-		<!--&lt;!&ndash; https://mvnrepository.com/artifact/org.hibernate/hibernate-validator 
-			&ndash;&gt; -->
-		<!--<dependency> -->
-		<!--<groupId>org.hibernate</groupId> -->
-		<!--<artifactId>hibernate-validator</artifactId> -->
-		<!--<version>5.2.1.Final</version> -->
-		<!--</dependency> -->
 
 	</dependencies>
 
