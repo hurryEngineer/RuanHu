@@ -5,12 +5,14 @@ import edu.nju.data.dao.UserDAO;
 import edu.nju.data.entity.User;
 import edu.nju.data.util.VerifyResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.SystemEnvironmentPropertySource;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.List;
 
 /**
  * Created by ss14 on 2016/7/12.
@@ -29,9 +31,9 @@ public class UserDAOImpl implements UserDAO {
     public boolean exists(String username) {
         Query query = em.createQuery( " from "+tableName+" where name = ?1 " );
         query.setParameter(1,username);
-        User user = (User) query.getSingleResult();
+        List<User> users = query.getResultList();
 
-        if (user!=null){
+        if (users.size()>0){
             return true;
         }
 

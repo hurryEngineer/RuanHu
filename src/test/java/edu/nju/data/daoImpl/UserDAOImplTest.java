@@ -26,7 +26,12 @@ public class UserDAOImplTest {
     @Test
     public void exists() throws Exception {
         String username = "ch";
+        String username1 = "cc";
         if(!userDAO.exists(username)){
+            fail("exists()--------");
+        }
+
+        if(userDAO.exists(username1)){
             fail("exists()--------");
         }
 
