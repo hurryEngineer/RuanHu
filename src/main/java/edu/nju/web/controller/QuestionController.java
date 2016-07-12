@@ -20,8 +20,7 @@ import java.util.List;
 public class QuestionController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    Question showQuestion(@PathVariable Long id){return null;}
+    String showQuestion(@PathVariable Long id){return "test";}
 
     @RequestMapping(value = "/ask",method = RequestMethod.POST)
     void newQuestion(String title, MarkedText description, String tagNames, boolean watching,
