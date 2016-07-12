@@ -1,5 +1,6 @@
 package edu.nju.data.dao;
 
+import edu.nju.data.entity.User;
 import edu.nju.data.util.VerifyResult;
 
 /**

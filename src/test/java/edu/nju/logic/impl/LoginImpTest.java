@@ -1,11 +1,8 @@
 package edu.nju.logic.impl;
 
 import edu.nju.RuanHuApplication;
-<<<<<<< HEAD:src/test/java/edu/nju/model/login/loginImpTest.java
-=======
-import edu.nju.data.entity.Users;
+import edu.nju.data.entity.User;
 import edu.nju.data.util.VerifyResult;
->>>>>>> f5ef5ae24a066fa81604ccef4f4329708f7f0b77:src/test/java/edu/nju/logic/impl/LoginImpTest.java
 import edu.nju.logic.service.LoginService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -28,10 +25,8 @@ public class LoginImpTest {
 
     @Test
     public void verifyLogin() throws Exception {
-<<<<<<< HEAD:src/test/java/edu/nju/model/login/loginImpTest.java
-        User users = loginService.verifyLogin("","");
+        VerifyResult users = loginService.verifyLogin("","");
         Assert.assertTrue(users==null);
-=======
         VerifyResult verifyResult = loginService.verifyLogin("","");
         Assert.assertTrue(verifyResult==VerifyResult.INEXISTENCE);
         verifyResult = loginService.verifyLogin("ch","1234567");
@@ -42,9 +37,8 @@ public class LoginImpTest {
 
     @Test
     public void getCurrentUser() throws Exception {
-        Users users = loginService.getCurrentUser("ch");
+        User users = loginService.getCurrentUser("ch");
         Assert.assertTrue(users!=null);
->>>>>>> f5ef5ae24a066fa81604ccef4f4329708f7f0b77:src/test/java/edu/nju/logic/impl/LoginImpTest.java
     }
 
 }
