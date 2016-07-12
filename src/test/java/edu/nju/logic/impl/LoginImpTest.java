@@ -1,7 +1,6 @@
 package edu.nju.logic.impl;
 
 import edu.nju.RuanHuApplication;
-import edu.nju.data.entity.User;
 import edu.nju.data.util.VerifyResult;
 import edu.nju.logic.service.LoginService;
 import org.junit.Assert;

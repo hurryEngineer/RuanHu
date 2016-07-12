@@ -1,7 +1,6 @@
 package edu.nju.logic.service;
 
 
-import edu.nju.data.entity.User;
 import edu.nju.data.util.VerifyResult;
 
 

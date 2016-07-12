@@ -1,6 +1,9 @@
 package edu.nju.data.entity;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Date;
 import java.sql.Timestamp;
 
@@ -12,7 +15,7 @@ public class User {
     private long id;
     private String email;
     private String location;
-    private String name;
+    private String userName;
     private String password;
     private String photoUri;
     private String description;
@@ -50,13 +53,13 @@ public class User {
     }
 
     @Basic
-    @Column(name = "name")
-    public String getName() {
-        return name;
+    @Column(name = "user_name")
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     @Basic
@@ -119,7 +122,7 @@ public class User {
         if (id != user.id) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
         if (location != null ? !location.equals(user.location) : user.location != null) return false;
-        if (name != null ? !name.equals(user.name) : user.name != null) return false;
+        if (userName != null ? !userName.equals(user.userName) : user.userName != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (photoUri != null ? !photoUri.equals(user.photoUri) : user.photoUri != null) return false;
         if (description != null ? !description.equals(user.description) : user.description != null) return false;
@@ -134,7 +137,7 @@ public class User {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (location != null ? location.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (userName != null ? userName.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (photoUri != null ? photoUri.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);

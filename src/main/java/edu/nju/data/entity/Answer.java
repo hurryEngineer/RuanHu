@@ -1,12 +1,14 @@
 package edu.nju.data.entity;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Timestamp;
 
 /**
  * Created by ss14 on 2016/7/12.
  */
-
 @Entity
 public class Answer {
     private long id;
@@ -16,7 +18,7 @@ public class Answer {
     private Timestamp createdAt;
     private Timestamp lastUpdatedAt;
     private Long voteCount;
-    private Integer lucky;
+    private Integer solution;
 
     @Id
     @Column(name = "id")
@@ -89,13 +91,13 @@ public class Answer {
     }
 
     @Basic
-    @Column(name = "lucky")
-    public Integer getLucky() {
-        return lucky;
+    @Column(name = "solution")
+    public Integer getSolution() {
+        return solution;
     }
 
-    public void setLucky(Integer lucky) {
-        this.lucky = lucky;
+    public void setSolution(Integer solution) {
+        this.solution = solution;
     }
 
     @Override
@@ -113,7 +115,7 @@ public class Answer {
         if (lastUpdatedAt != null ? !lastUpdatedAt.equals(answer.lastUpdatedAt) : answer.lastUpdatedAt != null)
             return false;
         if (voteCount != null ? !voteCount.equals(answer.voteCount) : answer.voteCount != null) return false;
-        if (lucky != null ? !lucky.equals(answer.lucky) : answer.lucky != null) return false;
+        if (solution != null ? !solution.equals(answer.solution) : answer.solution != null) return false;
 
         return true;
     }
@@ -127,7 +129,7 @@ public class Answer {
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         result = 31 * result + (lastUpdatedAt != null ? lastUpdatedAt.hashCode() : 0);
         result = 31 * result + (voteCount != null ? voteCount.hashCode() : 0);
-        result = 31 * result + (lucky != null ? lucky.hashCode() : 0);
+        result = 31 * result + (solution != null ? solution.hashCode() : 0);
         return result;
     }
 }

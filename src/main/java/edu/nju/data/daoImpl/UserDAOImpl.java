@@ -28,7 +28,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean exists(String username) {
-        Query query = em.createQuery( " from "+tableName+" where name = ?1 " );
+        Query query = em.createQuery( " from "+tableName+" where userName = ?1 " );
         query.setParameter(1,username);
         List<User> users = query.getResultList();
 
@@ -42,7 +42,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public boolean verify(String username, String password)
     {
-        Query query = em.createQuery( "select password from "+tableName+" where name = ?1" );
+        Query query = em.createQuery( "select password from "+tableName+" where userName = ?1" );
         query.setParameter(1,username);
         String pw = (String) query.getSingleResult();
         if( pw.equals(password) ){
@@ -63,7 +63,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User getUserByName(String username) {
-        Query query = em.createQuery( "from "+tableName+" where name = ?1" );
+        Query query = em.createQuery( "from "+tableName+" where userName = ?1" );
         query.setParameter(1,username);
         return (User) query.getSingleResult();
     }
