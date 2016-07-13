@@ -7,6 +7,8 @@ import edu.nju.logic.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * Created by Dora on 2016/7/13.
  */
@@ -30,5 +32,9 @@ public class QuestionImpl implements QuestionService {
         return questionDAO.save_question(question);
     }
 
+    @Override
+    public List<Question> getQuestions(int pageNum, int pageSize) {
+        return questionDAO.getPaginatedQuestions(pageNum, pageSize);
+    }
 
 }

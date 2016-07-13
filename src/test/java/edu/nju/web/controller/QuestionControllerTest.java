@@ -26,6 +26,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringApplicationConfiguration(classes = RuanHuApplication.class) // 指定我们SpringBoot工程的Application启动类
 @WebAppConfiguration // 由于是Web项目，Junit需要模拟ServletContext，因此我们需要给我们的测试类加上@WebAppConfiguration。
 public class QuestionControllerTest {
+    @Test
+    public void showAllQuestions() throws Exception {
+//        mockMvc.perform(get("/loginVerify").param("account","ch")
+//                .param("password","123456")).andExpect(status().isOk());
+        mockMvc.perform(get("/questions")).andExpect(status().isOk());
+    }
 
     @Autowired
     private WebApplicationContext webApplicationContext;
