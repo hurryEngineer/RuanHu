@@ -1,5 +1,6 @@
 package edu.nju.web.controller;
 
+import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
 import edu.nju.data.entity.User;
 import edu.nju.logic.service.QuestionService;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,12 +27,34 @@ public class QuestionController {
     @Autowired
     QuestionService service;
 
+    @RequestMapping(value="/questions",method = RequestMethod.GET)
+    String showAllQuestions(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+
+        List<Question> result = service.getQuestions(page,10);
+        model.addAttribute("questions",result);
+
+        return "questionPage";
+    }
+
+
     @RequestMapping(value = "/question/{id}", method = RequestMethod.GET)
     String showQuestion(@PathVariable long id, Model model, HttpSession session){
+
         Object question = session.getAttribute("question");
         Question ques = question==null?service.showQuestion(id):(Question)question;
+
         model.addAttribute("question",ques);
+
         return "test";
+    }
+
+    @RequestMapping(value="/queation/{id}/answers",method = RequestMethod.GET)
+    @ResponseBody
+    List<Answer> showAnswers(@PathVariable long id, @RequestParam(value = "page", defaultValue = "1") int page) {
+
+        List<Answer> result = null;
+
+        return result;
     }
 
     @RequestMapping(value = "/submitQuestion")
