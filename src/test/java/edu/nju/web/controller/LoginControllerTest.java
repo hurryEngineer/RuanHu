@@ -35,8 +35,6 @@ public class LoginControllerTest {
     @Autowired
     private WebApplicationContext webApplicationContext;
 
-    @Autowired
-    private LoginController loginController;
 
     @Autowired
     private LoginService loginService;
