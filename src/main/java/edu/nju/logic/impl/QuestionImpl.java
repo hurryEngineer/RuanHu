@@ -1,6 +1,5 @@
 package edu.nju.logic.impl;
 
-import edu.nju.data.dao.AnswerDAO;
 import edu.nju.data.dao.QuestionDAO;
 import edu.nju.data.entity.Question;
 import edu.nju.logic.service.QuestionService;

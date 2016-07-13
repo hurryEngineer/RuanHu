@@ -1,21 +1,20 @@
 package edu.nju.data.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by ss14 on 2016/7/12.
+ * Created by ss14 on 2016/7/13.
  */
 @Entity
 public class Comment {
     private long id;
     private String content;
-    private long authorId;
     private Timestamp createdAt;
     private Timestamp lastUpdatedAt;
+    private Long answerId;
+    private Long questionId;
+    private User author;
 
     @Id
     @Column(name = "id")
@@ -38,16 +37,6 @@ public class Comment {
     }
 
     @Basic
-    @Column(name = "author_id")
-    public long getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(long authorId) {
-        this.authorId = authorId;
-    }
-
-    @Basic
     @Column(name = "created_at")
     public Timestamp getCreatedAt() {
         return createdAt;
@@ -67,6 +56,26 @@ public class Comment {
         this.lastUpdatedAt = lastUpdatedAt;
     }
 
+    @Basic
+    @Column(name = "answer_id")
+    public Long getAnswerId() {
+        return answerId;
+    }
+
+    public void setAnswerId(Long answerId) {
+        this.answerId = answerId;
+    }
+
+    @Basic
+    @Column(name = "question_id")
+    public Long getQuestionId() {
+        return questionId;
+    }
+
+    public void setQuestionId(Long questionId) {
+        this.questionId = questionId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,11 +84,12 @@ public class Comment {
         Comment comment = (Comment) o;
 
         if (id != comment.id) return false;
-        if (authorId != comment.authorId) return false;
         if (content != null ? !content.equals(comment.content) : comment.content != null) return false;
         if (createdAt != null ? !createdAt.equals(comment.createdAt) : comment.createdAt != null) return false;
         if (lastUpdatedAt != null ? !lastUpdatedAt.equals(comment.lastUpdatedAt) : comment.lastUpdatedAt != null)
             return false;
+        if (answerId != null ? !answerId.equals(comment.answerId) : comment.answerId != null) return false;
+        if (questionId != null ? !questionId.equals(comment.questionId) : comment.questionId != null) return false;
 
         return true;
     }
@@ -88,9 +98,20 @@ public class Comment {
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (content != null ? content.hashCode() : 0);
-        result = 31 * result + (int) (authorId ^ (authorId >>> 32));
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         result = 31 * result + (lastUpdatedAt != null ? lastUpdatedAt.hashCode() : 0);
+        result = 31 * result + (answerId != null ? answerId.hashCode() : 0);
+        result = 31 * result + (questionId != null ? questionId.hashCode() : 0);
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "author_id", referencedColumnName = "id", nullable = false)
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
     }
 }

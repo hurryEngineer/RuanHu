@@ -4,6 +4,8 @@ package edu.nju.data.daoImpl;
 import edu.nju.RuanHuApplication;
 import edu.nju.data.dao.QuestionDAO;
 import edu.nju.data.entity.Question;
+import edu.nju.data.entity.Vote;
+import edu.nju.data.util.VoteType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,9 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -27,14 +32,17 @@ public class QuestionDAOImplTest {
 
     @Autowired
     QuestionDAO questionDAO;
+    @PersistenceContext
+    EntityManager em;
 
 
     @Test
     public void save_id() throws Exception {
         Question question = new Question();
         question.setAuthorId(new Long(2));
-        question.setTitle("q4");
-        question.setContent("c4");
+       // question.getAuthor().setId(new Long (5));
+        question.setTitle("q9");
+        question.setContent("c9");
         long id = questionDAO.save_id(question);
         if(id==0){
             fail();
@@ -47,7 +55,7 @@ public class QuestionDAOImplTest {
     @Test
     public void save_question() throws Exception {
         Question question = new Question();
-        question.setAuthorId(new Long(2));
+     //   question.setAuthorId(new Long(2));
         question.setTitle("q5");
         question.setContent("c5");
         Question newQuestion= questionDAO.save_question(question);
@@ -66,7 +74,7 @@ public class QuestionDAOImplTest {
             Question question = new Question();
             question.setTitle("q"+i);
             question.setContent("c"+i);
-            question.setAuthorId(new Long (2));
+         //   question.setAuthorId(new Long (2));
             questionDAO.save_id(question);
         }
 
@@ -98,7 +106,7 @@ public class QuestionDAOImplTest {
     @Test
     public void update() throws Exception {
         Question question = new Question();
-        question.setAuthorId(new Long(2));
+     //   question.setAuthorId(new Long(2));
         question.setTitle("q4");
         question.setContent("c4");
         question.setId(3);
@@ -130,9 +138,13 @@ public class QuestionDAOImplTest {
     public void getPaginatedQuestions() throws Exception {
 
 
-
-
-
+        Query query = em.createQuery("from Vote where id = 2");
+        Vote vote = (Vote) query.getSingleResult();
+        if(!vote.getVoteType().equals(VoteType.down)){
+            fail();
+        }else{
+            System.out.println(vote.getVoteType()+"---------------------------");
+        }
 
     }
 
@@ -154,13 +166,13 @@ public class QuestionDAOImplTest {
             fail("null");
         }else if ( questionList.size()!=resultSize){
             fail("size");
-        }else if (questionList.get(0).getAuthorId()!=userID){
-            fail("userID");
+      //  }else if (questionList.get(0).getAuthorId()!=userID){
+       //     fail("userID");
         }else{
             for (Question question : questionList){
 
                 System.out.println("questionID: "+question.getId());
-                System.out.println("userID: "+question.getAuthorId());
+         //       System.out.println("userID: "+question.getAuthorId());
 
             }
         }
@@ -193,7 +205,7 @@ public class QuestionDAOImplTest {
             for (Question question : questionList){
 
                 System.out.println("questionID: "+question.getId());
-                System.out.println("userID: "+question.getAuthorId());
+       //         System.out.println("userID: "+question.getAuthorId());
 
             }
         }

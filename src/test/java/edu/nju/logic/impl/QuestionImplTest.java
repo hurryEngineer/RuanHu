@@ -13,8 +13,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import java.util.Date;
 import java.sql.Timestamp;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by Dora on 2016/7/13.
  */
@@ -36,7 +34,7 @@ public class QuestionImplTest {
         Question q = new Question();
         q.setContent("hahaha");
         q.setTitle("hhh");
-        q.setAuthorId(Long.valueOf("1"));
+      //  q.setAuthorId(Long.valueOf("1"));
         q.setLastUpdatedAt(new Timestamp(new Date().getTime()));
 
         System.out.println(service.saveQuestion(q));

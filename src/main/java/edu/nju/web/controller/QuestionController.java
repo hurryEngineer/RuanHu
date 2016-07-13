@@ -68,7 +68,7 @@ public class QuestionController {
             question = new Question();
             question.setTitle(title);
 
-            question.setAuthorId(user.getId());
+            question.setAuthor(user);
             question.setLastUpdatedAt(new Timestamp(new Date().getTime()));
             question.setCreatedAt(new Timestamp(new Date().getTime()));
             question.setContent(description);

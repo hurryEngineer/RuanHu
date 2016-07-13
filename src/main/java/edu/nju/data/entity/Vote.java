@@ -1,21 +1,22 @@
 package edu.nju.data.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import edu.nju.data.util.VoteType;
+
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by ss14 on 2016/7/12.
+ * Created by ss14 on 2016/7/13.
  */
 @Entity
 public class Vote {
     private long id;
-    private String type;
-    private Long authorId;
+    private long authorId;
     private Timestamp createdAt;
     private Timestamp lastUpdatedAt;
+    private Long answerId;
+    private Long questionId;
+    private VoteType voteType;
 
     @Id
     @Column(name = "id")
@@ -28,22 +29,12 @@ public class Vote {
     }
 
     @Basic
-    @Column(name = "type")
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    @Basic
     @Column(name = "author_id")
-    public Long getAuthorId() {
+    public long getAuthorId() {
         return authorId;
     }
 
-    public void setAuthorId(Long authorId) {
+    public void setAuthorId(long authorId) {
         this.authorId = authorId;
     }
 
@@ -67,6 +58,36 @@ public class Vote {
         this.lastUpdatedAt = lastUpdatedAt;
     }
 
+    @Basic
+    @Column(name = "answer_id")
+    public Long getAnswerId() {
+        return answerId;
+    }
+
+    public void setAnswerId(Long answerId) {
+        this.answerId = answerId;
+    }
+
+    @Basic
+    @Column(name = "question_id")
+    public Long getQuestionId() {
+        return questionId;
+    }
+
+    public void setQuestionId(Long questionId) {
+        this.questionId = questionId;
+    }
+
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type")
+    public VoteType getVoteType() {
+        return voteType;
+    }
+
+    public void setVoteType(VoteType voteType) {
+        this.voteType = voteType;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,11 +96,12 @@ public class Vote {
         Vote vote = (Vote) o;
 
         if (id != vote.id) return false;
-        if (type != null ? !type.equals(vote.type) : vote.type != null) return false;
-        if (authorId != null ? !authorId.equals(vote.authorId) : vote.authorId != null) return false;
+        if (authorId != vote.authorId) return false;
         if (createdAt != null ? !createdAt.equals(vote.createdAt) : vote.createdAt != null) return false;
         if (lastUpdatedAt != null ? !lastUpdatedAt.equals(vote.lastUpdatedAt) : vote.lastUpdatedAt != null)
             return false;
+        if (answerId != null ? !answerId.equals(vote.answerId) : vote.answerId != null) return false;
+        if (questionId != null ? !questionId.equals(vote.questionId) : vote.questionId != null) return false;
 
         return true;
     }
@@ -87,10 +109,13 @@ public class Vote {
     @Override
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (type != null ? type.hashCode() : 0);
-        result = 31 * result + (authorId != null ? authorId.hashCode() : 0);
+        result = 31 * result + (int) (authorId ^ (authorId >>> 32));
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         result = 31 * result + (lastUpdatedAt != null ? lastUpdatedAt.hashCode() : 0);
+        result = 31 * result + (answerId != null ? answerId.hashCode() : 0);
+        result = 31 * result + (questionId != null ? questionId.hashCode() : 0);
         return result;
     }
+
+
 }

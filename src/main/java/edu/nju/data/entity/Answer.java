@@ -2,30 +2,35 @@ package edu.nju.data.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
- * Created by ss14 on 2016/7/12.
+ * Created by ss14 on 2016/7/13.
  */
 @Entity
 public class Answer {
     private long id;
     private String content;
-    private Long authorId;
-    private Long questionId;
+    private long questionId;
     private Timestamp createdAt;
     private Timestamp lastUpdatedAt;
-    private Long voteCount;
+    private Integer voteCount;
+    private Byte solution;
+    private User author;
+    private List<Comment> commentList;
 
+    @Transient
+    public void setAuthorId(long id){
+        this.getAuthor().setId(id);
+    }
+    @Transient
+    public long getAuthorId(){
+        return this.getAuthor().getId();
+    }
 
-
-    /**
-     * 是否被选为解决方案的Tag , 值为1表示选中
-     */
-    private Integer solution;
 
     @Id
     @Column(name = "id")
-    @GeneratedValue
     public long getId() {
         return id;
     }
@@ -45,22 +50,12 @@ public class Answer {
     }
 
     @Basic
-    @Column(name = "author_id")
-    public Long getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(Long authorId) {
-        this.authorId = authorId;
-    }
-
-    @Basic
     @Column(name = "question_id")
-    public Long getQuestionId() {
+    public long getQuestionId() {
         return questionId;
     }
 
-    public void setQuestionId(Long questionId) {
+    public void setQuestionId(long questionId) {
         this.questionId = questionId;
     }
 
@@ -86,21 +81,21 @@ public class Answer {
 
     @Basic
     @Column(name = "vote_count")
-    public Long getVoteCount() {
+    public Integer getVoteCount() {
         return voteCount;
     }
 
-    public void setVoteCount(Long voteCount) {
+    public void setVoteCount(Integer voteCount) {
         this.voteCount = voteCount;
     }
 
     @Basic
     @Column(name = "solution")
-    public Integer getSolution() {
+    public Byte getSolution() {
         return solution;
     }
 
-    public void setSolution(Integer solution) {
+    public void setSolution(Byte solution) {
         this.solution = solution;
     }
 
@@ -112,9 +107,8 @@ public class Answer {
         Answer answer = (Answer) o;
 
         if (id != answer.id) return false;
+        if (questionId != answer.questionId) return false;
         if (content != null ? !content.equals(answer.content) : answer.content != null) return false;
-        if (authorId != null ? !authorId.equals(answer.authorId) : answer.authorId != null) return false;
-        if (questionId != null ? !questionId.equals(answer.questionId) : answer.questionId != null) return false;
         if (createdAt != null ? !createdAt.equals(answer.createdAt) : answer.createdAt != null) return false;
         if (lastUpdatedAt != null ? !lastUpdatedAt.equals(answer.lastUpdatedAt) : answer.lastUpdatedAt != null)
             return false;
@@ -128,12 +122,30 @@ public class Answer {
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (content != null ? content.hashCode() : 0);
-        result = 31 * result + (authorId != null ? authorId.hashCode() : 0);
-        result = 31 * result + (questionId != null ? questionId.hashCode() : 0);
+        result = 31 * result + (int) (questionId ^ (questionId >>> 32));
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         result = 31 * result + (lastUpdatedAt != null ? lastUpdatedAt.hashCode() : 0);
         result = 31 * result + (voteCount != null ? voteCount.hashCode() : 0);
         result = 31 * result + (solution != null ? solution.hashCode() : 0);
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "author_id", referencedColumnName = "id", nullable = false)
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
+    @OneToMany(mappedBy = "answerId")
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
     }
 }

@@ -8,7 +8,7 @@
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="current_session_context_class">thread</property>
     <property name="packagesToScan" >entity</property>
-      <mapping class="edu.nju.data.entity.Answer"/>
+    <mapping class="edu.nju.data.entity.Answer"/>
       <mapping class="edu.nju.data.entity.AnswerComments"/>
       <mapping class="edu.nju.data.entity.AnswerVotes"/>
       <mapping class="edu.nju.data.entity.Comment"/>
@@ -17,9 +17,10 @@
       <mapping class="edu.nju.data.entity.QuestionVotes"/>
       <mapping class="edu.nju.data.entity.Vote"/>
       <mapping class="edu.nju.data.entity.User"/>
+    <mapping class="edu.nju.data.entity.AlibabaKey"/>
 
 
-      <!-- DB schema will be updated if needed -->
+    <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>
 </hibernate-configuration>

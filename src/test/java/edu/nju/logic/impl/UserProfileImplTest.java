@@ -3,7 +3,6 @@ package edu.nju.logic.impl;
 import edu.nju.RuanHuApplication;
 import edu.nju.data.dao.UserDAO;
 import edu.nju.data.entity.User;
-import edu.nju.logic.service.LoginService;
 import edu.nju.logic.service.UserProfileService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -14,8 +13,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.sql.Date;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by cuihao on 2016/7/13.

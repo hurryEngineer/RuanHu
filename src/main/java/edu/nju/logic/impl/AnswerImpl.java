@@ -3,7 +3,6 @@ package edu.nju.logic.impl;
 import edu.nju.data.dao.AnswerDAO;
 import edu.nju.data.dao.QuestionDAO;
 import edu.nju.data.entity.Answer;
-import edu.nju.data.entity.Question;
 import edu.nju.data.entity.User;
 import edu.nju.logic.service.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by cuihao on 2016/7/13.

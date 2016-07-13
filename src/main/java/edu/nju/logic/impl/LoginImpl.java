@@ -7,7 +7,6 @@ import edu.nju.logic.service.LoginService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 /**
  * 登陆实现

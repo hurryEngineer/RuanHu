@@ -19,7 +19,6 @@ import org.springframework.web.context.WebApplicationContext;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
