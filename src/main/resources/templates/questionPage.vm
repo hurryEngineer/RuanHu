@@ -15,7 +15,7 @@
 	<body class="hold-transition skin-blue-light layout-top-nav">
 		<div class="wrapper">
 
-			#parse("mainHeader.vm")
+			#parse("commonPart/mainHeader.vm")
 
 			<div class="content-wrapper">
 				<div class="container">
