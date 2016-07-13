@@ -16,4 +16,11 @@ public interface UserDAO {
 
     User getUserByName(String username);
 
+
+    /**
+     * 更新用户信息，NOT NULL属性: ID，username,password
+     * @param user
+     */
+    void update(User user);
+
 }

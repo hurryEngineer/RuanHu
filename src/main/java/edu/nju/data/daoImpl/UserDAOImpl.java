@@ -68,5 +68,12 @@ public class UserDAOImpl implements UserDAO {
         return (User) query.getSingleResult();
     }
 
+    @Override
+    public void update(User user) {
+
+        baseDAO.update(user);
+
+    }
+
 
 }

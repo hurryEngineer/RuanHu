@@ -22,8 +22,19 @@ import static org.junit.Assert.*;
 public class UserDAOImplTest {
 
 
+
     @Autowired
     UserDAO userDAO;
+    @Test
+    public void update() throws Exception {
+        User user = new User();
+        user.setId(2);
+        user.setUserName("ss14");
+        user.setPassword("123456");
+        userDAO.update(user);
+
+
+    }
 
     @Test
     public void exists() throws Exception {
