@@ -20,7 +20,7 @@ public class Question {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue //How do i correct this to have multiple rows with same id and different subid**
+    @GeneratedValue
     public long getId() {
         return id;
     }

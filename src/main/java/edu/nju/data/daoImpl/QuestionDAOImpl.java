@@ -18,12 +18,16 @@ import java.util.List;
 @Repository
 @Transactional
 public class QuestionDAOImpl implements QuestionDAO {
+
     @Autowired
     BaseDAO baseDAO;
+
     @PersistenceContext
     EntityManager em;
 
     private static String tableName = "Question";
+
+    private static int default_pageSize =10;
 
     @Override
     public void save(Question question) {
@@ -74,11 +78,44 @@ public class QuestionDAOImpl implements QuestionDAO {
     }
 
     @Override
+    public List<Question> getPaginatedQuestions(int pageNum) {
+
+        return (List<Question>) baseDAO.getPaginatedContent(tableName,pageNum,default_pageSize);
+    }
+
+    @Override
+    public List<Question> getPaginatedQuestions(int pageNum, int pageSize) {
+        return (List<Question>) baseDAO.getPaginatedContent(tableName,pageNum,pageSize);
+    }
+
+    @Override
     public List<Question> getQuestionByUsername(String userName)
     {
         Query query = em.createQuery("select q from Question q,User u where q.authorId=u.id and u.userName = ?1");
         query.setParameter(1,userName);
 
         return query.getResultList();
+    }
+
+    @Override
+    public long getQuestionCountByUsername(String username) {
+        Query query = em.createQuery("select count(q) from Question q,User u where q.authorId=u.id and u.userName = ?1");
+        query.setParameter(1,username);
+
+        return (long) query.getSingleResult();
+    }
+
+    @Override
+    public List<Question> getQuestionByUserID(long userID) {
+        Query query = em.createQuery("from Question q where q.authorId= ?1");
+        query.setParameter(1,userID);
+        return query.getResultList();
+    }
+
+    @Override
+    public long getQuestionCountByUserID(long userID) {
+        Query query = em.createQuery("select count (q) from Question q where q.authorId= ?1");
+        query.setParameter(1,userID);
+        return (long) query.getSingleResult();
     }
 }

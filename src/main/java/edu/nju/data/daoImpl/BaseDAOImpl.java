@@ -1,11 +1,14 @@
 package edu.nju.data.daoImpl;
 
 import edu.nju.data.dao.BaseDAO;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.util.List;
 
 /**
  * Created by ss14 on 2016/7/12.
@@ -30,9 +33,6 @@ public class BaseDAOImpl implements BaseDAO {
 
     }
 
-
-
-
     /**
      * 更新一条记录需要所有not null 属性被赋值，
      * 剩下的属性，
@@ -48,6 +48,15 @@ public class BaseDAOImpl implements BaseDAO {
     @Override
     public Object load(Class<?> c, long id) {
             return em.find(c,id);
+    }
+
+    @Override
+    public List<?> getPaginatedContent(String tableName, int pageNum, int pageSize) {
+        Query query = em.createQuery("from "+tableName);
+        query.setFirstResult((pageNum-1) * pageSize);
+        query.setMaxResults(pageSize);
+        List <?> rows = query.getResultList();
+        return rows;
     }
 
 

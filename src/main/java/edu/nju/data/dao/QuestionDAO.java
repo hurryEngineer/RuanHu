@@ -1,14 +1,14 @@
 package edu.nju.data.dao;
 
 import edu.nju.data.entity.Question;
-import org.springframework.boot.ansi.AnsiElement;
-
 import java.util.List;
 
 /**
  * Created by ss14 on 2016/7/12.
  */
 public interface QuestionDAO {
+
+
 
     /**
      * 简单的保存一个问题
@@ -55,6 +55,21 @@ public interface QuestionDAO {
      */
     Question getQuestionByID(long QuestionID);
 
+    /**
+     * 用于各种问题列表展示
+     * @param pageNum    当前页号，从1开始,页面大小默认是10
+     * @return
+     */
+    List<Question> getPaginatedQuestions(int pageNum);
+
+    /**
+     * 用于各种问题列表展示
+     * @param pageNum    当前页号，从1开始
+     * @param pageSize   页面大小默认是10
+     * @return
+     */
+    List<Question> getPaginatedQuestions(int pageNum , int pageSize );
+
 
     /**
      * 根据用户名获取该用户的全部问题
@@ -62,6 +77,28 @@ public interface QuestionDAO {
      * @return
      */
     List<Question> getQuestionByUsername(String userName);
+
+    /**
+     * 根据用户名获取该用户的全部问题的数目
+     * @param username
+     * @return
+     */
+    long getQuestionCountByUsername(String username);
+
+    /**
+     *  根据用户ID获取该用户的全部问题
+     * @param userID
+     * @return
+     */
+    List<Question> getQuestionByUserID(long userID);
+
+    /**
+     * 根据用户ID获取用户的全部问题的数目
+     * @param userID
+     * @return
+     */
+    long getQuestionCountByUserID(long userID);
+
 
 
 }

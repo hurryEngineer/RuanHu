@@ -1,5 +1,6 @@
 package edu.nju.data.daoImpl;
 
+
 import edu.nju.RuanHuApplication;
 import edu.nju.data.dao.QuestionDAO;
 import edu.nju.data.entity.Question;
@@ -7,7 +8,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.annotation.SystemProfileValueSource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
@@ -18,10 +18,13 @@ import static org.junit.Assert.*;
 /**
  * Created by ss14 on 2016/7/12.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = RuanHuApplication.class)
+@RunWith(SpringJUnit4ClassRunner.class) // SpringJUnit支持，由此引入Spring-Test框架支持！
+@SpringApplicationConfiguration(classes = RuanHuApplication.class) // 指定我们SpringBoot工程的Application启动类
 @WebAppConfiguration
 public class QuestionDAOImplTest {
+
+
+
     @Autowired
     QuestionDAO questionDAO;
 
@@ -58,13 +61,16 @@ public class QuestionDAOImplTest {
 
     @Test
     public void save() throws Exception {
-        Question question = new Question();
-        question.setAuthorId(new Long(2));
-        question.setTitle("q3");
-        question.setContent("c3");
-//        question.setId(3);
 
-        questionDAO.save(question);
+        for(int i = 4;i<100;i++){
+            Question question = new Question();
+            question.setAuthorId(new Long(2));
+            question.setTitle("q"+i);
+            question.setContent("c"+i);
+            question.setId(i);
+            questionDAO.save_id(question);
+        }
+
 
     }
 
@@ -119,12 +125,25 @@ public class QuestionDAOImplTest {
 
     }
 
+
+    @Test
+    public void getPaginatedQuestions() throws Exception {
+
+
+
+    }
+
+    @Test
+    public void getPaginatedQuestions1() throws Exception {
+
+    }
+
     @Test
     public void getQuestionByUsername() throws Exception {
 
         long userID = 1 ;
         String username = "ch";
-        int resultSize =2;
+        int resultSize =5;
         String q1 = "q1";
         String q2 = "q2";
         List<Question> questionList = questionDAO .getQuestionByUsername(username);
@@ -144,6 +163,47 @@ public class QuestionDAOImplTest {
         }
 
 
+    }
+
+    @Test
+    public void getQuestionCountByUsername() throws Exception {
+        String username = "ss14";
+        long right=3;
+        long result=questionDAO.getQuestionCountByUsername(username);
+        if(right!=result){
+            fail();
+        }
+    }
+
+    @Test
+    public void getQuestionByUserID() throws Exception {
+        long userID = 1 ;
+        int resultSize =5;
+        String q1 = "q1";
+        String q2 = "q2";
+        List<Question> questionList = questionDAO .getQuestionByUserID(userID);
+        if(questionList==null){
+            fail("null");
+        }else if ( questionList.size()!=resultSize){
+            fail("size");
+        }else{
+            for (Question question : questionList){
+
+                System.out.println("questionID: "+question.getId());
+                System.out.println("userID: "+question.getAuthorId());
+
+            }
+        }
+    }
+
+    @Test
+    public void getQuestionCountByUserID() throws Exception {
+        long userid=2;
+        long right=3;
+        long result=questionDAO.getQuestionCountByUserID(userid);
+        if(right!=result){
+            fail();
+        }
     }
 
 }

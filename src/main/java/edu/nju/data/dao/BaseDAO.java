@@ -1,5 +1,7 @@
 package edu.nju.data.dao;
 
+import java.util.List;
+
 /**
  * Created by ss14 on 2016/7/12.
  */
@@ -33,6 +35,9 @@ public interface BaseDAO {
      * @param id
      */
     Object load(Class<?> c, long id);
+
+
+    List<?> getPaginatedContent(String tableName , int pageNum , int pageSize);
 
 
 }
