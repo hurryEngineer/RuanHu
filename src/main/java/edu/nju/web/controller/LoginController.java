@@ -1,17 +1,17 @@
 package edu.nju.web.controller;
-        import edu.nju.data.entity.User;
-        import edu.nju.data.util.VerifyResult;
-        import edu.nju.logic.service.LoginService;
+import edu.nju.data.entity.User;
+import edu.nju.data.util.VerifyResult;
+import edu.nju.logic.service.LoginService;
 
-        import org.springframework.beans.factory.annotation.Autowired;
-        import org.springframework.stereotype.Controller;
-        import org.springframework.ui.Model;
-        import org.springframework.web.bind.annotation.RequestMapping;
-        import org.springframework.web.bind.annotation.RequestParam;
-        import org.springframework.web.bind.annotation.ResponseBody;
-        import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
-        import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by cuihao on 2016/7/11.
