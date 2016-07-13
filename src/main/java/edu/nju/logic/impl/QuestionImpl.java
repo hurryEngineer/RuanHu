@@ -16,7 +16,7 @@ public class QuestionImpl implements QuestionService {
     @Autowired
     QuestionDAO questionDAO;
 
-//    @Autowired
+//    @Autowired 
 //    AnswerDAO answerDAO;
 
     @Override

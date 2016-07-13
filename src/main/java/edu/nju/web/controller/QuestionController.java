@@ -67,7 +67,7 @@ public class QuestionController {
 
     @RequestMapping(value = "/ask",method = RequestMethod.GET)
     String newQuestion(){
-        return "test";
+        return "";
     }
 
 

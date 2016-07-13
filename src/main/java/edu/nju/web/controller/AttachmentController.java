@@ -19,8 +19,7 @@ public class AttachmentController {
 
 
     @RequestMapping(value="/form",method = RequestMethod.POST)
-    @ResponseBody
-    Map<String,Object> handleFormUpload(HttpServletRequest request, HttpServletResponse response) {
+    void handleFormUpload(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("/form");
 
         Map<String,Object> result = new HashMap<>();
@@ -39,7 +38,6 @@ public class AttachmentController {
         }
 
 
-
 //        try {
 //            InputStream inputStream = file.getInputStream();
 //        } catch (IOException e) {
@@ -52,7 +50,7 @@ public class AttachmentController {
 //        result.put("success",1);
 //        result.put("message","success");
 //        result.put("url",guid);
-        return result;
+//        return result;
     }
 
 
