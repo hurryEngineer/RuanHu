@@ -25,6 +25,37 @@ public class QuestionDAOImplTest {
     @Autowired
     QuestionDAO questionDAO;
 
+
+    @Test
+    public void save_id() throws Exception {
+        Question question = new Question();
+        question.setAuthorId(new Long(2));
+        question.setTitle("q4");
+        question.setContent("c4");
+        long id = questionDAO.save_id(question);
+        if(id==0){
+            fail();
+        }else{
+            System.out.println("Last inserted question id : "+ id);
+        }
+
+    }
+
+    @Test
+    public void save_question() throws Exception {
+        Question question = new Question();
+        question.setAuthorId(new Long(2));
+        question.setTitle("q5");
+        question.setContent("c5");
+        Question newQuestion= questionDAO.save_question(question);
+        if(newQuestion.getId()==0){
+            fail();
+        }else{
+            System.out.println("Last inserted question id : "+ newQuestion.getId());
+        }
+    }
+
+
     @Test
     public void save() throws Exception {
         Question question = new Question();

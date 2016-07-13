@@ -33,6 +33,21 @@ public class QuestionDAOImpl implements QuestionDAO {
     }
 
     @Override
+    public long save_id(Question question) {
+        em.persist(question);
+        em.flush();
+        return question.getId();
+    }
+
+    @Override
+    public Question save_question(Question question) {
+        em.persist(question);
+        em.flush();
+        return question;
+    }
+
+
+    @Override
     public void deleteByQuestionID(long questionID) {
 
         baseDAO.delete(Question.class,questionID);

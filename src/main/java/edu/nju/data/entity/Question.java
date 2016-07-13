@@ -1,9 +1,6 @@
 package edu.nju.data.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
@@ -23,6 +20,7 @@ public class Question {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue //How do i correct this to have multiple rows with same id and different subid**
     public long getId() {
         return id;
     }
