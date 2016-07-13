@@ -13,7 +13,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         if (request.getSession().getAttribute("user") != null) {
             return true;
         }
-
+        System.out.println(request.getRequestURI());
+        request.getSession().setAttribute("formerUrl", request.getRequestURI());
         response.sendRedirect("/login");
 
         return false;

@@ -82,16 +82,7 @@
 							</form>
 						</div>
 
-						<div class="navbar-custom-menu">
-							<ul class="nav navbar-nav">
-								<li class="dropdown user user-menu">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-										<img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-										<span class="hidden-xs">NJU申彬</span>
-									</a>
-								</li>
-							</ul>
-						</div>
+						#parse("topNaviMenu.vm")
 
 					</div>
 					<!-- /.container-fluid -->
@@ -179,44 +170,7 @@
 							<hr/>
 						</div>
 
-						<div class="col-md-3 col-sm-3 col-xs-12">
-							<section class="sidebar">
-								<ul class="sidebar-menu fixed">
-									<li>
-										<a href="#">
-											<i class="fa fa-dashboard"></i>
-											<span>我的提问</span>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<i class="fa fa-files-o"></i>
-											<span>我的回答</span>
-										</a>
-									</li>
-									<li>
-										<a href="pages/widgets.html">
-											<i class="fa fa-th"></i>
-											<span>我的收藏</span>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<i class="fa fa-pie-chart"></i>
-											<span>收到的邀请</span>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<i class="fa fa-laptop"></i>
-											<span>我的成就</span>
-										</a>
-									</li>
-								</ul>
-								<hr />
-							</section>
-
-						</div>
+						#parse("rightSideBar.vm")
 
 					</div>
 				</div>
