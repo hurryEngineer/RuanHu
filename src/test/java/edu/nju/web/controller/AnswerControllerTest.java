@@ -56,12 +56,12 @@ public class AnswerControllerTest {
                 .param("questionId","1").param("markedText","###head"))
                 .andExpect(status().isOk());
         HashMap<String,Answer> map = new HashMap<>();
-        sessionMap.put("answer",map);
+        sessionMap.put("tempAnswer",map);
         mockMvc.perform(MockMvcRequestBuilders.get("/answer/tempSave").sessionAttrs(sessionMap)
                 .param("questionId","1").param("markedText","###head2"))
                 .andExpect(status().isOk());
         map.put("1",new Answer());
-        sessionMap.put("answer",map);
+        sessionMap.put("tempAnswer",map);
         mockMvc.perform(MockMvcRequestBuilders.get("/answer/tempSave").sessionAttrs(sessionMap)
                 .param("questionId","1").param("markedText","###head3"))
                 .andExpect(status().isOk());
@@ -72,11 +72,11 @@ public class AnswerControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/answer/getTempAnswer").sessionAttrs(sessionMap).param("questionId","1"))
                 .andExpect(status().isOk());
         HashMap<String,Answer> map = new HashMap<>();
-        sessionMap.put("answer",map);
+        sessionMap.put("tempAnswer",map);
         mockMvc.perform(MockMvcRequestBuilders.get("/answer/getTempAnswer").sessionAttrs(sessionMap).param("questionId","1"))
                 .andExpect(status().isOk());
         map.put("1",new Answer());
-        sessionMap.put("answer",map);
+        sessionMap.put("tempAnswer",map);
         mockMvc.perform(MockMvcRequestBuilders.get("/answer/getTempAnswer").sessionAttrs(sessionMap).param("questionId","1"))
                 .andExpect(status().isOk());
     }
