@@ -62,12 +62,11 @@ public class QuestionDAOImplTest {
     @Test
     public void save() throws Exception {
 
-        for(int i = 4;i<100;i++){
+        for(int i = 5;i<100;i++){
             Question question = new Question();
-            question.setAuthorId(new Long(2));
             question.setTitle("q"+i);
             question.setContent("c"+i);
-            question.setId(i);
+            question.setAuthorId(new Long (2));
             questionDAO.save_id(question);
         }
 
@@ -115,10 +114,11 @@ public class QuestionDAOImplTest {
         Question question = questionDAO.getQuestionByID(id);
         String title = "q1";
         String content = "c1";
+        String name = "ch";
         if(question==null){
             fail();
         }else if (!title.equals(question.getTitle()) ||
-                     !content.equals(question.getContent())){
+                     !content.equals(question.getContent())||!question.getAuthor().getUserName().equals(name)){
             fail();
         }
 
@@ -128,6 +128,9 @@ public class QuestionDAOImplTest {
 
     @Test
     public void getPaginatedQuestions() throws Exception {
+
+
+
 
 
 
