@@ -143,4 +143,19 @@ public class Question {
         result = 31 * result + (lastUpdatedAt != null ? lastUpdatedAt.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "id=" + id +
+                ", answerCount=" + answerCount +
+                ", voteCount=" + voteCount +
+                ", viewCount=" + viewCount +
+                ", authorId=" + authorId +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", createdAt=" + createdAt +
+                ", lastUpdatedAt=" + lastUpdatedAt +
+                '}';
+    }
 }
