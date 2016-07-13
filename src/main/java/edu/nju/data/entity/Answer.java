@@ -18,6 +18,9 @@ public class Answer {
     private Timestamp createdAt;
     private Timestamp lastUpdatedAt;
     private Long voteCount;
+    /**
+     * 是否被选为解决方案的Tag , 值为1表示选中
+     */
     private Integer solution;
 
     @Id

@@ -1,8 +1,5 @@
 package edu.nju.data.dao;
 
-
-import java.util.List;
-
 /**
  * Created by ss14 on 2016/7/12.
  */
@@ -10,7 +7,7 @@ import java.util.List;
 
 public interface BaseDAO {
     /**
-     * 向数据库中插入对象,不检查是否有重复
+     * 向数据库中插入对象,不检查是否有重复,不立即插入
      * @param obj
      */
     void insert(Object obj);
@@ -21,6 +18,8 @@ public interface BaseDAO {
      * @return
      */
     void delete(Class<?> c,long id);
+
+
 
     /**
      * 更新数据库中的对象
