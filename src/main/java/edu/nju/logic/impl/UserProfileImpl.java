@@ -22,7 +22,7 @@ public class UserProfileImpl implements UserProfileService {
         user.setDescription(description);
         user.setLocation(location);
         user.setBirthDate(Date.valueOf(bitrhday));
-        //TODO UPDATE USE USER DAO
-        return false;
+        userDAO.update(user);
+        return true;
     }
 }
