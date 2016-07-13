@@ -6,10 +6,7 @@ import edu.nju.logic.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
@@ -22,6 +19,7 @@ import java.util.Map;
  */
 
 @Controller
+@SessionAttributes("user")
 public class QuestionController {
 
     @Autowired
@@ -36,18 +34,16 @@ public class QuestionController {
     }
 
     @RequestMapping(value = "/submitQuestion")
-    String newQuestion(String title, String description, HttpSession session){
+    String newQuestion(String title, String description, HttpSession session, @ModelAttribute("user")User user){
 
-        Object userAttr = session.getAttribute("user");
         Map<String,Object> result = new HashMap<>();
         Question question;
 
-        if((userAttr = session.getAttribute("user"))!=null) {
+        if(user!=null) {
 
             question = new Question();
             question.setTitle(title);
 
-            User user = (User)userAttr;
             question.setAuthorId(user.getId());
             question.setLastUpdatedAt(new Timestamp(new Date().getTime()));
             question.setCreatedAt(new Timestamp(new Date().getTime()));
@@ -67,7 +63,7 @@ public class QuestionController {
 
     @RequestMapping(value = "/ask",method = RequestMethod.GET)
     String newQuestion(){
-        return "";
+        return "editQuestion";
     }
 
 

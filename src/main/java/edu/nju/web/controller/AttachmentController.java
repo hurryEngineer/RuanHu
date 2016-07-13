@@ -1,6 +1,6 @@
 package edu.nju.web.controller;
 
-
+import edu.nju.web.util.PostObjectPolicy;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,8 +25,8 @@ public class AttachmentController {
         Map<String,Object> result = new HashMap<>();
 
 
-        String guid = request.getParameter("guid");
-        System.out.println(guid);
+//        String guid = request.getParameter("guid");
+//        System.out.println(guid);
 
 
         try {
@@ -36,6 +36,7 @@ public class AttachmentController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
 
 
 //        try {

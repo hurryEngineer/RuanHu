@@ -30,8 +30,8 @@ public class QuestionControllerTest {
     @Autowired
     private WebApplicationContext webApplicationContext;
 //
-//    @Autowired
-//    private LoginService loginService;
+    @Autowired
+    private LoginService loginService;
 
     @Autowired
     QuestionController controller;
@@ -57,9 +57,9 @@ public class QuestionControllerTest {
     @Test
     public void newQuestion() throws Exception {
 
-//        User user = loginService.getCurrentUser("ch");
-//        sessionMap.put("user",user);
-        mockMvc.perform(post("/submitQuestion").param("title","my first question in ruanhu").param("description","This is my first question in Ruan hu.hahaha.").sessionAttrs(sessionMap));
+        User user = loginService.getCurrentUser("ch");
+        sessionMap.put("user",user);
+        mockMvc.perform(post("/submitQuestion").param("title","excuse me?").param("description","???").sessionAttrs(sessionMap));
 
     }
 
