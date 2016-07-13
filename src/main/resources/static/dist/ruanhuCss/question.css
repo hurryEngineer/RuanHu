@@ -1,0 +1,37 @@
+span.vote-count  {
+    color: #fff;
+    min-width: 45px;
+    height: 23px;
+    text-align: center;
+    margin: 0 auto;
+    display: table;
+    padding: 0 10px;
+    line-height: 23px;
+    font-size: 12px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #3397db;
+    
+}
+ul.question-upDown a{
+    width: 25px;
+    height: 25px;
+    border: 1px solid #dadfea;
+    display: block;
+    text-align: center;
+    line-height: 1.6;
+    color: #6f7d95;
+    margin: 0 auto;
+}
+ul.question-upDown li {
+	display: block;
+	margin-bottom: 10px;
+}
+ul.question-upDown li:last-child {
+	margin-bottom: 0;
+}
+.inset-photo{
+	width: 600px;
+}
+}

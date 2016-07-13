@@ -1,0 +1,16 @@
+.login-box-body{
+	font-size: 15px;
+}
+
+.login-box-body .login-box-msg{
+	padding: 0;
+}
+
+.login-box-body .input-group{
+	padding-bottom: 10px;
+}
+.login-box-body .glyphicon{
+	top: 0px;
+}
+			
+			
