@@ -16,4 +16,5 @@ public interface UserProfileService {
      * @return 是否更新成功
      */
     boolean editProfile(User user, String description, String location, String bitrhday);
+
 }

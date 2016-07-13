@@ -22,6 +22,7 @@ public class BaseDAOImpl implements BaseDAO {
         em.persist(obj);
     }
 
+
     @Override
     public void delete( Class<?> c, long id) {
         Object ob =load(c,id);
@@ -29,6 +30,16 @@ public class BaseDAOImpl implements BaseDAO {
 
     }
 
+
+
+
+    /**
+     * 更新一条记录需要所有not null 属性被赋值，
+     * 剩下的属性，
+     * 如果被赋值将会覆盖原记录；
+     * 如果未被赋值将会为null。
+     * @param obj
+     */
     @Override
     public void update(Object obj) {
         em.merge(obj);

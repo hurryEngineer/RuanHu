@@ -200,8 +200,8 @@ public class OssManager {
         return res;
     }
 
-    public static void main(String[] args) throws Exception {
-        OssManager ossPostObject = new OssManager();
-        ossPostObject.PostObject();
-    }
+//    public static void main(String[] args) throws Exception {
+//        OssManager ossPostObject = new OssManager();
+//        ossPostObject.PostObject();
+//    }
 }
