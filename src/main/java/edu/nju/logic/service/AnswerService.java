@@ -1,6 +1,7 @@
 package edu.nju.logic.service;
 
 import edu.nju.data.entity.User;
+import edu.nju.data.util.VoteType;
 
 /**
  * 回答接口
@@ -24,4 +25,6 @@ public interface AnswerService {
      * @return 是否保存成功
      */
     boolean saveAnswer(long questionId, long userId, String text);
+
+    void vote(String questionId, String answerId, String userId, VoteType type);
 }

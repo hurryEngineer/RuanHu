@@ -3,6 +3,7 @@ package edu.nju.web.controller;
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
 import edu.nju.data.entity.User;
+import edu.nju.data.util.VoteType;
 import edu.nju.logic.service.QuestionService;
 import edu.nju.logic.service.TimeService;
 import edu.nju.logic.vo.AnswerVO;
@@ -97,12 +98,12 @@ public class QuestionController {
 
     @RequestMapping(value = "/up")
     void upVote(String questionId, String userId){
-
+        service.vote(questionId,userId, VoteType.up);
     }
 
     @RequestMapping(value = "/down")
     void downVote(String questionId, String userId){
-
+        service.vote(questionId,userId, VoteType.down);
     }
 
 }
