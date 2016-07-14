@@ -38,7 +38,7 @@ public class QuestionDAOImplTest {
 
     @Test
     public void save() throws Exception {
-        for(int i=2 ; i<35 ;i++){
+        for(int i=1 ; i<35 ;i++){
             Question question = new Question();
             question.setTitle("q"+i);
             question.setContent("c"+i);

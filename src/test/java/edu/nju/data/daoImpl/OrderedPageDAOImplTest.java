@@ -3,11 +3,13 @@ package edu.nju.data.daoImpl;
 import edu.nju.RuanHuApplication;
 import edu.nju.data.dao.OrderedPageDAO;
 import edu.nju.data.entity.Question;
+import edu.nju.data.util.OrderByMethod;
 import edu.nju.data.util.OrderByPara;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.core.annotation.Order;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
@@ -51,7 +53,7 @@ public class OrderedPageDAOImplTest {
     @Test
     public void getPaginatedContent1() throws Exception {
         String tableName = "Question";
-        OrderByPara para = OrderByPara.createdAt;
+        OrderByPara para = OrderByPara.answerCount;
         int pageNum=1;
         int pageSize =10;
         List<Question> result = (List<Question>)
@@ -62,7 +64,8 @@ public class OrderedPageDAOImplTest {
             fail();
         }else{
             for(Question question : result){
-                System.out.println("QuestionID : "+question.getId());
+                System.out.println("QuestionID : "+question.getId()
+                + "  "+para.toString() + question.getAnswerCount());
             }
 
         }
@@ -70,7 +73,24 @@ public class OrderedPageDAOImplTest {
 
     @Test
     public void getPaginatedContent2() throws Exception {
+        String tableName = "Question";
+        OrderByPara para = OrderByPara.answerCount;
+        OrderByMethod method = OrderByMethod.ASC;
+        int pageNum=3;
+        int pageSize =10;
+        List<Question> result = (List<Question>)
+                dao.getPaginatedContent(tableName,pageNum,pageSize,para,method);
+        if(result==null){
+            fail();
+        }else if(result.size()!=pageSize){
+            fail();
+        }else{
+            for(Question question : result){
+                System.out.println("QuestionID : "+question.getId()
+                        + "  "+para.toString() + question.getAnswerCount());
+            }
 
+        }
     }
 
 }

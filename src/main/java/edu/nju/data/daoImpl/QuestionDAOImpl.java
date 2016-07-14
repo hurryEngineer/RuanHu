@@ -5,6 +5,8 @@ import edu.nju.data.dao.OrderedPageDAO;
 import edu.nju.data.dao.QuestionDAO;
 import edu.nju.data.entity.Question;
 import edu.nju.data.util.CommonParas;
+import edu.nju.data.util.OrderByMethod;
+import edu.nju.data.util.OrderByPara;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -81,6 +83,7 @@ public class QuestionDAOImpl implements QuestionDAO {
         return (Question) baseDAO.load(Question.class, QuestionID);
     }
 
+
     @Override
     public List<Question> getPaginatedQuestions(int pageNum) {
 
@@ -90,6 +93,26 @@ public class QuestionDAOImpl implements QuestionDAO {
     @Override
     public List<Question> getPaginatedQuestions(int pageNum, int pageSize) {
         return (List<Question>) pageDAO.getPaginatedContent(tableName,pageNum,pageSize);
+    }
+
+    @Override
+    public List<Question> getPaginatedQuestions(int pageNum, OrderByPara para) {
+        return null;
+    }
+
+    @Override
+    public List<Question> getPaginatedQuestions(int pageNum, int pageSize, OrderByPara para) {
+        return null;
+    }
+
+    @Override
+    public List<Question> getPaginatedQuestions(int pageNum, OrderByPara para, OrderByMethod method) {
+        return null;
+    }
+
+    @Override
+    public List<Question> getPaginatedQuestions(int pageNum, int pageSize, OrderByPara para, OrderByMethod method) {
+        return null;
     }
 
     @Override

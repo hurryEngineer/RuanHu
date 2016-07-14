@@ -1,6 +1,8 @@
 package edu.nju.data.dao;
 
 import edu.nju.data.entity.Question;
+import edu.nju.data.util.OrderByMethod;
+import edu.nju.data.util.OrderByPara;
 
 import java.util.List;
 
@@ -57,19 +59,59 @@ public interface QuestionDAO {
     Question getQuestionByID(long QuestionID);
 
     /**
-     * 用于各种问题列表展示
+     * 不排序
      * @param pageNum    当前页号，从1开始,页面大小默认是10
      * @return
      */
     List<Question> getPaginatedQuestions(int pageNum);
 
     /**
-     * 用于各种问题列表展示
+     * 不排序
      * @param pageNum    当前页号，从1开始
      * @param pageSize   页面大小自定
      * @return
      */
     List<Question> getPaginatedQuestions(int pageNum , int pageSize );
+
+
+    /**
+     * 按参数排序,默认降序
+     * @param pageNum
+     * @param para   OrderByPara: createdAt lastUpdatedAt ....
+     * @return
+     */
+    List<Question> getPaginatedQuestions(int pageNum , OrderByPara para);
+
+    /**
+     * 按参数排序，默认降序
+     * @param pageNum
+     * @param para   OrderByPara: createdAt lastUpdatedAt ....
+     * @return
+     */
+    List<Question> getPaginatedQuestions(int pageNum , int pageSize ,OrderByPara para);
+
+
+    /**
+     * 按参数排序，可选升序降序
+     * @param pageNum
+     * @param para
+     * @param method  OrderByMethod.ASC  DESC
+     * @return
+     */
+    List<Question> getPaginatedQuestions
+        (int pageNum , OrderByPara para , OrderByMethod method);
+
+    /**
+     * 按参数排序，可选升序降序
+     * @param pageNum
+     * @param para
+     * @param method  OrderByMethod.ASC  DESC
+     * @return
+     */
+    List<Question> getPaginatedQuestions
+        (int pageNum , int pageSize ,OrderByPara para ,OrderByMethod method);
+
+
 
     /**
      * 获取全部问题
