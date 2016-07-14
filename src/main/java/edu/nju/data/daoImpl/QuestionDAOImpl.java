@@ -1,9 +1,10 @@
 package edu.nju.data.daoImpl;
 
 import edu.nju.data.dao.BaseDAO;
+import edu.nju.data.dao.OrderedPageDAO;
 import edu.nju.data.dao.QuestionDAO;
 import edu.nju.data.entity.Question;
-import edu.nju.data.util.common_paras;
+import edu.nju.data.util.CommonParas;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,8 @@ public class QuestionDAOImpl implements QuestionDAO {
 
     @Autowired
     BaseDAO baseDAO;
+    @Autowired
+    OrderedPageDAO pageDAO;
 
     @PersistenceContext
     EntityManager em;
@@ -81,12 +84,12 @@ public class QuestionDAOImpl implements QuestionDAO {
     @Override
     public List<Question> getPaginatedQuestions(int pageNum) {
 
-        return (List<Question>) baseDAO.getPaginatedContent(tableName,pageNum,common_paras.default_pageSize);
+        return (List<Question>) pageDAO.getPaginatedContent(tableName,pageNum, CommonParas.default_pageSize);
     }
 
     @Override
     public List<Question> getPaginatedQuestions(int pageNum, int pageSize) {
-        return (List<Question>) baseDAO.getPaginatedContent(tableName,pageNum,pageSize);
+        return (List<Question>) pageDAO.getPaginatedContent(tableName,pageNum,pageSize);
     }
 
     @Override

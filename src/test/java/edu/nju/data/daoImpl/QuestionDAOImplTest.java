@@ -38,12 +38,14 @@ public class QuestionDAOImplTest {
 
     @Test
     public void save() throws Exception {
-        Question question = new Question();
-        question.setTitle("q2");
-        question.setContent("c2");
-       // question.setAuthorId(new Long (2));
-        question.getAuthor().setId(new Long(1));
-        questionDAO.save(question);
+        for(int i=2 ; i<35 ;i++){
+            Question question = new Question();
+            question.setTitle("q"+i);
+            question.setContent("c"+i);
+            question.setAuthorId(new Long (3));
+            questionDAO.save(question);
+        }
+
     }
 
     @Test
@@ -132,14 +134,19 @@ public class QuestionDAOImplTest {
     @Test
     public void getPaginatedQuestions() throws Exception {
 
-
-        Query query = em.createQuery("from Vote where id = 2");
-        Vote vote = (Vote) query.getSingleResult();
-        if(!vote.getVoteType().equals(VoteType.down)){
+        int pageNum=1;
+        int default_size=10;
+        List<Question> result = questionDAO.getPaginatedQuestions(pageNum);
+        if(result==null){
             fail();
-        }else{
-            System.out.println(vote.getVoteType()+"---------------------------");
+        }else if (result.size()!=default_size){
+            fail();
+        }else if (result.get(0).getId() != 1) {
+                fail();
+
         }
+
+
 
     }
 

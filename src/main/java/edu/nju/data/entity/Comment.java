@@ -2,6 +2,7 @@ package edu.nju.data.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Created by ss14 on 2016/7/13.
@@ -10,7 +11,7 @@ import java.sql.Timestamp;
 public class Comment implements DateInterface {
     private Long id;
     private String content;
-    private Timestamp createdAt;
+    private Timestamp createdAt = new Timestamp( new Date().getTime());
     private Timestamp lastUpdatedAt;
     private Long answerId;
     private Long questionId;
