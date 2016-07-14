@@ -12,7 +12,6 @@ import java.util.List;
 public interface QuestionDAO {
 
 
-
     /**
      * 简单的保存一个问题
      * @param question

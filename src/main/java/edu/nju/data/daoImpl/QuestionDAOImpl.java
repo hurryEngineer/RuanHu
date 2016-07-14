@@ -87,32 +87,39 @@ public class QuestionDAOImpl implements QuestionDAO {
     @Override
     public List<Question> getPaginatedQuestions(int pageNum) {
 
-        return (List<Question>) pageDAO.getPaginatedContent(tableName,pageNum, CommonParas.default_pageSize);
+        return (List<Question>)
+                pageDAO.getPaginatedContent(tableName,pageNum, CommonParas.default_pageSize);
     }
 
     @Override
     public List<Question> getPaginatedQuestions(int pageNum, int pageSize) {
-        return (List<Question>) pageDAO.getPaginatedContent(tableName,pageNum,pageSize);
+        return (List<Question>)
+                pageDAO.getPaginatedContent(tableName,pageNum,pageSize);
     }
 
     @Override
     public List<Question> getPaginatedQuestions(int pageNum, OrderByPara para) {
-        return null;
+
+        return  (List<Question>)
+                pageDAO.getPaginatedContent(tableName,pageNum, CommonParas.default_pageSize ,para);
     }
 
     @Override
     public List<Question> getPaginatedQuestions(int pageNum, int pageSize, OrderByPara para) {
-        return null;
+        return (List<Question>)
+                pageDAO.getPaginatedContent(tableName,pageNum, pageSize ,para);
     }
 
     @Override
     public List<Question> getPaginatedQuestions(int pageNum, OrderByPara para, OrderByMethod method) {
-        return null;
+        return (List<Question>)
+                pageDAO.getPaginatedContent(tableName,pageNum, CommonParas.default_pageSize,para ,method);
     }
 
     @Override
     public List<Question> getPaginatedQuestions(int pageNum, int pageSize, OrderByPara para, OrderByMethod method) {
-        return null;
+        return (List<Question>)
+                pageDAO.getPaginatedContent(tableName,pageNum,pageSize,para ,method);
     }
 
     @Override

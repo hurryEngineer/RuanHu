@@ -20,6 +20,8 @@ public class OrderedPageDAOImpl implements OrderedPageDAO {
     @PersistenceContext
     private EntityManager em;
 
+
+
     @Override
     public List<?> getPaginatedContent(String tableName, int pageNum, int pageSize) {
         Query query = em.createQuery("from "+tableName+" ");
@@ -51,6 +53,23 @@ public class OrderedPageDAOImpl implements OrderedPageDAO {
         query.setMaxResults(pageSize);
         List <?> rows = query.getResultList();
         return rows;
+    }
+
+
+    @Override
+    public String getHQL(String tableName, OrderByPara para, OrderByMethod method) {
+        String orderPara =  getPara(para);
+        String orderMethod= getMethod(method);
+        String hql = "from "+tableName+para+method;
+        return hql;
+    }
+
+    @Override
+    public String getHQL(String tableName, String where, OrderByPara para, OrderByMethod method) {
+        String orderPara =  getPara(para);
+        String orderMethod= getMethod(method);
+        String hql = "from "+where+tableName+para+method;
+        return hql;
     }
 
 
@@ -88,4 +107,7 @@ public class OrderedPageDAOImpl implements OrderedPageDAO {
         }
         return orderMethod;
     }
+
+
+
 }

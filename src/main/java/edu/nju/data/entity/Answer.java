@@ -12,13 +12,23 @@ import java.util.List;
 public class Answer implements DateInterface{
     private Long id;
     private String content;
-    private long questionId;
+    private Question question = new Question();
     private Timestamp createdAt = new Timestamp( new Date().getTime());
     private Timestamp lastUpdatedAt;
     private Integer voteCount= new Integer(0);
     private Byte solution;
     private User author = new User();
     private List<Comment> commentList;
+
+
+    @Transient
+    public void setQuestionId(Long id){
+        this.getQuestion().setId(id);
+    }
+    @Transient
+    public Long getQuestionId(){
+        return this.getQuestion().getId();
+    }
 
     @Transient
     public void setAuthorId(Long id){
@@ -51,15 +61,6 @@ public class Answer implements DateInterface{
         this.content = content;
     }
 
-    @Basic
-    @Column(name = "question_id")
-    public long getQuestionId() {
-        return questionId;
-    }
-
-    public void setQuestionId(long questionId) {
-        this.questionId = questionId;
-    }
 
     @Basic
     @Column(name = "created_at")
@@ -109,7 +110,6 @@ public class Answer implements DateInterface{
         Answer answer = (Answer) o;
 
         if (id != answer.id) return false;
-        if (questionId != answer.questionId) return false;
         if (content != null ? !content.equals(answer.content) : answer.content != null) return false;
         if (createdAt != null ? !createdAt.equals(answer.createdAt) : answer.createdAt != null) return false;
         if (lastUpdatedAt != null ? !lastUpdatedAt.equals(answer.lastUpdatedAt) : answer.lastUpdatedAt != null)
@@ -124,13 +124,15 @@ public class Answer implements DateInterface{
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (content != null ? content.hashCode() : 0);
-        result = 31 * result + (int) (questionId ^ (questionId >>> 32));
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         result = 31 * result + (lastUpdatedAt != null ? lastUpdatedAt.hashCode() : 0);
         result = 31 * result + (voteCount != null ? voteCount.hashCode() : 0);
         result = 31 * result + (solution != null ? solution.hashCode() : 0);
         return result;
     }
+
+
+
 
     @ManyToOne
     @JoinColumn(name = "author_id", referencedColumnName = "id", nullable = false)
@@ -142,9 +144,20 @@ public class Answer implements DateInterface{
         this.author = author;
     }
 
-    @OneToMany(mappedBy = "answerId")
+    @OneToMany(mappedBy = "answerId" ,fetch=FetchType.EAGER)
     public List<Comment> getCommentList() {
         return commentList;
+    }
+
+
+    @ManyToOne
+    @JoinColumn(name = "question_id",referencedColumnName = "id", nullable = false)
+    public Question getQuestion(){
+        return question;
+    }
+
+    public void setQuestion(Question question){
+        this.question = question;
     }
 
     public void setCommentList(List<Comment> commentList) {

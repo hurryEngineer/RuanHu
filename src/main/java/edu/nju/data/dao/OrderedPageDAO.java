@@ -11,6 +11,11 @@ import java.util.List;
 public interface OrderedPageDAO {
 
 
+    String getHQL(String tableName ,OrderByPara para ,OrderByMethod method);
+
+    String getHQL(String tableName ,String where ,OrderByPara para ,OrderByMethod method);
+
+
     /**
      * 获取某个表中的某页，不排序，random
      * @param tableName

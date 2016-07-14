@@ -5,6 +5,8 @@ import edu.nju.data.dao.BaseDAO;
 import edu.nju.data.dao.OrderedPageDAO;
 import edu.nju.data.entity.Answer;
 import edu.nju.data.util.CommonParas;
+import edu.nju.data.util.OrderByMethod;
+import edu.nju.data.util.OrderByPara;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -57,7 +59,7 @@ public class AnswerDAOImpl implements AnswerDAO {
 
     @Override
     public int deleteByQuestionID(long questionID) {
-        Query query = em.createQuery("delete from Answer as a where a.questionId = ?1");
+        Query query = em.createQuery("delete from Answer as a where a.question.id = ?1");
         query.setParameter(1,questionID);
         int size=query.executeUpdate();
         return size;
@@ -73,7 +75,7 @@ public class AnswerDAOImpl implements AnswerDAO {
 
     @Override
     public int deleteByQuestion_UserID(long questionID, long userID) {
-        Query query = em.createQuery("delete from Answer as a where a.author.id = ?2 and a.questionId = ?1");
+        Query query = em.createQuery("delete from Answer as a where a.author.id = ?2 and a.question.id = ?1");
         query.setParameter(1,questionID);
         query.setParameter(2,userID);
         int size=query.executeUpdate();
@@ -104,7 +106,7 @@ public class AnswerDAOImpl implements AnswerDAO {
     @Override
     public List<Answer> getAnswerByQuestionID(long questionID) {
 
-        Query query = em.createQuery("from Answer a where a.questionId =?1");
+        Query query = em.createQuery("from Answer a where a.question.id =?1");
         query.setParameter(1,questionID);
         List<Answer> result =  query.getResultList();
         return  result;
@@ -118,6 +120,26 @@ public class AnswerDAOImpl implements AnswerDAO {
     @Override
     public List<Answer> getAnswerByQuestionID(long questionID, int pageNum, int pageSize) {
         return (List<Answer>) pageDAO.getPaginatedContent(tableName,pageNum, pageSize);
+    }
+
+    @Override
+    public List<Answer> getAnswerByQuestionID(long questionID, int pageNum, OrderByPara para) {
+        return null;
+    }
+
+    @Override
+    public List<Answer> getAnswerByQuestionID(long questionID, int pageNum, int pageSize, OrderByPara para) {
+        return null;
+    }
+
+    @Override
+    public List<Answer> getAnswerByQuestionID(long questionID, int pageNum, OrderByPara para, OrderByMethod method) {
+        return null;
+    }
+
+    @Override
+    public List<Answer> getAnswerByQuestionID(long questionID, int pageNum, int pageSize, OrderByPara para, OrderByMethod method) {
+        return null;
     }
 
 

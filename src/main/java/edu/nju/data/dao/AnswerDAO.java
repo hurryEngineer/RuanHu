@@ -1,6 +1,8 @@
 package edu.nju.data.dao;
 
 import edu.nju.data.entity.Answer;
+import edu.nju.data.util.OrderByMethod;
+import edu.nju.data.util.OrderByPara;
 
 import java.util.List;
 
@@ -87,6 +89,7 @@ public interface AnswerDAO {
     List<Answer> getAnswerByQuestionID(long questionID);
 
     /**
+     * 不排序
      * 获取某页的回答，页面大小默认是10
      * @param questionID
      * @param pageNum
@@ -95,6 +98,7 @@ public interface AnswerDAO {
     List<Answer> getAnswerByQuestionID(long questionID , int pageNum);
 
     /**
+     * 不排序
      * 获取某页的回答，自定义页面大小
      * @param questionID
      * @param pageNum
@@ -102,6 +106,47 @@ public interface AnswerDAO {
      * @return
      */
     List<Answer> getAnswerByQuestionID(long questionID , int pageNum ,int pageSize);
+
+    /**
+     * 根据参数排序，默认降序
+     * @param questionID
+     * @param pageNum
+     * @param para
+     * @return
+     */
+    List<Answer> getAnswerByQuestionID(long questionID , int pageNum , OrderByPara para);
+
+    /**
+     * 根据参数排序，默认降序
+     * @param questionID
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    List<Answer> getAnswerByQuestionID(long questionID , int pageNum ,int pageSize ,OrderByPara para);
+
+    /**
+     * 根据参数和排序方式，进行排序
+     * @param questionID
+     * @param pageNum
+     * @param para
+     * @param method
+     * @return
+     */
+    List<Answer> getAnswerByQuestionID
+        (long questionID , int pageNum , OrderByPara para , OrderByMethod method);
+
+    /**
+     *  根据参数和排序方式，进行排序
+     * @param questionID
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    List<Answer> getAnswerByQuestionID
+        (long questionID , int pageNum ,int pageSize ,OrderByPara para ,OrderByMethod method);
+
+
 
 
     /**

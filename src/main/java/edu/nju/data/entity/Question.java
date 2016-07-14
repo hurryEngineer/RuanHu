@@ -159,7 +159,7 @@ public class Question implements DateInterface{
         this.author = author;
     }
 
-    @OneToMany(mappedBy = "questionId")
+    @OneToMany(mappedBy = "questionId",fetch=FetchType.EAGER)
     public List<Comment> getCommentList() {
         return commentList;
     }
