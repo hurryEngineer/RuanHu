@@ -2,6 +2,7 @@ package edu.nju.data.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,10 +17,13 @@ public class Question implements DateInterface{
     private Integer viewCount= new Integer(0);
     private String title;
     private String content;
-    private Timestamp createdAt;
+    private Timestamp createdAt = new Timestamp( new Date().getTime());
     private Timestamp lastUpdatedAt;
     private User author = new User();
     private List<Comment> commentList;
+
+
+
 
     @Transient
     public void setAuthorId(Long id){

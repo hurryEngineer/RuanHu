@@ -16,7 +16,7 @@ public class User {
     private String password;
     private String photoUri;
     private String description;
-    private Timestamp createdAt;
+    private Timestamp createdAt = new Timestamp( new java.util.Date().getTime());
     private Date birthDate;
 
     @Id

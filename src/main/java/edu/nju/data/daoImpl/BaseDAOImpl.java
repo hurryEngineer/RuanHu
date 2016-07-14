@@ -50,14 +50,5 @@ public class BaseDAOImpl implements BaseDAO {
             return em.find(c,id);
     }
 
-    @Override
-    public List<?> getPaginatedContent(String tableName, int pageNum, int pageSize) {
-        Query query = em.createQuery("from "+tableName);
-        query.setFirstResult((pageNum-1) * pageSize);
-        query.setMaxResults(pageSize);
-        List <?> rows = query.getResultList();
-        return rows;
-    }
-
 
 }

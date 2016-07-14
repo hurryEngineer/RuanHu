@@ -2,6 +2,7 @@ package edu.nju.data.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ public class Answer implements DateInterface{
     private Long id;
     private String content;
     private long questionId;
-    private Timestamp createdAt;
+    private Timestamp createdAt = new Timestamp( new Date().getTime());
     private Timestamp lastUpdatedAt;
     private Integer voteCount= new Integer(0);
     private Byte solution;
