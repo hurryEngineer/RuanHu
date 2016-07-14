@@ -15,6 +15,7 @@ import java.util.Map;
  * Created by Dora on 2016/7/12.
  */
 @Controller
+@SessionAttributes("user")
 public class AttachmentController {
 
 
