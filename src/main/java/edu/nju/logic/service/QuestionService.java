@@ -2,6 +2,8 @@ package edu.nju.logic.service;
 
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
+import edu.nju.logic.vo.AnswerVO;
+import edu.nju.logic.vo.QuestionVO;
 
 import java.util.List;
 
@@ -10,13 +12,13 @@ import java.util.List;
  */
 public interface QuestionService {
 
-    Question showQuestion(long ID);
+    QuestionVO showQuestion(long ID);
 
 
-    Question saveQuestion(Question question);
+    QuestionVO saveQuestion(Question question);
 
 
-    List<Question> getQuestions(int pageNum, int pageSize);
+    List<QuestionVO> getQuestions(int pageNum, int pageSize);
 
     /**
      * 根据问题查找答案
@@ -25,5 +27,5 @@ public interface QuestionService {
      * @param pageSize 页的大小
      * @return 答案列表
      */
-    List<Answer> getAnswers(long questionId, int pageNum, int pageSize);
+    List<AnswerVO> getAnswers(long questionId, int pageNum, int pageSize);
 }

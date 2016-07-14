@@ -4,6 +4,8 @@ import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
 import edu.nju.data.entity.User;
 import edu.nju.logic.service.QuestionService;
+import edu.nju.logic.service.TimeService;
+import edu.nju.logic.vo.AnswerVO;
 import edu.nju.logic.vo.QuestionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,10 +30,13 @@ public class QuestionController {
     @Autowired
     QuestionService service;
 
+    @Autowired
+    TimeService timeService;
+
     @RequestMapping(value="/questions",method = RequestMethod.GET)
     String showAllQuestions(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
 
-        List<Question> result = service.getQuestions(page,10);
+        List<QuestionVO> result = service.getQuestions(page,10);
         model.addAttribute("questions",result);
 
         return "questionList";
@@ -49,9 +54,9 @@ public class QuestionController {
         return "test";
     }
 
-    @RequestMapping(value="/queation/{id}/answers",method = RequestMethod.GET)
+    @RequestMapping(value="/question/{id}/answers",method = RequestMethod.GET)
     @ResponseBody
-    List<Answer> showAnswers(@PathVariable long id, @RequestParam(value = "page", defaultValue = "1") int page) {
+    List<AnswerVO> showAnswers(@PathVariable long id, @RequestParam(value = "page", defaultValue = "1") int page) {
 
         return service.getAnswers(id, page, 10);
     }
@@ -64,7 +69,7 @@ public class QuestionController {
 
         if(user!=null) {
 
-            question = new QuestionVO();
+            question = new Question();
             question.setTitle(title);
 
             question.setAuthor(user);
@@ -73,7 +78,8 @@ public class QuestionController {
             question.setContent(description);
 
             question = service.saveQuestion(question);
-            session.setAttribute("question",question);
+            QuestionVO questionVO = timeService.transferQuestion(question);
+            session.setAttribute("question",questionVO);
 
 
             return "redirect:/question/"+question.getId();

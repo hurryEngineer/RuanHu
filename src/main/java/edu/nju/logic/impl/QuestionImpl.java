@@ -5,9 +5,13 @@ import edu.nju.data.dao.QuestionDAO;
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
 import edu.nju.logic.service.QuestionService;
+import edu.nju.logic.service.TimeService;
+import edu.nju.logic.vo.AnswerVO;
+import edu.nju.logic.vo.QuestionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,25 +26,38 @@ public class QuestionImpl implements QuestionService {
     @Autowired
     AnswerDAO answerDAO;
 
+    @Autowired
+    TimeService timeService;
+
     @Override
-    public Question showQuestion(long id) {
+    public QuestionVO showQuestion(long id) {
         Question question = questionDAO.getQuestionByID(id);
-        return question;
+        return timeService.transferQuestion(question);
     }
 
     @Override
-    public Question saveQuestion(Question question) {
-        return questionDAO.save_question(question);
+    public QuestionVO saveQuestion(Question question) {
+        return timeService.transferQuestion(questionDAO.save_question(question));
     }
 
     @Override
-    public List<Question> getQuestions(int pageNum, int pageSize) {
-        return questionDAO.getPaginatedQuestions(pageNum, pageSize);
+    public List<QuestionVO> getQuestions(int pageNum, int pageSize) {
+        List<Question> questions = questionDAO.getPaginatedQuestions(pageNum, pageSize);
+        List<QuestionVO> questionVOs = new ArrayList<>(questions.size());
+        for (Question question : questions) {
+            questionVOs.add(timeService.transferQuestion(question));
+        }
+        return questionVOs;
     }
 
     @Override
-    public List<Answer> getAnswers(long questionId, int pageNum, int pageSize) {
-        return answerDAO.getAnswerByQuestionID(questionId,pageNum,pageSize);
+    public List<AnswerVO> getAnswers(long questionId, int pageNum, int pageSize) {
+        List<Answer> answers =  answerDAO.getAnswerByQuestionID(questionId,pageNum,pageSize);
+        List<AnswerVO> answerVOs = new ArrayList<>(answers.size());
+        for (Answer answer: answers) {
+            answerVOs.add(timeService.transferAnswer(answer));
+        }
+        return answerVOs;
     }
 
 }

@@ -3,6 +3,8 @@ package edu.nju.logic.service;
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
 import edu.nju.data.entity.User;
+import edu.nju.logic.vo.AnswerVO;
+import edu.nju.logic.vo.QuestionVO;
 
 import java.util.List;
 
@@ -27,8 +29,8 @@ public interface UserProfileService {
 
     long getAnswerCountByName(String name);
 
-    List<Question> getQuestionByName(String name);
+    List<QuestionVO> getQuestionByName(String name);
 
-    List<Answer> getAnswerByName(String name);
+    List<AnswerVO> getAnswerByName(String name);
 
 }
