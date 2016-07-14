@@ -40,7 +40,8 @@ $oneQuestion.voteCount </span> 投票 </li>
 				</a>
 
 				<span itemprop="dateCreated" datetime="on June 9, 2014" class="question-time">
-						$oneQuestion.getCreateAtForView()
+					##	$oneQuestion.getCreateAtForView()
+					$oneQuestion.createAt
 				</span>
 			</div>
 

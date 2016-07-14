@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<title>首页 - 软乎</title>
+
+		#parse("commonPart/commonCssAndJs.vm")
+
+
+	</head>
+
+	<body class="hold-transition skin-blue-light layout-top-nav">
+		<div class="wrapper">
+
+			#parse("commonPart/mainHeader.vm")
+
+			<div class="content-wrapper">
+				<div class="container">
+
+					<section class="content-header">
+						<h1>
+        	一些问题
+        <small>找找你感兴趣的</small>
+      </h1>
+					</section>
+
+					<div class="row">
+
+						<div class="col-md-9 col-sm-9 col-xs-12">
+							<hr />
+							
+						#foreach($oneQuestion in $questions)
+							#parse("/listItem/questionListItem.vm")
+						#end
+						
+						</div>
+
+						#parse("commonPart/rightSideBar.vm")
+
+					</div>
+				</div>
+			</div>
+			<!-- ./wrapper -->
+
+		#parse("commonPart/addtionalJs.vm")
+	</body>
+
+</html>
