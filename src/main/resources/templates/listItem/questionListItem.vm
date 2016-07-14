@@ -1,16 +1,17 @@
+## 一个question叫oneQuestion
 <div class="row">
 
 	<div class="col-md-4 col-xs-4">
 		<ul class="question-statistic">
 			<li>
 				<span class="question-views">
-oneQuestion </span> 浏览 </li>
+$oneQuestion.viewCount </span> 浏览 </li>
 			<li class="active">
 				<span itemprop="answerCount" class="question-answers">
-0 </span> 回答 </li>
+$oneQuestion.answerCount </span> 回答 </li>
 			<li style="margin-right: 0px;">
 				<span itemprop="upvoteCount" class="question-votes">
-2 </span> 投票 </li>
+$oneQuestion.voteCount </span> 投票 </li>
 		</ul>
 		<div class="pumping">
 		</div>
@@ -18,29 +19,29 @@ oneQuestion </span> 浏览 </li>
 
 	<div class="col-md-8 col-xs-4">
 		<div class="q-ltop-content">
-			<h2><a>马上上大二了,暑假学python应该看什么书?</a></h2>
+			<h2><a>$oneQuestion.title</a></h2>
 		</div>
 
 		<div class="q-lbtm-content">
 
 			<div class="question-cat">
-				<ul class="question-tags">
+				<!--<ul class="question-tags">
 					<li>
 						<a class="q-tag">
 							apps </a>
 					</li>
 
-				</ul>
+				</ul>-->
 				<div class="clearfix"></div>
 				<a>
 					<span class="author-avatar">
-<img itemprop="image" src="https://cdn.enginethemes.com/qaengine/2015/01/12.jpg" class="avatar" alt=""> </span>
-					<span itemprop="name" class="author-name">admin</span>
+<img itemprop="image" src="$oneQuestion.author.photoUri" class="avatar" alt=""> </span>
+					<span itemprop="name" class="author-name">$oneQuestion.author.userName</span>
 				</a>
 
 				<span itemprop="dateCreated" datetime="on June 9, 2014" class="question-time">
 											Asked on June 9, 2014 in 
-										</span>
+				</span>
 			</div>
 
 		</div>
