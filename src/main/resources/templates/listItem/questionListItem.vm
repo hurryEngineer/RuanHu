@@ -20,7 +20,7 @@ $oneQuestion.voteCount </span> 投票 </li>
 	<div class="col-md-8 col-xs-4">
 		<div class="q-ltop-content">
 			<h2>
-				<a href="/questions/$oneQuestion.id">
+				<a href="/question/$oneQuestion.id">
 					$oneQuestion.title
 				</a>
 			</h2>

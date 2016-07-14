@@ -34,7 +34,7 @@ public class QuestionController {
     @Autowired
     TimeService timeService;
 
-    @RequestMapping(value="/questions",method = RequestMethod.GET)
+    @RequestMapping(value="/question",method = RequestMethod.GET)
     String showAllQuestions(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
 
         List<QuestionVO> result = service.getQuestions(page,10);
