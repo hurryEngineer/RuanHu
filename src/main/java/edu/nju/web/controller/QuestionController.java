@@ -50,7 +50,10 @@ public class QuestionController {
         Object question = session.getAttribute("question");
         Question ques = question==null?service.showQuestion(id):(Question)question;
 
+        List<AnswerVO> answerVOs = service.getAnswers(ques.getId(), 1, 10);
+
         model.addAttribute("question",ques);
+        model.addAttribute("answerOfQuestion",answerVOs);
 
         return "test";
     }
