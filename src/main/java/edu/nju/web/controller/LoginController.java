@@ -3,7 +3,7 @@ package edu.nju.web.controller;
 import edu.nju.data.entity.User;
 import edu.nju.data.util.VerifyResult;
 import edu.nju.logic.service.LoginService;
-import edu.nju.web.vo.LoginStatus;
+import edu.nju.logic.vo.LoginStatus;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -4,6 +4,7 @@ import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
 import edu.nju.data.entity.User;
 import edu.nju.logic.service.QuestionService;
+import edu.nju.logic.vo.QuestionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,7 +64,7 @@ public class QuestionController {
 
         if(user!=null) {
 
-            question = new Question();
+            question = new QuestionVO();
             question.setTitle(title);
 
             question.setAuthor(user);
