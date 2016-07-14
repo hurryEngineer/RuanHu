@@ -8,6 +8,7 @@ import edu.nju.data.entity.Question;
 import edu.nju.data.entity.User;
 import edu.nju.logic.service.TimeService;
 import edu.nju.logic.service.UserProfileService;
+import edu.nju.logic.vo.ActivityType;
 import edu.nju.logic.vo.ActivityVO;
 import edu.nju.logic.vo.AnswerVO;
 import edu.nju.logic.vo.QuestionVO;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -79,6 +81,16 @@ public class UserProfileImpl implements UserProfileService {
 
     @Override
     public List<ActivityVO> orderedActivity(List<QuestionVO> questionVOs, List<AnswerVO> answerVOs) {
-        return null;
+        List<ActivityVO> activityVOs = new ArrayList<>(questionVOs.size()+answerVOs.size());
+        for (QuestionVO questionVO: questionVOs) {
+            ActivityVO activityVO = new ActivityVO(questionVO);
+            activityVOs.add(activityVO);
+        }
+        for (AnswerVO answerVO: answerVOs) {
+            ActivityVO activityVO = new ActivityVO(answerVO);
+            activityVOs.add(activityVO);
+        }
+        Collections.sort(activityVOs);
+        return activityVOs;
     }
 }
