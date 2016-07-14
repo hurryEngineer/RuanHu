@@ -12,7 +12,6 @@ span.vote-count  {
     -webkit-border-radius: 3px;
     border-radius: 3px;
     background-color: #3397db;
-    
 }
 ul.question-upDown a{
     width: 25px;
@@ -34,4 +33,116 @@ ul.question-upDown li:last-child {
 .inset-photo{
 	width: 600px;
 }
+.question-cat{
+	margin-top: 10px;
+}
+
+div.q-ltop-content > p {font-size:18px;}
+
+.answer-btn {
+    border: none;
+    color: #fff;
+    display: block;
+    height: 40px;
+    width: 15%;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #3397db;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+
+
+.close {
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .2;
+    filter: alpha(opacity=20);
+}
+button.close {
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    -webkit-appearance: none;
+}
+.btn-submit-question{
+    width: 160px;
+    height: 40px;
+    color: #fff;
+    background: #3498db;
+    font-size: 13px;
+    border: none;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+input.submit-input, .submit-input tags-input{
+    height: 40px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border: 1px solid #dadfea;
+    padding-left: 15px;
+    margin-bottom: 20px;
+    outline: none;
+    width: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: "";
+}
+.tabs-title .modal-title{
+	text-align:left;
+	}
+.tabs-title li{
+	display:inline-block;
+	margin-right:30px;
+	cursor:pointer;
+	}
+.tabs-title li .active{
+	border-bottom:4px solid #f39c12;
+	padding:15px 0px;
+	}
+.modal-body {
+    background: #eef1f7;
+    padding: 30px;
+    padding-top: 20px;
+    border-radius: 3px;
+}
+/*span.tip-add-tag {
+    position: relative;
+    right: 40px;
+    top: 400px;
+}*/
+
+
+.modal-title{
+	font-family: "Î¢ÈíÑÅºÚ";
+	font-size: 44px;
+}
+.content-header h1{
+		font-family: "Î¢ÈíÑÅºÚ";
+	font-size: 40px;
+}
+
+ul.tags-list li {
+    color: #6f7d95;
+    border: 1px solid #d9dfe9;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background-color: #f3f5f9;
+    line-height: 20px;
+    padding: 0 15px;
+    display: inline-block;
+    font-size: 12px;
 }
