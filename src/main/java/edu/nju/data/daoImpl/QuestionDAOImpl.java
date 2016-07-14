@@ -3,6 +3,7 @@ package edu.nju.data.daoImpl;
 import edu.nju.data.dao.BaseDAO;
 import edu.nju.data.dao.QuestionDAO;
 import edu.nju.data.entity.Question;
+import edu.nju.data.util.common_paras
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +28,7 @@ public class QuestionDAOImpl implements QuestionDAO {
 
     private static String tableName = "Question";
 
-    private static int default_pageSize =10;
+
 
     @Override
     public void save(Question question) {
@@ -80,7 +81,7 @@ public class QuestionDAOImpl implements QuestionDAO {
     @Override
     public List<Question> getPaginatedQuestions(int pageNum) {
 
-        return (List<Question>) baseDAO.getPaginatedContent(tableName,pageNum,default_pageSize);
+        return (List<Question>) baseDAO.getPaginatedContent(tableName,pageNum,common_paras.default_pageSize);
     }
 
     @Override

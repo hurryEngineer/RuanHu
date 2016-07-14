@@ -3,6 +3,8 @@ package edu.nju.data.daoImpl;
 import edu.nju.data.dao.AnswerDAO;
 import edu.nju.data.dao.BaseDAO;
 import edu.nju.data.entity.Answer;
+import edu.nju.data.entity.Question;
+import edu.nju.data.util.common_paras;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +24,9 @@ public class AnswerDAOImpl implements AnswerDAO {
     BaseDAO baseDAO;
     @PersistenceContext
     EntityManager em;
+
+
+    private static String tableName = "Answer";
 
     @Override
     public void save(Answer answer) {
@@ -77,6 +82,40 @@ public class AnswerDAOImpl implements AnswerDAO {
 
     }
 
+    @Override
+    public void setSolution(long AnswerID) {
+
+        Query query = em.createQuery("update Answer a set a.solution = 1 where a.id = ?1");
+        query.setParameter(1,AnswerID);
+        query.executeUpdate();
+
+    }
+
+    @Override
+    public Answer getAnswerByID(long answerID) {
+        Query query = em.createQuery("from Answer a where a.id =?1");
+        query.setParameter(1,answerID);
+        return (Answer) query.getResultList().get(0);
+    }
+
+    @Override
+    public List<Answer> getAnswerByQuestionID(long questionID) {
+
+        Query query = em.createQuery("from Answer a where a.questionId =?1");
+        query.setParameter(1,questionID);
+        List<Answer> result =  query.getResultList();
+        return  result;
+    }
+
+    @Override
+    public List<Answer> getAnswerByQuestionID(long questionID, int pageNum) {
+        return (List<Answer>) baseDAO.getPaginatedContent(tableName,pageNum, common_paras.default_pageSize);
+    }
+
+    @Override
+    public List<Answer> getAnswerByQuestionID(long questionID, int pageNum, int pageSize) {
+        return (List<Answer>) baseDAO.getPaginatedContent(tableName,pageNum, pageSize);
+    }
 
 
     @Override

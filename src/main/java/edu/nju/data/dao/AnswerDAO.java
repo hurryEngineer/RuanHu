@@ -79,7 +79,29 @@ public interface AnswerDAO {
      */
     Answer getAnswerByID(long answerID);
 
+    /**
+     * 获取全部的回答
+     * @param questionID
+     * @return
+     */
+    List<Answer> getAnswerByQuestionID(long questionID);
 
+    /**
+     * 获取某页的回答，页面大小默认是10
+     * @param questionID
+     * @param pageNum
+     * @return
+     */
+    List<Answer> getAnswerByQuestionID(long questionID , int pageNum);
+
+    /**
+     * 获取某页的回答，自定义页面大小
+     * @param questionID
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    List<Answer> getAnswerByQuestionID(long questionID , int pageNum ,int pageSize);
 
 
     /**
