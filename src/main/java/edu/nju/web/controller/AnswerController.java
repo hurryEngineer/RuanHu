@@ -2,6 +2,7 @@ package edu.nju.web.controller;
 
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.User;
+import edu.nju.data.util.VoteType;
 import edu.nju.logic.service.AnswerService;
 import edu.nju.logic.vo.AnswerVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,6 +94,14 @@ public class AnswerController {
                                   @RequestParam("questionId") String questionId, HttpSession session){
         User user = (User) session.getAttribute("user");
         return answerService.markAsSolution(user, Long.valueOf(questionId), Long.valueOf(answerId));
+    }
+
+    @RequestMapping(value = "/up")
+    void upVote(String questionId, String answerId, String userId){
+    }
+
+    @RequestMapping(value = "/down")
+    void downVote(String questionId, String answerId, String userId){
     }
 
 }

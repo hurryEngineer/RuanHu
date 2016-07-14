@@ -37,7 +37,7 @@ ul.question-upDown li:last-child {
 	margin-top: 10px;
 }
 
-div.q-ltop-content > p {font-size:18px;}
+
 
 .answer-btn {
     border: none;
@@ -56,23 +56,6 @@ div.q-ltop-content > p {font-size:18px;}
 
 
 
-.close {
-    float: right;
-    font-size: 21px;
-    font-weight: 700;
-    line-height: 1;
-    color: #000;
-    text-shadow: 0 1px 0 #fff;
-    opacity: .2;
-    filter: alpha(opacity=20);
-}
-button.close {
-    padding: 0;
-    cursor: pointer;
-    background: 0 0;
-    border: 0;
-    -webkit-appearance: none;
-}
 .btn-submit-question{
     width: 160px;
     height: 40px;

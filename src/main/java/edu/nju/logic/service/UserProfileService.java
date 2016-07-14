@@ -3,6 +3,7 @@ package edu.nju.logic.service;
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
 import edu.nju.data.entity.User;
+import edu.nju.logic.vo.ActivityVO;
 import edu.nju.logic.vo.AnswerVO;
 import edu.nju.logic.vo.QuestionVO;
 
@@ -32,5 +33,7 @@ public interface UserProfileService {
     List<QuestionVO> getQuestionByName(String name);
 
     List<AnswerVO> getAnswerByName(String name);
+
+    List<ActivityVO> orderedActivity(List<QuestionVO> questionVOs, List<AnswerVO> answerVOs);
 
 }

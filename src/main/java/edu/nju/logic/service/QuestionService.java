@@ -2,6 +2,7 @@ package edu.nju.logic.service;
 
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
+import edu.nju.data.util.VoteType;
 import edu.nju.logic.vo.AnswerVO;
 import edu.nju.logic.vo.QuestionVO;
 
@@ -28,4 +29,6 @@ public interface QuestionService {
      * @return 答案列表
      */
     List<AnswerVO> getAnswers(long questionId, int pageNum, int pageSize);
+
+    void vote(String questionId, String userId, VoteType type);
 }

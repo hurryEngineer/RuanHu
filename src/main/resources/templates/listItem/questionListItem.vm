@@ -20,7 +20,7 @@ $oneQuestion.voteCount </span> 投票 </li>
 	<div class="col-md-8 col-xs-4">
 		<div class="q-ltop-content">
 			<h2>
-				<a href="#springUrl("/questions/$oneQuestion.id")">
+				<a href="/question/$oneQuestion.id">
 					$oneQuestion.title
 				</a>
 			</h2>
@@ -32,7 +32,7 @@ $oneQuestion.voteCount </span> 投票 </li>
 				<ul class="question-tags">
 					<li>
 						<a class="q-tag">
-							apps </a>
+							无标签 </a>
 					</li>
 
 				</ul>

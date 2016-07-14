@@ -2,9 +2,12 @@ package edu.nju.logic.impl;
 
 import edu.nju.data.dao.AnswerDAO;
 import edu.nju.data.dao.QuestionDAO;
+import edu.nju.data.dao.VoteDAO;
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
 import edu.nju.data.entity.User;
+import edu.nju.data.entity.Vote;
+import edu.nju.data.util.VoteType;
 import edu.nju.logic.service.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,6 +23,9 @@ public class AnswerImpl implements AnswerService {
 
     @Autowired
     private AnswerDAO answerDAO;
+
+    @Autowired
+    private VoteDAO voteDAO;
 
     @Autowired
     private QuestionDAO questionDAO;
@@ -46,5 +52,17 @@ public class AnswerImpl implements AnswerService {
         answer.setLastUpdatedAt(new Timestamp(new Date().getTime()));
         answerDAO.save(answer);
         return true;
+    }
+
+    @Override
+    public void vote(String questionId, String answerId, String userId, VoteType type) {
+        Vote vote = new Vote();
+        vote.setVoteType(type);
+        vote.setQuestionId(Long.valueOf(questionId));
+        vote.setAnswerId(Long.valueOf(answerId));
+        vote.setAuthorId(Long.valueOf(userId));
+        vote.setCreatedAt(new Timestamp(new Date().getTime()));
+        vote.setLastUpdatedAt(new Timestamp(new Date().getTime()));
+        voteDAO.save(vote);
     }
 }

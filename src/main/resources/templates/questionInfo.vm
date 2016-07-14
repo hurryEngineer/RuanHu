@@ -21,9 +21,10 @@
 				<div class="container">
 
 					<section class="content-header">
-						<h1>
-        	马上上大二了,暑假学python应该看什么书?
-      </h1>
+						<h3>
+        	$question.getTitle()
+       </h3>
+       
 					</section>
 
 					<div class="row">
@@ -71,9 +72,8 @@
 								</div>
 								<div class="col-md-10 col-xs-6">
 									<div class="q-ltop-content">
-										<p >我是软件学院的学生,马上上大二了,暑假学python应该看xbxfbdxfbxdfxdg什么书@_@?
-										我是软件学院的学生,马上上大二了,暑假学python应该看xbxfbdxfbxdfxdg什么书@_@?
-										我是软件学院的学生,马上上c  z大二了,暑假学python应该看xbxfbdxfbxdfxdg什么书@_@?
+										<p >
+										$question.content
 										</p>
 										<img src="dist/img/photo1.png" class="inset-photo">
 									</div>
@@ -90,7 +90,7 @@
 											</a>
 
 											<span itemprop="dateCreated" datetime="on June 9, 2014" class="question-time">
-											发布于2014-07-12 
+											最新更新时间$questions.lastUpdatedAt
 										</span>
 										</div>
 
@@ -105,64 +105,15 @@
 							
 							<div class="row">
 								<div class="col-md-4 col-xs-4">
-									<p><b>2个回答</b></p>
+									<p><b>$questions.answerCount 个回答</b></p>
 								</div>
 							</div>
 							<hr/>
 							
 							
-							
-							
-							
-							<div class="row">
-								<div class="col-md-2 col-xs-2">
-									<ul class="question-upDown">
-										<li title="" data-original-title="This is useful.">
-											<a data-container="body" data-toggle="popover" data-content="You must have 5 points to vote up." href="javascript:void(0)" data-name="vote_up" class="action vote vote-up img-circle " data-original-title="" title="">
-											<i class="fa fa-chevron-up"></i>
-											</a>
-										</li>
-										
-									 	<li data-original-title="" title="">
-										<span itemprop="upvoteCount" class="vote-count">-1</span>
-										</li>
-									 
-										<li title="" data-original-title="This is not useful">
-											<a data-container="body" data-toggle="popover" data-content="You must have 500 points to vote down." href="javascript:void(0)" data-name="vote_down" class="action vote vote-down img-circle " data-original-title="" title="">
-											<i class="fa fa-chevron-down"></i>
-											</a>
-										</li>
-									 
-										<!--<li class="single-question-pump" data-original-title="" title="">
-										</li>-->
-									</ul>
-									<div class="pumping">
-									</div>
-								</div>
-
-								<div class="col-md-10 col-xs-6">
-									<div class="q-ltop-content">
-										<p>blalalalalalallaalalsdgasgvngsklvegvlegkvgel
-											lalalalallallllamygladmaygodgodfgdodosjahashsfesgnjesgnjsegsgnb,s
-										</p>
-										<img src="dist/img/photo2.png" class="inset-photo">
-									</div>
-
-									<div class="question-cat">
-										<div class="clearfix"></div>
-										<a>
-											<span class="author-avatar">
-<img itemprop="image" src="https://cdn.enginethemes.com/qaengine/2015/01/12.jpg" class="avatar" alt=""> </span>
-											<span itemprop="name" class="author-name">NJU陈振宇</span>
-										</a>
-										<span itemprop="dateCreated" datetime="on June 9, 2014" class="answer-time">
-										2014-07-12 14:32
-										</span>
-									</div>
-									
-								</div>
-							</div>
-							<hr/>
+							#foreach($oneAnswer in $questions.commentList)
+								#parse("/listItem/answerListItem.vm")
+							#end
 							
 							
 							

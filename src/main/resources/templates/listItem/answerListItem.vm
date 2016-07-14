@@ -1,0 +1,50 @@
+## 一个answer叫oneAnswer
+<div class="row">
+	<div class="col-md-2 col-xs-2">
+		<ul class="question-upDown">
+			<li title="" data-original-title="This is useful.">
+				<a data-container="body" data-toggle="popover" data-content="You must have 5 points to vote up." href="javascript:void(0)" data-name="vote_up" class="action vote vote-up img-circle " data-original-title="" title="">
+				<i class="fa fa-chevron-up"></i>
+				</a>
+			</li>
+			
+		 	<li data-original-title="" title="">
+			<span itemprop="upvoteCount" class="vote-count">-1</span>
+			</li>
+		 
+			<li title="" data-original-title="This is not useful">
+				<a data-container="body" data-toggle="popover" data-content="You must have 500 points to vote down." href="javascript:void(0)" data-name="vote_down" class="action vote vote-down img-circle " data-original-title="" title="">
+				<i class="fa fa-chevron-down"></i>
+				</a>
+			</li>
+		 
+			<!--<li class="single-question-pump" data-original-title="" title="">
+			</li>-->
+		</ul>
+		<div class="pumping">
+		</div>
+	</div>
+
+	<div class="col-md-10 col-xs-6">
+		<div class="q-ltop-content">
+			<p>blalalalalalallaalalsdgasgvngsklvegvlegkvgel
+				lalalalallallllamygladmaygodgodfgdodosjahashsfesgnjesgnjsegsgnb,s
+			</p>
+			<img src="dist/img/photo2.png" class="inset-photo">
+		</div>
+
+		<div class="question-cat">
+			<div class="clearfix"></div>
+			<a>
+				<span class="author-avatar">
+<img itemprop="image" src="https://cdn.enginethemes.com/qaengine/2015/01/12.jpg" class="avatar" alt=""> </span>
+				<span itemprop="name" class="author-name">NJU陈振宇</span>
+			</a>
+			<span itemprop="dateCreated" datetime="on June 9, 2014" class="answer-time">
+			2014-07-12 14:32
+			</span>
+		</div>
+		
+	</div>
+</div>
+<hr/>
