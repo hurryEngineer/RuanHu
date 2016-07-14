@@ -30,15 +30,17 @@ public class AnswerDAOImplTest {
 
     @Test
     public void save() throws Exception {
-        Long authorID = new Long (2);
-        Long questionID = new Long (1);
 
-        for(int i=1;i<35;i++){
-            Answer answer = new Answer();
-            answer.setAuthorId(authorID);
-            answer.setQuestionId(questionID);
-            answerDAO.save(answer);
+        for (int k=206;k<226 ;k++){
+            for(int j=1;j<=3 ;j++){
+                    Answer answer = new Answer();
+                    answer.setAuthorId(new Long(j));
+                    answer.setQuestionId(new Long (k));
+                    answerDAO.save(answer);
+            }
         }
+
+
 
 
     }
