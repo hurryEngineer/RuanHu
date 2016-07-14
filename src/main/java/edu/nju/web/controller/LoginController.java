@@ -32,6 +32,15 @@ public class LoginController {
         return "login";
     }
 
+    /**
+     * 登陆验证
+     * @param username 登陆用户名
+     * @param password 登录密码
+     * @param model {@link Model}
+     * @param session {@link HttpSession}
+     * @return 登陆验证状态：成功，用户名不存在或密码错误
+     *      {@link LoginStatus}
+     */
     @RequestMapping("/loginVerify")
     @ResponseBody
     public LoginStatus loginVerify(@RequestParam("username") String username,
@@ -53,6 +62,11 @@ public class LoginController {
         return status;
     }
 
+    /**
+     * 注销登陆
+     * @param session
+     * @return
+     */
     @RequestMapping("/logout")
     @ResponseBody
     public String logout(HttpSession session) {

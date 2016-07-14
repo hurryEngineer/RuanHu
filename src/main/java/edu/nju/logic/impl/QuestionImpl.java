@@ -1,6 +1,8 @@
 package edu.nju.logic.impl;
 
+import edu.nju.data.dao.AnswerDAO;
 import edu.nju.data.dao.QuestionDAO;
+import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
 import edu.nju.logic.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +19,8 @@ public class QuestionImpl implements QuestionService {
     @Autowired
     QuestionDAO questionDAO;
 
-//    @Autowired 
-//    AnswerDAO answerDAO;
+    @Autowired
+    AnswerDAO answerDAO;
 
     @Override
     public Question showQuestion(long id) {
@@ -34,6 +36,11 @@ public class QuestionImpl implements QuestionService {
     @Override
     public List<Question> getQuestions(int pageNum, int pageSize) {
         return questionDAO.getPaginatedQuestions(pageNum, pageSize);
+    }
+
+    @Override
+    public List<Answer> getAnswers(long questionId, int pageNum, int pageSize) {
+        return answerDAO.getAnswerByQuestionID(questionId,pageNum,pageSize);
     }
 
 }

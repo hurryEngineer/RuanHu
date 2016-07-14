@@ -49,7 +49,7 @@ public class UserProfileControllerTest {
 
     @Test
     public void showProfile() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/userProfile/show").sessionAttrs(sessionMap)).andExpect(status().isOk());
+        mockMvc.perform(MockMvcRequestBuilders.get("/userProfile/show").sessionAttrs(sessionMap).param("userName","ch")).andExpect(status().isOk());
     }
 
     @Test

@@ -86,11 +86,14 @@ public class AnswerControllerTest {
 
     @Test
     public void saveAnswer() throws Exception {
-
+        mockMvc.perform(MockMvcRequestBuilders.post("/answer/saveAnswer").sessionAttrs(sessionMap)
+        .param("questionId","1").param("markedText","###head\nhah")).andExpect(status().isOk());
     }
 
     @Test
     public void markAsSolution() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/answer/markAsSolution").sessionAttrs(sessionMap)
+        .param("answerId","1").param("questionId","1")).andExpect(status().isOk());
     }
 
 }

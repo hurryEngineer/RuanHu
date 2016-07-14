@@ -52,9 +52,7 @@ public class QuestionController {
     @ResponseBody
     List<Answer> showAnswers(@PathVariable long id, @RequestParam(value = "page", defaultValue = "1") int page) {
 
-        List<Answer> result = null;
-
-        return result;
+        return service.getAnswers(id, page, 10);
     }
 
     @RequestMapping(value = "/submitQuestion")

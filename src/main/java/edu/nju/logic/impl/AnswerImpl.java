@@ -3,6 +3,7 @@ package edu.nju.logic.impl;
 import edu.nju.data.dao.AnswerDAO;
 import edu.nju.data.dao.QuestionDAO;
 import edu.nju.data.entity.Answer;
+import edu.nju.data.entity.Question;
 import edu.nju.data.entity.User;
 import edu.nju.logic.service.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,13 @@ public class AnswerImpl implements AnswerService {
 
     @Override
     public boolean markAsSolution(User user, long questionId, long answerId) {
+        Question question = questionDAO.getQuestionByID(questionId);
+        if (question == null) return false;
+        User user1 = question.getAuthor();
+        if (user.getId()==user1.getId()) {
+            answerDAO.setSolution(answerId);
+            return true;
+        }
         return false;
     }
 
