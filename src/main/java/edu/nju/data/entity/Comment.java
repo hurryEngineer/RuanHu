@@ -12,7 +12,7 @@ public class Comment implements DateInterface {
     private Long id;
     private String content;
     private Timestamp createdAt = new Timestamp( new Date().getTime());
-    private Timestamp lastUpdatedAt;
+    private Timestamp lastUpdatedAt = new Timestamp( new Date().getTime());
     private Long answerId;
     private Long questionId;
     private User author = new User();

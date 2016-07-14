@@ -18,7 +18,7 @@ public class Question implements DateInterface{
     private String title;
     private String content;
     private Timestamp createdAt = new Timestamp( new Date().getTime());
-    private Timestamp lastUpdatedAt;
+    private Timestamp lastUpdatedAt = new Timestamp( new Date().getTime());
     private User author = new User();
     private List<Comment> commentList;
 

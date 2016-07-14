@@ -76,7 +76,7 @@ public class OrderedPageDAOImpl implements OrderedPageDAO {
     public String getHQL(String tableName, String where, OrderByPara para, OrderByMethod method) {
         String orderPara =  getPara(para);
         String orderMethod= getMethod(method);
-        String hql = "from "+tableName+where+para+method;
+        String hql = "from "+tableName+" "+where+para+method;
         return hql;
     }
 
@@ -87,6 +87,7 @@ public class OrderedPageDAOImpl implements OrderedPageDAO {
         List <?> rows = query.getResultList();
         return rows;
     }
+
 
     private String getPara(OrderByPara orderByPara){
         String orderPara=" order by ";

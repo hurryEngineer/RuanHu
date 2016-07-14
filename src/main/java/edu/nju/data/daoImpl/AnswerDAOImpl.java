@@ -114,32 +114,42 @@ public class AnswerDAOImpl implements AnswerDAO {
 
     @Override
     public List<Answer> getAnswerByQuestionID(long questionID, int pageNum) {
-        return (List<Answer>) pageDAO.getPaginatedContent(tableName,pageNum, CommonParas.default_pageSize);
+        String where = " where question.id = "+questionID;
+        return (List<Answer>) pageDAO.getPaginatedContent(tableName,where,pageNum, CommonParas.default_pageSize);
     }
 
     @Override
     public List<Answer> getAnswerByQuestionID(long questionID, int pageNum, int pageSize) {
-        return (List<Answer>) pageDAO.getPaginatedContent(tableName,pageNum, pageSize);
+        String where = " where question.id = "+questionID;
+        return (List<Answer>) pageDAO.getPaginatedContent(tableName,where,pageNum, pageSize);
     }
 
     @Override
     public List<Answer> getAnswerByQuestionID(long questionID, int pageNum, OrderByPara para) {
-        return null;
+        String where = " where question.id = "+questionID;
+        return (List<Answer>) pageDAO.getPaginatedContent
+                                    (tableName,where,pageNum,CommonParas.default_pageSize ,para );
     }
 
     @Override
     public List<Answer> getAnswerByQuestionID(long questionID, int pageNum, int pageSize, OrderByPara para) {
-        return null;
+        String where = " where question.id = "+questionID;
+        return (List<Answer>) pageDAO.getPaginatedContent
+                    (tableName,where,pageNum,pageSize ,para );
     }
 
     @Override
     public List<Answer> getAnswerByQuestionID(long questionID, int pageNum, OrderByPara para, OrderByMethod method) {
-        return null;
+        String where = " where question.id = "+questionID;
+        return (List<Answer>) pageDAO.getPaginatedContent
+                    (tableName,where,pageNum,CommonParas.default_pageSize ,para ,method );
     }
 
     @Override
     public List<Answer> getAnswerByQuestionID(long questionID, int pageNum, int pageSize, OrderByPara para, OrderByMethod method) {
-        return null;
+        String where = " where question.id = "+questionID;
+        return (List<Answer>) pageDAO.getPaginatedContent
+                    (tableName,where,pageNum,pageSize ,para,method);
     }
 
 

@@ -14,7 +14,7 @@ public class Vote {
     private Long id;
     private Long authorId;
     private Timestamp createdAt = new Timestamp( new Date().getTime());
-    private Timestamp lastUpdatedAt;
+    private Timestamp lastUpdatedAt = new Timestamp( new Date().getTime());
     private Long answerId;
     private Long questionId;
     private VoteType voteType;
