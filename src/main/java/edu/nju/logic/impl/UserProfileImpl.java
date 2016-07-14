@@ -62,7 +62,8 @@ public class UserProfileImpl implements UserProfileService {
     @Override
     public List<QuestionVO> getQuestionByName(String name) {
         List<Question> questions = questionDAO.getQuestionByUsername(name);
-        List<QuestionVO> questionVOs = new ArrayList<>(questions.size());
+        if (questions==null) return new ArrayList<QuestionVO>();
+        List<QuestionVO> questionVOs = new ArrayList<>();
         for (Question question : questions) {
             questionVOs.add(timeService.transferQuestion(question));
         }
@@ -72,7 +73,8 @@ public class UserProfileImpl implements UserProfileService {
     @Override
     public List<AnswerVO> getAnswerByName(String name) {
         List<Answer> answers =  answerDAO.getAnswerByUserName(name);
-        List<AnswerVO> answerVOs = new ArrayList<>(answers.size());
+        if (answers==null) return new ArrayList<AnswerVO>();
+        List<AnswerVO> answerVOs = new ArrayList<>();
         for (Answer answer: answers) {
             answerVOs.add(timeService.transferAnswer(answer));
         }
@@ -81,16 +83,21 @@ public class UserProfileImpl implements UserProfileService {
 
     @Override
     public List<ActivityVO> orderedActivity(List<QuestionVO> questionVOs, List<AnswerVO> answerVOs) {
-        List<ActivityVO> activityVOs = new ArrayList<>(questionVOs.size()+answerVOs.size());
-        for (QuestionVO questionVO: questionVOs) {
-            ActivityVO activityVO = new ActivityVO(questionVO);
-            activityVOs.add(activityVO);
+        List<ActivityVO> activityVOs = new ArrayList<>();
+        if (questionVOs!=null) {
+            for (QuestionVO questionVO: questionVOs) {
+                ActivityVO activityVO = new ActivityVO(questionVO);
+                activityVOs.add(activityVO);
+            }
         }
-        for (AnswerVO answerVO: answerVOs) {
-            ActivityVO activityVO = new ActivityVO(answerVO);
-            activityVOs.add(activityVO);
+        if (answerVOs!=null) {
+            for (AnswerVO answerVO: answerVOs) {
+                ActivityVO activityVO = new ActivityVO(answerVO);
+                activityVOs.add(activityVO);
+            }
         }
-        Collections.sort(activityVOs);
+        if (activityVOs.size()>0)
+            Collections.sort(activityVOs);
         return activityVOs;
     }
 }
