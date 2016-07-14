@@ -5,6 +5,8 @@ import edu.nju.RuanHuApplication;
 import edu.nju.data.dao.QuestionDAO;
 import edu.nju.data.entity.Question;
 import edu.nju.data.entity.Vote;
+import edu.nju.data.util.OrderByMethod;
+import edu.nju.data.util.OrderByPara;
 import edu.nju.data.util.VoteType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -146,13 +148,90 @@ public class QuestionDAOImplTest {
 
         }
 
-
-
     }
 
     @Test
     public void getPaginatedQuestions1() throws Exception {
+        int pageNum=1;
+        int pageSize=15;
+        List<Question> result = questionDAO.getPaginatedQuestions(pageNum,pageSize);
+        if(result==null){
+            fail();
+        }else if (result.size()!=pageSize){
+            fail();
+        }
+    }
 
+    /**
+     * 按参数排序,默认降序
+  //   * @param pageNum
+  //    * @param para   OrderByPara: createdAt lastUpdatedAt ....
+     * @return
+     */
+    @Test
+    public void getPaginatedQuestions2() throws Exception {
+        int pageNum=1;
+
+        List<Question> result = questionDAO.getPaginatedQuestions(pageNum, OrderByPara.answerCount);
+        if(result==null){
+            fail();
+        }else if (result.size()!=10){
+            fail();
+        }else{
+            for(Question question : result){
+                System.out.println("QuestionID : "+question.getId() +"  "+question.getAnswerCount());
+            }
+        }
+    }
+
+    @Test
+    public void getPaginatedQuestions3() throws Exception {
+        int pageNum=1;
+        int pageSize=15;
+        List<Question> result = questionDAO.getPaginatedQuestions(pageNum,pageSize, OrderByPara.createdAt);
+        if(result==null){
+            fail();
+        }else if (result.size()!=pageSize){
+            fail();
+        }else{
+            for(Question question : result){
+                System.out.println("QuestionID : "+question.getId() +"  "+question.getCreatedAt());
+            }
+        }
+    }
+
+    @Test
+    public void getPaginatedQuestions4() throws Exception {
+        int pageNum=1;
+
+        List<Question> result = questionDAO.getPaginatedQuestions
+                    (pageNum, OrderByPara.answerCount, OrderByMethod.ASC);
+        if(result==null){
+            fail();
+        }else if (result.size()!=10){
+            fail();
+        }else{
+            for(Question question : result){
+                System.out.println("QuestionID : "+question.getId() +"  "+question.getAnswerCount());
+            }
+        }
+    }
+
+    @Test
+    public void getPaginatedQuestions5() throws Exception {
+        int pageNum=1;
+        int pageSize=15;
+        List<Question> result = questionDAO.getPaginatedQuestions
+                (pageNum,pageSize, OrderByPara.createdAt,OrderByMethod.ASC);
+        if(result==null){
+            fail();
+        }else if (result.size()!=pageSize){
+            fail();
+        }else{
+            for(Question question : result){
+                System.out.println("QuestionID : "+question.getId() +"  "+question.getCreatedAt());
+            }
+        }
     }
 
     @Test

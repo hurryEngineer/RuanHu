@@ -68,7 +68,8 @@ public class OrderedPageDAOImpl implements OrderedPageDAO {
     public String getHQL(String tableName, OrderByPara para, OrderByMethod method) {
         String orderPara =  getPara(para);
         String orderMethod= getMethod(method);
-        String hql = "from "+tableName+para+method;
+        String hql = "from "+tableName+orderPara+ orderMethod;
+        System.err.println("execting : "+hql);
         return hql;
     }
 
@@ -76,11 +77,13 @@ public class OrderedPageDAOImpl implements OrderedPageDAO {
     public String getHQL(String tableName, String where, OrderByPara para, OrderByMethod method) {
         String orderPara =  getPara(para);
         String orderMethod= getMethod(method);
-        String hql = "from "+tableName+" "+where+para+method;
+        String hql = "from "+tableName+" "+where+orderPara+orderMethod;
+        System.err.println("execting : "+hql);
         return hql;
     }
 
     private List<?> execHQL(String hql , int pageNum , int pageSize){
+
         Query query = em.createQuery(hql);
         query.setFirstResult((pageNum-1) * pageSize);
         query.setMaxResults(pageSize);

@@ -4,6 +4,7 @@ import edu.nju.RuanHuApplication;
 import edu.nju.data.dao.AnswerDAO;
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
+import edu.nju.data.util.OrderByMethod;
 import edu.nju.data.util.OrderByPara;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -109,7 +110,7 @@ public class AnswerDAOImplTest {
 
     /**
      * 获取全部的回答
-     * @param questionID
+ //    * @param questionID
      * @return
      */
     @Test
@@ -129,8 +130,8 @@ public class AnswerDAOImplTest {
     /**
      * 不排序
      * 获取某页的回答，页面大小默认是10
-     * @param questionID
-     * @param pageNum
+//     * @param questionID
+//     * @param pageNum
      * @return
      */
     @Test
@@ -150,9 +151,9 @@ public class AnswerDAOImplTest {
     /**
      * 不排序
      * 获取某页的回答，自定义页面大小
-     * @param questionID
-     * @param pageNum
-     * @param pageSize
+//     * @param questionID
+//     * @param pageNum
+//     * @param pageSize
      * @return
      */
     @Test
@@ -171,9 +172,9 @@ public class AnswerDAOImplTest {
     }
     /**
      * 根据参数排序，默认降序
-     * @param questionID
-     * @param pageNum
-     * @param para
+//     * @param questionID
+//     * @param pageNum
+//     * @param para
      * @return
      */
     @Test
@@ -193,19 +194,81 @@ public class AnswerDAOImplTest {
 
         }
     }
-
+    /**
+     * 根据参数排序，默认降序
+//     * @param questionID
+//     * @param pageNum
+//     * @param pageSize
+     * @return
+     */
     @Test
     public void getAnswerByQuestionID4() throws Exception {
+        Long questionID = new Long (1);
+        int pageNum=1;
+        int pageSize=15;
+        List<Answer> result = answerDAO.getAnswerByQuestionID
+                (questionID ,pageNum,pageSize, OrderByPara.createdAt);
+        if(result==null){
+            fail();
+        }else if(result.size()!=pageSize){
+            fail();
+        }else{
+            for(Answer answer : result){
+                System.out.println("AnswerID : "+answer.getId() + " "+answer.getCreatedAt());
+            }
 
+        }
     }
-
+    /**
+     * 根据参数和排序方式，进行排序
+//     * @param questionID
+//     * @param pageNum
+//     * @param para
+//     * @param method
+     * @return
+     */
     @Test
     public void getAnswerByQuestionID5() throws Exception {
+        Long questionID = new Long (1);
+        int pageNum=1;
+        List<Answer> result = answerDAO.getAnswerByQuestionID
+                (questionID ,pageNum, OrderByPara.createdAt, OrderByMethod.ASC);
+        if(result==null){
+            fail();
+        }else if(result.size()!=10){
+            fail();
+        }else{
+            for(Answer answer : result){
+                System.out.println("AnswerID : "+answer.getId() + " "+answer.getCreatedAt());
+            }
 
+        }
     }
 
+    /**
+     *  根据参数和排序方式，进行排序
+//     * @param questionID
+//     * @param pageNum
+//     * @param pageSize
+     * @return
+     */
     @Test
     public void getAnswerByQuestionID6() throws Exception {
+        Long questionID = new Long (1);
+        int pageNum=1;
+        int pageSize=15;
+        List<Answer> result = answerDAO.getAnswerByQuestionID
+                (questionID ,pageNum,pageSize, OrderByPara.createdAt ,OrderByMethod.ASC);
+        if(result==null){
+            fail();
+        }else if(result.size()!=pageSize){
+            fail();
+        }else{
+            for(Answer answer : result){
+                System.out.println("AnswerID : "+answer.getId() + " "+answer.getCreatedAt());
+            }
+
+        }
 
     }
 
