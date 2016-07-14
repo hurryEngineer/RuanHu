@@ -25,13 +25,12 @@ public class UserProfileController {
      * @return 用户信息类 {@link User}
      */
     @RequestMapping(value = "/show",method = RequestMethod.GET)
-    @ResponseBody
-    public String showProfile(@RequestParam("userName") String userName, HttpSession session, Model model){
+    String showProfile(@RequestParam("userName") String userName, HttpSession session, Model model){
         model.addAttribute("questionCount",profileService.getQuestionCountByName(userName));
         model.addAttribute("answerCount",profileService.getAnswerCountByName(userName));
         model.addAttribute("userQuestion",profileService.getQuestionByName(userName));
         model.addAttribute("userAnswer",profileService.getAnswerByName(userName));
-        return "";
+        return "userProfile";
     }
 
     /**
