@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>自定义工具栏 - Editor.md examples</title>
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="../css/editormd.css" />
+		<link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" />
+	</head>
+
+	<body>
+		<div id="layout">
+			<header>
+				<h1>自定义工具栏</h1>
+				<p>Custom toolbar (icons handler)</p>
+			</header>
+
+			<div class="col-md-8">
+				<div id="test-editormd">
+					<textarea style="display:none;">### Custom toolbar
+
+
+</textarea>
+				</div>
+			</div>
+
+		</div>
+
+		<script src="js/jquery.min.js"></script>
+		<script src="../editormd.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				var testEditor = editormd("test-editormd", {
+					width: "90%",
+					height: 340,
+					path: '../lib/',
+					watch: true,
+                    emoji           : true,
+					toolbarIcons: function() {
+						// Or return editormd.toolbarModes[name]; // full, simple, mini
+						// Using "||" set icons align right.
+						//                      return ["undo", "redo", "|", "bold", "hr", "|", "preview", "watch", "|", "fullscreen", "info", "testIcon", "testIcon2", "file", "faicon", "||", "watch", "fullscreen", "preview", "testIcon", "file"]
+						return editormd.toolbarModes["simple"]
+					},
+					// toolbarIcons : "full", // You can also use editormd.toolbarModes[name] default list, values: full, simple, mini.
+					
+				});
+			});
+		</script>
+	</body>
+
+</html>

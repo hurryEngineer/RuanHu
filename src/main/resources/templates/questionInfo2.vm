@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+		<link rel="stylesheet" href="/dist/css/editormd.css" />
+		
+		<title>问题详情 - 软乎</title>
+
+		#parse("commonPart/commonCssAndJs.vm")
+
+
+	</head>
+
+	<body class="hold-transition skin-blue-light layout-top-nav">
+		<div class="wrapper">
+
+			#parse("commonPart/mainHeader.vm")
+
+			<div class="content-wrapper">
+				<div class="container">
+
+					<section class="content-header">
+						<h3>
+        	$question.getTitle()
+       </h3>
+       
+					</section>
+
+					<div class="row">
+
+						<div class="col-md-9 col-sm-9 col-xs-12">
+							<hr />
+							<div class="row">
+
+								<div class="col-md-2 col-xs-2">
+									<ul class="question-upDown">
+										<li title="" data-original-title="This is useful.">
+											<a id="up" title="This is useful." data-container="body" data-toggle="popover" data-content="You must have 5 points to vote up." href="javascript:void(0)" data-name="vote_up" class="action vote vote-up img-circle " data-original-title="" title="">
+											<i class="fa fa-chevron-up"></i>
+											</a>
+										</li>
+										
+									 	<li data-original-title="" title="">
+										<span itemprop="upvoteCount" class="vote-count">-1</span>
+										</li>
+									 
+										<li title="" data-original-title="This is not useful">
+											<a id="down" title="This is not useful" data-container="body" data-toggle="popover" data-content="You must have 500 points to vote down." href="javascript:void(0)" data-name="vote_down" class="action vote vote-down img-circle " data-original-title="" title="">
+											<i class="fa fa-chevron-down"></i>
+											</a>
+										</li>
+									 
+										<!--<li class="single-question-pump" data-original-title="" title="">
+										</li>-->
+									</ul>
+									<div class="pumping">
+									</div>
+								</div>
+								<div>
+									<ul class="question-tags">
+										<li>
+											<a class="q-tag">
+												书籍</a>
+										</li>
+										<li>
+											<a class="q-tag">
+												python</a>
+										</li>
+										
+									</ul>
+								</div>
+								<div class="col-md-10 col-xs-6">
+									<div class="q-ltop-content">
+										<p >
+										$question.content
+										</p>										
+									</div>
+
+									<div class="q-lbtm-content">
+
+										<div class="question-cat">
+											
+											<div class="clearfix"></div>
+											<a>
+												<span class="author-avatar">
+												$question.author.photoUri </span>
+												<span itemprop="name" class="author-name">$question.author.userName</span>
+											</a>
+
+											<span itemprop="dateCreated" datetime="on June 9, 2014" class="question-time">
+											最新更新时间   $questions.lastUpdatedAt
+										</span>
+										</div>
+
+									</div>
+								</div>
+
+							</div>
+							<hr/>
+							
+							
+							
+							
+							<div class="row">
+								<div class="col-md-4 col-xs-4">
+									<p><b>$questions.answerCount 个回答</b></p>
+								</div>
+							</div>
+							<hr/>
+							
+							
+							#foreach($oneAnswer in $answerOfQuestion)
+								#parse("/listItem/answerListItem.vm")
+							#end
+							
+							
+							
+							<div class="row">
+								<div class="col-md-4 col-xs-4">
+									<p><b>添加我的回答</b></p>
+								</div>
+							</div>
+							<hr/>
+							
+							
+							<div class="row">
+								<div id="test-editormd">
+									<textarea style="display:none;"></textarea>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div id="submit-answer">
+									<input class="answer-btn" type="button" value="提交答案 "></input>
+								</div>
+							</div>
+							
+							
+							
+							
+						</div>
+
+						#parse("commonPart/rightSideBar.vm")
+
+					</div>
+				</div>
+			</div>
+			<!-- ./wrapper -->
+
+		#parse("commonPart/addtionalJs.vm")
+		<script src="/editor.md-master/examples/js/jquery.min.js"></script>
+		<script src="/editor.md-master/editormd.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				var testEditor = editormd("test-editormd", {
+					width: "90%",
+					height: 340,
+					path: '/plugins/editorMdLib/',
+					watch: true,
+					emoji: true,
+					imageUpload : true,
+                    imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                    imageUploadURL : "./php/upload.php?test=dfdf",
+					toolbarIcons: function() {
+						// Or return editormd.toolbarModes[name]; // full, simple, mini
+						// Using "||" set icons align right.
+						//                      return ["undo", "redo", "|", "bold", "hr", "|", "preview", "watch", "|", "fullscreen", "info", "testIcon", "testIcon2", "file", "faicon", "||", "watch", "fullscreen", "preview", "testIcon", "file"]
+						return editormd.toolbarModes["simple"]
+					},
+					// toolbarIcons : "full", // You can also use editormd.toolbarModes[name] default list, values: full, simple, mini.
+					
+				});
+			});
+		</script>
+	</body>
+
+</html>

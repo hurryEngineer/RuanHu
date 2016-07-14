@@ -27,18 +27,16 @@
 
 	<div class="col-md-10 col-xs-6">
 		<div class="q-ltop-content">
-			<p>blalalalalalallaalalsdgasgvngsklvegvlegkvgel
-				lalalalallallllamygladmaygodgodfgdodosjahashsfesgnjesgnjsegsgnb,s
+			<p>$oneAnswer.content
 			</p>
-			<img src="dist/img/photo2.png" class="inset-photo">
 		</div>
 
 		<div class="question-cat">
 			<div class="clearfix"></div>
 			<a>
 				<span class="author-avatar">
-<img itemprop="image" src="https://cdn.enginethemes.com/qaengine/2015/01/12.jpg" class="avatar" alt=""> </span>
-				<span itemprop="name" class="author-name">NJU陈振宇</span>
+$oneAnswer.author.photoUri</span>
+				<span itemprop="name" class="author-name">$oneAnswer.author.userName</span>
 			</a>
 			<span itemprop="dateCreated" datetime="on June 9, 2014" class="answer-time">
 			2014-07-12 14:32

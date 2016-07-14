@@ -44,6 +44,7 @@ public class QuestionController {
     }
 
 
+    
     @RequestMapping(value = "/question/{id}", method = RequestMethod.GET)
     String showQuestion(@PathVariable long id, Model model, HttpSession session){
 
@@ -55,7 +56,7 @@ public class QuestionController {
         model.addAttribute("question",ques);
         model.addAttribute("answerOfQuestion",answerVOs);
 
-        return "test";
+        return "questionInfo";
     }
 
     @RequestMapping(value="/question/{id}/answers",method = RequestMethod.GET)
