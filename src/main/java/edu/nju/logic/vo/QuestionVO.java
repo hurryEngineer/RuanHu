@@ -9,6 +9,7 @@ public class QuestionVO extends Question implements ViewTime {
 
     private String createAtForView;
     private String updateAtForView;
+    private ActivityType type = ActivityType.QUESTION;
 
     public QuestionVO(Question question){
         this.setId(question.getId());
