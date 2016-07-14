@@ -69,16 +69,10 @@ public class QuestionDAOImplTest {
 
     @Test
     public void save() throws Exception {
-
-        for(int i = 5;i<100;i++){
             Question question = new Question();
-            question.setTitle("q"+i);
-            question.setContent("c"+i);
+            question.setTitle("q1");
+            question.setContent("c1");
          //   question.setAuthorId(new Long (2));
-            questionDAO.save_id(question);
-        }
-
-
     }
 
     @Test

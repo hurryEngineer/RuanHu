@@ -66,10 +66,16 @@ public interface QuestionDAO {
     /**
      * 用于各种问题列表展示
      * @param pageNum    当前页号，从1开始
-     * @param pageSize   页面大小默认是10
+     * @param pageSize   页面大小自定
      * @return
      */
     List<Question> getPaginatedQuestions(int pageNum , int pageSize );
+
+    /**
+     * 获取全部问题
+     * @return
+     */
+    List<Question> getAllQuestions();
 
 
     /**
