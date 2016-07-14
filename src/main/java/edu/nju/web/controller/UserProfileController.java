@@ -29,6 +29,8 @@ public class UserProfileController {
      */
     @RequestMapping(value = "/show",method = RequestMethod.GET)
     String showProfile(@RequestParam("userName") String userName, HttpSession session, Model model){
+        Object me = null;
+        model.addAttribute("isMe", (me = session.getAttribute("user"))!=null && ((User)me).getUserName().equals(userName));
         model.addAttribute("userInfo", profileService.getUserByName(userName));
         model.addAttribute("questionCount",profileService.getQuestionCountByName(userName));
         model.addAttribute("answerCount",profileService.getAnswerCountByName(userName));
