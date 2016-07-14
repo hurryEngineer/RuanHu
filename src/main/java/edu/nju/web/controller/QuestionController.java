@@ -34,7 +34,7 @@ public class QuestionController {
         List<Question> result = service.getQuestions(page,10);
         model.addAttribute("questions",result);
 
-        return "questionPage";
+        return "questionList";
     }
 
 

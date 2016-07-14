@@ -32,8 +32,10 @@
 						<div class="col-md-9 col-sm-9 col-xs-12">
 							<hr />
 							
-							
-							
+						#foreach($oneQuestion in $questions)
+							#parse("/listItem/questionListItem.vm")
+						#end
+						
 						</div>
 
 						#parse("commonPart/rightSideBar.vm")
