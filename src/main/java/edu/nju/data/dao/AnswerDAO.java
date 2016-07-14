@@ -67,6 +67,22 @@ public interface AnswerDAO {
     void update(Answer answer);
 
     /**
+     * 把一个Answer选为solution
+     * @param AnswerID
+     */
+    void setSolution(long AnswerID);
+
+    /**
+     * 根据AnswerID获取Answer
+     * @param answerID
+     * @return
+     */
+    Answer getAnswerByID(long answerID);
+
+
+
+
+    /**
      * 根据用户名,返回一个用户的全部问题列表
      * @param username
      */
