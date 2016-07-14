@@ -9,7 +9,7 @@ import java.util.List;
  */
 @Entity
 
-public class Question implements date_interface{
+public class Question implements DateInterface{
     private Long id;
     private Integer answerCount = new Integer(0);
     private Integer voteCount= new Integer(0);

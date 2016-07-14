@@ -102,9 +102,8 @@ public class QuestionDAOImplTest {
     @Test
     public void update() throws Exception {
         Question question = new Question();
-     //   question.setAuthorId(new Long(2));
-        question.setTitle("q4");
-        question.setContent("c4");
+        question.setAuthorId(new Long(2));
+        question.setAnswerCount(new Integer(1));
         question.setId(new Long(3));
         questionDAO.update(question);
 
