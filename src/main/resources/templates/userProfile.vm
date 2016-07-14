@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>首页 - 软乎</title>
+
+    #parse("commonPart/commonCssAndJs.vm")
+
+
+</head>
+
+<body class="hold-transition skin-blue-light layout-top-nav">
+<div class="wrapper">
+
+    #parse("commonPart/mainHeader.vm")
+
+    <div class="content-wrapper">
+        <div class="container">
+
+            <div class="zg-wrap zu-main clearfix "  role="main">
+                <div class="zu-main-content">
+                    <div class="zu-main-content-inner">
+                        <div class="zm-profile-header ProfileCard">
+                            <div class="zm-profile-header-main">
+                                <div class="top">
+                                    <div class="title-section ellipsis">
+                                        <span class="name">Dora</span>
+                                    </div>
+                                </div>
+                                <div class="body clearfix">
+
+                                    <div class="ProfileAvatarEditor">
+                                        <img class="Avatar Avatar--l" src="https://pic1.zhimg.com/cd9e5418dba315e9c2cae0356002e960_l.png" />
+                                        <span class="ProfileAvatarEditor-tip">修改头像</span>
+                                        <span class="ProfileAvatarEditor-spinner Spinner"></span>
+                                    </div>
+
+                                    <div class="zm-profile-header-info">
+                                        <div class="zm-profile-header-user-describe">
+                                            <div class="items">
+
+                                                <div class="item" data-name="email">
+                                                    <i class="icon icon-profile-email"></i>
+
+                                        <span class="info-wrap">
+                                            <span class="email item" >569450503@qq.com</span>
+                                        </span>
+                                                </div>
+
+                                                <div class="item" data-name="join_at">
+                                                    <i class="icon icon-profile-calendar"></i>
+                                        <span class="info-wrap">
+                                            <span class="item" >Join at: 2016年7月14日</span>
+                                        </span>
+                                                </div>
+
+
+                                                <div class="item editable-group" id='location-group'>
+                                                    <i class="icon icon-profile-location"></i>
+                                            <span class="info-wrap">
+                                                <span class="location item" ></span>
+                                                <a class="zu-edit-button edit" name="edit" href="javascript:;"><i class="zu-edit-button-icon"></i><span class="edit-msg">修改</span></a>
+                                            </span>
+                                                    <span class='info-empty-wrap'><a href="javascript:;" name="edit" class="zg-link-litblue-normal">填写所在地</a></span>
+                                            <span class="edit-wrap" style="display: none;">
+                                                <span class="topic-input-wrap"><input autocomplete="off" aria-haspopup="true" type="text" name="location" value="" class="zg-form-text-input location" placeholder="居住地"/></span>
+                                                <a class="zg-btn-blue" name="save" href="javascript:;">确定</a>
+                                            </span>
+                                                </div>
+
+
+                                                <div class="item editable-group " id="birthday-group" >
+                                                    <i class="icon icon-profile-birthday"></i>
+                                            <span class="info-wrap">
+                                                <span class="birthday item"></span>
+                                                <a class="zu-edit-button edit" name="edit" href="javascript:;"><i class="zu-edit-button-icon"></i><span class="edit-msg">修改</span></a>
+                                            </span>
+                                                    <span class='info-empty-wrap'><a href="javascript:;" name="edit" class="zg-link-litblue-normal">填写生日</a></span>
+                                            <span class="edit-wrap" style="display:none;">
+                                                <div class="business-selection">
+                                                    <select name="year">
+                                                        <option value="2016">2016</option>
+                                                    </select>
+                                                    <select name="month">
+                                                        <option value="01">01</option>
+                                                    </select>
+                                                    <select name="day">
+                                                        <option value="01">01</option>
+                                                    </select>
+                                                </div>
+                                                <a class="zg-btn-blue" name="save" href="javascript:;">确定</a>
+                                            </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="zm-profile-header-description editable-group empty" id="description-group">
+
+                                    <span class="info-wrap">
+                                        <span class="description content"></span>
+                                    </span>
+
+                                    <span class='info-empty-wrap'>
+                                        <a href="javascript:;" name="edit" class="zg-link-litblue-normal">
+                                        <i class="zg-icon zg-icon-edit-button-blue"></i>
+                                        <span>填写个人简介</span></a>
+                                    </span>
+
+                                    <span class="edit-wrap" style="display:none;">
+                                        <div class="zm-editable-editor-outer">
+                                        <div class="zm-editable-editor-inner zg-form-text-input">
+                                        <textarea name="description" value="" class="zm-editable-editor-input description" id="profile-header-description-input"></textarea>
+                                        </div>
+                                        </div>
+                                        <a class="zg-btn-blue" name="save" href="javascript:;">确定</a>
+                                    </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="zm-profile-header-operation zg-clear  zm-profile-header-operation-myview">
+                                <div class="zm-profile-header-info-list">
+                                    <span class="zm-profile-header-info-title">获得</span>
+                                    <span class="zm-profile-header-user-agree"><span class="zm-profile-header-icon"></span><strong>0</strong>赞同</span>
+                                    <span class="zm-profile-header-user-thanks"><span class="zm-profile-header-icon"></span><strong>0</strong>感谢</span>
+                                </div>
+                                <a class="zm-profile-header-user-edit-btn zg-btn-green zg-right" href="/people/edit">完善我的资料</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+    <!-- ./wrapper -->
+
+    #parse("commonPart/addtionalJs.vm")
+</body>
+
+</html>

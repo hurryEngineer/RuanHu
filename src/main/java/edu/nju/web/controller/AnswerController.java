@@ -47,11 +47,11 @@ public class AnswerController {
         Object answer = session.getAttribute("tempAnswer");
         if (answer!=null) {
             Map<String, AnswerVO> answerMap =  (Map<String,AnswerVO>) answer;
-            return answerMap.containsKey(questionId)? answerMap.get(questionId):new AnswerVO();
+            return answerMap.containsKey(questionId)? answerMap.get(questionId):new AnswerVO(new Answer());
         } else {
             Map<String, AnswerVO> answerMap = new HashMap<>();
             session.setAttribute("tempAnswer", answerMap);
-            return new AnswerVO();
+            return new AnswerVO(new Answer());
         }
     }
 
