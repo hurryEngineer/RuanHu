@@ -7,7 +7,7 @@ import java.sql.Timestamp;
  * Created by ss14 on 2016/7/13.
  */
 @Entity
-public class Comment implements date_interface {
+public class Comment implements DateInterface {
     private long id;
     private String content;
     private Timestamp createdAt;
