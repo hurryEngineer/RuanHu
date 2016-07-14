@@ -8,22 +8,22 @@ import java.sql.Timestamp;
  */
 @Entity
 public class Comment implements date_interface {
-    private long id;
+    private Long id;
     private String content;
     private Timestamp createdAt;
     private Timestamp lastUpdatedAt;
     private Long answerId;
     private Long questionId;
-    private User author;
+    private User author = new User();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
