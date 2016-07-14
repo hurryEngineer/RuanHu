@@ -24,7 +24,7 @@ public interface OrderedPageDAO {
      * @return
      */
     List<?> getPaginatedContent(String tableName , int pageNum , int pageSize);
-
+    List<?> getPaginatedContent(String tableName ,String where, int pageNum , int pageSize);
     /**
      * 多了按某种方式排序的参数，默认降序排序，即获取最近时间的，数量最大的
      * @param tableName
@@ -37,7 +37,8 @@ public interface OrderedPageDAO {
     List<?> getPaginatedContent(String tableName , int pageNum ,
                                     int pageSize, OrderByPara orderByPara);
 
-
+    List<?> getPaginatedContent(String tableName ,String where, int pageNum ,
+                                int pageSize, OrderByPara orderByPara);
     /**
      * 多了排序方式，升序还是降序
      * @param tableName
@@ -51,5 +52,8 @@ public interface OrderedPageDAO {
                                     int pageSize, OrderByPara orderByPara ,
                                         OrderByMethod orderByMethod);
 
+    List<?> getPaginatedContent(String tableName ,String where, int pageNum ,
+                                int pageSize, OrderByPara orderByPara ,
+                                OrderByMethod orderByMethod);
 
 }

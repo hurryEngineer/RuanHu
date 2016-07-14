@@ -24,35 +24,43 @@ public class OrderedPageDAOImpl implements OrderedPageDAO {
 
     @Override
     public List<?> getPaginatedContent(String tableName, int pageNum, int pageSize) {
-        Query query = em.createQuery("from "+tableName+" ");
-        query.setFirstResult((pageNum-1) * pageSize);
-        query.setMaxResults(pageSize);
-        List <?> rows = query.getResultList();
-        return rows;
+        String hql = "from "+tableName+" ";
+        return  execHQL(hql,pageNum,pageSize);
+    }
+
+    @Override
+    public List<?> getPaginatedContent(String tableName, String where, int pageNum, int pageSize) {
+        String hql = "from "+tableName+where;
+        return  execHQL(hql,pageNum,pageSize);
     }
 
     @Override
     public List<?> getPaginatedContent(String tableName, int pageNum, int pageSize, OrderByPara orderByPara) {
-        String orderPara =  getPara(orderByPara);
-        String orderMethod= " desc";
+        OrderByMethod method = OrderByMethod.DESC;
 
-        Query query = em.createQuery("from "+tableName+orderPara+orderMethod);
-        query.setFirstResult((pageNum-1) * pageSize);
-        query.setMaxResults(pageSize);
-        List <?> rows = query.getResultList();
-        return rows;
+        String hql = getHQL(tableName,orderByPara,method);
+        return execHQL(hql,pageNum,pageSize);
+    }
+
+    @Override
+    public List<?> getPaginatedContent(String tableName, String where, int pageNum, int pageSize, OrderByPara orderByPara) {
+        OrderByMethod method = OrderByMethod.DESC;
+
+        String hql = getHQL(tableName,where,orderByPara,method);
+        return execHQL(hql,pageNum,pageSize);
     }
 
     @Override
     public List<?> getPaginatedContent(String tableName, int pageNum, int pageSize, OrderByPara orderByPara, OrderByMethod orderByMethod) {
-        String orderPara =  getPara(orderByPara);
-        String orderMethod= getMethod(orderByMethod);
 
-        Query query = em.createQuery("from "+tableName+orderPara+orderMethod);
-        query.setFirstResult((pageNum-1) * pageSize);
-        query.setMaxResults(pageSize);
-        List <?> rows = query.getResultList();
-        return rows;
+        String hql = getHQL(tableName,orderByPara,orderByMethod);
+        return execHQL(hql,pageNum,pageSize);
+    }
+
+    @Override
+    public List<?> getPaginatedContent(String tableName, String where, int pageNum, int pageSize, OrderByPara orderByPara, OrderByMethod orderByMethod) {
+        String hql = getHQL(tableName,where,orderByPara,orderByMethod);
+        return execHQL(hql,pageNum,pageSize);
     }
 
 
@@ -68,11 +76,17 @@ public class OrderedPageDAOImpl implements OrderedPageDAO {
     public String getHQL(String tableName, String where, OrderByPara para, OrderByMethod method) {
         String orderPara =  getPara(para);
         String orderMethod= getMethod(method);
-        String hql = "from "+where+tableName+para+method;
+        String hql = "from "+tableName+where+para+method;
         return hql;
     }
 
-
+    private List<?> execHQL(String hql , int pageNum , int pageSize){
+        Query query = em.createQuery(hql);
+        query.setFirstResult((pageNum-1) * pageSize);
+        query.setMaxResults(pageSize);
+        List <?> rows = query.getResultList();
+        return rows;
+    }
 
     private String getPara(OrderByPara orderByPara){
         String orderPara=" order by ";
