@@ -32,8 +32,7 @@ public class UserProfileController {
         model.addAttribute("userInfo", profileService.getUserByName(userName));
         model.addAttribute("questionCount",profileService.getQuestionCountByName(userName));
         model.addAttribute("answerCount",profileService.getAnswerCountByName(userName));
-        model.addAttribute("userQuestion",profileService.getQuestionByName(userName));
-        model.addAttribute("userAnswer",profileService.getAnswerByName(userName));
+        model.addAttribute("activities",profileService.orderedActivity(profileService.getQuestionByName(userName),profileService.getAnswerByName(userName)));
         return "userProfile";
     }
 
