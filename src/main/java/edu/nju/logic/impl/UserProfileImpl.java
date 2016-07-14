@@ -62,7 +62,7 @@ public class UserProfileImpl implements UserProfileService {
     @Override
     public List<QuestionVO> getQuestionByName(String name) {
         List<Question> questions = questionDAO.getQuestionByUsername(name);
-        List<QuestionVO> questionVOs = new ArrayList<>(questions.size());
+        List<QuestionVO> questionVOs = new ArrayList<>();
         for (Question question : questions) {
             questionVOs.add(timeService.transferQuestion(question));
         }
@@ -72,7 +72,7 @@ public class UserProfileImpl implements UserProfileService {
     @Override
     public List<AnswerVO> getAnswerByName(String name) {
         List<Answer> answers =  answerDAO.getAnswerByUserName(name);
-        List<AnswerVO> answerVOs = new ArrayList<>(answers.size());
+        List<AnswerVO> answerVOs = new ArrayList<>();
         for (Answer answer: answers) {
             answerVOs.add(timeService.transferAnswer(answer));
         }
@@ -81,7 +81,7 @@ public class UserProfileImpl implements UserProfileService {
 
     @Override
     public List<ActivityVO> orderedActivity(List<QuestionVO> questionVOs, List<AnswerVO> answerVOs) {
-        List<ActivityVO> activityVOs = new ArrayList<>(questionVOs.size()+answerVOs.size());
+        List<ActivityVO> activityVOs = new ArrayList<>();
         for (QuestionVO questionVO: questionVOs) {
             ActivityVO activityVO = new ActivityVO(questionVO);
             activityVOs.add(activityVO);
