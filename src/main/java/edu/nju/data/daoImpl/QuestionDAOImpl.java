@@ -3,7 +3,7 @@ package edu.nju.data.daoImpl;
 import edu.nju.data.dao.BaseDAO;
 import edu.nju.data.dao.QuestionDAO;
 import edu.nju.data.entity.Question;
-import edu.nju.data.util.common_paras
+import edu.nju.data.util.common_paras;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,7 +61,7 @@ public class QuestionDAOImpl implements QuestionDAO {
 
     @Override
     public int  deleteByAuthorID(long authorID) {
-        Query query = em.createQuery("delete  Question where authorId = ?1");
+        Query query = em.createQuery("delete  Question where author.id = ?1");
         query.setParameter(1,authorID);
         int result = query.executeUpdate();
         return result;
@@ -90,9 +90,16 @@ public class QuestionDAOImpl implements QuestionDAO {
     }
 
     @Override
+    public List<Question> getAllQuestions() {
+
+        Query query = em.createQuery("from Question ");
+        return query.getResultList();
+    }
+
+    @Override
     public List<Question> getQuestionByUsername(String userName)
     {
-        Query query = em.createQuery("select q from Question q,User u where q.authorId=u.id and u.userName = ?1");
+        Query query = em.createQuery("select q from Question q,User u where q.author.id=u.id and u.userName = ?1");
         query.setParameter(1,userName);
 
         return query.getResultList();
@@ -100,7 +107,7 @@ public class QuestionDAOImpl implements QuestionDAO {
 
     @Override
     public long getQuestionCountByUsername(String username) {
-        Query query = em.createQuery("select count(q) from Question q,User u where q.authorId=u.id and u.userName = ?1");
+        Query query = em.createQuery("select count(q) from Question q,User u where q.author.id=u.id and u.userName = ?1");
         query.setParameter(1,username);
 
         return (long) query.getSingleResult();
@@ -108,14 +115,14 @@ public class QuestionDAOImpl implements QuestionDAO {
 
     @Override
     public List<Question> getQuestionByUserID(long userID) {
-        Query query = em.createQuery("from Question q where q.authorId= ?1");
+        Query query = em.createQuery("from Question q where q.author.id= ?1");
         query.setParameter(1,userID);
         return query.getResultList();
     }
 
     @Override
     public long getQuestionCountByUserID(long userID) {
-        Query query = em.createQuery("select count (q) from Question q where q.authorId= ?1");
+        Query query = em.createQuery("select count (q) from Question q where q.author.id= ?1");
         query.setParameter(1,userID);
         return (long) query.getSingleResult();
     }

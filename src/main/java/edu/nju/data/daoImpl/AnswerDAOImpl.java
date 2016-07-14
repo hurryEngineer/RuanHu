@@ -62,7 +62,7 @@ public class AnswerDAOImpl implements AnswerDAO {
 
     @Override
     public int deleteByUserID(long userID) {
-        Query query = em.createQuery("delete from Answer as a where a.authorId = ?1");
+        Query query = em.createQuery("delete from Answer as a where a.author.id = ?1");
         query.setParameter(1,userID);
         int size=query.executeUpdate();
         return size;
@@ -70,7 +70,7 @@ public class AnswerDAOImpl implements AnswerDAO {
 
     @Override
     public int deleteByQuestion_UserID(long questionID, long userID) {
-        Query query = em.createQuery("delete from Answer as a where a.authorId = ?2 and a.questionId = ?1");
+        Query query = em.createQuery("delete from Answer as a where a.author.id = ?2 and a.questionId = ?1");
         query.setParameter(1,questionID);
         query.setParameter(2,userID);
         int size=query.executeUpdate();
