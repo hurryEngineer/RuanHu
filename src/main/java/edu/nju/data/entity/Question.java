@@ -8,6 +8,7 @@ import java.util.List;
  * Created by ss14 on 2016/7/13.
  */
 @Entity
+
 public class Question implements date_interface{
     private Long id;
     private Integer answerCount = new Integer(0);

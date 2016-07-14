@@ -3,6 +3,7 @@ package edu.nju.web.controller;
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.User;
 import edu.nju.logic.service.AnswerService;
+import edu.nju.logic.vo.AnswerVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -42,15 +43,15 @@ public class AnswerController {
      * @return {@link Answer}
      */
     @RequestMapping("/getTempAnswer")
-    public Answer getTempAnswer(@RequestParam("questionId") String questionId, HttpSession session) {
+    public AnswerVO getTempAnswer(@RequestParam("questionId") String questionId, HttpSession session) {
         Object answer = session.getAttribute("tempAnswer");
         if (answer!=null) {
-            Map<String, Answer> answerMap =  (Map<String,Answer>) answer;
-            return answerMap.containsKey(questionId)? answerMap.get(questionId):new Answer();
+            Map<String, AnswerVO> answerMap =  (Map<String,AnswerVO>) answer;
+            return answerMap.containsKey(questionId)? answerMap.get(questionId):new AnswerVO();
         } else {
-            Map<String, Answer> answerMap = new HashMap<>();
+            Map<String, AnswerVO> answerMap = new HashMap<>();
             session.setAttribute("tempAnswer", answerMap);
-            return new Answer();
+            return new AnswerVO();
         }
     }
 

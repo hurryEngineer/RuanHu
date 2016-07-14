@@ -1,4 +1,4 @@
-package edu.nju.web.vo;
+package edu.nju.logic.vo;
 
 import edu.nju.data.util.VerifyResult;
 import lombok.Data;
