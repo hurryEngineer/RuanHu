@@ -8,6 +8,7 @@ import edu.nju.data.entity.Question;
 import edu.nju.data.entity.User;
 import edu.nju.logic.service.TimeService;
 import edu.nju.logic.service.UserProfileService;
+import edu.nju.logic.vo.ActivityVO;
 import edu.nju.logic.vo.AnswerVO;
 import edu.nju.logic.vo.QuestionVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,5 +75,10 @@ public class UserProfileImpl implements UserProfileService {
             answerVOs.add(timeService.transferAnswer(answer));
         }
         return answerVOs;
+    }
+
+    @Override
+    public List<ActivityVO> orderedActivity(List<QuestionVO> questionVOs, List<AnswerVO> answerVOs) {
+        return null;
     }
 }

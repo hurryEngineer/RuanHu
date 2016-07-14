@@ -2,12 +2,15 @@ package edu.nju.web.controller;
 
 import edu.nju.data.entity.User;
 import edu.nju.logic.service.UserProfileService;
+import edu.nju.logic.vo.AnswerVO;
+import edu.nju.logic.vo.QuestionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by cuihao on 2016/7/12.
@@ -26,11 +29,24 @@ public class UserProfileController {
      */
     @RequestMapping(value = "/show",method = RequestMethod.GET)
     String showProfile(@RequestParam("userName") String userName, HttpSession session, Model model){
+        model.addAttribute("userInfo", profileService.getUserByName(userName));
         model.addAttribute("questionCount",profileService.getQuestionCountByName(userName));
         model.addAttribute("answerCount",profileService.getAnswerCountByName(userName));
         model.addAttribute("userQuestion",profileService.getQuestionByName(userName));
         model.addAttribute("userAnswer",profileService.getAnswerByName(userName));
         return "userProfile";
+    }
+
+    @RequestMapping(value = "/showQuestion", method = RequestMethod.GET)
+    @ResponseBody
+    List<QuestionVO> showUserQuestion(@RequestParam("userName") String userName) {
+        return profileService.getQuestionByName(userName);
+    }
+
+    @RequestMapping(value = "/showAnswers", method = RequestMethod.POST)
+    @ResponseBody
+    List<AnswerVO> showAnswers(@RequestParam("userName") String userName) {
+        return profileService.getAnswerByName(userName);
     }
 
     /**
