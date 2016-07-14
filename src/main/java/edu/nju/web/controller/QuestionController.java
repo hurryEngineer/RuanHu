@@ -88,6 +88,14 @@ public class QuestionController {
         return "editQuestion";
     }
 
+    @RequestMapping(value = "/up")
+    void upVote(String questionId, String userId){
 
+    }
+
+    @RequestMapping(value = "/down")
+    void downVote(String questionId, String userId){
+
+    }
 
 }
