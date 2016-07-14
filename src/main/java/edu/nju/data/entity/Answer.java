@@ -9,22 +9,22 @@ import java.util.List;
  */
 @Entity
 public class Answer implements DateInterface{
-    private long id;
+    private Long id;
     private String content;
     private long questionId;
     private Timestamp createdAt;
     private Timestamp lastUpdatedAt;
-    private Integer voteCount;
+    private Integer voteCount= new Integer(0);
     private Byte solution;
-    private User author;
+    private User author = new User();
     private List<Comment> commentList;
 
     @Transient
-    public void setAuthorId(long id){
+    public void setAuthorId(Long id){
         this.getAuthor().setId(id);
     }
     @Transient
-    public long getAuthorId(){
+    public Long getAuthorId(){
         return this.getAuthor().getId();
     }
 
@@ -32,11 +32,11 @@ public class Answer implements DateInterface{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

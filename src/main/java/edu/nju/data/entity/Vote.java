@@ -10,8 +10,8 @@ import java.sql.Timestamp;
  */
 @Entity
 public class Vote {
-    private long id;
-    private long authorId;
+    private Long id;
+    private Long authorId;
     private Timestamp createdAt;
     private Timestamp lastUpdatedAt;
     private Long answerId;
@@ -21,11 +21,11 @@ public class Vote {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

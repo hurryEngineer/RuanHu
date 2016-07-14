@@ -9,7 +9,7 @@ import java.sql.Timestamp;
  */
 @Entity
 public class User {
-    private long id;
+    private Long id;
     private String email;
     private String location;
     private String userName;
@@ -22,11 +22,11 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

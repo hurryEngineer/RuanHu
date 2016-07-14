@@ -8,20 +8,21 @@ import java.util.List;
  * Created by ss14 on 2016/7/13.
  */
 @Entity
+
 public class Question implements DateInterface{
-    private long id;
-    private Integer answerCount;
-    private Integer voteCount;
-    private Integer viewCount;
+    private Long id;
+    private Integer answerCount = new Integer(0);
+    private Integer voteCount= new Integer(0);
+    private Integer viewCount= new Integer(0);
     private String title;
     private String content;
     private Timestamp createdAt;
     private Timestamp lastUpdatedAt;
-    private User author;
+    private User author = new User();
     private List<Comment> commentList;
 
     @Transient
-    public void setAuthorId(long id){
+    public void setAuthorId(Long id){
         this.getAuthor().setId(id);
     }
     @Transient
@@ -32,11 +33,11 @@ public class Question implements DateInterface{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

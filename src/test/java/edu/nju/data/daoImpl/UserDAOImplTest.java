@@ -28,7 +28,7 @@ public class UserDAOImplTest {
     @Test
     public void update() throws Exception {
         User user = new User();
-        user.setId(2);
+        user.setId(new Long(2));
         user.setUserName("ss14");
         user.setPassword("123456");
         userDAO.update(user);

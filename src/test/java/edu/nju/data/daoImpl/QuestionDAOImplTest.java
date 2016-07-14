@@ -37,12 +37,20 @@ public class QuestionDAOImplTest {
 
 
     @Test
+    public void save() throws Exception {
+        Question question = new Question();
+        question.setTitle("q2");
+        question.setContent("c2");
+       // question.setAuthorId(new Long (2));
+        question.getAuthor().setId(new Long(1));
+        questionDAO.save(question);
+    }
+
+    @Test
     public void save_id() throws Exception {
         Question question = new Question();
-        question.setAuthorId(new Long(2));
+        question.setAuthorId(new Long(1));
        // question.getAuthor().setId(new Long (5));
-        question.setTitle("q9");
-        question.setContent("c9");
         long id = questionDAO.save_id(question);
         if(id==0){
             fail();
@@ -55,9 +63,7 @@ public class QuestionDAOImplTest {
     @Test
     public void save_question() throws Exception {
         Question question = new Question();
-     //   question.setAuthorId(new Long(2));
-        question.setTitle("q5");
-        question.setContent("c5");
+        question.setAuthorId(new Long(2));
         Question newQuestion= questionDAO.save_question(question);
         if(newQuestion.getId()==0){
             fail();
@@ -67,22 +73,18 @@ public class QuestionDAOImplTest {
     }
 
 
-    @Test
-    public void save() throws Exception {
-            Question question = new Question();
-            question.setTitle("q1");
-            question.setContent("c1");
-         //   question.setAuthorId(new Long (2));
-    }
+
 
     @Test
     public void deleteByQuestionID() throws Exception {
-        long id =3;
+        long id =2;
         Question temp = questionDAO.getQuestionByID(id);
+        System.out.println("get questionid: "+temp.getId());
         questionDAO.deleteByQuestionID(id);
         if(questionDAO.getQuestionByID(id)!=null){
             fail("null");
         }
+        temp.setId(null);
         questionDAO.save(temp);
     }
 
@@ -100,10 +102,9 @@ public class QuestionDAOImplTest {
     @Test
     public void update() throws Exception {
         Question question = new Question();
-     //   question.setAuthorId(new Long(2));
-        question.setTitle("q4");
-        question.setContent("c4");
-        question.setId(3);
+        question.setAuthorId(new Long(2));
+        question.setAnswerCount(new Integer(1));
+        question.setId(new Long(3));
         questionDAO.update(question);
 
     }
