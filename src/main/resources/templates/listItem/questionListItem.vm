@@ -19,19 +19,23 @@ $oneQuestion.voteCount </span> 投票 </li>
 
 	<div class="col-md-8 col-xs-4">
 		<div class="q-ltop-content">
-			<h2><a>$oneQuestion.title</a></h2>
+			<h2>
+				<a href="#springUrl("/questions/$oneQuestion.id")">
+					$oneQuestion.title
+				</a>
+			</h2>
 		</div>
 
 		<div class="q-lbtm-content">
 
 			<div class="question-cat">
-				<!--<ul class="question-tags">
+				<ul class="question-tags">
 					<li>
 						<a class="q-tag">
 							apps </a>
 					</li>
 
-				</ul>-->
+				</ul>
 				<div class="clearfix"></div>
 				<a>
 					<span class="author-avatar">
@@ -40,8 +44,8 @@ $oneQuestion.voteCount </span> 投票 </li>
 				</a>
 
 				<span itemprop="dateCreated" datetime="on June 9, 2014" class="question-time">
-					##	$oneQuestion.getCreateAtForView()
-					$oneQuestion.createAt
+					##	$!oneQuestion.getCreateAtForView()
+					$!oneQuestion.createAt
 				</span>
 			</div>
 
