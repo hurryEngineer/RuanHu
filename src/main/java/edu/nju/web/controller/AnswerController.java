@@ -19,6 +19,12 @@ public class AnswerController {
     @Autowired
     private AnswerService answerService;
 
+    /**
+     * 将答案的内容临时保存在session里
+     * @param questionId 答案对应的问题编号
+     * @param markedText 答案临时保存的内容
+     * @param session {@link HttpSession}
+     */
     @RequestMapping("/tempSave")
     public void tempSave(@RequestParam("questionId") String questionId,
                          @RequestParam("markedText") String markedText, HttpSession session) {
@@ -27,6 +33,14 @@ public class AnswerController {
         ((Map<String,Answer>)session.getAttribute("tempAnswer")).put(questionId, answer);
     }
 
+    /**
+     * 获取保存在session里的answer<br>
+     *     若answer里没有answer这个map，就新建一个
+     *     若map里没有指定id的answer，则新建一个空的answer
+     * @param questionId 回答的问题的id
+     * @param session {@link HttpSession}
+     * @return {@link Answer}
+     */
     @RequestMapping("/getTempAnswer")
     public Answer getTempAnswer(@RequestParam("questionId") String questionId, HttpSession session) {
         Object answer = session.getAttribute("tempAnswer");
@@ -40,22 +54,42 @@ public class AnswerController {
         }
     }
 
+    /**
+     * 新建一个answer
+     * @return 返回新建answer页面
+     */
     @RequestMapping(value = "/newAnswer", method = RequestMethod.GET)
     @ResponseBody
     public String  newAnswer(){
         return "newAnswer";
     }
 
+    /**
+     * 保存一个answer
+     * @param questionId answer对应的问题id
+     * @param markedText answer的内容
+     * @param session {@link HttpSession}
+     * @return 是否保存成功布尔值
+     */
     @RequestMapping(value = "/saveAnswer", method = RequestMethod.POST)
     @ResponseBody
-    public boolean saveAnswer(String questionId, String markedtext, HttpSession session){
+    public boolean saveAnswer(@RequestParam("questionId") String questionId,
+                              @RequestParam("markedText") String markedText, HttpSession session){
         User user = (User) session.getAttribute("user");
-        return answerService.saveAnswer(Long.valueOf(questionId), user.getId(), markedtext);
+        return answerService.saveAnswer(Long.valueOf(questionId), user.getId(), markedText);
     }
 
-    @RequestMapping(value = "/markAsSolution")
+    /**
+     * 将问题标记为正确答案
+     * @param answerId 要标记的answer id
+     * @param questionId answer对应的问题id
+     * @param session {@link HttpSession}
+     * @return 如果是提问者本人标记，则标记成功返回true;否则返回false
+     */
+    @RequestMapping(value = "/markAsSolution",method = RequestMethod.GET)
     @ResponseBody
-    public boolean markAsSolution(String answerId,String questionId, HttpSession session){
+    public boolean markAsSolution(@RequestParam("answerId") String answerId,
+                                  @RequestParam("questionId") String questionId, HttpSession session){
         User user = (User) session.getAttribute("user");
         return answerService.markAsSolution(user, Long.valueOf(questionId), Long.valueOf(answerId));
     }

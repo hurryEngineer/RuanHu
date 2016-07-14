@@ -1,6 +1,10 @@
 package edu.nju.logic.service;
 
+import edu.nju.data.entity.Answer;
+import edu.nju.data.entity.Question;
 import edu.nju.data.entity.User;
+
+import java.util.List;
 
 /**
  * 用户个人信息接口
@@ -16,5 +20,15 @@ public interface UserProfileService {
      * @return 是否更新成功
      */
     boolean editProfile(User user, String description, String location, String bitrhday);
+
+    User getUserByName(String name);
+
+    long getQuestionCountByName(String name);
+
+    long getAnswerCountByName(String name);
+
+    List<Question> getQuestionByName(String name);
+
+    List<Answer> getAnswerByName(String name);
 
 }
