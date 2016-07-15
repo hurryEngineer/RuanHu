@@ -8,6 +8,8 @@
     <title>$userInfo.userName - 软乎</title>
 
     #parse("/templates/commonPart/commonCssAndJs.vm")
+    <link rel="stylesheet" href="/plugins/datepicker/datepicker3.css">
+
 </head>
 
 <body class="hold-transition skin-blue-light layout-top-nav">
@@ -57,7 +59,10 @@
 
     #parse("/templates/commonPart/addtionalJs.vm")
 
+
     <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+    <script src="/plugins/datepicker/bootstrap-datepicker.js"></script>
 
     <script>
         $("#current").load("/userProfile/showQuestion?userName=" + '$!{userInfo.userName}');
@@ -67,7 +72,9 @@
         $('#answer-nav').click(function() {
             $("#current").load("/userProfile/showAnswers?userName=" + '$!{userInfo.userName}');
         });
+
     </script>
+
 
 </body>
 

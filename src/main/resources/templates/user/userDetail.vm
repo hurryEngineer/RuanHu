@@ -3,7 +3,7 @@
         display:none;
     }
     .item{
-        margin:5px 0;
+        margin:7px 0;
     }
 </style>
 
@@ -52,35 +52,36 @@
                         <span class='info-empty-wrap'>
                             <a href="javascript:;" name="edit" class="zg-link-litblue-normal">填写所在地</a></span>
                         <span class="edit-wrap">
-                            <span class="topic-input-wrap"><input autocomplete="off" aria-haspopup="true" type="text" name="location" value="" class="zg-form-text-input location" placeholder="居住地"/></span>
-                          <a class="btn label label-success" name="save" href="javascript:;">确定</a>
+                            <span class="topic-input-wrap"><input id="location-input" autocomplete="off" aria-haspopup="true" type="text" name="location" value="" class="zg-form-text-input location" placeholder="居住地"/></span>
+                          <a id="editLocation" class="btn label label-success" name="save" href="javascript:;">确定</a>
                         </span>
                     </div>
 
 
                     <div class="item editable-group " id="birthday-group" >
                         <i class="icon fa fa-birthday-cake margin-r-5"></i>
-                            <span class="info-wrap">
-                                <span class="birthday item text-muted">$userInfo.birthDate</span>
-                                <a class="zu-edit-button edit label label-info" name="edit" href="javascript:;" style="margin-left: 10px">
-                                    <i class="zu-edit-button-icon fa fa-edit margin-r-4"></i><span class="edit-msg">修改</span></a>
-                            </span>
+                        <span class="info-wrap">
+
+                            <span class="birthday item text-muted">$userInfo.birthDate</span>
+                            <a class="zu-edit-button edit label label-info" name="edit" href="javascript:;" style="margin-left: 10px">
+                                <i class="zu-edit-button-icon fa fa-edit margin-r-4"></i><span class="edit-msg">修改</span></a>
+                        </span>
                         <span class='info-empty-wrap'>
                             <a href="javascript:;" name="edit" class="zg-link-litblue-normal">填写生日</a></span>
-                            <span class="edit-wrap">
-                                <div class="business-selection">
-                                    <select name="year">
-                                        <option value="2016">2016</option>
-                                    </select>
-                                    <select name="month">
-                                        <option value="01">01</option>
-                                    </select>
-                                    <select name="day">
-                                        <option value="01">01</option>
-                                    </select>
-                                </div>
-                                <a class="btn label label-success" name="save" href="javascript:;">确定</a>
-                            </span>
+##
+                          <div class="form-group edit-wrap" style="transform: scale(0.5)">
+                            <div class="input-group date">
+##                              <div class="input-group-addon">
+##                                <i class="fa fa-calendar"></i>
+##                              </div>
+                              <input type="text" class="form-control pull-right" id="datepicker" width="50%">
+                            </div>
+                              <!-- /.input group -->
+                              <a id="editBirthday" class="btn label label-success" name="save" href="javascript:;">确定</a>
+                          </div>
+
+
+##                        </span>
                     </div>
 
                     <div class="item" id="description-group">
@@ -149,7 +150,52 @@
                 });
             });
 
+            $('#editBirthday').click(function () {
+                var val = $('#datepicker').val();
 
+                jQuery.ajax({
+                    type: "POST",
+                    url: "/editBirthday",
+                    data: {"birthday": val},
+                    dataType: "json",
+                    success: function () {
+                        $('.edit-wrap').css("display","none");
+                        $('.info-wrap').css("display","inline");
+                        $('.birthday').text(val);
+                    },error:function(xhr){
+                        console.log(xhr.responseText);
+                        $('.edit-wrap').css("display","none");
+                        $('.info-wrap').css("display","inline");
+                        $('.birthday').text(val);
+                    }
+                });
+            });
+
+            $('#editLocation').click(function () {
+                var val = $('#location-input').val();
+                jQuery.ajax({
+                    type: "POST",
+                    url: "/editLocation",
+                    data: {"location": val},
+                    dataType: "json",
+                    success: function () {
+                        $('.edit-wrap').css("display","none");
+                        $('.info-wrap').css("display","inline");
+                        $('.location').text(val);
+                    },error:function(xhr){
+                        console.log(xhr.responseText);
+                        $('.edit-wrap').css("display","none");
+                        $('.info-wrap').css("display","inline");
+                        $('.location').text(val);
+                    }
+                });
+            });
+
+
+            //Date picker
+            $('#datepicker').datepicker({
+                autoclose: true
+            });
 //             $('#location-group .info-wrap').css("display","none");
 //             $('#location-group span.info-empty-wrap').css("display","inline");
 //
