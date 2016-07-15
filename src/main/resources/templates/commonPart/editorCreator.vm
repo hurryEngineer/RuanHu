@@ -8,8 +8,10 @@
 		var thisQuestionID = "newQuestion";
 	#end
 
+    var testEditor=null;
+
 	$(function() {
-		var testEditor = editormd("editormd", {
+		    testEditor = editormd("editormd", {
 			width: "97%",
 			height: 340,
 			path: '/editor.md-master/lib/',

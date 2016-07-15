@@ -4,7 +4,7 @@
 
 		#if($user)
 		<li>
-			<a href="#">
+			<a href="/ask">
 			<i class="fa fa-fw fa-pencil"></i>
 				提问
 			</a>
@@ -33,7 +33,7 @@
 		
 		
 		#else
-		<li>
+		<li onclick="loginForm()">
 			<a href="#">
 			<i class="fa fa-fw fa-pencil"></i>
 				提问
