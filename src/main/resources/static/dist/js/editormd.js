@@ -2364,7 +2364,7 @@
         
         watch : function(callback) {     
             var settings        = this.settings;
-            
+//            $(".preview-close-btn").hide();
             if ($.inArray(settings.mode, ["gfm", "markdown"]) < 0)
             {
                 return this;
@@ -2638,6 +2638,7 @@
                 state.fullscreen = true;
 
                 $("html,body").css("overflow", "hidden");
+                $(".main-header,.sidebar").hide();
                 
                 editor.css({
                     width    : $(window).width(),
@@ -2680,6 +2681,7 @@
             }
 
             $("html,body").css("overflow", "");
+            $(".main-header,.sidebar").show();
 
             editor.css({
                 width    : editor.data("oldWidth"),

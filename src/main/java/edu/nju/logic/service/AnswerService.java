@@ -26,5 +26,21 @@ public interface AnswerService {
      */
     boolean saveAnswer(long questionId, long userId, String text);
 
+    /**
+     * 点赞
+     * @param questionId 问题id
+     * @param answerId 答案id
+     * @param userId 用户id
+     * @param type 顶还是踩
+     */
     void vote(String questionId, String answerId, String userId, VoteType type);
+
+    /**
+     * 取消赞
+     * @param questionId 问题id
+     * @param answerId 答案id
+     * @param userId 用户id
+     * @param type 之前的赞是定还是踩
+     */
+    void unVote(String questionId, String answerId, String userId, VoteType type);
 }

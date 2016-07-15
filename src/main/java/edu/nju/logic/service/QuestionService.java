@@ -31,4 +31,6 @@ public interface QuestionService {
     List<AnswerVO> getAnswers(long questionId, int pageNum, int pageSize);
 
     void vote(String questionId, String userId, VoteType type);
+
+    void unVote(String questionId, String userId, VoteType type);
 }

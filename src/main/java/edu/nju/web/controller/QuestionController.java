@@ -57,6 +57,7 @@ public class QuestionController {
         model.addAttribute("answerOfQuestion",answerVOs);
 
         return "questionInfo";
+        
     }
 
     @RequestMapping(value="/question/{id}/answers",method = RequestMethod.GET)
@@ -108,6 +109,16 @@ public class QuestionController {
     @RequestMapping(value = "/down")
     void downVote(String questionId, String userId){
         service.vote(questionId,userId, VoteType.down);
+    }
+
+    @RequestMapping(value = "/upCancel")
+    void cancelUpVote(String questionId, String userId){
+        service.unVote(questionId,userId, VoteType.up);
+    }
+
+    @RequestMapping(value = "/downCancel")
+    void cancelDownVote(String questionId, String userId){
+        service.unVote(questionId,userId, VoteType.down);
     }
 
 }

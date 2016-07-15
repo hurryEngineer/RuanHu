@@ -79,4 +79,15 @@ public class QuestionImpl implements QuestionService {
         voteDAO.save(vote);
     }
 
+    @Override
+    public void unVote(String questionId, String userId, VoteType type) {
+        Vote vote = new Vote();
+        vote.setAuthorId(Long.valueOf(userId));
+        vote.setCreatedAt(new Timestamp(new Date().getTime()));
+        vote.setLastUpdatedAt(new Timestamp(new Date().getTime()));
+        vote.setQuestionId(Long.valueOf(questionId));
+        vote.setVoteType(type);
+        voteDAO.cancel(vote);
+    }
+
 }

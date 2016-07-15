@@ -44,7 +44,7 @@ $oneQuestion.voteCount </span> 投票 </li>
 				</a>
 
 				<span itemprop="dateCreated" datetime="on June 9, 2014" class="question-time">
-					$!oneQuestion.getCreateAtForView()
+					发布于 $!oneQuestion.getCreateAtForView()
 				</span>
 			</div>
 

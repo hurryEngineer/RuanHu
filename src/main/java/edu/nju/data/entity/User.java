@@ -10,14 +10,16 @@ import java.sql.Timestamp;
 @Entity
 public class User {
     private Long id;
-    private String email;
-    private String location;
+    private String email = "unknown";
+    private String location= "unknown";
     private String userName;
     private String password;
     private String photoUri;
-    private String description;
+    private String description="这位同学很懒，什么都没写";
     private Timestamp createdAt = new Timestamp( new java.util.Date().getTime());
     private Date birthDate;
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

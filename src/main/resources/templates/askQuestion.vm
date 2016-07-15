@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		#parse("commonPart/commonCssAndJs.vm")
+		<link rel="stylesheet" href="/dist/css/editormd.css" />
+		
+		
+		<title>问题详情 - 软乎</title>
+
+
+
+
+	</head>
+
+	<body class="hold-transition skin-blue-light layout-top-nav">
+		<div class="wrapper">
+
+			#parse("commonPart/mainHeader.vm")
+
+			<div class="content-wrapper">
+				<div class="container">
+
+					<section class="content-header">
+						<h1>
+        	提问
+       </h1>
+       
+					</section>
+
+					<div class="row">
+
+						<div class="col-md-9 col-sm-9 col-xs-12">
+							<hr />
+							
+							
+							<div class="row">
+								<div class="col-md-4 col-xs-4">
+									<p><b>标题</b></p>
+								</div>
+							</div>
+							
+							<div class="body-question">
+							<form id="submit_question">
+							<input type="hidden" id="qa_nonce" name="qa_nonce" value="f8bd1d5888">
+							<input type="hidden" name="post_parent" value="0">
+							<div class="input-title">
+								<input type="text" class="submit-input" id="question_title" name="post_title" placeholder="Your Question">
+								<!--<span id="charNum">150</span>-->
+							</div>
+						
+							<div class="row">
+								<div class="col-md-4 col-xs-4">
+									<p><b>问题说明</b></p>
+								</div>
+							</div>
+								
+							
+							<div class="wp-editor-container">
+								
+								<div class="row">
+									<div id="test-editormd">
+										<textarea style="display:none;"></textarea>
+									</div>
+								</div>
+								
+							</div>
+							
+							<div id="question-tag-container">
+							
+								<div class="col-md-4 col-xs-4" >
+									<p><b>添加标签</b></p>
+								
+							</div>
+							
+							<div id="question-tags">
+								<input data-provide="typeahead" type="text" class="submit-input tags-input" id="question_tags" name="question_tags" placeholder="回车添加标签">
+								<ul class="tags-list" id="tag_list"><li class="tag-item">
+						
+									<input type="hidden" name="tags[]" value="google glass">
+									google glass <a href="javascript:void(0)" class="delete"><i class="fa fa-times"></i></a>
+						
+								</li></ul>
+								
+							</div>
+							<input id="add_tag_text" type="hidden" value="You must have 1000 points to add tag. Current, you have to select existing tags.">
+							</div>
+							<button id="btn_submit_question" class="btn-submit-question">提交问题 </button>
+							
+							</form>
+							
+							<hr />
+						</div>	
+							
+						</div>
+
+						#parse("commonPart/rightSideBar.vm")
+
+					</div>
+				</div>
+			</div>
+			<!-- ./wrapper -->
+
+		#parse("commonPart/addtionalJs.vm")
+		<script src="/dist/js/jquery.min.js"></script>
+		<script src="/dist/js/editormd.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				var testEditor = editormd("test-editormd", {
+					width: "97%",
+					height:400,
+					path: '/editor.md-master/lib/',
+					watch: true,
+					emoji: true,
+					imageUpload : true,
+                    imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                    imageUploadURL : "./php/upload.php?test=dfdf",
+					toolbarIcons: function() {
+						// Or return editormd.toolbarModes[name]; // full, simple, mini
+						// Using "||" set icons align right.
+						//                      return ["undo", "redo", "|", "bold", "hr", "|", "preview", "watch", "|", "fullscreen", "info", "testIcon", "testIcon2", "file", "faicon", "||", "watch", "fullscreen", "preview", "testIcon", "file"]
+						return editormd.toolbarModes["simple"]
+					},
+					// toolbarIcons : "full", // You can also use editormd.toolbarModes[name] default list, values: full, simple, mini.
+					
+				});
+			});
+		</script>
+	</body>
+
+</html>

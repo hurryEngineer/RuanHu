@@ -35,11 +35,13 @@ public class AnswerDAOImpl implements AnswerDAO {
 
     @Override
     public void save(Answer answer) {
+        answer.setId(null);
         baseDAO.insert(answer);
     }
 
     @Override
     public long save_id(Answer answer) {
+        answer.setId(null);
         em.persist(answer);
         em.flush();
         return answer.getId();
@@ -47,6 +49,7 @@ public class AnswerDAOImpl implements AnswerDAO {
 
     @Override
     public Answer save_answer(Answer answer) {
+        answer.setId(null);
         em.persist(answer);
         em.flush();
         return answer;

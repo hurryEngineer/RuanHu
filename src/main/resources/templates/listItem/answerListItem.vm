@@ -4,20 +4,20 @@
 		<ul class="question-upDown">
 			<li title="" data-original-title="This is useful.">
 				<a data-container="body" data-toggle="popover" data-content="You must have 5 points to vote up." href="javascript:void(0)" data-name="vote_up" class="action vote vote-up img-circle " data-original-title="" title="">
-				<i class="fa fa-chevron-up"></i>
+					<i class="fa fa-chevron-up"></i>
 				</a>
 			</li>
-			
-		 	<li data-original-title="" title="">
-			<span itemprop="upvoteCount" class="vote-count">-1</span>
+
+			<li data-original-title="" title="">
+				<span itemprop="upvoteCount" class="vote-count">-1</span>
 			</li>
-		 
+
 			<li title="" data-original-title="This is not useful">
 				<a data-container="body" data-toggle="popover" data-content="You must have 500 points to vote down." href="javascript:void(0)" data-name="vote_down" class="action vote vote-down img-circle " data-original-title="" title="">
-				<i class="fa fa-chevron-down"></i>
+					<i class="fa fa-chevron-down"></i>
 				</a>
 			</li>
-		 
+
 			<!--<li class="single-question-pump" data-original-title="" title="">
 			</li>-->
 		</ul>
@@ -27,7 +27,7 @@
 
 	<div class="col-md-10 col-xs-6">
 		<div class="q-ltop-content">
-			<p>$oneAnswer.content
+			<p>$!oneAnswer.content
 			</p>
 		</div>
 
@@ -35,14 +35,15 @@
 			<div class="clearfix"></div>
 			<a>
 				<span class="author-avatar">
-$oneAnswer.author.photoUri</span>
+					<img src="$oneAnswer.author.photoUri"/>
+				</span>
 				<span itemprop="name" class="author-name">$oneAnswer.author.userName</span>
 			</a>
 			<span itemprop="dateCreated" datetime="on June 9, 2014" class="answer-time">
-			2014-07-12 14:32
+				编辑于 $oneAnswer.getUpdateAtForView()
 			</span>
 		</div>
-		
+
 	</div>
 </div>
 <hr/>
