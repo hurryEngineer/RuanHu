@@ -36,7 +36,7 @@ public class AnswerImpl implements AnswerService {
         if (question == null) return false;
         User user1 = question.getAuthor();
         if (user.getId()==user1.getId()) {
-            answerDAO.setSolution(questionId, answerId);
+//            answerDAO.setSolution(questionId, answerId);
             return true;
         }
         return false;
