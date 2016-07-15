@@ -6,6 +6,7 @@ import edu.nju.data.dao.UserDAO;
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
 import edu.nju.data.entity.User;
+import edu.nju.data.util.HQL_Helper.Enums.OrderByPara;
 import edu.nju.data.util.HQL_Helper.Enums.WherePara;
 import edu.nju.logic.service.TimeService;
 import edu.nju.logic.service.UserProfileService;
@@ -14,6 +15,7 @@ import edu.nju.logic.vo.ActivityVO;
 import edu.nju.logic.vo.AnswerVO;
 import edu.nju.logic.vo.QuestionVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;
@@ -92,7 +94,7 @@ public class UserProfileImpl implements UserProfileService {
 
     @Override
     public List<QuestionVO> getQuestionByName(String userName) {
-        List<Question> questions = questionDAO.getQuestionBy(WherePara.userName , userName);
+        List<Question> questions = questionDAO.getOrderedPagedQuestionsBy(WherePara.userName ,userName,1, OrderByPara.createdAt);
         if (questions==null) return new ArrayList<QuestionVO>();
         List<QuestionVO> questionVOs = new ArrayList<>();
         for (Question question : questions) {
@@ -103,7 +105,7 @@ public class UserProfileImpl implements UserProfileService {
 
     @Override
     public List<AnswerVO> getAnswerByName(String userName) {
-        List<Answer> answers =  answerDAO.getAnswerBy(WherePara.userName , userName);
+        List<Answer> answers =  answerDAO.getOrderedPagedAnswersBy(WherePara.userName,userName,1, OrderByPara.createdAt);
         if (answers==null) return new ArrayList<AnswerVO>();
         List<AnswerVO> answerVOs = new ArrayList<>();
         for (Answer answer: answers) {

@@ -43,6 +43,10 @@ public class QueryHqlMaker implements QueryHQLInterface {
         }
     }
     private void setWherePart(FromPara tableName, WherePara wherePara){
+        if(wherePara == null){
+            wherePart="";
+            return ;
+        }
 
         switch (tableName){
 
