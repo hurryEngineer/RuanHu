@@ -3,9 +3,8 @@ package edu.nju.data.daoImpl;
 import edu.nju.RuanHuApplication;
 import edu.nju.data.dao.AnswerDAO;
 import edu.nju.data.entity.Answer;
-import edu.nju.data.entity.Question;
-import edu.nju.data.util.OrderByMethod;
-import edu.nju.data.util.OrderByPara;
+import edu.nju.data.util.HQL_Helper.Enums.OrderByMethod;
+import edu.nju.data.util.HQL_Helper.Enums.OrderByPara;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import java.util.List;
 
 import static org.junit.Assert.fail;

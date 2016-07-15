@@ -3,13 +3,12 @@ package edu.nju.data.daoImpl;
 import edu.nju.RuanHuApplication;
 import edu.nju.data.dao.OrderedPageDAO;
 import edu.nju.data.entity.Question;
-import edu.nju.data.util.OrderByMethod;
-import edu.nju.data.util.OrderByPara;
+import edu.nju.data.util.HQL_Helper.Enums.OrderByMethod;
+import edu.nju.data.util.HQL_Helper.Enums.OrderByPara;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.core.annotation.Order;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 

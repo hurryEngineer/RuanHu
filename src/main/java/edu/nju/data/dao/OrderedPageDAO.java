@@ -1,7 +1,7 @@
 package edu.nju.data.dao;
 
-import edu.nju.data.util.OrderByMethod;
-import edu.nju.data.util.OrderByPara;
+import edu.nju.data.util.HQL_Helper.Enums.OrderByMethod;
+import edu.nju.data.util.HQL_Helper.Enums.OrderByPara;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
 package edu.nju.data.daoImpl;
 
 import edu.nju.data.dao.OrderedPageDAO;
-import edu.nju.data.util.OrderByMethod;
-import edu.nju.data.util.OrderByPara;
+import edu.nju.data.util.HQL_Helper.Enums.OrderByMethod;
+import edu.nju.data.util.HQL_Helper.Enums.OrderByPara;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -66,8 +66,8 @@ public class OrderedPageDAOImpl implements OrderedPageDAO {
 
     @Override
     public String getHQL(String tableName, OrderByPara para, OrderByMethod method) {
-        String orderPara =  getPara(para);
-        String orderMethod= getMethod(method);
+        String orderPara =  getOrderByPara(para);
+        String orderMethod= getOrderByMethod(method);
         String hql = "from "+tableName+orderPara+ orderMethod;
         System.err.println("execting : "+hql);
         return hql;
@@ -75,8 +75,8 @@ public class OrderedPageDAOImpl implements OrderedPageDAO {
 
     @Override
     public String getHQL(String tableName, String where, OrderByPara para, OrderByMethod method) {
-        String orderPara =  getPara(para);
-        String orderMethod= getMethod(method);
+        String orderPara =  getOrderByPara(para);
+        String orderMethod= getOrderByMethod(method);
         String hql = "from "+tableName+" "+where+orderPara+orderMethod;
         System.err.println("execting : "+hql);
         return hql;
@@ -92,7 +92,7 @@ public class OrderedPageDAOImpl implements OrderedPageDAO {
     }
 
 
-    private String getPara(OrderByPara orderByPara){
+    private String getOrderByPara(OrderByPara orderByPara){
         String orderPara=" order by ";
         switch(orderByPara){
 
@@ -116,7 +116,7 @@ public class OrderedPageDAOImpl implements OrderedPageDAO {
     }
 
 
-    private String getMethod(OrderByMethod orderByMethod){
+    private String getOrderByMethod(OrderByMethod orderByMethod){
         String orderMethod= " ";
         if(orderByMethod==OrderByMethod.ASC){
             orderMethod+="asc";
