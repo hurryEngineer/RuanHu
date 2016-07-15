@@ -69,6 +69,7 @@ public class AnswerImpl implements AnswerService {
         vote.setCreatedAt(new Timestamp(new Date().getTime()));
         vote.setLastUpdatedAt(new Timestamp(new Date().getTime()));
         voteDAO.vote(vote);
+        System.out.println("========================vote");
     }
 
     @Override
