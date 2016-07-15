@@ -36,8 +36,9 @@ ul.question-upDown li:last-child {
 .question-cat{
 	margin-top: 10px;
 }
-
-
+.answerDiv{
+    margin-top: 40px;
+}
 
 .answer-btn {
     border: none;
@@ -128,4 +129,7 @@ ul.tags-list li {
     padding: 0 15px;
     display: inline-block;
     font-size: 12px;
+}
+.question-tags{
+	margin-top:-20px;
 }

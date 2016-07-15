@@ -19,6 +19,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.PatternSyntaxException;
 
 
 /**
@@ -46,8 +47,16 @@ public class UserProfileImpl implements UserProfileService {
 
     @Override
     public boolean editBirthday(User user, String bitrhday) {
-        user.setBirthDate(Date.valueOf(bitrhday));
-        userDAO.update(user);
+        try {
+            String[] strs = bitrhday.split("/");
+            bitrhday = strs[2]+"-"+strs[0]+"-"+strs[1];
+            user.setBirthDate(Date.valueOf(bitrhday));
+            userDAO.update(user);
+        }catch (IllegalArgumentException e){
+            e.printStackTrace();
+            return false;
+        }
+
         return true;
     }
 
@@ -59,7 +68,7 @@ public class UserProfileImpl implements UserProfileService {
     }
 
     @Override
-    public boolean editLocation(User user,String location) {
+    public boolean editLocation(User user, String location) {
         user.setLocation(location);
         userDAO.update(user);
         return true;

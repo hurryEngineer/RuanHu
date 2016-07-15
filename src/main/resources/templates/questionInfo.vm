@@ -13,7 +13,41 @@
 		#parse("commonPart/commonCssAndJs.vm")
 		<link rel="stylesheet" href="/dist/css/editormd.css" />
 		#parse("commonPart/editorCreator.vm")
-		
+
+        <script>
+				#if($question.id)
+                var aQuestionId = "$question.id";
+				#else
+                var aQuestionId = "newQuestion";
+				#end
+
+            function upVote(obj) {
+                var answerIdThis = obj.getAttribute("answerid");
+				var userIdThis = $user.id;
+				$.ajax({
+					type : "GET",
+					url: "/answer/upVote",
+					data: {questionId: aQuestionId, answerId:answerIdThis, userId:userIdThis},
+                    success: function(msg){
+                        console.log(msg);
+                    }
+				});
+            }
+            function downVote(obj) {
+                var answerIdThis = obj.getAttribute("answerid");
+                var userIdThis = $user.id;
+                $.ajax({
+                    type : "GET",
+                    url: "/answer/downVote",
+                    data: {questionId: aQuestionId, answerId:answerIdThis, userId:userIdThis},
+                    success: function(msg){
+                        console.log(msg);
+                    }
+                });
+            }
+
+        </script>
+
 
 	</head>
 
@@ -27,8 +61,7 @@
 		
 					<section class="content-header">
 					<div class="col-md-9 col-sm-9 col-xs-12">
-						<h3>
-			        		$question.getTitle()
+						<h3>$question.title
 			       		</h3>
 			       	</div>
 					</section>
@@ -48,7 +81,7 @@
 										</li>
 										
 									 	<li data-original-title="" title="">
-										<span itemprop="upvoteCount" class="vote-count">-1</span>
+										<span itemprop="upvoteCount" class="vote-count">$question.voteCount</span>
 										</li>
 									 
 										<li title="" data-original-title="This is not useful">
@@ -74,18 +107,20 @@
 									</ul>
 								</div>
 								<div class="col-md-10 col-xs-6">
-									<div class="q-ltop-content">
-										<p >
-										$question.content
-										</p>										
+									
+									<div id="answer-markdown-area-$question.id" class="pure-markdown q-ltop-content">
+                						<textarea style="display:none;">
+$question.content
+               	 						</textarea>
 									</div>
+									
 
 									<div class="q-lbtm-content">
 
 										<div class="question-cat">
 											
 											<div class="clearfix"></div>
-											<a>
+											<a href="/userProfile/$question.author.userName">
 												<span class="author-avatar">
 												<img src="$question.author.photoUri"/>  </span>
 												<span itemprop="name" class="author-name">$question.author.userName</span>
@@ -107,7 +142,7 @@
 							
 							<div class="row">
 								<div class="col-md-4 col-xs-4">
-									<p><b>$questions.answerCount 个回答</b></p>
+									<p><b>$question.answerCount 个回答</b></p>
 								</div>
 							</div>
 							<hr/>
@@ -135,7 +170,7 @@
 							
 							<div class="row">
 								<div id="submit-answer">
-									<input class="answer-btn" type="button" value="提交答案 "></input>
+									<input class="answer-btn" type="button" onclick="submitAnswer()" value="提交答案 "></input>
 								</div>
 							</div>
 							
@@ -150,6 +185,26 @@
 				</div>
 			</div>
 			<!-- ./wrapper -->
+			<script type="text/javascript">
+				#if($question.id)
+					var myQuestionId = "$question.id";
+				#else
+					var myQuestionId = "newQuestion";
+				#end
+				function submitAnswer() {
+                    $.ajax({
+                        type: "POST",
+                        url:"/answer/saveAnswer",
+                        data: {questionId:myQuestionId, markedText:testEditor.getMarkdown()},
+                        success: function(msg){
+                            console.log(msg);
+                            location.reload(true);
+                        }
+                    });
+                }
+				
+				parseAllMarkDown();
+			</script>
 	</body>
 
 </html>

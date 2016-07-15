@@ -37,7 +37,7 @@ $oneQuestion.voteCount </span> 投票 </li>
 
 				</ul>
 				<div class="clearfix"></div>
-				<a>
+				<a href="/userProfile/$oneQuestion.author.userName">
 					<span class="author-avatar">
 <img itemprop="image" src="$oneQuestion.author.photoUri" class="avatar" alt=""> </span>
 					<span itemprop="name" class="author-name">$oneQuestion.author.userName</span>

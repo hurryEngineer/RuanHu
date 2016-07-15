@@ -16,7 +16,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="pages/widgets.html">
+				<a href="#">
 					<i class="fa fa-th"></i>
 					<span>  收  藏</span>
 ##                    <span class="label label-warning pull-right">${}</span>

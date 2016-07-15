@@ -163,4 +163,6 @@ public class Answer implements DateInterface{
     public void setCommentList(List<Comment> commentList) {
         this.commentList = commentList;
     }
+
+
 }

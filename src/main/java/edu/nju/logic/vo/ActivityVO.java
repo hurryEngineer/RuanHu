@@ -81,7 +81,7 @@ public class ActivityVO implements Comparable<ActivityVO>{
 
     @Override
     public int compareTo(ActivityVO activityVO) {
-        return update.compareTo(activityVO.getUpdate());
+        return activityVO.getUpdate().compareTo(update);
     }
 
     @Override

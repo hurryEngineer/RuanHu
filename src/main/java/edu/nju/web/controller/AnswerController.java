@@ -96,24 +96,33 @@ public class AnswerController {
         return answerService.markAsSolution(user, Long.valueOf(questionId), Long.valueOf(answerId));
     }
 
-    @RequestMapping(value = "/up")
-    void upVote(String questionId, String answerId, String userId) {
+    @RequestMapping(value = "/upVote", method = RequestMethod.GET)
+    @ResponseBody
+    String upVote(@RequestParam("questionId") String questionId,
+                  @RequestParam("answerId") String answerId,
+                  @RequestParam("userId") String userId) {
         answerService.vote(questionId, answerId, userId, VoteType.up);
+        return "";
     }
 
-    @RequestMapping(value = "/down")
-    void downVote(String questionId, String answerId, String userId) {
+    @RequestMapping(value = "/downVote", method = RequestMethod.GET)
+    @ResponseBody
+    String downVote(String questionId, String answerId, String userId) {
         answerService.vote(questionId, answerId, userId, VoteType.down);
+        return "true";
     }
 
     @RequestMapping(value = "/upCancel")
-    void upVoteCancel(String questionId, String answerId, String userId) {
+    @ResponseBody
+    String upVoteCancel(String questionId, String answerId, String userId) {
         answerService.vote(questionId, answerId, userId, VoteType.up);
+        return "";
     }
 
     @RequestMapping(value = "/downCancel")
-    void downVoteCancel(String questionId, String answerId, String userId) {
+    String downVoteCancel(String questionId, String answerId, String userId) {
         answerService.vote(questionId, answerId, userId, VoteType.down);
+        return "";
     }
 
 }

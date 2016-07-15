@@ -36,13 +36,11 @@ public class QuestionController {
 
     @RequestMapping(value="/question",method = RequestMethod.GET)
     String showAllQuestions(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
-
         List<QuestionVO> result = service.getQuestions(page,10);
         model.addAttribute("questions",result);
 
         return "questionList";
     }
-
 
     
     @RequestMapping(value = "/question/{id}", method = RequestMethod.GET)
@@ -67,9 +65,10 @@ public class QuestionController {
         return service.getAnswers(id, page, 10);
     }
 
+    
     @RequestMapping(value = "/submitQuestion",method = RequestMethod.POST)
     String newQuestion(String title, String description, HttpSession session, @ModelAttribute("user")User user){
-
+        System.out.println("submit a question!");
         Map<String,Object> result = new HashMap<>();
         Question question;
 
@@ -91,9 +90,7 @@ public class QuestionController {
             return "redirect:/question/"+question.getId();
         }
 
-
         return "redirect:/ask";
-
     }
 
     @RequestMapping(value = "/ask",method = RequestMethod.GET)

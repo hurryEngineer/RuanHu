@@ -4,17 +4,17 @@
 		<ul class="question-upDown">
 			<li title="" data-original-title="This is useful.">
 				<a data-container="body" data-toggle="popover" data-content="You must have 5 points to vote up." href="javascript:void(0)" data-name="vote_up" class="action vote vote-up img-circle " data-original-title="" title="">
-					<i class="fa fa-chevron-up"></i>
+					<i answerid="$oneAnswer.id" onclick="upVote(this)" class="fa fa-chevron-up"></i>
 				</a>
 			</li>
 
 			<li data-original-title="" title="">
-				<span itemprop="upvoteCount" class="vote-count">-1</span>
+				<span itemprop="upvoteCount" class="vote-count"> $oneAnswer.voteCount </span>
 			</li>
 
 			<li title="" data-original-title="This is not useful">
 				<a data-container="body" data-toggle="popover" data-content="You must have 500 points to vote down." href="javascript:void(0)" data-name="vote_down" class="action vote vote-down img-circle " data-original-title="" title="">
-					<i class="fa fa-chevron-down"></i>
+					<i answerid="$oneAnswer.id" onclick="downVote(this)" class="fa fa-chevron-down"></i>
 				</a>
 			</li>
 
@@ -26,14 +26,15 @@
 	</div>
 
 	<div class="col-md-10 col-xs-6">
-		<div class="q-ltop-content">
-			<p>$!oneAnswer.content
-			</p>
+		<div id="answer-markdown-area-$oneAnswer.id" class="pure-markdown q-ltop-content">
+                <textarea style="display:none;">
+$!oneAnswer.content
+                </textarea>
 		</div>
 
-		<div class="question-cat">
+		<div class="question-cat answerDiv">
 			<div class="clearfix"></div>
-			<a>
+			<a href="/userProfile/$oneAnswer.author.userName">
 				<span class="author-avatar">
 					<img src="$oneAnswer.author.photoUri"/>
 				</span>
@@ -43,6 +44,8 @@
 				编辑于 $oneAnswer.getUpdateAtForView()
 			</span>
 		</div>
+
+
 
 	</div>
 </div>

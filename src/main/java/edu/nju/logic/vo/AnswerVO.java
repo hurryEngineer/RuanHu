@@ -39,4 +39,7 @@ public class AnswerVO extends Answer implements ViewTime{
     public void setUpdateAtForView(String updateAtForView) {
         this.updateAtForView = updateAtForView;
     }
+
+
+
 }

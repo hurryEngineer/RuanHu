@@ -32,7 +32,7 @@ public class VoteDAOImplTest {
     public void vote() throws Exception {
 
         Long authorID = new Long (2);
-        Long answerID = new Long (1);
+        Long answerID = new Long (236);
         Vote vote = new Vote();
         vote.setAuthorId(authorID);
         vote.setAnswerId(answerID);
@@ -46,7 +46,7 @@ public class VoteDAOImplTest {
     @Test
     public void save() throws Exception {
         Long authorID = new Long (2);
-        Long answerID = new Long (1);
+        Long answerID = new Long (235);
         Vote vote = new Vote();
         vote.setAuthorId(authorID);
         vote.setAnswerId(answerID);

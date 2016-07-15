@@ -51,12 +51,16 @@ public class VoteDAOImpl implements VoteDAO {
              System.err.println("Vote！！！！");
              save(vote);
 
-        }else if(resultList.size()==1){
+        }else if(resultList.size()==0){
+
+            System.err.println("Vote！！！！");
+            save(vote);
+        }else if(resultList.size()>=1){
             /**
              * 重复Vote不做处理
              */
             if(vote.getVoteType()==resultList.get(0).getVoteType()){
-
+                System.out.println();
                 System.err.println("重复操作！！！！");
 
             }else{
