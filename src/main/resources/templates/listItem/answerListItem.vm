@@ -28,7 +28,7 @@
 	<div class="col-md-10 col-xs-6">
 		<div id="answer-markdown-area-$oneAnswer.id" class="pure-markdown q-ltop-content">
                 <textarea style="display:none;">
-                	$oneAnswer.content
+$oneAnswer.content
                 </textarea>
 		</div>
 

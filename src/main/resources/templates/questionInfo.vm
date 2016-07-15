@@ -110,7 +110,7 @@
 									
 									<div id="answer-markdown-area-$question.id" class="pure-markdown q-ltop-content">
                 						<textarea style="display:none;">
-                							$question.content
+$question.content
                	 						</textarea>
 									</div>
 									
