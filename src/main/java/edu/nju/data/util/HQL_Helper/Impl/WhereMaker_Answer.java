@@ -26,7 +26,7 @@ public class WhereMaker_Answer implements WhereHQLInterface {
                 wherePart = " where author.id = ?1";
                 break;
             case userName:
-                wherePart = " where author.username = ?1";
+                wherePart = " where author.userName = ?1";
                 break;
             case answerID:
                 wherePart = " where id = ?1";
