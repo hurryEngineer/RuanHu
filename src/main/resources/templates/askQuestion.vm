@@ -7,7 +7,7 @@
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 		#parse("commonPart/commonCssAndJs.vm")
 		<link rel="stylesheet" href="/dist/css/editormd.css" />
-		
+		#parse("commonPart/editorCreator.vm")
 		
 		<title>问题详情 - 软乎</title>
 
@@ -78,7 +78,7 @@
 							<div class="wp-editor-container">
 								
 								<div class="row">
-									<div id="test-editormd">
+									<div id="editormd">
 										<textarea style="display:none;"></textarea>
 									</div>
 								</div>
@@ -105,25 +105,18 @@
 		<script src="/dist/js/jquery.min.js"></script>
 		<script src="/dist/js/editormd.js"></script>
 		<script type="text/javascript">
-			$(function() {
-				var testEditor = editormd("test-editormd", {
-					width: "97%",
-					height:400,
-					path: '/editor.md-master/lib/',
-					watch: true,
-					emoji: true,
-					imageUpload : true,
-                    imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-                    imageUploadURL : "./php/upload.php?test=dfdf",
-					toolbarIcons: function() {
-						// Or return editormd.toolbarModes[name]; // full, simple, mini
-						// Using "||" set icons align right.
-						//                      return ["undo", "redo", "|", "bold", "hr", "|", "preview", "watch", "|", "fullscreen", "info", "testIcon", "testIcon2", "file", "faicon", "||", "watch", "fullscreen", "preview", "testIcon", "file"]
-						return editormd.toolbarModes["simple"]
-					},
-					// toolbarIcons : "full", // You can also use editormd.toolbarModes[name] default list, values: full, simple, mini.
+			$("#btn_submit_question").click(function(){
+				var content = editor.getMarkdown();
+				var title=${"question_title"}
+				
+				$.ajax({
+				type:'post',
+				url:'${pageContext.request.contextPath}/newQuestion.action',
+				data:'&title='+title+'&description='+content,
+				success:function(data){
 					
-				});
+				}
+			});
 			});
 		</script>
 	</body>

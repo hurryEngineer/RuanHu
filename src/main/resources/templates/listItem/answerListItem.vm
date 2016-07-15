@@ -9,7 +9,7 @@
 			</li>
 
 			<li data-original-title="" title="">
-				<span itemprop="upvoteCount" class="vote-count">-1</span>
+				<span itemprop="upvoteCount" class="vote-count"> $oneAnswer.voteCount </span>
 			</li>
 
 			<li title="" data-original-title="This is not useful">
@@ -27,7 +27,7 @@
 
 	<div class="col-md-10 col-xs-6">
 		<div class="q-ltop-content">
-			<p>$!oneAnswer.content
+			<p>$oneAnswer.content
 			</p>
 		</div>
 

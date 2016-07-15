@@ -129,3 +129,6 @@ ul.tags-list li {
     display: inline-block;
     font-size: 12px;
 }
+.question-tags{
+	margin-top:-20px;
+}
