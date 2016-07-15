@@ -91,7 +91,7 @@ public class AnswerDAOImpl implements AnswerDAO {
     }
 
     @Override
-    public void setSolution(long AnswerID) {
+    public void setSolution(long questionID ,long AnswerID) {
 
         Query query = em.createQuery("update Answer a set a.solution = 1 where a.id = ?1");
         query.setParameter(1,AnswerID);
