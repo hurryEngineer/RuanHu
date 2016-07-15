@@ -26,6 +26,8 @@ public interface AnswerService {
      */
     boolean saveAnswer(long questionId, long userId, String text);
 
+    boolean editAnswer(long answerId, String text);
+
     /**
      * 点赞
      * @param questionId 问题id

@@ -173,8 +173,15 @@
 						return editormd.toolbarModes["simple"]
 					},
 					// toolbarIcons : "full", // You can also use editormd.toolbarModes[name] default list, values: full, simple, mini.
-					
 				});
+
+				$("#submit-answer").onclick = function () {
+					$.ajax({
+						type: 'POST',
+						url: '/'
+					});
+                }
+
 			});
 		</script>
 		

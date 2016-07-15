@@ -36,7 +36,7 @@ public class AnswerImpl implements AnswerService {
         if (question == null) return false;
         User user1 = question.getAuthor();
         if (user.getId()==user1.getId()) {
-            answerDAO.setSolution(answerId);
+            answerDAO.setSolution(questionId, answerId);
             return true;
         }
         return false;
@@ -55,6 +55,11 @@ public class AnswerImpl implements AnswerService {
     }
 
     @Override
+    public boolean editAnswer(long answerId, String text) {
+        return false;
+    }
+
+    @Override
     public void vote(String questionId, String answerId, String userId, VoteType type) {
         Vote vote = new Vote();
         vote.setVoteType(type);
@@ -63,7 +68,7 @@ public class AnswerImpl implements AnswerService {
         vote.setAuthorId(Long.valueOf(userId));
         vote.setCreatedAt(new Timestamp(new Date().getTime()));
         vote.setLastUpdatedAt(new Timestamp(new Date().getTime()));
-        voteDAO.save(vote);
+        voteDAO.vote(vote);
     }
 
     @Override
