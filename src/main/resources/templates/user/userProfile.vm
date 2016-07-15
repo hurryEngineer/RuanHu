@@ -35,6 +35,12 @@
             </div>
             <div class="row" style="margin: 10px 10px">
                 <div class="box box-primary" id='current'>
+                    <div class="box-header with-border">
+                        <h3 class="box-title"> ${userName} 提出的问题</h3>
+                    </div><!-- /.box-header -->
+
+                    <div class="box-body"></div>
+
                     <div class="overlay" >
                         <i class="fa fa-refresh fa-spin"></i>
                     </div>
