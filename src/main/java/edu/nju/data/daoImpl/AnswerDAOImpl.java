@@ -5,9 +5,13 @@ import edu.nju.data.dao.BaseDAO;
 import edu.nju.data.dao.OrderedPageDAO;
 import edu.nju.data.entity.Answer;
 import edu.nju.data.util.CommonParas;
+import edu.nju.data.util.HQL_Helper.Enums.FromPara;
 import edu.nju.data.util.HQL_Helper.Enums.OrderByMethod;
 import edu.nju.data.util.HQL_Helper.Enums.OrderByPara;
+import edu.nju.data.util.HQL_Helper.Enums.WherePara;
+import edu.nju.data.util.HQL_Helper.Impl.QueryHqlMaker;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +30,8 @@ public class AnswerDAOImpl implements AnswerDAO {
     BaseDAO baseDAO;
     @Autowired
     OrderedPageDAO pageDAO;
+    @Autowired
+    QueryHqlMaker hqlMaker;
 
     @PersistenceContext
     EntityManager em;
@@ -87,6 +93,7 @@ public class AnswerDAOImpl implements AnswerDAO {
 
     @Override
     public void update(Answer answer) {
+        baseDAO.update(answer);
 
     }
 
@@ -146,6 +153,8 @@ public class AnswerDAOImpl implements AnswerDAO {
         query.executeUpdate();
     }
 
+
+
     @Override
     public Answer getAnswerByID(long answerID) {
         Query query = em.createQuery("from Answer a where a.id =?1");
@@ -154,62 +163,58 @@ public class AnswerDAOImpl implements AnswerDAO {
     }
 
     @Override
-    public List<Answer> getAnswerByQuestionID(long questionID) {
-
-        Query query = em.createQuery("from Answer a where a.question.id =?1");
-        query.setParameter(1,questionID);
-        List<Answer> result =  query.getResultList();
-        return  result;
+    public List<Answer> getAnswerBy(WherePara byPara, Object arg) {
+        String hql =hqlMaker.getHQLby(FromPara.Answer ,byPara);
+        Query query = em.createQuery(hql);
+        query.setParameter(1,arg);
+        List<Answer> result = query.getResultList();
+        return result;
     }
 
     @Override
-    public List<Answer> getAnswerByQuestionID(long questionID, int pageNum) {
-        String where = " where question.id = "+questionID;
-        return (List<Answer>) pageDAO.getPaginatedContent(tableName,where,pageNum, CommonParas.default_pageSize);
+    public List<Answer> getPagedAnswers(int pageNum) {
+        String hql = hqlMaker.getHQLby(FromPara.Answer, null);
+        return (List<Answer>) pageDAO.execHQL(hql,pageNum, CommonParas.default_pageSize);
+
     }
 
     @Override
-    public List<Answer> getAnswerByQuestionID(long questionID, int pageNum, int pageSize) {
-        String where = " where question.id = "+questionID;
-        return (List<Answer>) pageDAO.getPaginatedContent(tableName,where,pageNum, pageSize);
+    public List<Answer> getPagedAnswers(int pageNum, int pageSize) {
+        String hql = hqlMaker.getHQLby(FromPara.Answer, null);
+        return (List<Answer>) pageDAO.execHQL(hql,pageNum, pageSize);
     }
 
     @Override
-    public List<Answer> getAnswerByQuestionID(long questionID, int pageNum, OrderByPara para) {
-        String where = " where question.id = "+questionID;
-        return (List<Answer>) pageDAO.getPaginatedContent
-                                    (tableName,where,pageNum,CommonParas.default_pageSize ,para );
+    public List<Answer> getOrderedPagedAnswers(int pageNum, OrderByPara orderByPara) {
+
+        String hql = hqlMaker.getHQLby(FromPara.Answer, null ,orderByPara , OrderByMethod.DESC);
+        return (List<Answer>) pageDAO.execHQL(hql,pageNum, CommonParas.default_pageSize);
     }
 
     @Override
-    public List<Answer> getAnswerByQuestionID(long questionID, int pageNum, int pageSize, OrderByPara para) {
-        String where = " where question.id = "+questionID;
-        return (List<Answer>) pageDAO.getPaginatedContent
-                    (tableName,where,pageNum,pageSize ,para );
+    public List<Answer> getOrderedPagedAnswers
+            (int pageNum, int pageSize, OrderByPara orderByPara, OrderByMethod orderByMethod) {
+
+        String hql = hqlMaker.getHQLby(FromPara.Answer, null ,orderByPara , orderByMethod);
+
+        return (List<Answer>) pageDAO.execHQL(hql,pageNum, pageSize);
     }
 
     @Override
-    public List<Answer> getAnswerByQuestionID(long questionID, int pageNum, OrderByPara para, OrderByMethod method) {
-        String where = " where question.id = "+questionID;
-        return (List<Answer>) pageDAO.getPaginatedContent
-                    (tableName,where,pageNum,CommonParas.default_pageSize ,para ,method );
+    public List<Answer> getOrderedPagedAnswersBy(WherePara byPara, Object arg, int pageNum, OrderByPara orderByPara) {
+
+        String hql = hqlMaker.getHQLby(FromPara.Answer, byPara ,orderByPara , OrderByMethod.DESC);
+        return (List<Answer>) pageDAO.execHQL(hql,pageNum, CommonParas.default_pageSize , arg);
     }
 
     @Override
-    public List<Answer> getAnswerByQuestionID(long questionID, int pageNum, int pageSize, OrderByPara para, OrderByMethod method) {
-        String where = " where question.id = "+questionID;
-        return (List<Answer>) pageDAO.getPaginatedContent
-                    (tableName,where,pageNum,pageSize ,para,method);
+    public List<Answer> getOrderedPagedAnswersBy(WherePara byPara, Object arg, int pageNum, int pageSize, OrderByPara orderByPara, OrderByMethod orderByMethod) {
+
+        String hql = hqlMaker.getHQLby(FromPara.Answer, byPara ,orderByPara , orderByMethod);
+        return (List<Answer>) pageDAO.execHQL(hql,pageNum, pageSize ,arg);
+
     }
 
-
-    @Override
-    public List<Answer> getAnswerByUserName(String username) {
-        Query query =  em.createQuery("from Answer as a where a.author.userName = ?1");
-        query.setParameter(1,username);
-        List<Answer> resultList = query.getResultList();
-        return resultList;
-    }
 
     @Override
     public long getAnswerCountByUserName(String username) {
@@ -218,14 +223,6 @@ public class AnswerDAOImpl implements AnswerDAO {
         query.setParameter(1,username);
         long count = (long) query.getSingleResult();
         return count;
-    }
-
-    @Override
-    public List<Answer> getAnswerByUserID(long ID) {
-        Query query =  em.createQuery("from Answer as a where a.author.id = ?1");
-        query.setParameter(1,ID);
-        List<Answer> resultList = query.getResultList();
-        return resultList;
     }
 
     @Override

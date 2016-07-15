@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by ss14 on 2016/7/14.
@@ -20,69 +21,8 @@ public class OrderedPageDAOImpl implements OrderedPageDAO {
     @PersistenceContext
     private EntityManager em;
 
-
-
     @Override
-    public List<?> getPaginatedContent(String tableName, int pageNum, int pageSize) {
-        String hql = "from "+tableName+" ";
-        return  execHQL(hql,pageNum,pageSize);
-    }
-
-    @Override
-    public List<?> getPaginatedContent(String tableName, String where, int pageNum, int pageSize) {
-        String hql = "from "+tableName+where;
-        return  execHQL(hql,pageNum,pageSize);
-    }
-
-    @Override
-    public List<?> getPaginatedContent(String tableName, int pageNum, int pageSize, OrderByPara orderByPara) {
-        OrderByMethod method = OrderByMethod.DESC;
-
-        String hql = getHQL(tableName,orderByPara,method);
-        return execHQL(hql,pageNum,pageSize);
-    }
-
-    @Override
-    public List<?> getPaginatedContent(String tableName, String where, int pageNum, int pageSize, OrderByPara orderByPara) {
-        OrderByMethod method = OrderByMethod.DESC;
-
-        String hql = getHQL(tableName,where,orderByPara,method);
-        return execHQL(hql,pageNum,pageSize);
-    }
-
-    @Override
-    public List<?> getPaginatedContent(String tableName, int pageNum, int pageSize, OrderByPara orderByPara, OrderByMethod orderByMethod) {
-
-        String hql = getHQL(tableName,orderByPara,orderByMethod);
-        return execHQL(hql,pageNum,pageSize);
-    }
-
-    @Override
-    public List<?> getPaginatedContent(String tableName, String where, int pageNum, int pageSize, OrderByPara orderByPara, OrderByMethod orderByMethod) {
-        String hql = getHQL(tableName,where,orderByPara,orderByMethod);
-        return execHQL(hql,pageNum,pageSize);
-    }
-
-
-    @Override
-    public String getHQL(String tableName, OrderByPara para, OrderByMethod method) {
-        String orderPara =  getOrderByPara(para);
-        String orderMethod= getOrderByMethod(method);
-        String hql = "from "+tableName+orderPara+ orderMethod;
-        System.err.println("execting : "+hql);
-        return hql;
-    }
-
-    @Override
-    public String getHQL(String tableName, String where, OrderByPara para, OrderByMethod method) {
-        String orderPara =  getOrderByPara(para);
-        String orderMethod= getOrderByMethod(method);
-        String hql = "from "+tableName+" "+where+orderPara+orderMethod;
-        System.err.println("execting : "+hql);
-        return hql;
-    }
-
-    private List<?> execHQL(String hql , int pageNum , int pageSize){
+    public List<?> execHQL(String hql , int pageNum , int pageSize){
 
         Query query = em.createQuery(hql);
         query.setFirstResult((pageNum-1) * pageSize);
@@ -91,41 +31,16 @@ public class OrderedPageDAOImpl implements OrderedPageDAO {
         return rows;
     }
 
+    @Override
+    public List<?> execHQL(String hql , int pageNum , int pageSize , Object arg){
 
-    private String getOrderByPara(OrderByPara orderByPara){
-        String orderPara=" order by ";
-        switch(orderByPara){
-
-            case createdAt:
-                orderPara+="createdAt";
-                break;
-            case lastUpdatedAt:
-                orderPara+="lastUpdatedAt";
-                break;
-            case viewCount:
-                orderPara+="viewCount";
-                break;
-            case voteCount:
-                orderPara+="voteCount";
-                break;
-            case answerCount:
-                orderPara+="answerCount";
-                break;
-        }
-        return orderPara;
+        Query query = em.createQuery(hql);
+        query.setParameter(1,arg);
+        query.setFirstResult((pageNum-1) * pageSize);
+        query.setMaxResults(pageSize);
+        List <?> rows = query.getResultList();
+        return rows;
     }
-
-
-    private String getOrderByMethod(OrderByMethod orderByMethod){
-        String orderMethod= " ";
-        if(orderByMethod==OrderByMethod.ASC){
-            orderMethod+="asc";
-        }else{
-            orderMethod+="desc";
-        }
-        return orderMethod;
-    }
-
 
 
 }

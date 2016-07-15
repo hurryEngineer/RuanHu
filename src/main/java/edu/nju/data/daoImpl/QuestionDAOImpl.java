@@ -3,10 +3,14 @@ package edu.nju.data.daoImpl;
 import edu.nju.data.dao.BaseDAO;
 import edu.nju.data.dao.OrderedPageDAO;
 import edu.nju.data.dao.QuestionDAO;
+import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
 import edu.nju.data.util.CommonParas;
+import edu.nju.data.util.HQL_Helper.Enums.FromPara;
 import edu.nju.data.util.HQL_Helper.Enums.OrderByMethod;
 import edu.nju.data.util.HQL_Helper.Enums.OrderByPara;
+import edu.nju.data.util.HQL_Helper.Enums.WherePara;
+import edu.nju.data.util.HQL_Helper.Impl.QueryHqlMaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +31,8 @@ public class QuestionDAOImpl implements QuestionDAO {
     BaseDAO baseDAO;
     @Autowired
     OrderedPageDAO pageDAO;
+    @Autowired
+    QueryHqlMaker hqlMaker;
 
     @PersistenceContext
     EntityManager em;
@@ -81,48 +87,58 @@ public class QuestionDAOImpl implements QuestionDAO {
 
     }
 
+
     @Override
     public Question getQuestionByID(long QuestionID) {
         return (Question) baseDAO.load(Question.class, QuestionID);
     }
 
-
     @Override
-    public List<Question> getPaginatedQuestions(int pageNum) {
-
-        return (List<Question>)
-                pageDAO.getPaginatedContent(tableName,pageNum, CommonParas.default_pageSize);
+    public List<Question> getQuestionBy(WherePara byPara, Object arg) {
+        String hql =hqlMaker.getHQLby(FromPara.Quesstion ,byPara);
+        Query query = em.createQuery(hql);
+        query.setParameter(1,arg);
+        List<Question> result = query.getResultList();
+        return result;
     }
 
     @Override
-    public List<Question> getPaginatedQuestions(int pageNum, int pageSize) {
-        return (List<Question>)
-                pageDAO.getPaginatedContent(tableName,pageNum,pageSize);
+    public List<Question> getPagedQuestions(int pageNum) {
+        String hql = hqlMaker.getHQLby(FromPara.Quesstion, null);
+        return (List<Question>) pageDAO.execHQL(hql,pageNum, CommonParas.default_pageSize);
+
     }
 
     @Override
-    public List<Question> getPaginatedQuestions(int pageNum, OrderByPara para) {
+    public List<Question> getPagedQuestions(int pageNum, int pageSize) {
+        String hql = hqlMaker.getHQLby(FromPara.Quesstion, null);
+        return (List<Question>) pageDAO.execHQL(hql,pageNum, pageSize);
 
-        return  (List<Question>)
-                pageDAO.getPaginatedContent(tableName,pageNum, CommonParas.default_pageSize ,para);
     }
 
     @Override
-    public List<Question> getPaginatedQuestions(int pageNum, int pageSize, OrderByPara para) {
-        return (List<Question>)
-                pageDAO.getPaginatedContent(tableName,pageNum, pageSize ,para);
+    public List<Question> getOrderedPagedQuestions(int pageNum, OrderByPara orderByPara) {
+
+        String hql = hqlMaker.getHQLby(FromPara.Quesstion, null ,orderByPara , OrderByMethod.DESC);
+        return (List<Question>) pageDAO.execHQL(hql,pageNum, CommonParas.default_pageSize);
     }
 
     @Override
-    public List<Question> getPaginatedQuestions(int pageNum, OrderByPara para, OrderByMethod method) {
-        return (List<Question>)
-                pageDAO.getPaginatedContent(tableName,pageNum, CommonParas.default_pageSize,para ,method);
+    public List<Question> getOrderedPagedQuestions(int pageNum, int pageSize, OrderByPara orderByPara, OrderByMethod orderByMethod) {
+        String hql = hqlMaker.getHQLby(FromPara.Quesstion, null ,orderByPara , orderByMethod);
+        return (List<Question>) pageDAO.execHQL(hql,pageNum, pageSize);
     }
 
     @Override
-    public List<Question> getPaginatedQuestions(int pageNum, int pageSize, OrderByPara para, OrderByMethod method) {
-        return (List<Question>)
-                pageDAO.getPaginatedContent(tableName,pageNum,pageSize,para ,method);
+    public List<Question> getOrderedPagedQuestionsBy(WherePara byPara, Object arg, int pageNum, OrderByPara orderByPara) {
+        String hql = hqlMaker.getHQLby(FromPara.Quesstion, byPara ,orderByPara , OrderByMethod.DESC);
+        return (List<Question>) pageDAO.execHQL(hql,pageNum, CommonParas.default_pageSize , arg);
+    }
+
+    @Override
+    public List<Question> getOrderedPagedQuestionsBy(WherePara byPara, Object arg, int pageNum, int pageSize, OrderByPara orderByPara, OrderByMethod orderByMethod) {
+        String hql = hqlMaker.getHQLby(FromPara.Quesstion, byPara ,orderByPara , orderByMethod);
+        return (List<Question>) pageDAO.execHQL(hql,pageNum, pageSize , arg);
     }
 
     @Override
@@ -132,14 +148,7 @@ public class QuestionDAOImpl implements QuestionDAO {
         return query.getResultList();
     }
 
-    @Override
-    public List<Question> getQuestionByUsername(String userName)
-    {
-        Query query = em.createQuery("select q from Question q,User u where q.author.id=u.id and u.userName = ?1");
-        query.setParameter(1,userName);
 
-        return query.getResultList();
-    }
 
     @Override
     public long getQuestionCountByUsername(String username) {
@@ -149,12 +158,6 @@ public class QuestionDAOImpl implements QuestionDAO {
         return (long) query.getSingleResult();
     }
 
-    @Override
-    public List<Question> getQuestionByUserID(long userID) {
-        Query query = em.createQuery("from Question q where q.author.id= ?1");
-        query.setParameter(1,userID);
-        return query.getResultList();
-    }
 
     @Override
     public long getQuestionCountByUserID(long userID) {

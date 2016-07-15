@@ -1,8 +1,10 @@
 package edu.nju.data.dao;
 
+import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
 import edu.nju.data.util.HQL_Helper.Enums.OrderByMethod;
 import edu.nju.data.util.HQL_Helper.Enums.OrderByPara;
+import edu.nju.data.util.HQL_Helper.Enums.WherePara;
 
 import java.util.List;
 
@@ -50,6 +52,7 @@ public interface QuestionDAO {
      */
     void update(Question question);
 
+
     /**
      * 根据问题ID获取Question对象
      * @param QuestionID
@@ -58,57 +61,41 @@ public interface QuestionDAO {
     Question getQuestionByID(long QuestionID);
 
     /**
-     * 不排序
-     * @param pageNum    当前页号，从1开始,页面大小默认是10
+     * 根据某个属性来筛选Answer,不排序，不分页
+     * @param byPara   WherePara : userID , userName , questionID
+     * @param para     where 参数
      * @return
      */
-    List<Question> getPaginatedQuestions(int pageNum);
+    List<Question>  getQuestionBy(WherePara byPara , Object para);
 
     /**
-     * 不排序
-     * @param pageNum    当前页号，从1开始
-     * @param pageSize   页面大小自定
-     * @return
-     */
-    List<Question> getPaginatedQuestions(int pageNum , int pageSize );
-
-
-    /**
-     * 按参数排序,默认降序
+     * 获取分页的问题列表，不排序
      * @param pageNum
-     * @param para   OrderByPara: createdAt lastUpdatedAt ....
      * @return
      */
-    List<Question> getPaginatedQuestions(int pageNum , OrderByPara para);
+    List<Question>  getPagedQuestions(int pageNum );
+    List<Question>  getPagedQuestions(int pageNum ,int pageSize);
 
     /**
-     * 按参数排序，默认降序
+     * 获取排序后的分页列表
      * @param pageNum
-     * @param para   OrderByPara: createdAt lastUpdatedAt ....
+     * @param orderByPara  排序参数
      * @return
      */
-    List<Question> getPaginatedQuestions(int pageNum , int pageSize ,OrderByPara para);
-
+    List<Question>  getOrderedPagedQuestions(int pageNum , OrderByPara orderByPara);
+    List<Question>  getOrderedPagedQuestions(int pageNum ,int pageSize, OrderByPara orderByPara ,OrderByMethod orderByMethod);
 
     /**
-     * 按参数排序，可选升序降序
-     * @param pageNum
+     * 获取根据wherepara删选后的，排序后的分页列表
+     * @param byPara
      * @param para
-     * @param method  OrderByMethod.ASC  DESC
-     * @return
-     */
-    List<Question> getPaginatedQuestions
-        (int pageNum , OrderByPara para , OrderByMethod method);
-
-    /**
-     * 按参数排序，可选升序降序
      * @param pageNum
-     * @param para
-     * @param method  OrderByMethod.ASC  DESC
+     * @param orderByPara
      * @return
      */
-    List<Question> getPaginatedQuestions
-        (int pageNum , int pageSize ,OrderByPara para ,OrderByMethod method);
+    List<Question>  getOrderedPagedQuestionsBy(WherePara byPara , Object para , int pageNum , OrderByPara orderByPara);
+    List<Question>  getOrderedPagedQuestionsBy(WherePara byPara , Object para , int pageNum ,int pageSize, OrderByPara orderByPara ,OrderByMethod orderByMethod);
+
 
 
 
@@ -120,25 +107,12 @@ public interface QuestionDAO {
 
 
     /**
-     * 根据用户名获取该用户的全部问题
-     * @param userName
-     * @return
-     */
-    List<Question> getQuestionByUsername(String userName);
-
-    /**
      * 根据用户名获取该用户的全部问题的数目
      * @param username
      * @return
      */
     long getQuestionCountByUsername(String username);
 
-    /**
-     *  根据用户ID获取该用户的全部问题
-     * @param userID
-     * @return
-     */
-    List<Question> getQuestionByUserID(long userID);
 
     /**
      * 根据用户ID获取用户的全部问题的数目

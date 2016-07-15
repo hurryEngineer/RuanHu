@@ -3,6 +3,7 @@ package edu.nju.data.dao;
 import edu.nju.data.entity.Answer;
 import edu.nju.data.util.HQL_Helper.Enums.OrderByMethod;
 import edu.nju.data.util.HQL_Helper.Enums.OrderByPara;
+import edu.nju.data.util.HQL_Helper.Enums.WherePara;
 
 import java.util.List;
 
@@ -81,6 +82,7 @@ public interface AnswerDAO {
      */
     void cancelSolution(long answerID);
 
+
     /**
      * 根据AnswerID获取Answer
      * @param answerID
@@ -88,94 +90,53 @@ public interface AnswerDAO {
      */
     Answer getAnswerByID(long answerID);
 
-    /**
-     * 获取全部的回答
-     * @param questionID
-     * @return
-     */
-    List<Answer> getAnswerByQuestionID(long questionID);
 
     /**
-     * 不排序
-     * 获取某页的回答，页面大小默认是10
-     * @param questionID
+     * 根据某个属性来筛选Answer,不排序，不分页
+     * @param byPara   WherePara : userID , userName , questionID
+     * @param para     where 参数
+     * @return
+     */
+    List<Answer>  getAnswerBy(WherePara byPara , Object para);
+
+    /**
+     * 获取分页的回答列表，不排序
      * @param pageNum
      * @return
      */
-    List<Answer> getAnswerByQuestionID(long questionID , int pageNum);
+    List<Answer>  getPagedAnswers(int pageNum );
+    List<Answer>  getPagedAnswers(int pageNum ,int pageSize);
 
     /**
-     * 不排序
-     * 获取某页的回答，自定义页面大小
-     * @param questionID
+     * 获取排序后的分页列表
      * @param pageNum
-     * @param pageSize
+     * @param orderByPara  排序参数
      * @return
      */
-    List<Answer> getAnswerByQuestionID(long questionID , int pageNum ,int pageSize);
+    List<Answer>  getOrderedPagedAnswers(int pageNum , OrderByPara orderByPara);
+    List<Answer>  getOrderedPagedAnswers(int pageNum ,int pageSize, OrderByPara orderByPara ,OrderByMethod orderByMethod);
 
     /**
-     * 根据参数排序，默认降序
-     * @param questionID
-     * @param pageNum
+     * 获取根据wherepara删选后的，排序后的分页列表
+     * @param byPara
      * @param para
-     * @return
-     */
-    List<Answer> getAnswerByQuestionID(long questionID , int pageNum , OrderByPara para);
-
-    /**
-     * 根据参数排序，默认降序
-     * @param questionID
      * @param pageNum
-     * @param pageSize
+     * @param orderByPara
      * @return
      */
-    List<Answer> getAnswerByQuestionID(long questionID , int pageNum ,int pageSize ,OrderByPara para);
-
-    /**
-     * 根据参数和排序方式，进行排序
-     * @param questionID
-     * @param pageNum
-     * @param para
-     * @param method
-     * @return
-     */
-    List<Answer> getAnswerByQuestionID
-        (long questionID , int pageNum , OrderByPara para , OrderByMethod method);
-
-    /**
-     *  根据参数和排序方式，进行排序
-     * @param questionID
-     * @param pageNum
-     * @param pageSize
-     * @return
-     */
-    List<Answer> getAnswerByQuestionID
-        (long questionID , int pageNum ,int pageSize ,OrderByPara para ,OrderByMethod method);
-
+    List<Answer>  getOrderedPagedAnswersBy(WherePara byPara , Object para , int pageNum , OrderByPara orderByPara);
+    List<Answer>  getOrderedPagedAnswersBy(WherePara byPara , Object para , int pageNum ,int pageSize, OrderByPara orderByPara ,OrderByMethod orderByMethod);
 
 
 
     /**
-     * 根据用户名,返回一个用户的全部问题列表
-     * @param username
-     */
-    List<Answer> getAnswerByUserName(String username);
-
-    /**
-     * 根据用户名，返回一个用户的全部问题数目
+     * 根据用户名，返回一个用户的全部回答数目
      * @param username
      */
     long getAnswerCountByUserName(String username);
 
     /**
-     * 根据用户ID，返回一个用户提出的全部问题列表
-     * @param ID
-     */
-    List<Answer> getAnswerByUserID(long ID);
-
-    /**
-     * 根据用户ID，返回一个用户提出的全部问题的数目
+     * 根据用户ID，返回一个用户提出的全部回答的数目
      * @param ID
      */
     long getAnswerCountByUserID(long ID);

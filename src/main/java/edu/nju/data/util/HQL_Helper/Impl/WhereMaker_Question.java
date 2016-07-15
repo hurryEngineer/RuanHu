@@ -2,18 +2,36 @@ package edu.nju.data.util.HQL_Helper.Impl;
 
 import edu.nju.data.util.HQL_Helper.Enums.WherePara;
 import edu.nju.data.util.HQL_Helper.Interfaces.WhereHQLInterface;
+import org.springframework.stereotype.Repository;
 
 /**
  * Created by ss14 on 2016/7/15.
  */
+@Repository
 public class WhereMaker_Question implements WhereHQLInterface {
-    @Override
-    public String getWhereHql(WherePara wherePara, long... args) {
-        return null;
-    }
+
+    String wherePart="";
 
     @Override
-    public String getWhereHql(WherePara wherePara, String... args) {
-        return null;
+    public String getWhereHql(WherePara wherePara) {
+        switch (wherePara){
+
+            case userID:
+                wherePart=" where author.id = ?1";
+                break;
+
+            case userName:
+                wherePart=" where author.username = ?1";
+                break;
+
+            case questionID:
+                wherePart=" where id = ?1";
+                break;
+
+            default:
+                System.out.println("WhereMaker_Question err");
+        }
+        return wherePart;
     }
+
 }
