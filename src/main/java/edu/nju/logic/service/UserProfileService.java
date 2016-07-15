@@ -24,6 +24,12 @@ public interface UserProfileService {
      */
     boolean editProfile(User user, String description, String location, String bitrhday);
 
+    boolean editBirthday(User user, String bitrhday);
+
+    boolean editDescription(User user, String description);
+
+    boolean editLocation(User user, String location);
+
     User getUserByName(String name);
 
     long getQuestionCountByName(String name);

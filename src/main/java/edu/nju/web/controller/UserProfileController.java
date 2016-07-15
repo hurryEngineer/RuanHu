@@ -19,7 +19,7 @@ import java.util.Map;
  * Created by cuihao on 2016/7/12.
  */
 @Controller
-@RequestMapping("/userProfile")
+//@RequestMapping("/userProfile")
 @SessionAttributes("user")
 public class UserProfileController {
     @Autowired
@@ -30,8 +30,8 @@ public class UserProfileController {
      * @param session {@link HttpSession}
      * @return 用户信息类 {@link User}
      */
-    @RequestMapping(value = "/show",method = RequestMethod.GET)
-    String showProfile(@RequestParam("userName") String userName, HttpSession session, Model model){
+    @RequestMapping(value = "/userProfile/{userName}",method = RequestMethod.GET)
+    String showProfile(@PathVariable("userName") String userName, HttpSession session, Model model){
         Object me = null;
         model.addAttribute("isMe", (me = session.getAttribute("user"))!=null && ((User)me).getUserName().equals(userName));
         model.addAttribute("userInfo", profileService.getUserByName(userName));
@@ -41,14 +41,14 @@ public class UserProfileController {
     }
 
 
-    @RequestMapping(value = "/showQuestion")
+    @RequestMapping(value = "/userProfile/showQuestion")
     String showUserQuestion(@RequestParam("userName") String userName,Model model) {
         model.addAttribute("userName",userName);
         model.addAttribute("activities",profileService.getQuestionByName(userName));
         return "/user/user_questionList";
     }
 
-    @RequestMapping(value = "/showAnswers")
+    @RequestMapping(value = "/userProfile/showAnswers")
     String showAnswers(@RequestParam("userName") String userName, Model model) {
         model.addAttribute("userName",userName);
         model.addAttribute("activities",profileService.getAnswerByName(userName));
@@ -62,12 +62,49 @@ public class UserProfileController {
      * @param birthday 编辑后的用户生日
      * @param session {@link HttpSession}
      */
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public void editProfile(@RequestParam("description") String description,
-                            @RequestParam("location") String location,
-                            @RequestParam("birthday") String birthday, HttpSession session){
+//    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+//    public void editProfile(@RequestParam("description") String description,
+//                            @RequestParam("location") String location,
+//                            @RequestParam("birthday") String birthday, HttpSession session){
+//        Object user = session.getAttribute("user");
+//        if (user!=null)
+//            profileService.editProfile((User)user, description, location, birthday);
+//    }
+
+    @RequestMapping(value = "/editBirthday", method = RequestMethod.POST)
+    @ResponseBody
+    void editBirthday(String birthday, HttpSession session){
         Object user = session.getAttribute("user");
-        if (user!=null)
-            profileService.editProfile((User)user, description, location, birthday);
+        if (user!=null) {
+            profileService.editBirthday((User) user, birthday);
+        }
     }
+
+    @RequestMapping(value = "/editDescription", method = RequestMethod.POST)
+    @ResponseBody
+    void editDescription(String description,
+                           HttpSession session){
+        Object user = session.getAttribute("user");
+        if (user!=null) {
+            profileService.editDescription((User) user, description);;
+        }
+    }
+
+    @RequestMapping(value = "/editLocation", method = RequestMethod.POST)
+    @ResponseBody
+    void editLocation(String location, HttpSession session){
+        Object user = session.getAttribute("user");
+        if (user!=null) {
+            profileService.editLocation((User) user, location);
+        }
+    }
+
+//    @RequestMapping(value = "/editDescription")
+//    String editDescription(@RequestParam("description") String description,
+//                           HttpSession session){
+//        Object user = session.getAttribute("user");
+//        if (user!=null)
+//            profileService.editDescription((User)user, description);
+//        return "redirect:/userProfile/"+((User)user).getUserName();
+//    }
 }

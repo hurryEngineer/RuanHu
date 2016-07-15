@@ -59,7 +59,7 @@ public class QuestionController {
         return "questionInfo";
         
     }
-
+    
     @RequestMapping(value="/question/{id}/answers",method = RequestMethod.GET)
     @ResponseBody
     List<AnswerVO> showAnswers(@PathVariable long id, @RequestParam(value = "page", defaultValue = "1") int page) {
@@ -67,7 +67,7 @@ public class QuestionController {
         return service.getAnswers(id, page, 10);
     }
 
-    @RequestMapping(value = "/submitQuestion")
+    @RequestMapping(value = "/submitQuestion",method = RequestMethod.POST)
     String newQuestion(String title, String description, HttpSession session, @ModelAttribute("user")User user){
 
         Map<String,Object> result = new HashMap<>();

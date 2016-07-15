@@ -1,5 +1,5 @@
 <style>
-    span.info-empty-wrap,span.edit-wrap, a.zu-edit-button{
+    .info-empty-wrap, .edit-wrap, .zu-edit-button{
         display:none;
     }
     .item{
@@ -47,7 +47,7 @@
                         <i class="icon fa fa-map-signs margin-r-5"></i>
                             <span class="info-wrap">
                                 <span class="location item text-muted" >  $userInfo.location</span>
-                                <a class="zu-edit-button edit label label-info" name="edit" href="javascript:;"><i class="zu-edit-button-icon fa fa-edit margin-r-4"></i><span class="edit-msg">修改</span></a>
+                                <a class="zu-edit-button edit label label-info" name="edit" href="javascript:;" style="margin-left: 10px"><i class="zu-edit-button-icon fa fa-edit margin-r-4"></i><span class="edit-msg">修改</span></a>
                             </span>
                         <span class='info-empty-wrap'>
                             <a href="javascript:;" name="edit" class="zg-link-litblue-normal">填写所在地</a></span>
@@ -62,7 +62,7 @@
                         <i class="icon fa fa-birthday-cake margin-r-5"></i>
                             <span class="info-wrap">
                                 <span class="birthday item text-muted">$userInfo.birthDate</span>
-                                <a class="zu-edit-button edit label label-info" name="edit" href="javascript:;">
+                                <a class="zu-edit-button edit label label-info" name="edit" href="javascript:;" style="margin-left: 10px">
                                     <i class="zu-edit-button-icon fa fa-edit margin-r-4"></i><span class="edit-msg">修改</span></a>
                             </span>
                         <span class='info-empty-wrap'>
@@ -89,7 +89,7 @@
 
                     <span class="info-wrap">
                         <span class="description content text-muted">$userInfo.description</span>
-                        <a class="zu-edit-button edit label label-info" name="edit" href="javascript:;">
+                        <a class="zu-edit-button edit label label-info" name="edit" href="javascript:;" style="margin-left: 10px">
                                     <i class="zu-edit-button-icon"></i><span class="edit-msg">修改</span></a>
                     </span>
 
@@ -100,8 +100,8 @@
                     </span>
 
                     <span class="edit-wrap" >
-                        <textarea value="" class="description" id="profile-header-description-input"></textarea>
-                        <a class="btn label label-success" name="save" href="javascript:;">确定</a>
+                        <textarea value=$userInfo.description class="description" id="description-input"></textarea>
+                        <a id="editDescription" class="btn label label-success" name="save" href="javascript:;">确定</a>
                     </span>
                     </div>
 
@@ -121,11 +121,33 @@
             $(this).parent().parent().children('.edit-wrap').css("display","inline");
         });
 
+
+
         var editAllowed = $isMe;
 
         if(editAllowed){
 
-            $('a.zu-edit-button').css("display","inline");
+            $('.zu-edit-button').css("display","inline");
+
+            $('#editDescription').click(function () {
+                var val = $('#description-input').val();
+                jQuery.ajax({
+                    type: "POST",
+                    url: "/editDescription",
+                    data: {"description": val},
+                    dataType: "json",
+                    success: function () {
+                        $('.edit-wrap').css("display","none");
+                        $('.info-wrap').css("display","inline");
+                        $('.description').text(val);
+                    },error:function(xhr){
+                        console.log(xhr.responseText);
+                        $('.edit-wrap').css("display","none");
+                        $('.info-wrap').css("display","inline");
+                        $('.description').text(val);
+                    }
+                });
+            });
 
 
 //             $('#location-group .info-wrap').css("display","none");
