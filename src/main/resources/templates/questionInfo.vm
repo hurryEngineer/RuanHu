@@ -32,6 +32,18 @@
                     }
 				});
             }
+            function downVote(obj) {
+                var answerIdThis = obj.getAttribute("answerid");
+                var userIdThis = $user.id;
+                $.ajax({
+                    type : "GET",
+                    url: "/answer/downVote",
+                    data: {questionId: aQuestionId, answerId:answerIdThis, userId:userIdThis},
+                    success: function(msg){
+                        console.log(msg);
+                    }
+                });
+            }
         </script>
 
 

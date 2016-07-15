@@ -102,7 +102,7 @@ public class AnswerController {
                   @RequestParam("answerId") String answerId,
                   @RequestParam("userId") String userId) {
         answerService.vote(questionId, answerId, userId, VoteType.up);
-        return "success";
+        return "";
     }
 
     @RequestMapping(value = "/downVote", method = RequestMethod.GET)
@@ -113,13 +113,16 @@ public class AnswerController {
     }
 
     @RequestMapping(value = "/upCancel")
-    void upVoteCancel(String questionId, String answerId, String userId) {
+    @ResponseBody
+    String upVoteCancel(String questionId, String answerId, String userId) {
         answerService.vote(questionId, answerId, userId, VoteType.up);
+        return "";
     }
 
     @RequestMapping(value = "/downCancel")
-    void downVoteCancel(String questionId, String answerId, String userId) {
+    String downVoteCancel(String questionId, String answerId, String userId) {
         answerService.vote(questionId, answerId, userId, VoteType.down);
+        return "";
     }
 
 }
