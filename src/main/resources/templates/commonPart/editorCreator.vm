@@ -12,7 +12,7 @@
 
 	$(function() {
 		    testEditor = editormd("editormd", {
-			width: "90%",
+			width: "97%",
 			height: 340,
 			path: '/editor.md-master/lib/',
 			watch: true,

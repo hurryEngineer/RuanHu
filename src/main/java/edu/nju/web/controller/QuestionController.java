@@ -36,7 +36,7 @@ public class QuestionController {
 
     @RequestMapping(value="/question",method = RequestMethod.GET)
     String showAllQuestions(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
-
+        System.out.println("user in session:"+model.asMap().get("user"));
         List<QuestionVO> result = service.getQuestions(page,10);
         model.addAttribute("questions",result);
 

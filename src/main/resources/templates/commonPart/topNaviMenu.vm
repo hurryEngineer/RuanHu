@@ -22,7 +22,7 @@
                       <i class="fa fa-user"></i>主页
                     </a>
                   </li>
-                  <li>
+                  <li onclick="logout()">
                     <a href="#">
                       <i class="fa fa-sign-out"></i>退出
                     </a>
@@ -55,10 +55,9 @@
 				$.stdGet("/login",{formerUrl:url});
 			}
 			
-			function signOut(){
+			function logout(){
 				var url = window.location.pathname;
-				$.stdPost("/login",{formerUrl:url});
-				window.location.href = "/login?formerUrl="+url
+				$.stdGet("/logout",{formerUrl:url});
 			}
 			
 		</script>

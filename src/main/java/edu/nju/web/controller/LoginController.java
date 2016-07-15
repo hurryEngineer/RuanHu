@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -69,10 +71,11 @@ public class LoginController {
      * @return
      */
     @RequestMapping("/logout")
-    public String logout(String formerUrl, HttpSession session) {
+    public String logout(String formerUrl, HttpSession session,SessionStatus sessionStatus) {
         session.removeAttribute("user");
-        session.invalidate();
-        return "";
+//        session.invalidate();
+        sessionStatus.setComplete();
+        return "redirect:"+formerUrl;
     }
 
 }
