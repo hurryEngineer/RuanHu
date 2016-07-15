@@ -1,14 +1,45 @@
 <div class="navbar-custom-menu">
 	<ul class="nav navbar-nav">
+	
 
 		#if($user)
+		<li>
+			<a href="#">
+			<i class="fa fa-fw fa-pencil"></i>
+				提问
+			</a>
+		</li>
+		
 		<li class="dropdown user user-menu">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 				<img src="$user.getPhotoUri()" class="user-image" alt="User Image">
 				<span class="hidden-xs">$user.getUserName()</span>
 			</a>
+			
+			<ul class="dropdown-menu" role="menu">
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-user"></i>主页
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-sign-out"></i>退出
+                    </a>
+                  </li>
+            </ul>
+			
 		</li>
+		
+		
 		#else
+		<li>
+			<a href="#">
+			<i class="fa fa-fw fa-pencil"></i>
+				提问
+			</a>
+		</li>
+		
 		<li onclick="loginForm()">
 			
 			<a href="#">
@@ -23,6 +54,12 @@
 				var url = window.location.pathname;
 				window.location.href = "/login?formerUrl="+url;
 			}
+			
+			function signOut(){
+				var url = window.location.pathname;
+				window.location.href = "/login?formerUrl="+url
+			}
+			
 		</script>
 		
 
