@@ -42,7 +42,7 @@ public class QuestionController {
         return "questionList";
     }
 
-
+    
     @RequestMapping(value = "/question/{id}", method = RequestMethod.GET)
     String showQuestion(@PathVariable long id, Model model, HttpSession session){
 

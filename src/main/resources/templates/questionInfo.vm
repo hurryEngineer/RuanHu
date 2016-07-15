@@ -20,8 +20,9 @@
 				#else
                 var aQuestionId = "newQuestion";
 				#end
-            function vote() {
-                console.log(this.answerid);
+            function vote(obj) {
+            	console.log(obj);
+                console.log(obj.getAttribute("answerid"));
             }
         </script>
 
