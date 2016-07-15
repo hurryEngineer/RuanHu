@@ -3,6 +3,8 @@ package edu.nju.data.daoImpl;
 import edu.nju.data.dao.BaseDAO;
 import edu.nju.data.dao.VoteDAO;
 import edu.nju.data.entity.Vote;
+import edu.nju.data.util.VoteType;
+import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Repository;
@@ -28,20 +30,42 @@ public class VoteDAOImpl implements VoteDAO {
 
     @Override
     public void save(Vote vote) {
+
+        vote.setId(null);
+        baseDAO.insert(vote);
+
+    }
+
+    @Override
+    public void vote(Vote vote) {
         Query query = em.createQuery
-                ("select count (*) from Vote v where v.authorId = ?1 and  ( v.answerId =?2 or v.questionId = ?3)");
+                ("from Vote v where v.authorId = ?1 and  ( v.answerId =?2 or v.questionId = ?3)");
         query.setParameter(1,vote.getAuthorId());
         query.setParameter(2,vote.getAnswerId());
         query.setParameter(3,vote.getQuestionId());
-        Long result = (Long) query.getSingleResult();
+        List<Vote> resultList = query.getResultList();
+        /**
+         * 该用户从未对该问题或者答案做出Vote
+         */
+        if(resultList==null){
+             System.err.println("Vote！！！！");
+             save(vote);
 
-        if(result>0){
-            System.out.print("不能重复点赞！！！！！！！！");
-        }else{
-            baseDAO.insert(vote);
+        }else if(resultList.size()==1){
+            /**
+             * 重复Vote不做处理
+             */
+            if(vote.getVoteType()==resultList.get(0).getVoteType()){
+
+                System.err.println("重复操作！！！！");
+
+            }else{
+                System.err.println("改变操作！！！！");
+                baseDAO.delete(Vote.class , resultList.get(0).getId());
+                save(vote);
+
+            }
         }
-
-
     }
 
     @Override

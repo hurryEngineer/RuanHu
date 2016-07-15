@@ -38,9 +38,7 @@
 							
 							
 							<div class="row">
-								<div class="col-md-4 col-xs-4">
-									<p><b>标题</b></p>
-								</div>
+								<p><b>标题</b></p>
 							</div>
 							
 							<div class="body-question">
@@ -49,13 +47,31 @@
 							<input type="hidden" name="post_parent" value="0">
 							<div class="input-title">
 								<input type="text" class="submit-input" id="question_title" name="post_title" placeholder="Your Question">
-								<!--<span id="charNum">150</span>-->
+					
 							</div>
 						
+						
+							<div id="question-tag-container">
+							
 							<div class="row">
-								<div class="col-md-4 col-xs-4">
+								<p><b>添加标签</b></p>
+							</div>
+							
+							<input data-provide="typeahead" type="text" class="submit-input tags-input" id="question_tags" name="question_tags" placeholder="回车添加标签">
+							<ul class="tags-list" id="tag_list"><li class="tag-item">
+						
+									<input type="hidden" name="tags[]" value="google glass">
+									google glass <a href="javascript:void(0)" class="delete"><i class="fa fa-times"></i></a>
+						
+								</li></ul>
+								
+							
+							<input id="add_tag_text" type="hidden" value="You must have 1000 points to add tag. Current, you have to select existing tags.">
+							</div>
+							
+								
+							<div class="row">
 									<p><b>问题说明</b></p>
-								</div>
 							</div>
 								
 							
@@ -69,25 +85,6 @@
 								
 							</div>
 							
-							<div id="question-tag-container">
-							
-								<div class="col-md-4 col-xs-4" >
-									<p><b>添加标签</b></p>
-								
-							</div>
-							
-							<div id="question-tags">
-								<input data-provide="typeahead" type="text" class="submit-input tags-input" id="question_tags" name="question_tags" placeholder="回车添加标签">
-								<ul class="tags-list" id="tag_list"><li class="tag-item">
-						
-									<input type="hidden" name="tags[]" value="google glass">
-									google glass <a href="javascript:void(0)" class="delete"><i class="fa fa-times"></i></a>
-						
-								</li></ul>
-								
-							</div>
-							<input id="add_tag_text" type="hidden" value="You must have 1000 points to add tag. Current, you have to select existing tags.">
-							</div>
 							<button id="btn_submit_question" class="btn-submit-question">提交问题 </button>
 							
 							</form>

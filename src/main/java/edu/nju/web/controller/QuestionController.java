@@ -98,7 +98,7 @@ public class QuestionController {
 
     @RequestMapping(value = "/ask",method = RequestMethod.GET)
     String newQuestion(){
-        return "editQuestion";
+        return "askQuestion";
     }
 
     @RequestMapping(value = "/up")

@@ -1,0 +1,157 @@
+<style>
+    span.info-empty-wrap,span.edit-wrap, a.zu-edit-button{
+        display:none;
+    }
+    .item{
+        margin:5px 0;
+    }
+</style>
+
+<div class="box box-solid box-primary">
+
+    <div class="box-header with-border">
+        <h3 class="name box-title">${userInfo.userName}</h3>
+        <div class="box-tools pull-right">
+            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+        </div><!-- /.box-tools -->
+    </div><!-- /.box-header -->
+
+    <div class="box-body" >
+
+        <div class="col-md-4">
+            <img class="avatar" src=$userInfo.photoUri />
+        ##                            <span class="ProfileAvatarEditor-tip">修改头像</span>
+        ##                            <span class="ProfileAvatarEditor-spinner Spinner"></span>
+        </div>
+
+        <div class="col-md-8">
+                <div class="items">
+
+                    <div class="item">
+                        <i class="icon fa fa-envelope-o margin-r-5"></i>
+
+                        <span class="info-wrap">
+                            <span class="email item text-muted" >${userInfo.email}</span>
+                        </span>
+                    </div>
+
+                    <div class="item">
+                        <i class="icon fa fa-calendar margin-r-5"></i>
+                        <span class="info-wrap">
+                            <span class="item text-muted createdAt" >${userInfo.createdAt}</span>
+                        </span>
+                    </div>
+
+
+                    <div class="item editable-group" id='location-group'>
+                        <i class="icon fa fa-map-signs margin-r-5"></i>
+                            <span class="info-wrap">
+                                <span class="location item text-muted" >  $userInfo.location</span>
+                                <a class="zu-edit-button edit label label-info" name="edit" href="javascript:;"><i class="zu-edit-button-icon fa fa-edit margin-r-4"></i><span class="edit-msg">修改</span></a>
+                            </span>
+                        <span class='info-empty-wrap'>
+                            <a href="javascript:;" name="edit" class="zg-link-litblue-normal">填写所在地</a></span>
+                        <span class="edit-wrap">
+                            <span class="topic-input-wrap"><input autocomplete="off" aria-haspopup="true" type="text" name="location" value="" class="zg-form-text-input location" placeholder="居住地"/></span>
+                          <a class="btn label label-success" name="save" href="javascript:;">确定</a>
+                        </span>
+                    </div>
+
+
+                    <div class="item editable-group " id="birthday-group" >
+                        <i class="icon fa fa-birthday-cake margin-r-5"></i>
+                            <span class="info-wrap">
+                                <span class="birthday item text-muted">$userInfo.birthDate</span>
+                                <a class="zu-edit-button edit label label-info" name="edit" href="javascript:;">
+                                    <i class="zu-edit-button-icon fa fa-edit margin-r-4"></i><span class="edit-msg">修改</span></a>
+                            </span>
+                        <span class='info-empty-wrap'>
+                            <a href="javascript:;" name="edit" class="zg-link-litblue-normal">填写生日</a></span>
+                            <span class="edit-wrap">
+                                <div class="business-selection">
+                                    <select name="year">
+                                        <option value="2016">2016</option>
+                                    </select>
+                                    <select name="month">
+                                        <option value="01">01</option>
+                                    </select>
+                                    <select name="day">
+                                        <option value="01">01</option>
+                                    </select>
+                                </div>
+                                <a class="btn label label-success" name="save" href="javascript:;">确定</a>
+                            </span>
+                    </div>
+
+                    <div class="item" id="description-group">
+
+                        <i class="icon fa fa-smile-o margin-r-5"></i>
+
+                    <span class="info-wrap">
+                        <span class="description content text-muted">$userInfo.description</span>
+                        <a class="zu-edit-button edit label label-info" name="edit" href="javascript:;">
+                                    <i class="zu-edit-button-icon"></i><span class="edit-msg">修改</span></a>
+                    </span>
+
+                    <span class='info-empty-wrap'>
+                        <a href="javascript:;" name="edit" class="zg-link-litblue-normal">
+                        <i class="zg-icon zg-icon-edit-button-blue"></i>
+                        <span>填写个人简介</span></a>
+                    </span>
+
+                    <span class="edit-wrap" >
+                        <textarea value="" class="description" id="profile-header-description-input"></textarea>
+                        <a class="btn label label-success" name="save" href="javascript:;">确定</a>
+                    </span>
+                    </div>
+
+                </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    $(document).ready(function () {
+        $('.zu-edit-button').click(function(){
+            $(this).parent().css("display","none");
+            $(this).parent().parent().children('.edit-wrap').css("display","inline");
+        });
+
+        var editAllowed = $isMe;
+
+        if(editAllowed){
+
+            $('a.zu-edit-button').css("display","inline");
+
+
+//             $('#location-group .info-wrap').css("display","none");
+//             $('#location-group span.info-empty-wrap').css("display","inline");
+//
+//             $('#birthday-group .info-wrap').css("display","none");
+//             $('#birthday-group span.info-empty-wrap').css("display","inline");
+//
+//             $('#description-group .info-wrap').css("display","none");
+//             $('#description-group span.info-empty-wrap').css("display","inline");
+        }
+//        $('span.location').html("南京");
+//        $('#location-group .info-wrap').css("display","inline");
+//        $('#location-group span.info-empty-wrap').css("display","none");
+//
+//        $('span.birthday').html("1996-08-10");
+//        $('#birthday-group .info-wrap').css("display","inline");
+//        $('#birthday-group span.info-empty-wrap').css("display","none");
+//
+//        $('span.description').html("???");
+//        $('#description-group .info-wrap').css("display","inline");
+//        $('#description-group span.info-empty-wrap').css("display","none");
+
+
+        // $('#location-group .edit-msg').click(function () {
+        //     $('#location-group .edit-wrap').css(display:inline);
+        // });
+    });
+</script>

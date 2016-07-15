@@ -1,0 +1,42 @@
+<div>
+	<section class="sidebar">
+		<ul class="sidebar-menu fixed">
+			<li>
+				<a href="#" id="question-nav">
+					<i class="fa fa-dashboard"></i>
+					<span>  提  问</span>
+                    <span class="label label-warning pull-right">${questionCount}</span>
+				</a>
+			</li>
+			<li>
+				<a href="#" id="answer-nav">
+					<i class="fa fa-files-o"></i>
+					<span>  回  答</span>
+                    <span class="label label-warning pull-right">${answerCount}</span>
+				</a>
+			</li>
+			<li>
+				<a href="pages/widgets.html">
+					<i class="fa fa-th"></i>
+					<span>  收  藏</span>
+##                    <span class="label label-warning pull-right">${}</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class="fa fa-pie-chart"></i>
+					<span>  关  注</span>
+##                    <span class="label label-warning pull-right">65</span>
+				</a>
+			</li>
+##			<li>
+##				<a href="#">
+##					<i class="fa fa-laptop"></i>
+##					<span>我的成就</span>
+##				</a>
+##			</li>
+		</ul>
+		<hr />
+	</section>
+
+</div>

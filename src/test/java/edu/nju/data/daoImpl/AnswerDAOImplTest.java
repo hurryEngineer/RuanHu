@@ -13,6 +13,9 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 import static org.junit.Assert.fail;
@@ -25,14 +28,17 @@ import static org.junit.Assert.fail;
 @WebAppConfiguration
 public class AnswerDAOImplTest {
 
+
     @Autowired
     AnswerDAO answerDAO;
+    @PersistenceContext
+    EntityManager em;
 
     @Test
     public void save() throws Exception {
 
-        for (int k=206;k<226 ;k++){
-            for(int j=1;j<=3 ;j++){
+        for (int k=239;k<259 ;k++){
+            for(int j=1;j<=4 ;j++){
                     Answer answer = new Answer();
                     answer.setAuthorId(new Long(j));
                     answer.setQuestionId(new Long (k));
@@ -86,6 +92,8 @@ public class AnswerDAOImplTest {
 
     @Test
     public void deleteByQuestionID() throws Exception {
+       // Long questionID = new
+
 
     }
 
@@ -104,9 +112,22 @@ public class AnswerDAOImplTest {
 
     }
 
+
     @Test
     public void setSolution() throws Exception {
 
+        Long questionID = new Long (239);
+        Long answerID = new Long (2);
+        answerDAO.setSolution(questionID,answerID);
+
+    }
+
+
+    @Test
+    public void cancelSolution() throws Exception {
+
+        Long answerID = new Long (1);
+        answerDAO.cancelSolution(answerID);
     }
 
 
@@ -274,24 +295,62 @@ public class AnswerDAOImplTest {
 
     }
 
+
+
     @Test
     public void getAnswerByUserName() throws Exception {
+
+
+        String username = "ss14";
+        List<Answer> result = answerDAO.getAnswerByUserName(username);
+        if(result==null){
+            fail();
+        }else{
+            for(Answer answer : result){
+                System.out.println("Answer ID : "+answer.getId()+" UserName :"+answer.getAuthor().getUserName());
+            }
+        }
+
 
     }
 
     @Test
     public void getAnswerCountByUserName() throws Exception {
 
+        String username = "ss14";
+        long  result = answerDAO.getAnswerCountByUserName(username);
+        if(result==0){
+            fail();
+        }else{
+            System.out.println("AnswerCount : "+result);
+        }
+
     }
 
     @Test
     public void getAnswerByUserID() throws Exception {
 
+        Long userid = new Long (2) ;
+        List<Answer> result = answerDAO.getAnswerByUserID(userid);
+        if(result==null){
+            fail();
+        }else{
+            for(Answer answer : result){
+                System.out.println("Answer ID : "+answer.getId()+" UserName :"+answer.getAuthor().getUserName());
+            }
+        }
+
     }
 
     @Test
     public void getAnswerCountByUserID() throws Exception {
-
+        Long userid = new Long(2);
+        long  result = answerDAO.getAnswerCountByUserID(userid);
+        if(result==0){
+            fail();
+        }else{
+            System.out.println("AnswerCount : "+result);
+        }
     }
 
 

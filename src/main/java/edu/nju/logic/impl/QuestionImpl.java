@@ -76,7 +76,7 @@ public class QuestionImpl implements QuestionService {
         vote.setLastUpdatedAt(new Timestamp(new Date().getTime()));
         vote.setQuestionId(Long.valueOf(questionId));
         vote.setVoteType(type);
-        voteDAO.save(vote);
+        voteDAO.vote(vote);
     }
 
     @Override

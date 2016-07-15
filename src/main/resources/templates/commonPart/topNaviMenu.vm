@@ -52,11 +52,12 @@
 		<script>
 			function loginForm(){
 				var url = window.location.pathname;
-				window.location.href = "/login?formerUrl="+url;
+				$.stdGet("/login",{formerUrl:url});
 			}
 			
 			function signOut(){
 				var url = window.location.pathname;
+				$.stdPost("/login",{formerUrl:url});
 				window.location.href = "/login?formerUrl="+url
 			}
 			
