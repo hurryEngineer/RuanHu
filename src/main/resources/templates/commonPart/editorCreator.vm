@@ -39,7 +39,7 @@
 		});
 		testEditor.questionID = thisQuestionID;
 		testEditor.timelySave = editorOnChange;
-
+		var random = Math.random();
 		function savePolling() {
 			testEditor.timelySave();
 			setTimeout(savePolling, 1000);
