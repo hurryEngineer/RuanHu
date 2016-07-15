@@ -97,11 +97,23 @@ public class AnswerController {
     }
 
     @RequestMapping(value = "/up")
-    void upVote(String questionId, String answerId, String userId){
+    void upVote(String questionId, String answerId, String userId) {
+        answerService.vote(questionId, answerId, userId, VoteType.up);
     }
 
     @RequestMapping(value = "/down")
-    void downVote(String questionId, String answerId, String userId){
+    void downVote(String questionId, String answerId, String userId) {
+        answerService.vote(questionId, answerId, userId, VoteType.down);
+    }
+
+    @RequestMapping(value = "/upCancel")
+    void upVoteCancel(String questionId, String answerId, String userId) {
+        answerService.vote(questionId, answerId, userId, VoteType.up);
+    }
+
+    @RequestMapping(value = "/downCancel")
+    void downVoteCancel(String questionId, String answerId, String userId) {
+        answerService.vote(questionId, answerId, userId, VoteType.down);
     }
 
 }

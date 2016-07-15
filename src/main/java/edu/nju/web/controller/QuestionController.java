@@ -110,4 +110,14 @@ public class QuestionController {
         service.vote(questionId,userId, VoteType.down);
     }
 
+    @RequestMapping(value = "/upCancel")
+    void cancelUpVote(String questionId, String userId){
+        service.unVote(questionId,userId, VoteType.up);
+    }
+
+    @RequestMapping(value = "/downCancel")
+    void cancelDownVote(String questionId, String userId){
+        service.unVote(questionId,userId, VoteType.down);
+    }
+
 }
