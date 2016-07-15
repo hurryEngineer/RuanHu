@@ -42,7 +42,7 @@
 							</div>
 							
 							<div class="body-question">
-							<form id="submit_question">
+							<!--<form id="submit_question">-->
 							<input type="hidden" id="qa_nonce" name="qa_nonce" value="f8bd1d5888">
 							<input type="hidden" name="post_parent" value="0">
 							<div class="input-title">
@@ -63,7 +63,8 @@
 									<input type="hidden" name="tags[]" value="google glass">
 									google glass <a href="javascript:void(0)" class="delete"><i class="fa fa-times"></i></a>
 						
-								</li></ul>
+								</li>
+							</ul>
 								
 							
 							<input id="add_tag_text" type="hidden" value="You must have 1000 points to add tag. Current, you have to select existing tags.">
@@ -85,9 +86,9 @@
 								
 							</div>
 							
-							<button id="btn_submit_question" class="btn-submit-question">提交问题 </button>
+							<button id="btn_submit_question" onclick="submitQuestion()" class="btn-submit-question">提交问题 </button>
 							
-							</form>
+							<!--</form>-->
 							
 							<hr />
 						</div>	
@@ -102,22 +103,28 @@
 			<!-- ./wrapper -->
 
 		#parse("commonPart/addtionalJs.vm")
-		<script src="/dist/js/jquery.min.js"></script>
-		<script src="/dist/js/editormd.js"></script>
 		<script type="text/javascript">
-			$("#btn_submit_question").click(function(){
-				var content = editor.getMarkdown();
-				var title=${"question_title"}
-				
-				$.ajax({
-				type:'post',
-				url:'${pageContext.request.contextPath}/newQuestion.action',
-				data:'&title='+title+'&description='+content,
-				success:function(data){
-					
-				}
-			});
-			});
+			function submitQuestion(){
+				var questionTitle = document.getElementById("question_title").innerHTML;
+				var questionDescript = testEditor.getMarkdown();
+				console.log(questionDescript);
+				console.log(questionTitle);
+				$.stdGet("/submitQuestion",{title: questionTitle, description: questionDescript});
+			}
+		
+//			$("#btn_submit_question").click(function(){
+//				var content = testEditor.getMarkdown();
+//				var title=${"question_title"}
+//				
+//				$.ajax({
+//				type:'post',
+//				url:'${pageContext.request.contextPath}/newQuestion.action',
+//				data:'&title='+title+'&description='+content,
+//				success:function(data){
+//					
+//				}
+//			});
+//			});
 		</script>
 	</body>
 
