@@ -33,23 +33,11 @@
                     #parse("/templates/user/user_rightSideBar.vm")
                 </div>
             </div>
-            <div class="row" id='current' style="margin: 10px 10px">
-##                <div class="">
-##                    <h2 class="" style="color:#666;">最新动态</h2>
-##                    </a>
-##                </div>
-##                <div class="col-md-10">
-##                    <div id="current">
-
-##                        #foreach($one in $activities)
-##                            #if($one.type=='QUESTION')
-##                                #parse("/listItem/user_questionList.vm")
-##                            #elseif($one.type=='ANSWER')
-##                                #parse("/listItem/user_answerList.vm")
-##                            #end
-##                        #end
-##                    </div>
-##                    </div>
+            <div class="row" style="margin: 10px 10px">
+                <div class="box box-primary" id='current'>
+                    <div class="overlay" >
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
                 </div>
             </div>
         </div>
@@ -67,9 +55,11 @@
     <script>
         $("#current").load("/userProfile/showQuestion?userName=" + '$!{userInfo.userName}');
         $('#question-nav').click(function() {
+            $("#current").append('<div class="overlay" > <i class="fa fa-refresh fa-spin"></i> </div>');
             $("#current").load("/userProfile/showQuestion?userName=" + '$!{userInfo.userName}');
         });
         $('#answer-nav').click(function() {
+            $("#current").append('<div class="overlay" > <i class="fa fa-refresh fa-spin"></i> </div>');
             $("#current").load("/userProfile/showAnswers?userName=" + '$!{userInfo.userName}');
         });
 
