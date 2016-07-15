@@ -13,7 +13,18 @@
 		#parse("commonPart/commonCssAndJs.vm")
 		<link rel="stylesheet" href="/dist/css/editormd.css" />
 		#parse("commonPart/editorCreator.vm")
-		
+
+        <script>
+				#if($question.id)
+                var aQuestionId = "$question.id";
+				#else
+                var aQuestionId = "newQuestion";
+				#end
+            function vote() {
+                console.log(this.answerid);
+            }
+        </script>
+
 
 	</head>
 
