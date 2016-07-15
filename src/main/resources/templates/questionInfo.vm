@@ -120,7 +120,7 @@ $question.content
 										<div class="question-cat">
 											
 											<div class="clearfix"></div>
-											<a>
+											<a href="/userProfile/$question.author.userName">
 												<span class="author-avatar">
 												<img src="$question.author.photoUri"/>  </span>
 												<span itemprop="name" class="author-name">$question.author.userName</span>
