@@ -102,7 +102,6 @@
 			</div>
 			<!-- ./wrapper -->
 
-		#parse("commonPart/addtionalJs.vm")
 		<script type="text/javascript">
 			function submitQuestion(){
 				var questionTitle = document.getElementById("question_title").value;
