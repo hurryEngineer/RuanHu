@@ -43,7 +43,6 @@ public class QuestionController {
     }
 
 
-    
     @RequestMapping(value = "/question/{id}", method = RequestMethod.GET)
     String showQuestion(@PathVariable long id, Model model, HttpSession session){
 

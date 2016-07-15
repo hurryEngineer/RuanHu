@@ -36,8 +36,9 @@ ul.question-upDown li:last-child {
 .question-cat{
 	margin-top: 10px;
 }
-
-
+.answerDiv{
+    margin-top: 40px;
+}
 
 .answer-btn {
     border: none;

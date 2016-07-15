@@ -59,7 +59,7 @@
 										</li>
 										
 									 	<li data-original-title="" title="">
-										<span itemprop="upvoteCount" class="vote-count">-1</span>
+										<span itemprop="upvoteCount" class="vote-count">$question.voteCount</span>
 										</li>
 									 
 										<li title="" data-original-title="This is not useful">
