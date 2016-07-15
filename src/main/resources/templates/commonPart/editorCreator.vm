@@ -26,9 +26,9 @@
 			watch: true,
 			emoji: true,
 			
-//			imageUpload: true,
-//			imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-//			imageUploadURL: "./php/upload.php?test=dfdf",
+			imageUpload: true,
+			imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+			imageUploadURL: "./php/upload.php?test=dfdf",
 			
 			toolbarIcons: function() {
 				return editormd.toolbarModes["simple"]
