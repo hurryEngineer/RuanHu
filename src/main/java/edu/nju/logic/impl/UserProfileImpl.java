@@ -45,6 +45,27 @@ public class UserProfileImpl implements UserProfileService {
     }
 
     @Override
+    public boolean editBirthday(User user, String bitrhday) {
+        user.setBirthDate(Date.valueOf(bitrhday));
+        userDAO.update(user);
+        return true;
+    }
+
+    @Override
+    public boolean editDescription(User user, String description) {
+        user.setDescription(description);
+        userDAO.update(user);
+        return true;
+    }
+
+    @Override
+    public boolean editLocation(User user,String location) {
+        user.setLocation(location);
+        userDAO.update(user);
+        return true;
+    }
+
+    @Override
     public User getUserByName(String name) {
         return userDAO.getUserByName(name);
     }
