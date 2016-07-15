@@ -12,5 +12,17 @@
 .login-box-body .glyphicon{
 	top: 0px;
 }
+
+.navbar-custom-menu>.navbar-nav>li>.dropdown-menu{
+    min-width : 116px;
+    width : 116px;
+}
+
+.dropdown-menu>li>a {
+    color: #777;
+    font-size: 16px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
 			
 			

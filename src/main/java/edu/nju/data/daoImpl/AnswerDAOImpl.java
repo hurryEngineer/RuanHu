@@ -205,22 +205,35 @@ public class AnswerDAOImpl implements AnswerDAO {
 
     @Override
     public List<Answer> getAnswerByUserName(String username) {
-        return null;
+        Query query =  em.createQuery("from Answer as a where a.author.userName = ?1");
+        query.setParameter(1,username);
+        List<Answer> resultList = query.getResultList();
+        return resultList;
     }
 
     @Override
     public long getAnswerCountByUserName(String username) {
-        return 0;
+
+        Query query =  em.createQuery("select count (a) from Answer as a where a.author.userName = ?1");
+        query.setParameter(1,username);
+        long count = (long) query.getSingleResult();
+        return count;
     }
 
     @Override
     public List<Answer> getAnswerByUserID(long ID) {
-        return null;
+        Query query =  em.createQuery("from Answer as a where a.author.id = ?1");
+        query.setParameter(1,ID);
+        List<Answer> resultList = query.getResultList();
+        return resultList;
     }
 
     @Override
     public long getAnswerCountByUserID(long ID) {
-        return 0;
+        Query query =  em.createQuery("select count (a) from Answer as a where a.author.id = ?1");
+        query.setParameter(1,ID);
+        long count = (long) query.getSingleResult();
+        return count;
     }
 
 
