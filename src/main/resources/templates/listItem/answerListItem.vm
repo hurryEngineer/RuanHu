@@ -4,7 +4,7 @@
 		<ul class="question-upDown">
 			<li title="" data-original-title="This is useful.">
 				<a data-container="body" data-toggle="popover" data-content="You must have 5 points to vote up." href="javascript:void(0)" data-name="vote_up" class="action vote vote-up img-circle " data-original-title="" title="">
-					<i class="fa fa-chevron-up"></i>
+					<i onclick="vote()" class="fa fa-chevron-up"></i>
 				</a>
 			</li>
 
@@ -14,7 +14,7 @@
 
 			<li title="" data-original-title="This is not useful">
 				<a data-container="body" data-toggle="popover" data-content="You must have 500 points to vote down." href="javascript:void(0)" data-name="vote_down" class="action vote vote-down img-circle " data-original-title="" title="">
-					<i class="fa fa-chevron-down"></i>
+					<i onclick="vote()" class="fa fa-chevron-down"></i>
 				</a>
 			</li>
 
@@ -43,6 +43,18 @@
 				编辑于 $oneAnswer.getUpdateAtForView()
 			</span>
 		</div>
+
+		<script>
+			#if($question.id)
+				var aQuestionId = "$question.id";
+			#else
+				var aQuestionId = "newQuestion";
+			#end
+			var aAnswerId = "$oneAnswer.id";
+			function vote() {
+				console.log(aAnswerId);
+            }
+		</script>
 
 	</div>
 </div>
