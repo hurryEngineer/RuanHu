@@ -51,6 +51,7 @@ public class UserProfileController {
     @RequestMapping(value = "/userProfile/showAnswers")
     String showAnswers(@RequestParam("userName") String userName, Model model) {
         model.addAttribute("userName",userName);
+        System.out.println(profileService.getAnswerByName(userName));
         model.addAttribute("activities",profileService.getAnswerByName(userName));
         return "/user/user_answerList";
     }

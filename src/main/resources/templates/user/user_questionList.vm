@@ -7,34 +7,34 @@
 ##        </div><!-- /.box-tools -->
     </div><!-- /.box-header -->
 
-<div class="box-body">
-    <ul class="timeline">
-        #foreach($one in $activities)
-            <!-- timeline time label -->
-            <li class="time-label">
-                <span class="bg-red">
-                    $one.createAtForView
-                </span>
-            </li>
+    <div class="box-body">
+        <ul class="timeline">
+            #foreach($one in $activities)
+                <!-- timeline time label -->
+                <li class="time-label">
+                    <span class="bg-red">
+                        $one.createAtForView
+                    </span>
+                </li>
 
-            <li>
-                <i class="fa fa-question-circle bg-blue"></i>
-                <div class="timeline-item">
-                    <span class="time"><i class="fa fa-clock-o"></i> $one.createAtForView</span>
+                <li>
+                    <i class="fa fa-question-circle bg-blue"></i>
+                    <div class="timeline-item">
+                        <span class="time"><i class="fa fa-clock-o"></i> $one.createAtForView</span>
 
-                    <h3 class="timeline-header"> 提出了问题 <a href='springUrl("/questions/${one.id}")'>${one.title}</a></h3>
+                        <h3 class="timeline-header"> 提出了问题 <a href='springUrl("/questions/${one.id}")'>${one.title}</a></h3>
 
-                    <div class="timeline-body">
-                        ${one.content}
+                        <div class="timeline-body">
+                            ${one.content}
+                        </div>
+
+    ##                    <div class="timeline-footer">
+    ##                        <a class="btn btn-primary btn-xs">...</a>
+    ##                    </div>
                     </div>
-
-##                    <div class="timeline-footer">
-##                        <a class="btn btn-primary btn-xs">...</a>
-##                    </div>
-                </div>
-            </li>
-            <!-- END timeline item -->
-        #end
-    </ul>
-</div><!-- /.box-body -->
+                </li>
+                <!-- END timeline item -->
+            #end
+        </ul>
+    </div><!-- /.box-body -->
 </div><!-- /.box -->
