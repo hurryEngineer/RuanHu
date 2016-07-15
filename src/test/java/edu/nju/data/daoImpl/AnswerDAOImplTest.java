@@ -25,6 +25,7 @@ import static org.junit.Assert.fail;
 @WebAppConfiguration
 public class AnswerDAOImplTest {
 
+
     @Autowired
     AnswerDAO answerDAO;
 
@@ -104,9 +105,22 @@ public class AnswerDAOImplTest {
 
     }
 
+
     @Test
     public void setSolution() throws Exception {
 
+        Long questionID = new Long (239);
+        Long answerID = new Long (2);
+        answerDAO.setSolution(questionID,answerID);
+
+    }
+
+
+    @Test
+    public void cancelSolution() throws Exception {
+
+        Long answerID = new Long (1);
+        answerDAO.cancelSolution(answerID);
     }
 
 

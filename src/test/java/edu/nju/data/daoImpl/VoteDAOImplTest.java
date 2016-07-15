@@ -21,13 +21,31 @@ import static org.junit.Assert.*;
 @SpringApplicationConfiguration(classes = RuanHuApplication.class)
 @WebAppConfiguration
 public class VoteDAOImplTest {
+
+
     @Autowired
     VoteDAO voteDAO;
 
 
+
+    @Test
+    public void vote() throws Exception {
+
+        Long authorID = new Long (2);
+        Long answerID = new Long (1);
+        Vote vote = new Vote();
+        vote.setAuthorId(authorID);
+        vote.setAnswerId(answerID);
+        vote.setVoteType(VoteType.up);
+
+        voteDAO.vote(vote);
+
+    }
+
+
     @Test
     public void save() throws Exception {
-        Long authorID = new Long (1);
+        Long authorID = new Long (2);
         Long answerID = new Long (1);
         Vote vote = new Vote();
         vote.setAuthorId(authorID);
@@ -35,7 +53,6 @@ public class VoteDAOImplTest {
         vote.setVoteType(VoteType.up);
 
         voteDAO.save(vote);
-
 
     }
 

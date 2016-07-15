@@ -48,15 +48,19 @@ public class VoteDAOImpl implements VoteDAO {
          * 该用户从未对该问题或者答案做出Vote
          */
         if(resultList==null){
+             System.err.println("Vote！！！！");
              save(vote);
+
         }else if(resultList.size()==1){
             /**
              * 重复Vote不做处理
              */
             if(vote.getVoteType()==resultList.get(0).getVoteType()){
 
-            }else{
+                System.err.println("重复操作！！！！");
 
+            }else{
+                System.err.println("改变操作！！！！");
                 baseDAO.delete(Vote.class , resultList.get(0).getId());
                 save(vote);
 

@@ -26,12 +26,13 @@
 
 			<div class="content-wrapper">
 				<div class="container">
-
+		
 					<section class="content-header">
+					<div class="col-md-9 col-sm-9 col-xs-12">
 						<h3>
-        	$question.getTitle()
-       </h3>
-       
+			        		$question.getTitle()
+			       		</h3>
+			       	</div>
 					</section>
 
 					<div class="row">
@@ -68,12 +69,9 @@
 									<ul class="question-tags">
 										<li>
 											<a class="q-tag">
-												书籍</a>
+												无标签</a>
 										</li>
-										<li>
-											<a class="q-tag">
-												python</a>
-										</li>
+										
 										
 									</ul>
 								</div>
@@ -175,8 +173,15 @@
 						return editormd.toolbarModes["simple"]
 					},
 					// toolbarIcons : "full", // You can also use editormd.toolbarModes[name] default list, values: full, simple, mini.
-					
 				});
+
+				$("#submit-answer").onclick = function () {
+					$.ajax({
+						type: 'POST',
+						url: '/'
+					});
+                }
+
 			});
 		</script>
 		
