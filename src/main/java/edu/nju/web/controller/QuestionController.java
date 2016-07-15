@@ -66,7 +66,8 @@ public class QuestionController {
         return service.getAnswers(id, page, 10);
     }
 
-    @RequestMapping(value = "/submitQuestion",method = RequestMethod.GET)
+    
+    @RequestMapping(value = "/submitQuestion",method = RequestMethod.POST)
     String newQuestion(String title, String description, HttpSession session, @ModelAttribute("user")User user){
         System.out.println("submit a question!");
         Map<String,Object> result = new HashMap<>();
@@ -89,7 +90,6 @@ public class QuestionController {
 
             return "redirect:/question/"+question.getId();
         }
-
 
         return "redirect:/ask";
     }

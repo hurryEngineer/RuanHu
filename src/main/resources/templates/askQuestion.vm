@@ -105,11 +105,9 @@
 		#parse("commonPart/addtionalJs.vm")
 		<script type="text/javascript">
 			function submitQuestion(){
-				var questionTitle = document.getElementById("question_title").innerHTML;
+				var questionTitle = document.getElementById("question_title").value;
 				var questionDescript = testEditor.getMarkdown();
-				console.log(questionDescript);
-				console.log(questionTitle);
-				$.stdGet("/submitQuestion",{title: questionTitle, description: questionDescript});
+				$.stdPost("/submitQuestion",{title: questionTitle, description: questionDescript});
 			}
 		
 //			$("#btn_submit_question").click(function(){
