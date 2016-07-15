@@ -37,49 +37,22 @@ public class UserProfileController {
         model.addAttribute("userInfo", profileService.getUserByName(userName));
         model.addAttribute("questionCount",profileService.getQuestionCountByName(userName));
         model.addAttribute("answerCount",profileService.getAnswerCountByName(userName));
-        return "userProfile";
+        return "user/userProfile";
     }
 
-//    @RequestMapping(value = "/showActivities", method = RequestMethod.GET)
-//    @ResponseBody
-//    List<ActivityVO> showActivities(@RequestParam("userName") String userName,Model model) {
-//        return profileService.orderedActivity(profileService.getQuestionByName(userName),profileService.getAnswerByName(userName));
-//    }
-//
-//    @RequestMapping(value = "/showQuestion", method = RequestMethod.GET)
-//    @ResponseBody
-//    List<QuestionVO> showUserQuestion(@RequestParam("userName") String userName) {
-//        return profileService.getQuestionByName(userName);
-//    }
-//
-//    @RequestMapping(value = "/showAnswers", method = RequestMethod.POST)
-//    @ResponseBody
-//    List<AnswerVO> showAnswers(@RequestParam("userName") String userName) {
-//        return profileService.getAnswerByName(userName);
-//    }
-
-    @RequestMapping(value = "/showActivities")
-    @ResponseBody
-    Map<String,Object> showActivities(@RequestParam("userName") String userName,Model model) {
-        Map<String,Object> map = new HashMap<>();
-        map.put("activities",profileService.orderedActivity(profileService.getQuestionByName(userName),profileService.getAnswerByName(userName)));
-        return map;
-    }
 
     @RequestMapping(value = "/showQuestion")
-    @ResponseBody
-    Map<String,Object> showUserQuestion(@RequestParam("userName") String userName) {
-        Map<String,Object> map = new HashMap<>();
-        map.put("activities",profileService.getQuestionByName(userName));
-        return map;
+    String showUserQuestion(@RequestParam("userName") String userName,Model model) {
+        model.addAttribute("userName",userName);
+        model.addAttribute("activities",profileService.getQuestionByName(userName));
+        return "/user/user_questionList";
     }
 
     @RequestMapping(value = "/showAnswers")
-    @ResponseBody
-    Map<String,Object> showAnswers(@RequestParam("userName") String userName) {
-        Map<String,Object> map = new HashMap<>();
-        map.put("activities",profileService.getAnswerByName(userName));
-        return map;
+    String showAnswers(@RequestParam("userName") String userName, Model model) {
+        model.addAttribute("userName",userName);
+        model.addAttribute("activities",profileService.getAnswerByName(userName));
+        return "/user/user_answerList";
     }
 
     /**

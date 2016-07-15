@@ -7,16 +7,13 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>$userInfo.userName - 软乎</title>
 
-    #parse("commonPart/commonCssAndJs.vm")
-##    <link rel="stylesheet" href="/zhihu.css">
-
-
+    #parse("/templates/commonPart/commonCssAndJs.vm")
 </head>
 
 <body class="hold-transition skin-blue-light layout-top-nav">
 <div class="wrapper">
 
-    #parse("commonPart/mainHeader.vm")
+    #parse("/templates/commonPart/mainHeader.vm")
 
     <div class="content-wrapper">
         <div class="container">
@@ -25,32 +22,32 @@
 ##                <div class="zu-main-content">
         <div class="">
             <div class="row">
-                <div class="col-md-8" style="margin-top: 40px">
-                    #parse("userDetail.vm")
+                <div class="col-md-9" style="margin-top: 40px">
+                    #parse("/templates/user/userDetail.vm")
                 </div>
 
                 <div class="col-md-3" style="margin-top: 40px">
 
-                    #parse("user_rightSideBar.vm")
+                    #parse("/templates/user/user_rightSideBar.vm")
                 </div>
             </div>
-            <div class="row" >
-                <div class="">
-                    <h2 class="" style="color:#666;">最新动态</h2>
-                    </a>
-                </div>
-                <div class="">
-                    <div id="current">
+            <div class="row" id='current' style="margin: 10px 10px">
+##                <div class="">
+##                    <h2 class="" style="color:#666;">最新动态</h2>
+##                    </a>
+##                </div>
+##                <div class="col-md-10">
+##                    <div id="current">
 
-                        #foreach($one in $activities)
-                            #if($one.type=='QUESTION')
-                                #parse("/listItem/user_questionListItem.vm")
-                            #elseif($one.type=='ANSWER')
-                                #parse("/listItem/user_answerListItem.vm")
-                            #end
-                        #end
-                    </div>
-                    </div>
+##                        #foreach($one in $activities)
+##                            #if($one.type=='QUESTION')
+##                                #parse("/listItem/user_questionList.vm")
+##                            #elseif($one.type=='ANSWER')
+##                                #parse("/listItem/user_answerList.vm")
+##                            #end
+##                        #end
+##                    </div>
+##                    </div>
                 </div>
             </div>
         </div>
@@ -58,12 +55,12 @@
     </div>
     <!-- ./wrapper -->
 
-    #parse("commonPart/addtionalJs.vm")
+    #parse("/templates/commonPart/addtionalJs.vm")
 
     <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 
     <script>
-        $("#current").load("/userProfile/showActivities?userName=" + '$!{userInfo.userName}');
+        $("#current").load("/userProfile/showQuestion?userName=" + '$!{userInfo.userName}');
         $('#question-nav').click(function() {
             $("#current").load("/userProfile/showQuestion?userName=" + '$!{userInfo.userName}');
         });

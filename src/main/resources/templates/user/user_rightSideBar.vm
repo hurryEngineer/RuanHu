@@ -12,7 +12,7 @@
 				<a href="#" id="answer-nav">
 					<i class="fa fa-files-o"></i>
 					<span>  回  答</span>
-                    <span class="label label-warning pull-right">${questionCount}</span>
+                    <span class="label label-warning pull-right">${answerCount}</span>
 				</a>
 			</li>
 			<li>

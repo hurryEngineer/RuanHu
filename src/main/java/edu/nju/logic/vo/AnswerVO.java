@@ -8,7 +8,6 @@ import edu.nju.data.entity.Answer;
 public class AnswerVO extends Answer implements ViewTime{
     private String createAtForView;
     private String updateAtForView;
-    private ActivityType type = ActivityType.ANSWER;
 
     public AnswerVO(Answer answer) {
         this.setAuthor(answer.getAuthor());
