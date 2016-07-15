@@ -3,7 +3,8 @@
         display:none;
     }
     .item{
-        margin:7px 0;
+        margin:15px 0;
+        border:5px 0;
     }
 </style>
 
@@ -11,15 +12,15 @@
 
     <div class="box-header with-border">
         <h3 class="name box-title">${userInfo.userName}</h3>
-        <div class="box-tools pull-right">
-            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-        </div><!-- /.box-tools -->
+##        <div class="box-tools pull-right">
+##            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+##        </div><!-- /.box-tools -->
     </div><!-- /.box-header -->
 
     <div class="box-body" >
 
         <div class="col-md-4">
-            <img class="avatar" src=$userInfo.photoUri />
+            <img class="avatar" style="margin: 20px 20px;width: 60%" src=$userInfo.photoUri />
         ##                            <span class="ProfileAvatarEditor-tip">修改头像</span>
         ##                            <span class="ProfileAvatarEditor-spinner Spinner"></span>
         </div>
@@ -44,70 +45,75 @@
 
 
                     <div class="item editable-group" id='location-group'>
-                        <i class="icon fa fa-map-signs margin-r-5"></i>
-                            <span class="info-wrap">
-                                <span class="location item text-muted" >  $userInfo.location</span>
-                                <a class="zu-edit-button edit label label-info" name="edit" href="javascript:;" style="margin-left: 10px"><i class="zu-edit-button-icon fa fa-edit margin-r-4"></i><span class="edit-msg">修改</span></a>
-                            </span>
+
+                        <span class="info-wrap">
+                            <i class="icon fa fa-map-signs margin-r-5"></i>
+                            <span class="location item text-muted" >  $userInfo.location</span>
+                            <a class="zu-edit-button edit label label-info" name="edit" href="javascript:;" style="margin-left: 10px"><i class="zu-edit-button-icon fa fa-edit margin-r-4"></i><span class="edit-msg">修改</span></a>
+                        </span>
                         <span class='info-empty-wrap'>
                             <a href="javascript:;" name="edit" class="zg-link-litblue-normal">填写所在地</a></span>
                         <span class="edit-wrap">
-                            <span class="topic-input-wrap"><input id="location-input" autocomplete="off" aria-haspopup="true" type="text" name="location" value="" class="zg-form-text-input location" placeholder="居住地"/></span>
-                          <a id="editLocation" class="btn label label-success" name="save" href="javascript:;">确定</a>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                                <input id="location-input" type="text" name="location" value='$!{userInfo.location}' class="form-control location text-muted" placeholder="居住地"/>
+                                <span class="input-group-btn">
+                                    <button id="editLocation" type="button" class="btn btn-info btn-flat">确定</button>
+                                </span>
+                            </div>
                         </span>
                     </div>
 
 
-                    <div class="item editable-group " id="birthday-group" >
-                        <i class="icon fa fa-birthday-cake margin-r-5"></i>
+                    <span class="item editable-group " id="birthday-group" >
                         <span class="info-wrap">
-
+                            <i class="icon fa fa-birthday-cake margin-r-5"></i>
                             <span class="birthday item text-muted">$userInfo.birthDate</span>
                             <a class="zu-edit-button edit label label-info" name="edit" href="javascript:;" style="margin-left: 10px">
                                 <i class="zu-edit-button-icon fa fa-edit margin-r-4"></i><span class="edit-msg">修改</span></a>
                         </span>
-                        <span class='info-empty-wrap'>
-                            <a href="javascript:;" name="edit" class="zg-link-litblue-normal">填写生日</a></span>
+##                        <span class='info-empty-wrap'>
+##                            <a href="javascript:;" name="edit" class="zg-link-litblue-normal">填写生日</a></span>
 ##
-                          <div class="form-group edit-wrap" style="transform: scale(0.5)">
-                            <div class="input-group date">
-##                              <div class="input-group-addon">
-##                                <i class="fa fa-calendar"></i>
-##                              </div>
-                              <input type="text" class="form-control pull-right" id="datepicker" width="50%">
-                            </div>
-                              <!-- /.input group -->
-                              <a id="editBirthday" class="btn label label-success" name="save" href="javascript:;">确定</a>
-                          </div>
-
-
-##                        </span>
-                    </div>
+                          <span class="form-group edit-wrap" >
+                            <span class="input-group date">
+                              <div class="input-group-addon">
+                                <i class="fa fa-birthday-cake"></i>
+                              </div>
+                              <input type="text" class="form-control text-muted" id="datepicker" />
+                                <span class="input-group-btn">
+                                    <button id="editBirthday" type="button" class="btn btn-info btn-flat">确定</button>
+                                </span>
+                            </span>
+                          </span>
+                    </span>
 
                     <div class="item" id="description-group">
 
-                        <i class="icon fa fa-smile-o margin-r-5"></i>
-
                     <span class="info-wrap">
+                        <i class="icon fa fa-smile-o margin-r-5"></i>
                         <span class="description content text-muted">$userInfo.description</span>
                         <a class="zu-edit-button edit label label-info" name="edit" href="javascript:;" style="margin-left: 10px">
-                                    <i class="zu-edit-button-icon"></i><span class="edit-msg">修改</span></a>
+                                    <i class="fa fa-edit margin-r-4"></i><span class="edit-msg">修改</span></a>
                     </span>
 
-                    <span class='info-empty-wrap'>
-                        <a href="javascript:;" name="edit" class="zg-link-litblue-normal">
-                        <i class="zg-icon zg-icon-edit-button-blue"></i>
-                        <span>填写个人简介</span></a>
-                    </span>
+##                    <span class='info-empty-wrap'>
+##                        <a href="javascript:;" name="edit" class="zg-link-litblue-normal">
+##                        <i class="zg-icon zg-icon-edit-button-blue"></i>
+##                        <span>填写个人简介</span></a>
+##                    </span>
 
                     <span class="edit-wrap" >
-                        <textarea value=$userInfo.description class="description" id="description-input"></textarea>
-                        <a id="editDescription" class="btn label label-success" name="save" href="javascript:;">确定</a>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icon fa fa-smile-o"></i></span>
+                            <input value='${userInfo.description}' class="description form-control" id="description-input" />
+                            <span class="input-group-btn">
+                              <button id="editDescription" type="button" class="btn btn-info btn-flat">确定</button>
+                            </span>
+                        </div>
                     </span>
                     </div>
-
                 </div>
-
         </div>
     </div>
 </div>
