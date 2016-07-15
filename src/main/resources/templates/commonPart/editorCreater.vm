@@ -1,0 +1,29 @@
+## editor命名为 editormd
+<script src="/dist/js/tempSave.js"></script>
+<script type="text/javascript">
+	questionID = "$question.id";
+	$(function() {
+		var testEditor = editormd("editormd", {
+			width: "90%",
+			height: 340,
+			path: 'plugins/editorMdLib/',
+			watch: false,
+			toolbarIcons: function() {
+				return editormd.toolbarModes["simple"]
+			},
+
+			onload: editorOnLoad
+
+		});
+		testEditor.questionID = questionID;
+		testEditor.timelySave = editorOnChange;
+
+		function savePolling() {
+			testEditor.timelySave();
+			setTimeout(savePolling, 1000);
+		}
+
+		setTimeout(savePolling, 1000);
+
+	});
+</script>
