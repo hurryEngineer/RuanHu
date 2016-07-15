@@ -1,13 +1,26 @@
 ## editor命名为 editormd
+<script src="/editor.md-master/editormd.js"></script>
 <script src="/dist/js/tempSave.js"></script>
 <script type="text/javascript">
-	questionID = "$question.id";
+	#
+	if($question.id)
+		var thisQuestionID = "$question.id";#
+	else
+		var thisQuestionID = "newQuestion";#
+	end
+
 	$(function() {
 		var testEditor = editormd("editormd", {
 			width: "90%",
 			height: 340,
 			path: 'plugins/editorMdLib/',
-			watch: false,
+			watch: true,
+			emoji: true,
+			
+//			imageUpload: true,
+//			imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+//			imageUploadURL: "./php/upload.php?test=dfdf",
+			
 			toolbarIcons: function() {
 				return editormd.toolbarModes["simple"]
 			},
@@ -15,7 +28,7 @@
 			onload: editorOnLoad
 
 		});
-		testEditor.questionID = questionID;
+		testEditor.questionID = thisQuestionID;
 		testEditor.timelySave = editorOnChange;
 
 		function savePolling() {

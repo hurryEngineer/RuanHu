@@ -57,6 +57,7 @@ public class QuestionController {
         model.addAttribute("answerOfQuestion",answerVOs);
 
         return "questionInfo";
+        
     }
 
     @RequestMapping(value="/question/{id}/answers",method = RequestMethod.GET)
