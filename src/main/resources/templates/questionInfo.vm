@@ -135,7 +135,7 @@
 							
 							<div class="row">
 								<div id="submit-answer">
-									<input class="answer-btn" type="button" value="提交答案 "></input>
+									<input class="answer-btn" type="button" onclick="submitAnswer()" value="提交答案 "></input>
 								</div>
 							</div>
 							
@@ -150,6 +150,24 @@
 				</div>
 			</div>
 			<!-- ./wrapper -->
+			<script type="text/javascript">
+				#if($question.id)
+					var myQuestionId = "$question.id";
+				#else
+					var myQuestionId = "newQuestion";
+				#end
+				function submitAnswer() {
+                    $.ajax({
+                        type: "GET",
+                        url:"/answer/saveAnswer",
+                        data: {questionId:myQuestionId, markedText:testEditor.getMarkdown()},
+                        success: function(msg){
+                            console.log(msg);
+                            location.reload(true);
+                        }
+                    });
+                }
+			</script>
 	</body>
 
 </html>
