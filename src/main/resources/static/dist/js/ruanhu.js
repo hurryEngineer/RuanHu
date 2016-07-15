@@ -1,9 +1,20 @@
-function praseMarkdownToHtml(id) {
+//还未转化为html的带class: pure-markdown
+function parseMarkdownToHtmlById(id) {
+	$("#"+id).removeClass("pure-markdown");
 	editormd.markdownToHTML(id, {
+		markdownSourceCode : true,
 		emoji: true,
 		taskList: true,
-		tex: true, // 默认不解析
+		tex: true // 默认不解析
 	});
+}
+
+function parseAllMarkDown(){
+	$(".pure-markdown").each(
+		function(){
+    		parseMarkdownToHtmlById(this.id);
+  		}
+	);
 }
 
 function voteAnswer(obj) {

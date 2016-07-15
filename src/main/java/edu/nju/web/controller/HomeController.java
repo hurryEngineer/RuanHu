@@ -13,5 +13,4 @@ public class HomeController {
         return "redirect:/question";
     }
     
-    
 }

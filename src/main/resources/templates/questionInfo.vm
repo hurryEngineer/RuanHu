@@ -20,10 +20,6 @@
 				#else
                 var aQuestionId = "newQuestion";
 				#end
-            function vote(obj) {
-            	console.log(obj);
-                console.log(obj.getAttribute("answerid"));
-            }
         </script>
 
 
@@ -86,11 +82,13 @@
 									</ul>
 								</div>
 								<div class="col-md-10 col-xs-6">
-									<div class="q-ltop-content">
-										<p >
-										$question.content
-										</p>										
+									
+									<div id="answer-markdown-area-$question.id" class="pure-markdown q-ltop-content">
+                						<textarea style="display:none;">
+                							$question.content
+               	 						</textarea>
 									</div>
+									
 
 									<div class="q-lbtm-content">
 
@@ -179,6 +177,8 @@
                         }
                     });
                 }
+				
+				parseAllMarkDown();
 			</script>
 	</body>
 

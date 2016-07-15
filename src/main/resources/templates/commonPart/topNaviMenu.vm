@@ -18,7 +18,7 @@
 			
 			<ul class="dropdown-menu" role="menu">
                   <li>
-                    <a href="#">
+                    <a href="/userProfile/$user.userName">
                       <i class="fa fa-user"></i>主页
                     </a>
                   </li>
