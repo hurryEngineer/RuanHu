@@ -106,6 +106,7 @@
 			function submitQuestion(){
 				var questionTitle = document.getElementById("question_title").value;
 				var questionDescript = testEditor.getMarkdown();
+				testEditor.clearStorage();
 				$.stdPost("/submitQuestion",{title: questionTitle, description: questionDescript});
 			}
 		

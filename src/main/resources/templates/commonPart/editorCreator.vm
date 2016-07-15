@@ -39,10 +39,18 @@
 		});
 		testEditor.questionID = thisQuestionID;
 		testEditor.timelySave = editorOnChange;
-		var random = Math.random();
+		testEditor.isSubmitMarkDown = false;
+		testEditor.clearStorage = function(){
+			this.isSubmitMarkDown = true;
+			console.log(this.questionID);
+			localStorage[this.questionID] = "";
+		};
+		
 		function savePolling() {
-			testEditor.timelySave();
-			setTimeout(savePolling, 1000);
+			if(!testEditor.isSubmitMarkDown){
+				testEditor.timelySave();
+				setTimeout(savePolling, 1000);
+			}
 		}
 
 		setTimeout(savePolling, 1000);

@@ -9,9 +9,11 @@ import edu.nju.logic.service.TimeService;
 import edu.nju.logic.vo.AnswerVO;
 import edu.nju.logic.vo.QuestionVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
@@ -44,11 +46,13 @@ public class QuestionController {
 
     
     @RequestMapping(value = "/question/{id}", method = RequestMethod.GET)
-    String showQuestion(@PathVariable long id, Model model, HttpSession session){
+    String showQuestion(@PathVariable long id, Model model, HttpSession session,SessionStatus sessionStatus){
 
         Object question = session.getAttribute("question");
         Question ques = question==null?service.showQuestion(id):(Question)question;
-
+        
+        session.setAttribute("question", null);
+        
         List<AnswerVO> answerVOs = service.getAnswers(ques.getId(), 1, 10);
 
         model.addAttribute("question",ques);

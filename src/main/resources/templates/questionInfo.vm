@@ -192,10 +192,12 @@ $question.content
 					var myQuestionId = "newQuestion";
 				#end
 				function submitAnswer() {
+					var markdown = testEditor.getMarkdown();
+					testEditor.clearStorage();
                     $.ajax({
                         type: "POST",
                         url:"/answer/saveAnswer",
-                        data: {questionId:myQuestionId, markedText:testEditor.getMarkdown()},
+                        data: {questionId:myQuestionId, markedText:markdown},
                         success: function(msg){
                             console.log(msg);
                             location.reload(true);
