@@ -22,16 +22,33 @@ import static org.junit.Assert.*;
 public class UserDAOImplTest {
 
 
-
     @Autowired
     UserDAO userDAO;
+
+
+    @Test
+    public void save() throws Exception {
+
+        User user = new User();
+        String userName = "侍硕的小号";
+        String pw = "123";
+        user.setUserName(userName);
+        user.setPassword(pw);
+        userDAO.save(user);
+
+        if(!userDAO.getUserByName(userName).getPassword().equals(pw)){
+            fail();
+        }
+    }
+
+
+
     @Test
     public void update() throws Exception {
-        User user = new User();
-        user.setId(new Long(2));
-        user.setUserName("ss14");
-        user.setPassword("123456");
-        userDAO.update(user);
+      for(int i=1;i<=4 ;i++){
+          User user = userDAO.getUserByID(new Long(i));
+          userDAO.update(user);
+      }
 
 
     }

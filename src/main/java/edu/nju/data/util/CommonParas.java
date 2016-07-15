@@ -6,5 +6,5 @@ package edu.nju.data.util;
 public class CommonParas {
 
     public static int default_pageSize =10;
-
+    public static int PhotoSize=100;
 }

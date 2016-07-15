@@ -31,8 +31,8 @@ public class AnswerDAOImplTest {
     @Test
     public void save() throws Exception {
 
-        for (int k=206;k<226 ;k++){
-            for(int j=1;j<=3 ;j++){
+        for (int k=239;k<259 ;k++){
+            for(int j=1;j<=4 ;j++){
                     Answer answer = new Answer();
                     answer.setAuthorId(new Long(j));
                     answer.setQuestionId(new Long (k));

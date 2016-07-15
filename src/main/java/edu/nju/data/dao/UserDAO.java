@@ -8,6 +8,10 @@ import edu.nju.data.util.VerifyResult;
  */
 public interface UserDAO {
 
+
+    void save(User user);
+
+
     boolean exists(String username);
 
     boolean verify(String username , String password);
@@ -15,6 +19,8 @@ public interface UserDAO {
     VerifyResult login(String username, String password);
 
     User getUserByName(String username);
+
+    User getUserByID(Long id);
 
 
     /**

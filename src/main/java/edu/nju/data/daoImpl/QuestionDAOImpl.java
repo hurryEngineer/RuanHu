@@ -38,12 +38,14 @@ public class QuestionDAOImpl implements QuestionDAO {
     @Override
     public void save(Question question) {
 
+        question.setId(null);
         baseDAO.insert(question);
 
     }
 
     @Override
     public long save_id(Question question) {
+        question.setId(null);
         em.persist(question);
         em.flush();
         return question.getId();
@@ -51,6 +53,7 @@ public class QuestionDAOImpl implements QuestionDAO {
 
     @Override
     public Question save_question(Question question) {
+        question.setId(null);
         em.persist(question);
         em.flush();
         return question;
