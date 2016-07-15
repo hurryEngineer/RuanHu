@@ -90,13 +90,60 @@ public class AnswerDAOImpl implements AnswerDAO {
 
     }
 
-    @Override
-    public void setSolution(long questionID ,long AnswerID) {
 
-        Query query = em.createQuery("update Answer a set a.solution = 1 where a.id = ?1");
+    /**
+     * 私有方法，将一个Answer无脑设置为Solution
+     * @param AnswerID
+     */
+    private void setSolution(long AnswerID){
+        Query query = em.createQuery("update Answer as a set a.solution = 1  where a.id = ?1");
         query.setParameter(1,AnswerID);
         query.executeUpdate();
 
+    }
+
+
+    @Override
+    public void setSolution(long QuestionID ,long AnswerID) {
+
+        Query query = em.createQuery("from Answer a where a.solution = 1 and a.question.id = ?1");
+        query.setParameter(1,QuestionID);
+        List<Answer> resultList = query.getResultList();
+        /**
+         * 如果这个问题没有一个答案被选为solution
+         */
+        if(resultList==null){
+
+            System.err.println("Set solution!!!");
+            setSolution(AnswerID);
+
+        }else{
+
+            if(resultList.size()==0){
+                System.err.println("???");
+                System.err.println("Set solution!!!");
+                setSolution(AnswerID);
+            }
+            /**
+             * 如果已经有其他回答被认可
+             */
+            if(resultList.size()>0){
+
+                System.err.println("Cancle others !!!");
+                cancelSolution(resultList.get(0).getId());
+                setSolution(AnswerID);
+
+            }
+
+        }
+    }
+
+
+    @Override
+    public void cancelSolution(long answerID) {
+        Query query = em.createQuery("update Answer as a set a.solution = 0  where a.id = ?1");
+        query.setParameter(1,answerID);
+        query.executeUpdate();
     }
 
     @Override

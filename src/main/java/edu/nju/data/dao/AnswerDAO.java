@@ -76,6 +76,12 @@ public interface AnswerDAO {
     void setSolution(long questionID ,long answerID);
 
     /**
+     * 把一个问题Solution标志置0
+     * @param answerID
+     */
+    void cancelSolution(long answerID);
+
+    /**
      * 根据AnswerID获取Answer
      * @param answerID
      * @return
