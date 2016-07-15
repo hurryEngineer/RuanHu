@@ -2,18 +2,17 @@
 <script src="/editor.md-master/editormd.js"></script>
 <script src="/dist/js/tempSave.js"></script>
 <script type="text/javascript">
-	#
-	if($question.id)
-		var thisQuestionID = "$question.id";#
-	else
-		var thisQuestionID = "newQuestion";#
-	end
+	#if($question.id)
+		var thisQuestionID = "$question.id";
+	#else
+		var thisQuestionID = "newQuestion";
+	#end
 
 	$(function() {
 		var testEditor = editormd("editormd", {
 			width: "90%",
 			height: 340,
-			path: 'plugins/editorMdLib/',
+			path: '/editor.md-master/lib/',
 			watch: true,
 			emoji: true,
 			
