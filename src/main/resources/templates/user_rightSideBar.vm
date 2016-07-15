@@ -1,0 +1,38 @@
+<div class="col-md-3 col-sm-3 col-xs-12">
+	<section class="sidebar">
+		<ul class="sidebar-menu fixed">
+			<li>
+				<a href="#" id="question-nav">
+					<i class="fa fa-dashboard"></i>
+					<span>我的提问</span>
+				</a>
+			</li>
+			<li>
+				<a href="#" id="answer-nav">
+					<i class="fa fa-files-o"></i>
+					<span>我的回答</span>
+				</a>
+			</li>
+			<li>
+				<a href="pages/widgets.html">
+					<i class="fa fa-th"></i>
+					<span>我的收藏</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class="fa fa-pie-chart"></i>
+					<span>收到的邀请</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class="fa fa-laptop"></i>
+					<span>我的成就</span>
+				</a>
+			</li>
+		</ul>
+		<hr />
+	</section>
+
+</div>

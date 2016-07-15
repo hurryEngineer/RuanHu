@@ -11,6 +11,15 @@ public class ActivityVO implements Comparable<ActivityVO>{
     private String content;
     private Timestamp update;
     private String updateAtForView;
+    private Object activity;
+
+    public Object getActivity() {
+        return activity;
+    }
+
+    public void setActivity(Object activity) {
+        this.activity = activity;
+    }
 
     public ActivityVO(QuestionVO questionVO) {
         setTitle(questionVO.getTitle());
@@ -18,6 +27,7 @@ public class ActivityVO implements Comparable<ActivityVO>{
         setUpdate(questionVO.getLastUpdatedAt());
         setUpdateAtForView(questionVO.getUpdateAtForView());
         setType(ActivityType.QUESTION);
+        setActivity(questionVO);
     }
 
     public ActivityVO(AnswerVO answerVO) {
@@ -26,6 +36,7 @@ public class ActivityVO implements Comparable<ActivityVO>{
         setUpdate(answerVO.getLastUpdatedAt());
         setUpdateAtForView(answerVO.getUpdateAtForView());
         setType(ActivityType.ANSWER);
+        setActivity(answerVO);
     }
 
     public ActivityType getType() {
@@ -71,5 +82,17 @@ public class ActivityVO implements Comparable<ActivityVO>{
     @Override
     public int compareTo(ActivityVO activityVO) {
         return update.compareTo(activityVO.getUpdate());
+    }
+
+    @Override
+    public String toString() {
+        return "ActivityVO{" +
+                "type=" + type +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", update=" + update +
+                ", updateAtForView='" + updateAtForView + '\'' +
+                ", activity=" + activity +
+                '}';
     }
 }
