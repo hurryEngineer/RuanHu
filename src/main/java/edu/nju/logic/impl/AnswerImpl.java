@@ -65,4 +65,16 @@ public class AnswerImpl implements AnswerService {
         vote.setLastUpdatedAt(new Timestamp(new Date().getTime()));
         voteDAO.save(vote);
     }
+
+    @Override
+    public void unVote(String questionId, String answerId, String userId, VoteType type) {
+        Vote vote = new Vote();
+        vote.setVoteType(type);
+        vote.setQuestionId(Long.valueOf(questionId));
+        vote.setAnswerId(Long.valueOf(answerId));
+        vote.setAuthorId(Long.valueOf(userId));
+        vote.setCreatedAt(new Timestamp(new Date().getTime()));
+        vote.setLastUpdatedAt(new Timestamp(new Date().getTime()));
+        voteDAO.cancel(vote);
+    }
 }
