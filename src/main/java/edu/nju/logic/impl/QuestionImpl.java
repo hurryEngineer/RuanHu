@@ -6,6 +6,9 @@ import edu.nju.data.dao.VoteDAO;
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
 import edu.nju.data.entity.Vote;
+import edu.nju.data.util.HQL_Helper.Enums.OrderByMethod;
+import edu.nju.data.util.HQL_Helper.Enums.OrderByPara;
+import edu.nju.data.util.HQL_Helper.Enums.WherePara;
 import edu.nju.data.util.VoteType;
 import edu.nju.logic.service.QuestionService;
 import edu.nju.logic.service.TimeService;
@@ -50,7 +53,8 @@ public class QuestionImpl implements QuestionService {
 
     @Override
     public List<QuestionVO> getQuestions(int pageNum, int pageSize) {
-        List<Question> questions = questionDAO.getPaginatedQuestions(pageNum, pageSize);
+        List<Question> questions = questionDAO.getOrderedPagedQuestions
+                (pageNum, pageSize, OrderByPara.createdAt, OrderByMethod.DESC );
         List<QuestionVO> questionVOs = new ArrayList<>(questions.size());
         for (Question question : questions) {
             questionVOs.add(timeService.transferQuestion(question));
@@ -60,7 +64,8 @@ public class QuestionImpl implements QuestionService {
 
     @Override
     public List<AnswerVO> getAnswers(long questionId, int pageNum, int pageSize) {
-        List<Answer> answers =  answerDAO.getAnswerByQuestionID(questionId,pageNum,pageSize);
+        List<Answer> answers =  answerDAO.getOrderedPagedAnswersBy
+                (WherePara.questionID , questionId , pageNum ,pageSize ,OrderByPara.lastUpdatedAt,OrderByMethod.DESC);
         List<AnswerVO> answerVOs = new ArrayList<>(answers.size());
         for (Answer answer: answers) {
             answerVOs.add(timeService.transferAnswer(answer));

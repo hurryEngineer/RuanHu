@@ -14,6 +14,9 @@ public class WhereMaker_Question implements WhereHQLInterface {
 
     @Override
     public String getWhereHql(WherePara wherePara) {
+        if(wherePara==null){
+            return wherePart;
+        }
         switch (wherePara){
 
             case userID:

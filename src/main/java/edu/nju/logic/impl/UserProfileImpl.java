@@ -6,6 +6,7 @@ import edu.nju.data.dao.UserDAO;
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
 import edu.nju.data.entity.User;
+import edu.nju.data.util.HQL_Helper.Enums.WherePara;
 import edu.nju.logic.service.TimeService;
 import edu.nju.logic.service.UserProfileService;
 import edu.nju.logic.vo.ActivityType;
@@ -90,8 +91,8 @@ public class UserProfileImpl implements UserProfileService {
     }
 
     @Override
-    public List<QuestionVO> getQuestionByName(String name) {
-        List<Question> questions = questionDAO.getQuestionByUsername(name);
+    public List<QuestionVO> getQuestionByName(String userName) {
+        List<Question> questions = questionDAO.getQuestionBy(WherePara.userName , userName);
         if (questions==null) return new ArrayList<QuestionVO>();
         List<QuestionVO> questionVOs = new ArrayList<>();
         for (Question question : questions) {
@@ -101,8 +102,8 @@ public class UserProfileImpl implements UserProfileService {
     }
 
     @Override
-    public List<AnswerVO> getAnswerByName(String name) {
-        List<Answer> answers =  answerDAO.getAnswerByUserName(name);
+    public List<AnswerVO> getAnswerByName(String userName) {
+        List<Answer> answers =  answerDAO.getAnswerBy(WherePara.userName , userName);
         if (answers==null) return new ArrayList<AnswerVO>();
         List<AnswerVO> answerVOs = new ArrayList<>();
         for (Answer answer: answers) {
