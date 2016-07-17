@@ -149,7 +149,7 @@ $question.content
 							
 							
 							#foreach($oneAnswer in $answerOfQuestion)
-								#parse("/listItem/answerListItem.vm")
+								#parse("listItem/answerListItem.vm")
 							#end
 							
 							
