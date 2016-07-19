@@ -31,13 +31,31 @@
 				</ul>
 				<form class="navbar-form navbar-left" role="search">
 					<div class="form-group">
-						<input type="text" class="form-control" id="navbar-search-input" placeholder="Search">
+						<input type="text" class="form-control" id="navbar-search-input" placeholder="搜索" style="width: 250px">
+                        <i class="fa fa-search"></i>
 					</div>
 				</form>
+
+                <form id="header_search" method="GET" action="http://qaengine.enginethemes.com" class="disable-mobile-search">
+                    <input type="text" name="keyword" required="" value="" placeholder="Enter Keywords" autocomplete="off" style="width: 350px;" class="">
+                    <i class="fa fa-search"></i>
+                    <div id="search_preview" class="search-preview empty"></div>
+                </form>
+
 			</div>
+
 
 			#parse("commonPart/topNaviMenu.vm")
 
 		</div>
 	</nav>
 </header>
+<script type="text/javascript">
+	$("#navbar-search-input").focus(function(event) {
+		$(this).animate({width: '300px'});
+	});
+
+	$("#navbar-search-input").blur(function(event) {
+		$(this).animate({width: '250px'});
+	});
+</script>

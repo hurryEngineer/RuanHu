@@ -133,3 +133,14 @@ ul.tags-list li {
 .question-tags{
 	margin-top:-20px;
 }
+.fa-search-icon {
+    display: inline-block;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    color: #8b97b1;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}

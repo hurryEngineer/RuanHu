@@ -173,6 +173,7 @@ $question.content
 									<input class="answer-btn" type="button" onclick="submitAnswer()" value="提交答案 "></input>
 								</div>
 							</div>
+							<hr/>
 							
 							
 							
