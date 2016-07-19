@@ -36,12 +36,6 @@
 					</div>
 				</form>
 
-                <form id="header_search" method="GET" action="http://qaengine.enginethemes.com" class="disable-mobile-search">
-                    <input type="text" name="keyword" required="" value="" placeholder="Enter Keywords" autocomplete="off" style="width: 350px;" class="">
-                    <i class="fa fa-search"></i>
-                    <div id="search_preview" class="search-preview empty"></div>
-                </form>
-
 			</div>
 
 
