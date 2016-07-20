@@ -110,8 +110,7 @@ public class AnswerController {
     int upVote(@RequestParam("questionId") String questionId,
                   @RequestParam("answerId") String answerId,
                   @RequestParam("userId") String userId) {
-        answerService.vote(questionId, answerId, userId, VoteType.up);
-        return 0;
+        return answerService.vote(questionId, answerId, userId, VoteType.up);
     }
 
     /**
@@ -126,8 +125,7 @@ public class AnswerController {
     @RequestMapping(value = "/downVote", method = RequestMethod.GET)
     @ResponseBody
     int downVote(String questionId, String answerId, String userId) {
-        answerService.vote(questionId, answerId, userId, VoteType.down);
-        return 0;
+        return answerService.vote(questionId, answerId, userId, VoteType.down);
     }
 
 

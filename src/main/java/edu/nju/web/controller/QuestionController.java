@@ -112,8 +112,7 @@ public class QuestionController {
      */
     @RequestMapping(value = "/up")
     int upVote(String questionId, String userId){
-        service.vote(questionId,userId, VoteType.up);
-        return 0;
+        return service.vote(questionId,userId, VoteType.up);
     }
 
     /**
@@ -126,8 +125,7 @@ public class QuestionController {
      */
     @RequestMapping(value = "/down")
     int downVote(String questionId, String userId){
-        service.vote(questionId,userId, VoteType.down);
-        return 0;
+        return service.vote(questionId,userId, VoteType.down);
     }
 
 
