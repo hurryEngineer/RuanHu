@@ -3,12 +3,13 @@ package edu.nju.data.dao;
 import edu.nju.data.util.Pager;
 import edu.nju.data.entity.api.WikiItem;
 
-import java.awt.*;
+import java.util.List;
+
 
 /**
  * Created by Dora on 2016/7/20.
  */
-public interface WikiforDAO {
+public interface WikDAO {
 
     List getRelatedQuestions(long wikiID);
 
