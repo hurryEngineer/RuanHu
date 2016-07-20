@@ -74,7 +74,7 @@ public class QuestionDAOImpl implements QuestionDAO {
 
         Question result = save_question(question);
         wikiDAO.insertQuestion(result.getId() , wikiIDs);
-        wikiDAO.insertQuestion(result.getId(),docuIDs);
+        documentDAO.insertQuestion(result.getId(),docuIDs);
         return result;
 
     }

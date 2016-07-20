@@ -4,7 +4,6 @@ import edu.nju.data.dao.BaseDAO;
 import edu.nju.data.dao.DocumentDAO;
 import edu.nju.data.entity.AnswerDocument;
 import edu.nju.data.entity.QuestionDocument;
-import edu.nju.data.entity.QuestionWiki;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,6 +65,7 @@ public class DocumentDAOImpl implements DocumentDAO {
             for(int i=0 ; i<docuIDs.size();i++){
 
                 QuestionDocument qd = new QuestionDocument();
+                qd.setId(null);
                 qd.setQuestionId(questionID);
                 qd.setDocumentId((Long) docuIDs.get(i));
                 baseDAO.insert(qd);
@@ -82,6 +82,7 @@ public class DocumentDAOImpl implements DocumentDAO {
             for(int i=0 ; i<docuIDs.size();i++){
 
                 AnswerDocument ad = new AnswerDocument();
+                ad.setId(null);
                 ad.setAnswerId(answerID);
                 ad.setDocumentId((Long) docuIDs.get(i));
                 baseDAO.insert(ad);

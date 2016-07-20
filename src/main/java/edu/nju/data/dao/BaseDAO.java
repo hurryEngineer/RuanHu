@@ -11,6 +11,9 @@ public interface BaseDAO {
      */
     void insert(Object obj);
 
+
+
+
     /**
      * 从数据库中删除对象
      * @param

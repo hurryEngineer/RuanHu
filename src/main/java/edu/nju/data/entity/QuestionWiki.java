@@ -7,12 +7,12 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "question_wiki", schema = "RuanHu", catalog = "")
-@IdClass(QuestionWikiPK.class)
 public class QuestionWiki {
     private long questionId;
     private long wikiId;
+    private Long id;
 
-    @Id
+    @Basic
     @Column(name = "question_id")
     public long getQuestionId() {
         return questionId;
@@ -22,7 +22,7 @@ public class QuestionWiki {
         this.questionId = questionId;
     }
 
-    @Id
+    @Basic
     @Column(name = "wiki_id")
     public long getWikiId() {
         return wikiId;
@@ -30,6 +30,17 @@ public class QuestionWiki {
 
     public void setWikiId(long wikiId) {
         this.wikiId = wikiId;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override
@@ -41,6 +52,7 @@ public class QuestionWiki {
 
         if (questionId != that.questionId) return false;
         if (wikiId != that.wikiId) return false;
+        if (id != that.id) return false;
 
         return true;
     }
@@ -49,6 +61,7 @@ public class QuestionWiki {
     public int hashCode() {
         int result = (int) (questionId ^ (questionId >>> 32));
         result = 31 * result + (int) (wikiId ^ (wikiId >>> 32));
+        result = 31 * result + (int) (id ^ (id >>> 32));
         return result;
     }
 }

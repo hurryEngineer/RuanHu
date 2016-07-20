@@ -69,8 +69,8 @@ public class WikiDAOImpl implements WikiDAO {
         }else {
 
             for(int i=0 ; i<wikiIDs.size();i++){
-
                 QuestionWiki qw = new QuestionWiki();
+                qw.setId(null);
                 qw.setQuestionId(questionID);
                 qw.setWikiId((Long) wikiIDs.get(i));
                 baseDAO.insert(qw);
@@ -89,6 +89,7 @@ public class WikiDAOImpl implements WikiDAO {
             for(int i=0 ; i<wikiIDs.size();i++){
 
                 AnswerWiki aw = new AnswerWiki();
+                aw.setId(null);
                 aw.setAnswerId(answerID);
                 aw.setWikiId((Long) wikiIDs.get(i));
                 baseDAO.insert(aw);
