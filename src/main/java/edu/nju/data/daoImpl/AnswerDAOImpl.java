@@ -1,9 +1,9 @@
 package edu.nju.data.daoImpl;
 
-import edu.nju.data.dao.AnswerDAO;
-import edu.nju.data.dao.BaseDAO;
-import edu.nju.data.dao.OrderedPageDAO;
+import edu.nju.data.dao.*;
 import edu.nju.data.entity.Answer;
+import edu.nju.data.entity.api.Document;
+import edu.nju.data.entity.api.WikiItem;
 import edu.nju.data.util.CommonParas;
 import edu.nju.data.util.HQL_Helper.Enums.FromPara;
 import edu.nju.data.util.HQL_Helper.Enums.OrderByMethod;
@@ -32,6 +32,10 @@ public class AnswerDAOImpl implements AnswerDAO {
     OrderedPageDAO pageDAO;
     @Autowired
     QueryHqlMaker hqlMaker;
+    @Autowired
+    WikiDAO wikiDAO;
+    @Autowired
+    DocumentDAO documentDAO;
 
     @PersistenceContext
     EntityManager em;
@@ -59,6 +63,15 @@ public class AnswerDAOImpl implements AnswerDAO {
         em.persist(answer);
         em.flush();
         return answer;
+    }
+
+    @Override
+    public Answer createAnswer(Answer answer, List wikiIDs, List docuIDs) {
+        Answer result = save_answer(answer);
+        wikiDAO.insertAnswer(result.getId() , wikiIDs);
+        documentDAO.insertAnswer(result.getId() , docuIDs);
+
+        return result;
     }
 
     @Override
@@ -231,6 +244,16 @@ public class AnswerDAOImpl implements AnswerDAO {
         query.setParameter(1,ID);
         long count = (long) query.getSingleResult();
         return count;
+    }
+
+    @Override
+    public List<WikiItem> getRelatedWikiID(long QuestionID) {
+        return null;
+    }
+
+    @Override
+    public List<Document> getRelatedDocuID(long QuestionID) {
+        return null;
     }
 
 
