@@ -2,6 +2,7 @@ package edu.nju.logic.impl;
 
 import edu.nju.RuanHuApplication;
 import edu.nju.data.entity.Question;
+import edu.nju.data.entity.User;
 import edu.nju.logic.service.QuestionService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,7 +42,7 @@ public class QuestionImplTest {
       //  q.setAuthorId(Long.valueOf("1"));
         q.setLastUpdatedAt(new Timestamp(new Date().getTime()));
 
-        System.out.println(service.saveQuestion(q));
+        System.out.println(service.saveQuestion(q,new User().getId()));
     }
 
 }

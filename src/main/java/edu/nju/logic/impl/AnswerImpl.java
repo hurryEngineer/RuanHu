@@ -9,6 +9,7 @@ import edu.nju.data.entity.User;
 import edu.nju.data.entity.Vote;
 import edu.nju.data.util.VoteType;
 import edu.nju.logic.service.AnswerService;
+import edu.nju.logic.vo.AnswerVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -56,7 +57,25 @@ public class AnswerImpl implements AnswerService {
 
     @Override
     public boolean editAnswer(long answerId, String text) {
-        return false;
+        Answer answer = answerDAO.getAnswerByID(answerId);
+        answer.setContent(text);
+        answerDAO.update(answer);
+        return true;
+    }
+
+    @Override
+    public boolean deleteAnswer(long answerId, long userId) {
+        Answer answer = answerDAO.getAnswerByID(answerId);
+        if (answer.getAuthor()!=null && answer.getAuthor().getId()!=userId) {
+            return false;
+        }
+        answerDAO.deleteByAnswerID(answerId);
+        return true;
+    }
+
+    @Override
+    public Answer getAnswer(long answerId) {
+        return answerDAO.getAnswerByID(answerId);
     }
 
     @Override

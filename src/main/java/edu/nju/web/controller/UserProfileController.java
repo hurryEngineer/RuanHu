@@ -42,24 +42,24 @@ public class UserProfileController {
 
 
     @RequestMapping(value = "/userProfile/showQuestion")
-    String showUserQuestion(@RequestParam("userName") String userName,Model model) {
+    String showUserQuestion(@RequestParam("userName") String userName,Model model, HttpSession session) {
+        Object user = session.getAttribute("user");
         model.addAttribute("userName",userName);
-        model.addAttribute("activities",profileService.getQuestionByName(userName));
+        model.addAttribute("activities",profileService.getQuestionByName(userName,user==null?-1:((User)user).getId()));
         return "user/user_questionList";
     }
 
     @RequestMapping(value = "/userProfile/showAnswers")
-    String showAnswers(@RequestParam("userName") String userName, Model model) {
+    String showAnswers(@RequestParam("userName") String userName, Model model, HttpSession session) {
+        Object user = session.getAttribute("user");
         model.addAttribute("userName",userName);
-        System.out.println(profileService.getAnswerByName(userName));
-        model.addAttribute("activities",profileService.getAnswerByName(userName));
+        System.out.println(profileService.getAnswerByName(userName,user==null?-1:((User)user).getId()));
+        model.addAttribute("activities",profileService.getAnswerByName(userName,user==null?-1:((User)user).getId()));
         return "user/user_answerList";
     }
 
     /**
-     * 编辑用户信息
-     * @param description  编辑后的用户描述
-     * @param location 编辑后的用户地址
+     * 编辑用户信
      * @param birthday 编辑后的用户生日
      * @param session {@link HttpSession}
      */

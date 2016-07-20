@@ -29,7 +29,8 @@
 					url: "/answer/upVote",
 					data: {questionId: aQuestionId, answerId:answerIdThis, userId:userIdThis},
                     success: function(msg){
-                        console.log(msg);
+                        $("#answerVoteCount").text(msg);
+                        obj.parentNode.setAttribute("class","action vote vote-up img-circle bg-blue");
                     }
 				});
             }
@@ -75,8 +76,8 @@
 								<div class="col-md-2 col-xs-2">
 									<ul class="question-upDown">
 										<li title="" data-original-title="This is useful.">
-											<a id="up" title="This is useful." data-container="body" data-toggle="popover" data-content="You must have 5 points to vote up." href="javascript:void(0)" data-name="vote_up" class="action vote vote-up img-circle " data-original-title="" title="">
-											<i class="fa fa-chevron-up"></i>
+											<a id="up" title="顶一下" data-container="body" data-toggle="tooltip" data-content="You must have 5 points to vote up." href="javascript:void(0)" data-name="vote_up" class="action vote vote-up img-circle " data-original-title="" title="">
+												<i class="fa fa-chevron-up"></i>
 											</a>
 										</li>
 										
@@ -85,7 +86,7 @@
 										</li>
 									 
 										<li title="" data-original-title="This is not useful">
-											<a id="down" title="This is not useful" data-container="body" data-toggle="popover" data-content="You must have 500 points to vote down." href="javascript:void(0)" data-name="vote_down" class="action vote vote-down img-circle " data-original-title="" title="">
+											<a id="down" title="踩一下" data-container="body" data-toggle="tooltip" data-content="You must have 500 points to vote down." href="javascript:void(0)" data-name="vote_down" class="action vote vote-down img-circle " data-original-title="" title="">
 											<i class="fa fa-chevron-down"></i>
 											</a>
 										</li>
@@ -263,7 +264,15 @@ $question.content
                 }
 				
 				parseAllMarkDown();
+
+                $("[data-toggle='tooltip']").tooltip();
 			</script>
+##            <script>
+##                $(function () {
+##                    $("[data-toggle='tooltip']").tooltip();
+##                });
+##            </script>
+
 	</body>
 
 </html>

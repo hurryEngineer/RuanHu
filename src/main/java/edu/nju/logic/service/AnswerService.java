@@ -1,7 +1,9 @@
 package edu.nju.logic.service;
 
+import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.User;
 import edu.nju.data.util.VoteType;
+import edu.nju.logic.vo.AnswerVO;
 
 /**
  * 回答接口
@@ -26,7 +28,23 @@ public interface AnswerService {
      */
     boolean saveAnswer(long questionId, long userId, String text);
 
+    /**
+     * 修改回答
+     * @param answerId 回答id
+     * @param text 修改后的内容
+     * @return 是否修改成功：现在只有true
+     */
     boolean editAnswer(long answerId, String text);
+
+    /**
+     * 删除回答
+     * @param answerId 回答id
+     * @param userId 用户id
+     * @return 是否有权限删除
+     */
+    boolean deleteAnswer(long answerId, long userId);
+
+    Answer getAnswer(long answerId);
 
     /**
      * 点赞
@@ -34,9 +52,7 @@ public interface AnswerService {
      * @param answerId 答案id
      * @param userId 用户id
      * @param type 顶还是踩
-     * @return 如果之前没有投过赞同票，票数增加1，返回 1
-     *          如果之前投过赞同票，票数减少1， 返回 -1
-     *          如果之前投的反对票，票数增加2，返回 2
+     * @return 投票后的总票数
      */
     int vote(String questionId, String answerId, String userId, VoteType type);
 

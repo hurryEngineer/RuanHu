@@ -36,9 +36,9 @@ public interface UserProfileService {
 
     long getAnswerCountByName(String name);
 
-    List<QuestionVO> getQuestionByName(String name);
+    List<QuestionVO> getQuestionByName(String name, long userId);
 
-    List<AnswerVO> getAnswerByName(String name);
+    List<AnswerVO> getAnswerByName(String name, long userId);
 
     List<ActivityVO> orderedActivity(List<QuestionVO> questionVOs, List<AnswerVO> answerVOs);
 

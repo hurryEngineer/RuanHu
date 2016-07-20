@@ -9,6 +9,7 @@ import edu.nju.data.entity.User;
 import edu.nju.data.util.HQL_Helper.Enums.OrderByPara;
 import edu.nju.data.util.HQL_Helper.Enums.WherePara;
 import edu.nju.logic.service.TimeService;
+import edu.nju.logic.service.TransferService;
 import edu.nju.logic.service.UserProfileService;
 import edu.nju.logic.vo.ActivityType;
 import edu.nju.logic.vo.ActivityVO;
@@ -37,7 +38,7 @@ public class UserProfileImpl implements UserProfileService {
     @Autowired
     private AnswerDAO answerDAO;
     @Autowired
-    private TimeService timeService;
+    private TransferService timeService;
 
     @Override
     public boolean editProfile(User user, String description, String location, String bitrhday) {
@@ -93,23 +94,23 @@ public class UserProfileImpl implements UserProfileService {
     }
 
     @Override
-    public List<QuestionVO> getQuestionByName(String userName) {
+    public List<QuestionVO> getQuestionByName(String userName, long userId) {
         List<Question> questions = questionDAO.getOrderedPagedQuestionsBy(WherePara.userName ,userName,1, OrderByPara.createdAt);
         if (questions==null) return new ArrayList<QuestionVO>();
         List<QuestionVO> questionVOs = new ArrayList<>();
         for (Question question : questions) {
-            questionVOs.add(timeService.transferQuestion(question));
+            questionVOs.add(timeService.transferQuestion(question, userId));
         }
         return questionVOs;
     }
 
     @Override
-    public List<AnswerVO> getAnswerByName(String userName) {
+    public List<AnswerVO> getAnswerByName(String userName, long userId) {
         List<Answer> answers =  answerDAO.getOrderedPagedAnswersBy(WherePara.userName,userName,1, OrderByPara.createdAt);
         if (answers==null) return new ArrayList<AnswerVO>();
         List<AnswerVO> answerVOs = new ArrayList<>();
         for (Answer answer: answers) {
-            answerVOs.add(timeService.transferAnswer(answer));
+            answerVOs.add(timeService.transferAnswer(answer, userId));
         }
         return answerVOs;
     }

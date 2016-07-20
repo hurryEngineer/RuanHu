@@ -26,6 +26,10 @@ public class Tss_httpDAOImpl implements Tss_httpDAO {
     public Document getDocumentById(long id) throws IOException{
 
         String s = HttpRequest.sendGet(url);
+        return getDocumentByString(s);
+    }
+
+    public Document getDocumentByString(String s) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         Document document = mapper.readValue(s, Document.class);
         return document;
