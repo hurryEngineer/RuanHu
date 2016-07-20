@@ -1,4 +1,4 @@
-package edu.nju.data.entity;
+package edu.nju.data.entity.api;
 
 import edu.nju.data.util.Source;
 

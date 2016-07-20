@@ -1,13 +1,18 @@
 package edu.nju.data.dao;
 
 import edu.nju.data.util.Pager;
-import edu.nju.data.entity.WikiItem;
+import edu.nju.data.entity.api.WikiItem;
+
+import java.awt.*;
 
 /**
  * Created by Dora on 2016/7/20.
  */
-public interface WikiDao {
+public interface WikiDAO {
 
+    List getRelatedQuestions(long wikiID);
+
+    List getRelatedDocuments(long wikiID);
 
     /**
      * 通过id查询一个wiki条目

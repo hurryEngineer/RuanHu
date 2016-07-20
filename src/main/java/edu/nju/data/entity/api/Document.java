@@ -1,4 +1,4 @@
-package edu.nju.data.entity;
+package edu.nju.data.entity.api;
 
 /**
  * Created by Dora on 2016/7/20.
