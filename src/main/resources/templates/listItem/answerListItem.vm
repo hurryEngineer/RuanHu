@@ -3,13 +3,13 @@
 	<div class="col-md-2 col-xs-2">
 		<ul class="question-upDown">
 			<li title="" data-original-title="This is useful.">
-				<a data-container="body" data-toggle="popover" data-content="You must have 5 points to vote up." href="javascript:void(0)" data-name="vote_up" class="action vote vote-up img-circle " data-original-title="" title="">
+				<a data-container="body" data-toggle="popover" data-content="You must have 5 points to vote up." href="javascript:void(0)" data-name="vote_up" class="action vote vote-up img-circle" data-original-title="" title="">
 					<i answerid="$oneAnswer.id" onclick="upVote(this)" class="fa fa-chevron-up"></i>
 				</a>
 			</li>
 
 			<li data-original-title="" title="">
-				<span itemprop="upvoteCount" class="vote-count"> $oneAnswer.voteCount </span>
+				<span id='answerVoteCount' itemprop="upvoteCount" class="vote-count"> $oneAnswer.voteCount </span>
 			</li>
 
 			<li title="" data-original-title="This is not useful">
