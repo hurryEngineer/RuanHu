@@ -38,10 +38,10 @@ public class QuestionController {
     TransferService timeService;
 
     @RequestMapping(value="/question",method = RequestMethod.GET)
-    String showAllQuestions(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
-        List<QuestionVO> result = service.getQuestions(page,10);
+    String showAllQuestions(@RequestParam(value = "page", defaultValue = "1") int page, Model model, HttpSession session) {
+        Object user = session.getAttribute("user");
+        List<QuestionVO> result = service.getQuestions(page,10, user==null?-1:((User)user).getId());
         model.addAttribute("questions",result);
-
         return "questionList";
     }
 
@@ -49,12 +49,14 @@ public class QuestionController {
     @RequestMapping(value = "/question/{id}", method = RequestMethod.GET)
     String showQuestion(@PathVariable long id, Model model, HttpSession session,SessionStatus sessionStatus){
 
+        Object user = session.getAttribute("user");
+
         Object question = session.getAttribute("question");
-        Question ques = question==null?service.showQuestion(id):(Question)question;
+        Question ques = question==null?service.showQuestion(id,user==null?-1:((User)user).getId()):(Question)question;
         
         session.setAttribute("question", null);
         
-        List<AnswerVO> answerVOs = service.getAnswers(ques.getId(), 1, 10);
+        List<AnswerVO> answerVOs = service.getAnswers(ques.getId(), 1, 10, user==null?-1:((User)user).getId());
 
         model.addAttribute("question",ques);
         model.addAttribute("answerOfQuestion",answerVOs);
@@ -65,15 +67,18 @@ public class QuestionController {
 
     @RequestMapping(value = "/question/get", method = RequestMethod.GET)
     @ResponseBody
-    QuestionVO getQuestion(@RequestParam("id")String questionId) {
-        return service.showQuestion(Long.valueOf(questionId));
+    QuestionVO getQuestion(@RequestParam("id")String questionId, HttpSession session) {
+        Object user = session.getAttribute("user");
+        return service.showQuestion(Long.valueOf(questionId),user==null?-1:((User)user).getId());
     }
     
     @RequestMapping(value="/question/{id}/answers",method = RequestMethod.GET)
     @ResponseBody
-    List<AnswerVO> showAnswers(@PathVariable long id, @RequestParam(value = "page", defaultValue = "1") int page) {
+    List<AnswerVO> showAnswers(@PathVariable long id, @RequestParam(value = "page", defaultValue = "1") int page, HttpSession session) {
 
-        return service.getAnswers(id, page, 10);
+        Object user = session.getAttribute("user");
+
+        return service.getAnswers(id, page, 10, user==null?-1:((User)user).getId());
     }
 
     @RequestMapping(value = "/question/edit",method = RequestMethod.POST)
@@ -111,8 +116,8 @@ public class QuestionController {
             question.setCreatedAt(new Timestamp(new Date().getTime()));
             question.setContent(description);
 
-            question = service.saveQuestion(question);
-            QuestionVO questionVO = timeService.transferQuestion(question);
+            question = service.saveQuestion(question, user.getId());
+            QuestionVO questionVO = timeService.transferQuestion(question, user.getId());
             session.setAttribute("question",questionVO);
 
 

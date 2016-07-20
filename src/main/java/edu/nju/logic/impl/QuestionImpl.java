@@ -42,14 +42,14 @@ public class QuestionImpl implements QuestionService {
     TransferService timeService;
 
     @Override
-    public QuestionVO showQuestion(long id) {
+    public QuestionVO showQuestion(long id, long userId) {
         Question question = questionDAO.getQuestionByID(id);
-        return timeService.transferQuestion(question);
+        return timeService.transferQuestion(question,userId);
     }
 
     @Override
-    public QuestionVO saveQuestion(Question question) {
-        return timeService.transferQuestion(questionDAO.save_question(question));
+    public QuestionVO saveQuestion(Question question, long userId) {
+        return timeService.transferQuestion(questionDAO.save_question(question),userId);
     }
 
     @Override
@@ -62,12 +62,12 @@ public class QuestionImpl implements QuestionService {
     }
 
     @Override
-    public List<QuestionVO> getQuestions(int pageNum, int pageSize) {
+    public List<QuestionVO> getQuestions(int pageNum, int pageSize, long userId) {
         List<Question> questions = questionDAO.getOrderedPagedQuestions
                 (pageNum, pageSize, OrderByPara.createdAt, OrderByMethod.DESC );
         List<QuestionVO> questionVOs = new ArrayList<>(questions.size());
         for (Question question : questions) {
-            questionVOs.add(timeService.transferQuestion(question));
+            questionVOs.add(timeService.transferQuestion(question,userId));
         }
         return questionVOs;
     }
@@ -82,12 +82,12 @@ public class QuestionImpl implements QuestionService {
     }
 
     @Override
-    public List<AnswerVO> getAnswers(long questionId, int pageNum, int pageSize) {
+    public List<AnswerVO> getAnswers(long questionId, int pageNum, int pageSize, long userId) {
         List<Answer> answers =  answerDAO.getOrderedPagedAnswersBy
                 (WherePara.questionID , questionId , pageNum ,pageSize ,OrderByPara.lastUpdatedAt,OrderByMethod.DESC);
         List<AnswerVO> answerVOs = new ArrayList<>(answers.size());
         for (Answer answer: answers) {
-            answerVOs.add(timeService.transferAnswer(answer));
+            answerVOs.add(timeService.transferAnswer(answer,userId));
         }
         return answerVOs;
     }
