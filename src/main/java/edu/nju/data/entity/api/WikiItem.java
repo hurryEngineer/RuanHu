@@ -1,13 +1,16 @@
 package edu.nju.data.entity.api;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Created by Dora on 2016/7/20.
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class WikiItem {
 
     private long id;
     private String title;
-    private String summary;
+    private String content;
 
     public long getId() {
         return id;
@@ -25,12 +28,12 @@ public class WikiItem {
         this.title = title;
     }
 
-    public String getSummary() {
-        return summary;
+    public String getContent() {
+        return content;
     }
 
-    public void setSummary(String summary) {
-        this.summary = summary;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     @Override
@@ -38,7 +41,7 @@ public class WikiItem {
         return "WikiItem{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", summary='" + summary + '\'' +
+                ", content='" + content + '\'' +
                 '}';
     }
 }

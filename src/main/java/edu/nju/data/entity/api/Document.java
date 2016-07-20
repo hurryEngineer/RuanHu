@@ -12,8 +12,6 @@ public class Document {
 
     private String id;
 
-    private List<String> categories;
-
     private String title;
 
     private String url;

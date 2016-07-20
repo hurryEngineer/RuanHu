@@ -29,6 +29,7 @@ public class Tss_httpDAOImpl implements Tss_httpDAO {
         return getDocumentByString(s);
     }
 
+    @Override
     public Document getDocumentByString(String s) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         Document document = mapper.readValue(s, Document.class);
