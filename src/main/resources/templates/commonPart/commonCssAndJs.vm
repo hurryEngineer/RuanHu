@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <link href="//cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/select2/4.0.3/css/select2.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/dist/css/AdminLTE.min.css">
 <link rel="stylesheet" href="/dist/ruanhuCss/qaEngine.css">
 <link rel="stylesheet" href="/dist/ruanhuCss/ruanhu.css">
@@ -11,5 +12,7 @@
 <link href="//cdn.bootcss.com/morris.js/0.5.1/morris.css" rel="stylesheet">
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="/dist/js/app.min.js"></script>
 <script src="/dist/js/stdGetAndPost.js"></script>
 <script src="/dist/js/ruanhu.js"></script>
+<script src="//cdn.bootcss.com/select2/4.0.3/js/select2.full.min.js"></script>

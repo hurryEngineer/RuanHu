@@ -7,6 +7,11 @@
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 		#parse("commonPart/commonCssAndJs.vm")
 		<link rel="stylesheet" href="/dist/css/editormd.css" />
+		
+		<script>
+			editorConfig = {width:"96%"}
+		</script>
+		
 		#parse("commonPart/editorCreator.vm")
 		
 		<title>问题详情 - 软乎</title>
@@ -43,8 +48,6 @@
 							
 							<div class="body-question">
 							<!--<form id="submit_question">-->
-							<input type="hidden" id="qa_nonce" name="qa_nonce" value="f8bd1d5888">
-							<input type="hidden" name="post_parent" value="0">
 							<div class="input-title">
 								<input type="text" class="submit-input" id="question_title" name="post_title" placeholder="Your Question">
 					
@@ -60,16 +63,28 @@
 							<input data-provide="typeahead" type="text" class="submit-input tags-input" id="question_tags" name="question_tags" placeholder="回车添加标签">
 							<ul class="tags-list" id="tag_list"><li class="tag-item">
 						
-									<input type="hidden" name="tags[]" value="google glass">
 									google glass <a href="javascript:void(0)" class="delete"><i class="fa fa-times"></i></a>
 						
 								</li>
 							</ul>
 								
 							
-							<input id="add_tag_text" type="hidden" value="You must have 1000 points to add tag. Current, you have to select existing tags.">
 							</div>
 							
+			<div class="form-group">
+                
+                <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
+                  <option>Alabama</option>
+                  <option>Alaska</option>
+                  <option>California</option>
+                  <option>Delaware</option>
+                  <option>Tennessee</option>
+                  <option>Texas</option>
+                  <option>Washington</option>
+                </select>
+            </div>
+							<!--<input class="submit-input tags-input" placeholder="添加wiki引用">-->
+						
 								
 							<div class="row">
 									<p><b>问题说明</b></p>
@@ -85,6 +100,8 @@
 								</div>
 								
 							</div>
+							
+							
 							
 							<button id="btn_submit_question" onclick="submitQuestion()" class="btn-submit-question">提交问题 </button>
 							
@@ -109,6 +126,23 @@
 				testEditor.clearStorage();
 				$.stdPost("/submitQuestion",{title: questionTitle, description: questionDescript});
 			}
+			
+			var multipleSelect = null;
+			
+			$(function(){
+				multipleSelect = $(".select2").select2({
+  					tags: false
+				});
+				
+				multipleSelect.on("select2:selecting", 
+					function (e) {
+						console.log("selecting");
+						multipleSelect.select2("close");
+						e.preventDefault() 
+				});
+				
+			});
+			
 		
 //			$("#btn_submit_question").click(function(){
 //				var content = testEditor.getMarkdown();
@@ -124,6 +158,7 @@
 //			});
 //			});
 		</script>
+		##parse("commonPart/addtionalJs.vm")
 	</body>
 
 </html>
