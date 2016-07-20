@@ -1,6 +1,7 @@
 package edu.nju.data.daoImpl;
 
 import edu.nju.data.dao.*;
+import edu.nju.data.dao.http.Wiki_httpDAO;
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
 import edu.nju.data.entity.api.Document;
@@ -18,6 +19,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,6 +40,8 @@ public class QuestionDAOImpl implements QuestionDAO {
     WikiDAO wikiDAO;
     @Autowired
     DocumentDAO documentDAO;
+    @Autowired
+    Wiki_httpDAO wiki_httpDAO;
 
     @PersistenceContext
     EntityManager em;
@@ -180,13 +185,34 @@ public class QuestionDAOImpl implements QuestionDAO {
         return (long) query.getSingleResult();
     }
 
-    @Override
-    public List<WikiItem> getRelatedWikiID(long QuestionID) {
-        return null;
-    }
+
 
     @Override
-    public List<Document> getRelatedDocuID(long QuestionID) {
+    public List<WikiItem> getRelatedWikiItems(long QuestionID)
+    {
+        List<WikiItem> result = new ArrayList<>();
+        List ids = new ArrayList();
+        /**
+         * 首先获取与该问题相关的wiki
+         */
+        Query query = em.createQuery("select qw.wikiId from QuestionWiki qw where qw.questionId = ?1 ");
+        query.setParameter(1,QuestionID);
+        ids.addAll(query.getResultList());
+
+        for(int i=0;i<ids.size();i++){
+            try {
+                result.add(wiki_httpDAO.getWikiById((Long) ids.get(i)));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return result;
+    }
+
+
+    @Override
+    public List<Document> getRelatedDocuments(long QuestionID) {
         return null;
     }
 }

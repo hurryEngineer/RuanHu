@@ -8,6 +8,7 @@
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="current_session_context_class">thread</property>
     <property name="packagesToScan" >entity</property>
+
     <mapping class="edu.nju.data.entity.Answer"/>
     <mapping class="edu.nju.data.entity.Comment"/>
     <mapping class="edu.nju.data.entity.Question"/>

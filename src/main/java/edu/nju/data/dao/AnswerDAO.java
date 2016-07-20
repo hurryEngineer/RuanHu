@@ -152,9 +152,18 @@ public interface AnswerDAO {
      */
     long getAnswerCountByUserID(long ID);
 
+    /**
+     * 获取与某个回答相关的wikiItem列表
+     * @param QuestionID
+     * @return
+     */
+    List<WikiItem> getRelatedWikiItems(long QuestionID);
 
-    List<WikiItem> getRelatedWikiID(long QuestionID);
-
-    List<Document> getRelatedDocuID(long QuestionID);
+    /**
+     * 获取与某个回答相关的文件列表
+     * @param QuestionID
+     * @return
+     */
+    List<Document> getRelatedDocuments(long QuestionID);
 
 }

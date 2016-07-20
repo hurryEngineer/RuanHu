@@ -246,12 +246,12 @@ public class AnswerDAOImpl implements AnswerDAO {
     }
 
     @Override
-    public List<WikiItem> getRelatedWikiID(long QuestionID) {
+    public List<WikiItem> getRelatedWikiItems(long QuestionID) {
         return null;
     }
 
     @Override
-    public List<Document> getRelatedDocuID(long QuestionID) {
+    public List<Document> getRelatedDocuments(long QuestionID) {
         return null;
     }
 

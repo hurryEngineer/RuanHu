@@ -3,6 +3,7 @@ package edu.nju.data.daoImpl;
 import edu.nju.RuanHuApplication;
 import edu.nju.data.dao.AnswerDAO;
 import edu.nju.data.entity.Answer;
+import edu.nju.data.entity.Question;
 import edu.nju.data.util.HQL_Helper.Enums.OrderByMethod;
 import edu.nju.data.util.HQL_Helper.Enums.OrderByPara;
 import org.junit.Test;
@@ -14,6 +15,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.fail;
@@ -25,6 +27,7 @@ import static org.junit.Assert.fail;
 @SpringApplicationConfiguration(classes = RuanHuApplication.class)
 @WebAppConfiguration
 public class AnswerDAOImplTest {
+
 
 
     @Autowired
@@ -82,6 +85,23 @@ public class AnswerDAOImplTest {
     public void save_answer() throws Exception {
 
     }
+
+    @Test
+    public void createAnswer() throws Exception {
+        Answer answer = new Answer();
+        answer.setAuthorId(new Long(2));
+        answer.setQuestionId(new Long(333));
+        answer.setContent("加速起跑，半蹲，后脚踮起，重心压在后脚尖，前脚翻韧90°迅速蹬出");
+        List wikiIDs = new ArrayList();
+        List docuIDs = new ArrayList();
+        for(long i=1;i<=3;i++){
+            wikiIDs.add(i);
+            docuIDs.add(2*i-1);
+        }
+
+        answerDAO.createAnswer(answer , wikiIDs , docuIDs );
+    }
+
 
     @Test
     public void deleteByAnswerID() throws Exception {

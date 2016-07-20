@@ -134,9 +134,19 @@ public interface QuestionDAO {
     long getQuestionCountByUserID(long userID);
 
 
-    List<WikiItem> getRelatedWikiID(long QuestionID);
+    /**
+     *获取与问题相关的wikiItem列表
+     * @param QuestionID
+     * @return
+     */
+    List<WikiItem> getRelatedWikiItems(long QuestionID);
 
-    List<Document> getRelatedDocuID(long QuestionID);
+    /**
+     *获取与问题相关的文件列表
+     * @param QuestionID
+     * @return
+     */
+    List<Document> getRelatedDocuments(long QuestionID);
 
 
 }
