@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -77,7 +78,9 @@ public class AnswerController {
     @RequestMapping(value = "/saveAnswer", method = RequestMethod.POST)
     @ResponseBody
     public boolean saveAnswer(@RequestParam("questionId") String questionId,
-                              @RequestParam("markedText") String markedText, HttpSession session){
+                              @RequestParam("markedText") String markedText,
+                              @RequestParam("wikis")List wikiIds,
+                              @RequestParam("docs")List docIds, HttpSession session){
         User user = (User) session.getAttribute("user");
         return answerService.saveAnswer(Long.valueOf(questionId), user.getId(), markedText);
     }

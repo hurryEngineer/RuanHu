@@ -101,7 +101,7 @@ public class QuestionController {
 
     
     @RequestMapping(value = "/submitQuestion",method = RequestMethod.POST)
-    String newQuestion(String title, String description, HttpSession session, @ModelAttribute("user")User user){
+    String newQuestion(String title, String description, List wikiIds, List docIds, HttpSession session, @ModelAttribute("user")User user){
         System.out.println("submit a question!");
         Map<String,Object> result = new HashMap<>();
         Question question;
