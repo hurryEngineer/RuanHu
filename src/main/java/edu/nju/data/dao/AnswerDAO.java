@@ -1,6 +1,8 @@
 package edu.nju.data.dao;
 
 import edu.nju.data.entity.Answer;
+import edu.nju.data.entity.api.Document;
+import edu.nju.data.entity.api.WikiItem;
 import edu.nju.data.util.HQL_Helper.Enums.OrderByMethod;
 import edu.nju.data.util.HQL_Helper.Enums.OrderByPara;
 import edu.nju.data.util.HQL_Helper.Enums.WherePara;
@@ -31,6 +33,15 @@ public interface AnswerDAO {
      * @return
      */
     Answer save_answer(Answer answer);
+
+    /**
+     * 保存一个带引用的回答
+     * @param answer
+     * @param wikiIDs  如果该回答没有引用wiki条目则应该为null
+     * @param DocuIDs  如果该回答没有引用文件则应该为null
+     * @return
+     */
+    Answer createAnswer(Answer answer ,List wikiIDs , List DocuIDs);
 
 
     /**
@@ -142,5 +153,8 @@ public interface AnswerDAO {
     long getAnswerCountByUserID(long ID);
 
 
+    List<WikiItem> getRelatedWikiID(long QuestionID);
+
+    List<Document> getRelatedDocuID(long QuestionID);
 
 }
