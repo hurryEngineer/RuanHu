@@ -15,6 +15,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -74,7 +75,23 @@ public class QuestionDAOImplTest {
     }
 
 
+    @Test
+    public void createQuestion() throws Exception {
+        Question question = new Question();
+        question.setAuthorId(new Long(2));
+        question.setTitle("如何练习外点归刹？求教");
+        question.setContent("如题");
+        List wikiIDs = new ArrayList();
+        List docuIDs = new ArrayList();
+        for(int i=1;i<=3;i++){
+            wikiIDs.add(i);
+            docuIDs.add(2*i-1);
+        }
 
+        questionDAO.createQuestion(question , wikiIDs , docuIDs );
+
+
+    }
 
     @Test
     public void deleteByQuestionID() throws Exception {
