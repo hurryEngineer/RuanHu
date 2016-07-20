@@ -8,7 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -26,22 +29,26 @@ public class DocumentDAOImpl implements DocumentDAO {
     @Override
     public List getRelatedWikis(long docuID)
     {
-        Query query = em.createQuery(" select wikiID from QuestionWiki join QuestionDocument where docuID = ?1");
+        Query query = em.createQuery(" select qw.wikiId from QuestionWiki qw , QuestionDocument qd  where qd.documentId = ?1");
         query.setParameter(1,docuID);
         List resultQuestion = query.getResultList();
 
-        query = em.createQuery(" select wikiID from AnswerWiki join AnswerDocument where docuID = ?1");
+        query = em.createQuery(" select aw.wikiId from AnswerWiki aw , AnswerDocument ad where ad.documentId = ?1");
         query.setParameter(1,docuID);
         List resultAnswer = query.getResultList();
 
-        resultQuestion.addAll(resultAnswer);
+        Set resultSet = new HashSet<>();
+        resultSet.addAll(resultQuestion);
+        resultSet.addAll(resultAnswer);
 
-        return  resultQuestion;
+        List resultList = new ArrayList(resultSet);
+
+        return  resultList;
     }
 
     @Override
     public List getRelatedQuestions(long docuID) {
-        Query query = em.createQuery(" select questionID from QuestionDocument where documentID = ?1");
+        Query query = em.createQuery(" select qd.questionId from QuestionDocument qd where qd.documentId = ?1");
         query.setParameter(1,docuID);
         List result = query.getResultList();
         return  result;

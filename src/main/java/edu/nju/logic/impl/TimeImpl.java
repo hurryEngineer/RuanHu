@@ -34,23 +34,4 @@ public class TimeImpl implements TimeService {
         return result;
     }
 
-    @Override
-    public QuestionVO transferQuestion(Question question) {
-        QuestionVO questionVO = new QuestionVO(question);
-        if (question.getCreatedAt()!=null)
-            questionVO.setCreateAtForView(timeToString(question.getCreatedAt()));
-        if (question.getLastUpdatedAt()!=null)
-            questionVO.setUpdateAtForView(timeToString(question.getLastUpdatedAt()));
-        return questionVO;
-    }
-
-    @Override
-    public AnswerVO transferAnswer(Answer answer) {
-        AnswerVO answerVO = new AnswerVO(answer);
-        if (answer.getCreatedAt()!=null)
-            answerVO.setCreateAtForView(timeToString(answer.getCreatedAt()));
-        if (answer.getLastUpdatedAt()!=null)
-            answerVO.setUpdateAtForView(timeToString(answer.getLastUpdatedAt()));
-        return answerVO;
-    }
 }

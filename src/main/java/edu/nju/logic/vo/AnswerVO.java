@@ -8,6 +8,7 @@ import edu.nju.data.entity.Answer;
 public class AnswerVO extends Answer implements ViewTime{
     private String createAtForView;
     private String updateAtForView;
+    boolean canDelete;
 
     public AnswerVO(Answer answer) {
         this.setAuthor(answer.getAuthor());
@@ -40,6 +41,11 @@ public class AnswerVO extends Answer implements ViewTime{
         this.updateAtForView = updateAtForView;
     }
 
+    public boolean isCanDelete() {
+        return canDelete;
+    }
 
-
+    public void setCanDelete(boolean canDelete) {
+        this.canDelete = canDelete;
+    }
 }

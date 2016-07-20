@@ -12,6 +12,7 @@ import edu.nju.data.util.HQL_Helper.Enums.WherePara;
 import edu.nju.data.util.VoteType;
 import edu.nju.logic.service.QuestionService;
 import edu.nju.logic.service.TimeService;
+import edu.nju.logic.service.TransferService;
 import edu.nju.logic.vo.AnswerVO;
 import edu.nju.logic.vo.QuestionVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class QuestionImpl implements QuestionService {
     VoteDAO voteDAO;
 
     @Autowired
-    TimeService timeService;
+    TransferService timeService;
 
     @Override
     public QuestionVO showQuestion(long id) {
@@ -52,6 +53,15 @@ public class QuestionImpl implements QuestionService {
     }
 
     @Override
+    public boolean updateQustion(long questionId, String title, String description) {
+        Question question = questionDAO.getQuestionByID(questionId);
+        question.setTitle(title);
+        question.setContent(description);
+        questionDAO.update(question);
+        return true;
+    }
+
+    @Override
     public List<QuestionVO> getQuestions(int pageNum, int pageSize) {
         List<Question> questions = questionDAO.getOrderedPagedQuestions
                 (pageNum, pageSize, OrderByPara.createdAt, OrderByMethod.DESC );
@@ -60,6 +70,15 @@ public class QuestionImpl implements QuestionService {
             questionVOs.add(timeService.transferQuestion(question));
         }
         return questionVOs;
+    }
+
+    @Override
+    public boolean deleteQuestion(long questionId, long userId) {
+        Question question = questionDAO.getQuestionByID(questionId);
+        if (question.getAuthor()!=null && question.getAuthor().getId()!=userId)
+            return false;
+        questionDAO.deleteByQuestionID(questionId);
+        return true;
     }
 
     @Override
