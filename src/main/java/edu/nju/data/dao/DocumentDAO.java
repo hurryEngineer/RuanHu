@@ -1,6 +1,5 @@
 package edu.nju.data.dao;
 
-
 import java.util.List;
 
 /**
@@ -11,6 +10,5 @@ public interface DocumentDAO {
     List getRelatedWikis(long docuID );
 
     List getRelatedQuestions(long docuID);
-
 
 }
