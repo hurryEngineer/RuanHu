@@ -1,7 +1,11 @@
 package edu.nju.data.daoImpl;
 
 
+import edu.nju.data.dao.BaseDAO;
 import edu.nju.data.dao.WikiDAO;
+import edu.nju.data.entity.AnswerWiki;
+import edu.nju.data.entity.QuestionWiki;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +26,8 @@ import java.util.Set;
 public class WikiDAOImpl implements WikiDAO {
     @PersistenceContext
     private EntityManager em;
+    @Autowired
+    BaseDAO baseDAO;
 
 
 
@@ -54,5 +60,40 @@ public class WikiDAOImpl implements WikiDAO {
         List resultList = new ArrayList(resultSet);
 
         return resultList;
+    }
+
+    @Override
+    public void insertQuestion(long questionID, List wikiIDs) {
+        if(wikiIDs==null){
+            return ;
+        }else {
+
+            for(int i=0 ; i<wikiIDs.size();i++){
+
+                QuestionWiki qw = new QuestionWiki();
+                qw.setQuestionId(questionID);
+                qw.setWikiId((Long) wikiIDs.get(i));
+                baseDAO.insert(qw);
+
+            }
+        }
+
+    }
+
+    @Override
+    public void insertAnswer(long answerID, List wikiIDs) {
+        if(wikiIDs==null){
+            return ;
+        }else {
+
+            for(int i=0 ; i<wikiIDs.size();i++){
+
+                AnswerWiki aw = new AnswerWiki();
+                aw.setAnswerId(answerID);
+                aw.setWikiId((Long) wikiIDs.get(i));
+                baseDAO.insert(aw);
+
+            }
+        }
     }
 }

@@ -2,6 +2,8 @@ package edu.nju.data.dao;
 
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
+import edu.nju.data.entity.api.Document;
+import edu.nju.data.entity.api.WikiItem;
 import edu.nju.data.util.HQL_Helper.Enums.OrderByMethod;
 import edu.nju.data.util.HQL_Helper.Enums.OrderByPara;
 import edu.nju.data.util.HQL_Helper.Enums.WherePara;
@@ -32,6 +34,16 @@ public interface QuestionDAO {
      * @return  Question
      */
     Question save_question(Question question);
+
+
+    /**
+     * 保存一个带引用的问题
+     * @param question
+     * @param wikiIDs   如果没有引用wiki,就应该为null
+     * @param docuIDs   如果没有引用文件,就应该为null
+     * @return  返回带ID的问题;
+     */
+    Question createQuestion(Question question , List  wikiIDs , List docuIDs);
 
 
     /**
@@ -121,6 +133,10 @@ public interface QuestionDAO {
      */
     long getQuestionCountByUserID(long userID);
 
+
+    List<WikiItem> getRelatedWikiID(long QuestionID);
+
+    List<Document> getRelatedDocuID(long QuestionID);
 
 
 }
