@@ -118,9 +118,7 @@ public class AnswerController {
      * @param questionId 问题id
      * @param answerId 回答id
      * @param userId 用户id
-     * @return 如果之前没有投过反对票，票数减少1，返回 -1
-     *          如果之前投过反对票，票数增加1， 返回 1
-     *          如果之前投的赞同票，票数减少2，返回 -2
+     * @return 投票后的总票数
      */
     @RequestMapping(value = "/downVote", method = RequestMethod.GET)
     @ResponseBody
