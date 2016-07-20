@@ -4,7 +4,6 @@ import edu.nju.data.dao.BaseDAO;
 import edu.nju.data.dao.VoteDAO;
 import edu.nju.data.entity.Vote;
 import edu.nju.data.util.VoteType;
-import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Repository;
@@ -37,7 +36,7 @@ public class VoteDAOImpl implements VoteDAO {
     }
 
     @Override
-    public void vote(Vote vote) {
+    public int vote(Vote vote) {
         Query query = em.createQuery
                 ("from Vote v where v.authorId = ?1 and  ( v.answerId =?2 or v.questionId = ?3)");
         query.setParameter(1,vote.getAuthorId());
@@ -57,11 +56,12 @@ public class VoteDAOImpl implements VoteDAO {
             save(vote);
         }else if(resultList.size()>=1){
             /**
-             * 重复Vote不做处理
+             * 重复Vote,取消赞
              */
             if(vote.getVoteType()==resultList.get(0).getVoteType()){
                 System.out.println();
-                System.err.println("重复操作！！！！");
+                System.err.println("重复操作,取消赞！！！！");
+                baseDAO.delete(Vote.class,resultList.get(0).getId());
 
             }else{
                 System.err.println("改变操作！！！！");
@@ -70,6 +70,9 @@ public class VoteDAOImpl implements VoteDAO {
 
             }
         }
+
+
+        return 0;
     }
 
     @Override
@@ -88,5 +91,36 @@ public class VoteDAOImpl implements VoteDAO {
         }
 
 
+    }
+
+    @Override
+    public boolean hasVoteQuestion(long userId, long questionId, VoteType type) {
+        Query query = em.createQuery
+                (" from Vote v where v.authorId = ?1 and v.questionId = ?2 ");
+        query.setParameter(1,userId);
+        query.setParameter(2,questionId);
+        List<Vote> resultList = query.getResultList();
+        if(resultList==null){
+            return false;
+        }else if(resultList.size()==0){
+            return  false;
+        }
+        return true;
+
+    }
+
+    @Override
+    public boolean hasVoteAnswer(long userId, long answerId, VoteType type) {
+        Query query = em.createQuery
+                (" from Vote v where v.authorId = ?1 and v.answerID = ?2 ");
+        query.setParameter(1,userId);
+        query.setParameter(2,answerId);
+        List<Vote> resultList = query.getResultList();
+        if(resultList==null){
+            return false;
+        }else if(resultList.size()==0){
+            return  false;
+        }
+        return true;
     }
 }

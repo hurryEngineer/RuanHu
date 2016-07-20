@@ -21,16 +21,29 @@ public class WikiDAOImpl implements WikiDAO {
     private EntityManager em;
 
 
+
     @Override
     public List getRelatedQuestions(long wikiID) {
 
-        Query query = em.createQuery("from ");
-
-        return null;
+        Query query = em.createQuery("select questionID from QuestionWiki  where wikiID = ?1");
+        query.setParameter(1,wikiID);
+        List result = query.getResultList();
+        return result;
     }
 
     @Override
     public List getRelatedDocuments(long wikiID) {
-        return null;
+
+        Query query = em.createQuery("select documentID from QuestionWiki join QuestionDocument where wikiID = ?1");
+        query.setParameter(1,wikiID);
+        List resultQuestion = query.getResultList();
+
+        query = em.createQuery("select documentID from AnswerWiki join AnswerDocument where wikiID = ?1");
+        query.setParameter(1,wikiID);
+        List resultAnswer = query.getResultList();
+
+        resultQuestion.addAll(resultAnswer);
+
+        return resultQuestion;
     }
 }

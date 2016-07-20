@@ -16,8 +16,9 @@ public interface VoteDAO {
     /**
      * 点赞操作，可以自动识别是第一次Vote，还是改变方向的Vote
      * @param vote
+     * @return   返回现在应有的voteCount
      */
-    void vote(Vote vote);
+    int  vote(Vote vote);
 
     /**
      * 取消赞
