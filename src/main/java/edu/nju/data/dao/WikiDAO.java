@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by Dora on 2016/7/20.
  */
-public interface WikDAO {
+public interface WikiDAO {
 
     List getRelatedQuestions(long wikiID);
 
