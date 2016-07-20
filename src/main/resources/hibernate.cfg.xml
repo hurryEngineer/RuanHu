@@ -18,6 +18,10 @@
       <mapping class="edu.nju.data.entity.Vote"/>
       <mapping class="edu.nju.data.entity.User"/>
     <mapping class="edu.nju.data.entity.AlibabaKey"/>
+    <mapping class="edu.nju.data.entity.AnswerDocument"/>
+    <mapping class="edu.nju.data.entity.AnswerWiki"/>
+    <mapping class="edu.nju.data.entity.QuestionDocument"/>
+    <mapping class="edu.nju.data.entity.QuestionWiki"/>
 
 
     <!-- DB schema will be updated if needed -->

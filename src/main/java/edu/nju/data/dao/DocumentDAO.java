@@ -7,9 +7,9 @@ import java.awt.*;
  */
 public interface DocumentDAO {
 
-    List getRelatedWikis(Long docuID );
+    List getRelatedWikis(long docuID );
 
-    List getRelatedQuestions(Long docuID);
+    List getRelatedQuestions(long docuID);
 
 
 }

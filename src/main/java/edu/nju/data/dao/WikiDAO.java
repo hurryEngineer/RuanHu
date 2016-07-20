@@ -7,8 +7,8 @@ import java.awt.*;
  */
 public interface WikiDAO {
 
-    List getRelatedQuestions(Long wikiID);
+    List getRelatedQuestions(long wikiID);
 
-    List getRelatedDocuments(Long wikiID);
+    List getRelatedDocuments(long wikiID);
 
 }
