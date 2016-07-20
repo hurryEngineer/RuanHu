@@ -29,7 +29,8 @@
 					url: "/answer/upVote",
 					data: {questionId: aQuestionId, answerId:answerIdThis, userId:userIdThis},
                     success: function(msg){
-                        console.log(msg);
+                        $("#answerVoteCount").text(msg);
+                        obj.parentNode.setAttribute("class","action vote vote-up img-circle bg-blue");
                     }
 				});
             }
@@ -76,7 +77,7 @@
 									<ul class="question-upDown">
 										<li title="" data-original-title="This is useful.">
 											<a id="up" title="This is useful." data-container="body" data-toggle="popover" data-content="You must have 5 points to vote up." href="javascript:void(0)" data-name="vote_up" class="action vote vote-up img-circle " data-original-title="" title="">
-											<i class="fa fa-chevron-up"></i>
+												<i class="fa fa-chevron-up"></i>
 											</a>
 										</li>
 										

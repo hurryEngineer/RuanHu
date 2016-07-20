@@ -1,11 +1,18 @@
 package edu.nju.data.entity.api;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.util.List;
+
 /**
  * Created by Dora on 2016/7/20.
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class Document {
 
     private String id;
+
+    private List<String> categories;
 
     private String title;
 
