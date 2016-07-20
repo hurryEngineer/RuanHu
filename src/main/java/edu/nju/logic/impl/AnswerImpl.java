@@ -61,25 +61,13 @@ public class AnswerImpl implements AnswerService {
 
     @Override
     public int vote(String questionId, String answerId, String userId, VoteType type) {
-        int result = 0;
         Vote vote = new Vote();
         vote.setVoteType(type);
         vote.setAnswerId(Long.valueOf(answerId));
         vote.setAuthorId(Long.valueOf(userId));
         vote.setCreatedAt(new Timestamp(new Date().getTime()));
         vote.setLastUpdatedAt(new Timestamp(new Date().getTime()));
-        if (voteDAO.hasVoteAnswer(Long.valueOf(userId),Long.valueOf(answerId),type)) {
-            result = -1;
-            voteDAO.cancel(vote);
-        } else if ((voteDAO.hasVoteAnswer(Long.valueOf(userId),Long.valueOf(answerId),type==VoteType.up?VoteType.down:VoteType.up))){
-            result = 2;
-            voteDAO.vote(vote);
-        } else {
-            result = 1;
-            voteDAO.vote(vote);
-        }
-        result = type == VoteType.up ? result : -result;
-        return result;
+        return voteDAO.vote(vote);
     }
 
 }
