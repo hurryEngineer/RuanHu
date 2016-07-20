@@ -82,6 +82,31 @@ public class AnswerController {
     }
 
     /**
+     * 根据回答id获取一个回答的内容
+     * @param answerId 回答id
+     * @return 回答的内容
+     */
+    @RequestMapping(value = "/get",method = RequestMethod.GET)
+    @ResponseBody
+    public Answer getAnswer(@RequestParam("id")String answerId) {
+        return answerService.getAnswer(Long.valueOf(answerId));
+    }
+
+    /**
+     * 修改一个回答
+     * @param questionId 问题id
+     * @param answerId 回答id
+     * @param text 修改后的回答内容
+     * @return 跳转到原问题界面
+     */
+    @RequestMapping(value = "/edit",method = RequestMethod.POST)
+    public String editAnswer(@RequestParam("qid")String questionId, @RequestParam("aid")String answerId,
+                           @RequestParam("text")String text) {
+        answerService.editAnswer(Long.valueOf(answerId),text);
+        return "redirect:/question/"+questionId;
+    }
+
+    /**
      * 将问题标记为正确答案
      * @param answerId 要标记的answer id
      * @param questionId answer对应的问题id
@@ -101,9 +126,7 @@ public class AnswerController {
      * @param questionId 问题id
      * @param answerId 回答id
      * @param userId 用户id
-     * @return 如果之前没有投过赞同票，票数增加1，返回 1
-     *          如果之前投过赞同票，票数减少1， 返回 -1
-     *          如果之前投的反对票，票数增加2，返回 2
+     * @return 投票后的总票数
      */
     @RequestMapping(value = "/upVote", method = RequestMethod.GET)
     @ResponseBody

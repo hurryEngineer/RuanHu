@@ -9,6 +9,7 @@ public class QuestionVO extends Question implements ViewTime {
 
     private String createAtForView;
     private String updateAtForView;
+    private boolean canDelete;
 
     public QuestionVO(Question question){
         this.setId(question.getId());
@@ -40,5 +41,13 @@ public class QuestionVO extends Question implements ViewTime {
 
     public void setUpdateAtForView(String updateAtForView) {
         this.updateAtForView = updateAtForView;
+    }
+
+    public boolean isCanDelete() {
+        return canDelete;
+    }
+
+    public void setCanDelete(boolean canDelete) {
+        this.canDelete = canDelete;
     }
 }

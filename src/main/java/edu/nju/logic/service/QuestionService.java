@@ -15,11 +15,19 @@ public interface QuestionService {
 
     QuestionVO showQuestion(long ID);
 
-
     QuestionVO saveQuestion(Question question);
 
+    boolean updateQustion(long questionId, String title, String description);
 
     List<QuestionVO> getQuestions(int pageNum, int pageSize);
+
+    /**
+     * 删除问题
+     * @param questionId 问题id
+     * @param userId 回答id
+     * @return 是否有权限删除
+     */
+    boolean deleteQuestion(long questionId, long userId);
 
     /**
      * 根据问题查找答案

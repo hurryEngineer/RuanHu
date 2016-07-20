@@ -9,6 +9,7 @@ import edu.nju.data.entity.User;
 import edu.nju.data.util.HQL_Helper.Enums.OrderByPara;
 import edu.nju.data.util.HQL_Helper.Enums.WherePara;
 import edu.nju.logic.service.TimeService;
+import edu.nju.logic.service.TransferService;
 import edu.nju.logic.service.UserProfileService;
 import edu.nju.logic.vo.ActivityType;
 import edu.nju.logic.vo.ActivityVO;
@@ -37,7 +38,7 @@ public class UserProfileImpl implements UserProfileService {
     @Autowired
     private AnswerDAO answerDAO;
     @Autowired
-    private TimeService timeService;
+    private TransferService timeService;
 
     @Override
     public boolean editProfile(User user, String description, String location, String bitrhday) {

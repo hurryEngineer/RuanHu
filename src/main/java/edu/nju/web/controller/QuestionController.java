@@ -6,6 +6,7 @@ import edu.nju.data.entity.User;
 import edu.nju.data.util.VoteType;
 import edu.nju.logic.service.QuestionService;
 import edu.nju.logic.service.TimeService;
+import edu.nju.logic.service.TransferService;
 import edu.nju.logic.vo.AnswerVO;
 import edu.nju.logic.vo.QuestionVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class QuestionController {
     QuestionService service;
 
     @Autowired
-    TimeService timeService;
+    TransferService timeService;
 
     @RequestMapping(value="/question",method = RequestMethod.GET)
     String showAllQuestions(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
@@ -61,12 +62,25 @@ public class QuestionController {
         return "questionInfo";
         
     }
+
+    @RequestMapping(value = "/question/get", method = RequestMethod.GET)
+    @ResponseBody
+    QuestionVO getQuestion(@RequestParam("id")String questionId) {
+        return service.showQuestion(Long.valueOf(questionId));
+    }
     
     @RequestMapping(value="/question/{id}/answers",method = RequestMethod.GET)
     @ResponseBody
     List<AnswerVO> showAnswers(@PathVariable long id, @RequestParam(value = "page", defaultValue = "1") int page) {
 
         return service.getAnswers(id, page, 10);
+    }
+
+    @RequestMapping(value = "/question/edit",method = RequestMethod.POST)
+    String editQuestion(@RequestParam("id")String questionId, @RequestParam("title")String title,
+                      @RequestParam("description") String desciption) {
+        service.updateQustion(Long.valueOf(questionId),title,desciption);
+        return "redirect:/question/"+questionId;
     }
 
     
