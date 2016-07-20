@@ -102,14 +102,32 @@ public class QuestionController {
         return "askQuestion";
     }
 
+    /**
+     * 投票：赞同票
+     * @param questionId 问题id
+     * @param userId 用户id
+     * @return 如果之前没有投过赞同票，票数增加1，返回 1
+     *          如果之前投过赞同票，票数减少1， 返回 -1
+     *          如果之前投的反对票，票数增加2，返回 2
+     */
     @RequestMapping(value = "/up")
-    boolean upVote(String questionId, String userId){
-        return service.vote(questionId,userId, VoteType.up);
+    int upVote(String questionId, String userId){
+        service.vote(questionId,userId, VoteType.up);
+        return 0;
     }
 
+    /**
+     * 投票：反对票
+     * @param questionId 问题id
+     * @param userId 用户id
+     * @return 如果之前没有投过反对票，票数减少1，返回 -1
+     *          如果之前投过反对票，票数增加1， 返回 1
+     *          如果之前投的赞同票，票数减少2，返回 -2
+     */
     @RequestMapping(value = "/down")
-    boolean downVote(String questionId, String userId){
-        return service.vote(questionId,userId, VoteType.down);
+    int downVote(String questionId, String userId){
+        service.vote(questionId,userId, VoteType.down);
+        return 0;
     }
 
 

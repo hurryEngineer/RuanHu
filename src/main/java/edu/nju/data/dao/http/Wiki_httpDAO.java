@@ -3,6 +3,8 @@ package edu.nju.data.dao.http;
 import edu.nju.data.entity.api.WikiItem;
 import edu.nju.data.util.Pager;
 
+import java.io.IOException;
+
 /**
  * Created by Dora on 2016/7/20.
  */
@@ -13,7 +15,7 @@ public interface Wiki_httpDAO {
      * @param id
      * @return
      */
-    public WikiItem getWikiById(long id);
+    public WikiItem getWikiById(long id) throws IOException;
 
 
     /**
@@ -23,7 +25,7 @@ public interface Wiki_httpDAO {
      * @param size 页大小
      * @return
      */
-    public Pager<WikiItem> searchWikiByKeyword(String keyword, int page, int size);
+    public Pager<WikiItem> searchWikiByKeyword(String keyword, int page, int size) throws IOException;
 
 
     /**
@@ -32,5 +34,5 @@ public interface Wiki_httpDAO {
      * @param content 需要添加标注的文本
      * @return
      */
-    public String addKeyMatch(String content);
+    public String addKeyMatch(String content) throws IOException;
 }

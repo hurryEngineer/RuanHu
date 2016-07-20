@@ -96,18 +96,38 @@ public class AnswerController {
         return answerService.markAsSolution(user, Long.valueOf(questionId), Long.valueOf(answerId));
     }
 
+    /**
+     * 投票：赞同票
+     * @param questionId 问题id
+     * @param answerId 回答id
+     * @param userId 用户id
+     * @return 如果之前没有投过赞同票，票数增加1，返回 1
+     *          如果之前投过赞同票，票数减少1， 返回 -1
+     *          如果之前投的反对票，票数增加2，返回 2
+     */
     @RequestMapping(value = "/upVote", method = RequestMethod.GET)
     @ResponseBody
-    boolean upVote(@RequestParam("questionId") String questionId,
+    int upVote(@RequestParam("questionId") String questionId,
                   @RequestParam("answerId") String answerId,
                   @RequestParam("userId") String userId) {
-        return answerService.vote(questionId, answerId, userId, VoteType.up);
+        answerService.vote(questionId, answerId, userId, VoteType.up);
+        return 0;
     }
 
+    /**
+     * 投票：反对票
+     * @param questionId 问题id
+     * @param answerId 回答id
+     * @param userId 用户id
+     * @return 如果之前没有投过反对票，票数减少1，返回 -1
+     *          如果之前投过反对票，票数增加1， 返回 1
+     *          如果之前投的赞同票，票数减少2，返回 -2
+     */
     @RequestMapping(value = "/downVote", method = RequestMethod.GET)
     @ResponseBody
-    boolean downVote(String questionId, String answerId, String userId) {
-        return answerService.vote(questionId, answerId, userId, VoteType.down);
+    int downVote(String questionId, String answerId, String userId) {
+        answerService.vote(questionId, answerId, userId, VoteType.down);
+        return 0;
     }
 
 

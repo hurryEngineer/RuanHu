@@ -31,13 +31,25 @@
 				</ul>
 				<form class="navbar-form navbar-left" role="search">
 					<div class="form-group">
-						<input type="text" class="form-control" id="navbar-search-input" placeholder="Search">
+						<input type="text" class="form-control" id="navbar-search-input" placeholder="搜索" style="width: 250px">
+                        <i class="fa fa-search" id="search-icon" ></i>
 					</div>
 				</form>
+
 			</div>
+
 
 			#parse("commonPart/topNaviMenu.vm")
 
 		</div>
 	</nav>
 </header>
+<script type="text/javascript">
+	$("#navbar-search-input").focus(function(event) {
+		$(this).animate({width: '300px'});
+	});
+
+	$("#navbar-search-input").blur(function(event) {
+		$(this).animate({width: '250px'});
+	});
+</script>
