@@ -35,8 +35,10 @@ public interface QuestionService {
      * @param questionId 问题id
      * @param userId 用户id
      * @param type 赞同或反对
-     * @return 如果之前已经点过同样的了就取消之前的，返回false， 否则返回true
+     * @return 如果之前没有投过赞同票，票数增加1，返回 1
+     *          如果之前投过赞同票，票数减少1， 返回 -1
+     *          如果之前投的反对票，票数增加2，返回 2
      */
-    boolean vote(String questionId, String userId, VoteType type);
+    int vote(String questionId, String userId, VoteType type);
 
 }

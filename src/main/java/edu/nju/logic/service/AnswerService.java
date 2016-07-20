@@ -34,8 +34,10 @@ public interface AnswerService {
      * @param answerId 答案id
      * @param userId 用户id
      * @param type 顶还是踩
-     * @return 如果已经点过就取消点赞,返回{@code false},如果没有点过就点赞成功，返回true
+     * @return 如果之前没有投过赞同票，票数增加1，返回 1
+     *          如果之前投过赞同票，票数减少1， 返回 -1
+     *          如果之前投的反对票，票数增加2，返回 2
      */
-    boolean vote(String questionId, String answerId, String userId, VoteType type);
+    int vote(String questionId, String answerId, String userId, VoteType type);
 
 }
