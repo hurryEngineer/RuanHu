@@ -17,6 +17,11 @@
 	#end
 
     var testEditor=null;
+    var editorConfig=null;
+    
+    function setEditorConfig(config){
+    	editorConfig = config;
+    }
 
 	$(function() {
 		defaultEditorConfig = {
@@ -38,7 +43,7 @@
 
 		};
 		
-		if(editorConfig!=undefined){
+		if(editorConfig){
 			$.extend(defaultEditorConfig, editorConfig);
 		}
 		
