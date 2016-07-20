@@ -1,16 +1,12 @@
 ## 一个wiki叫oneWiki
+<div>
 <blockquote>
-    <p>
-        <small>
-            $oneWiki.summary
-        </small>
-    </p>
-
     <div id="question-wiki-markdown" class="pure-markdown q-ltop-content">
-                						<textarea style="display:none;">
-											$oneWiki.summary
-               	 						</textarea>
+        <textarea style="display:none;">
+$oneWiki.content
+        </textarea>
     </div>
 
     <small>来自 wiki条目<cite title="Source Title"><a href="#" >$oneWiki.title</a></cite></small>
 </blockquote>
+</div>
