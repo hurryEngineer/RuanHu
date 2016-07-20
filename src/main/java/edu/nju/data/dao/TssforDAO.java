@@ -7,7 +7,7 @@ import edu.nju.data.util.Pager;
 /**
  * Created by Dora on 2016/7/20.
  */
-public interface TssDAO {
+public interface TssforDAO {
 
     /**
      * 通过id查询ppt
