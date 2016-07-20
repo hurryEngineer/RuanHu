@@ -94,23 +94,23 @@ public class UserProfileImpl implements UserProfileService {
     }
 
     @Override
-    public List<QuestionVO> getQuestionByName(String userName) {
+    public List<QuestionVO> getQuestionByName(String userName, long userId) {
         List<Question> questions = questionDAO.getOrderedPagedQuestionsBy(WherePara.userName ,userName,1, OrderByPara.createdAt);
         if (questions==null) return new ArrayList<QuestionVO>();
         List<QuestionVO> questionVOs = new ArrayList<>();
         for (Question question : questions) {
-            questionVOs.add(timeService.transferQuestion(question));
+            questionVOs.add(timeService.transferQuestion(question, userId));
         }
         return questionVOs;
     }
 
     @Override
-    public List<AnswerVO> getAnswerByName(String userName) {
+    public List<AnswerVO> getAnswerByName(String userName, long userId) {
         List<Answer> answers =  answerDAO.getOrderedPagedAnswersBy(WherePara.userName,userName,1, OrderByPara.createdAt);
         if (answers==null) return new ArrayList<AnswerVO>();
         List<AnswerVO> answerVOs = new ArrayList<>();
         for (Answer answer: answers) {
-            answerVOs.add(timeService.transferAnswer(answer));
+            answerVOs.add(timeService.transferAnswer(answer, userId));
         }
         return answerVOs;
     }

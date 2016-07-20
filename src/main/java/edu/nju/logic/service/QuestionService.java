@@ -13,13 +13,13 @@ import java.util.List;
  */
 public interface QuestionService {
 
-    QuestionVO showQuestion(long ID);
+    QuestionVO showQuestion(long ID, long userId);
 
-    QuestionVO saveQuestion(Question question);
+    QuestionVO saveQuestion(Question question, long userId);
 
     boolean updateQustion(long questionId, String title, String description);
 
-    List<QuestionVO> getQuestions(int pageNum, int pageSize);
+    List<QuestionVO> getQuestions(int pageNum, int pageSize, long userId);
 
     /**
      * 删除问题
@@ -36,7 +36,7 @@ public interface QuestionService {
      * @param pageSize 页的大小
      * @return 答案列表
      */
-    List<AnswerVO> getAnswers(long questionId, int pageNum, int pageSize);
+    List<AnswerVO> getAnswers(long questionId, int pageNum, int pageSize, long userId);
 
     /**
      * 为回答投票
