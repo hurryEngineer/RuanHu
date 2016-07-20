@@ -74,7 +74,8 @@ public class QuestionImpl implements QuestionService {
     }
 
     @Override
-    public boolean vote(String questionId, String userId, VoteType type) {
+    public int vote(String questionId, String userId, VoteType type) {
+        int result = 0;
         Vote vote = new Vote();
         vote.setAuthorId(Long.valueOf(userId));
         vote.setCreatedAt(new Timestamp(new Date().getTime()));
@@ -82,12 +83,17 @@ public class QuestionImpl implements QuestionService {
         vote.setQuestionId(Long.valueOf(questionId));
         vote.setVoteType(type);
         if (voteDAO.hasVoteQuestion(Long.valueOf(userId),Long.valueOf(questionId),type)) {
+            result = -1;
             voteDAO.cancel(vote);
-            return false;
-        } else {
+        } else if ((voteDAO.hasVoteQuestion(Long.valueOf(userId),Long.valueOf(questionId),type==VoteType.up?VoteType.down:VoteType.up))){
+            result = 2;
             voteDAO.vote(vote);
-            return true;
+        } else {
+            result = 1;
+            voteDAO.vote(vote);
         }
+        result = type == VoteType.up ? result : -result;
+        return result;
     }
 
 }
