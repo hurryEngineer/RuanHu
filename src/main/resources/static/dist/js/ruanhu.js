@@ -81,10 +81,10 @@ function initWikiSelection() {
 }
 
 function formatWikiItem(wikiItem){
-	<blockquote>
-        <p>Spring是一个开源框架，Spring是一个轻量级的Java 开发框架，由Rod Johnson创建。简单来说，Spring是一个分层的JavaSE/EEfull-stack(一站式) 轻量级开源框架。</p>
-        <small>来自 wiki条目<cite title="Source Title"><a href="#" >Spring</a></cite></small>
-    </blockquote>
+//	<blockquote>
+//      <p>Spring是一个开源框架，Spring是一个轻量级的Java 开发框架，由Rod Johnson创建。简单来说，Spring是一个分层的JavaSE/EEfull-stack(一站式) 轻量级开源框架。</p>
+//      <small>来自 wiki条目<cite title="Source Title"><a href="#" >Spring</a></cite></small>
+//  </blockquote>
 }
 
 function formatWikiSelection(){

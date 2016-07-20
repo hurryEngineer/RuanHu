@@ -8,11 +8,11 @@
 		#parse("commonPart/commonCssAndJs.vm")
 		<link rel="stylesheet" href="/dist/css/editormd.css" />
 		
-		<script>
-			editorConfig = {width:"96%"}
-		</script>
-		
 		#parse("commonPart/editorCreator.vm")
+		
+		<script>
+			setEditorConfig({width:"96%"});
+		</script>
 		
 		<title>问题详情 - 软乎</title>
 
