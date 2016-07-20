@@ -267,11 +267,7 @@ $question.content
 
                 $("[data-toggle='tooltip']").tooltip();
 			</script>
-##            <script>
-##                $(function () {
-##                    $("[data-toggle='tooltip']").tooltip();
-##                });
-##            </script>
+
 
 	</body>
 
