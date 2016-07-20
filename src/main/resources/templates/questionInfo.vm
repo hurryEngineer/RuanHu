@@ -113,9 +113,65 @@
 $question.content
                	 						</textarea>
 									</div>
-									
 
-									<div class="q-lbtm-content">
+
+                                    <div class="box">
+                                        <div class="box-header">
+                                            <h3 class="box-title">相关ppt</h3>
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body no-padding">
+                                            <table class="table table-striped">
+                                                <tbody><tr>
+                                                    <th>文件名</th>
+                                                    <th style="width: 60px">下载</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>数据库设计</td>
+                                                    <td><a href="#" ><span class="badge bg-red"><i class="ion ion-ios-cloud-download-outline"></i></span></a></td>
+                                                    <!--<td><span class="badge bg-red">55%</span></td>-->
+                                                </tr>
+                                                <tr>
+                                                    <td>软工二第二章</td>
+                                                    <td><a href="#" ><span class="badge bg-red"><i class="ion ion-ios-cloud-download-outline"></i></span></a></td>
+                                                    <!--<td><span class="badge bg-red">55%</span></td>-->
+                                                </tr>
+                                                <tr>
+                                                    <td>数据结构---快排</td>
+                                                    <td><a href="#" ><span class="badge bg-red"><i class="ion ion-ios-cloud-download-outline"></i></span></a></td>
+                                                    <!--<td><span class="badge bg-red">55%</span></td>-->
+                                                </tr>
+                                                </tbody></table>
+                                        </div>
+                                        <!-- /.box-body -->
+                                    </div>
+                                    <!-- /.widget-user -->
+
+
+
+                                    <div class="box box-solid">
+                                        <div class="box-header with-border">
+                                            <i class="fa fa-text-width"></i>
+
+                                            <h3 class="box-title">WIKI</h3>
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body">
+                                            <blockquote>
+                                                <p>Spring是一个开源框架，Spring是一个轻量级的Java 开发框架，由Rod Johnson创建。简单来说，Spring是一个分层的JavaSE/EEfull-stack(一站式) 轻量级开源框架。</p>
+                                                <small>来自 wiki条目<cite title="Source Title"><a href="#" >Spring</a></cite></small>
+                                            </blockquote>
+                                            <blockquote>
+                                                <p>Spring是一个开源框架，Spring是一个轻量级的Java 开发框架，由Rod Johnson创建。简单来说，Spring是一个分层的JavaSE/EEfull-stack(一站式) 轻量级开源框架。</p>
+                                                <small>来自 wiki条目<cite title="Source Title"><a href="#" >Spring</a></cite></small>
+                                            </blockquote>
+                                        </div>
+                                        <!-- /.box-body -->
+                                    </div>
+
+
+
+                                    <div class="q-lbtm-content">
 
 										<div class="question-cat">
 											
@@ -173,6 +229,7 @@ $question.content
 									<input class="answer-btn" type="button" onclick="submitAnswer()" value="提交答案 "></input>
 								</div>
 							</div>
+							<hr/>
 							
 							
 							
