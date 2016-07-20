@@ -14,7 +14,6 @@ public interface WikiDAO {
 
     List getRelatedDocuments(long wikiID);
 
-
     /**
      * 通过id查询一个wiki条目
      * @param id
