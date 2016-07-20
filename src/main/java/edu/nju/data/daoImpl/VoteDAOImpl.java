@@ -2,6 +2,8 @@ package edu.nju.data.daoImpl;
 
 import edu.nju.data.dao.BaseDAO;
 import edu.nju.data.dao.VoteDAO;
+import edu.nju.data.entity.Answer;
+import edu.nju.data.entity.Question;
 import edu.nju.data.entity.Vote;
 import edu.nju.data.util.VoteType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,8 +73,7 @@ public class VoteDAOImpl implements VoteDAO {
             }
         }
 
-
-        return 0;
+        return getVoteCount(vote);
     }
 
     @Override
@@ -122,5 +123,24 @@ public class VoteDAOImpl implements VoteDAO {
             return  false;
         }
         return true;
+    }
+
+
+
+    private int getVoteCount(Vote vote){
+        if(vote.getQuestionId()!=null){
+            Query query = em.createQuery
+                    (" from Question where id = ?1");
+            query.setParameter(1,vote.getQuestionId());
+            Question question = (Question) query.getSingleResult();
+            return question.getVoteCount();
+        }else{
+            Query query = em.createQuery
+                    (" from Answer where id = ?1");
+            query.setParameter(1,vote.getAnswerId());
+            Answer answer = (Answer) query.getSingleResult();
+            return answer.getVoteCount();
+        }
+        return 0;
     }
 }
