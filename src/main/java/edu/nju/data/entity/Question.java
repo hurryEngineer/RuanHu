@@ -12,9 +12,9 @@ import java.util.List;
 
 public class Question implements DateInterface{
     private Long id;
-    private Integer answerCount = new Integer(0);
-    private Integer voteCount= new Integer(0);
-    private Integer viewCount= new Integer(0);
+    private Integer answerCount = new Integer(0);  //by trigger
+    private Integer voteCount= new Integer(0);     //by trigger
+    private Integer viewCount= new Integer(0);     //by hand
     private String title;
     private String content;
     private Timestamp createdAt = new Timestamp( new Date().getTime());
