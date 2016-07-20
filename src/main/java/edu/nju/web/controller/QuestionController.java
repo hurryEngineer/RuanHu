@@ -103,23 +103,14 @@ public class QuestionController {
     }
 
     @RequestMapping(value = "/up")
-    void upVote(String questionId, String userId){
-        service.vote(questionId,userId, VoteType.up);
+    boolean upVote(String questionId, String userId){
+        return service.vote(questionId,userId, VoteType.up);
     }
 
     @RequestMapping(value = "/down")
-    void downVote(String questionId, String userId){
-        service.vote(questionId,userId, VoteType.down);
+    boolean downVote(String questionId, String userId){
+        return service.vote(questionId,userId, VoteType.down);
     }
 
-    @RequestMapping(value = "/upCancel")
-    void cancelUpVote(String questionId, String userId){
-        service.unVote(questionId,userId, VoteType.up);
-    }
-
-    @RequestMapping(value = "/downCancel")
-    void cancelDownVote(String questionId, String userId){
-        service.unVote(questionId,userId, VoteType.down);
-    }
 
 }

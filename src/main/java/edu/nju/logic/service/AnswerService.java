@@ -34,15 +34,8 @@ public interface AnswerService {
      * @param answerId 答案id
      * @param userId 用户id
      * @param type 顶还是踩
+     * @return 如果已经点过就取消点赞,返回{@code false},如果没有点过就点赞成功，返回true
      */
-    void vote(String questionId, String answerId, String userId, VoteType type);
+    boolean vote(String questionId, String answerId, String userId, VoteType type);
 
-    /**
-     * 取消赞
-     * @param questionId 问题id
-     * @param answerId 答案id
-     * @param userId 用户id
-     * @param type 之前的赞是定还是踩
-     */
-    void unVote(String questionId, String answerId, String userId, VoteType type);
 }
