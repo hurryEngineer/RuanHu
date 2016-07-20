@@ -83,6 +83,17 @@ public class QuestionController {
         return "redirect:/question/"+questionId;
     }
 
+    @RequestMapping(value = "/question/delete", method = RequestMethod.POST)
+    String deleteQuestion(String questionId, String userId, Model model) {
+        boolean result = service.deleteQuestion(Long.valueOf(questionId),Long.valueOf(userId));
+        model.addAttribute("deleteResult",result);
+        if (result) {
+            return "redirect:/question";
+        } else {
+            return "redirect:/question/"+questionId;
+        }
+    }
+
     
     @RequestMapping(value = "/submitQuestion",method = RequestMethod.POST)
     String newQuestion(String title, String description, HttpSession session, @ModelAttribute("user")User user){

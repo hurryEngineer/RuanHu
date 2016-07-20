@@ -7,6 +7,7 @@ import edu.nju.logic.service.AnswerService;
 import edu.nju.logic.vo.AnswerVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -103,6 +104,22 @@ public class AnswerController {
     public String editAnswer(@RequestParam("qid")String questionId, @RequestParam("aid")String answerId,
                            @RequestParam("text")String text) {
         answerService.editAnswer(Long.valueOf(answerId),text);
+        return "redirect:/question/"+questionId;
+    }
+
+    /**
+     * 删除答案
+     * @param answerId 答案id
+     * @param userId 用户id
+     * @param questionId 问题id
+     * @param model {@link Model}
+     * @return 有权限删除model里添加true， 没有权限则为false，跳转回原问题界面
+     */
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public String deleteAnswer(@RequestParam("aid") String answerId, @RequestParam("userId") String userId,
+                               @RequestParam("qid")String questionId, Model model) {
+        boolean result = answerService.deleteAnswer(Long.valueOf(answerId),Long.valueOf(userId));
+        model.addAttribute("deleteResult",result);
         return "redirect:/question/"+questionId;
     }
 
