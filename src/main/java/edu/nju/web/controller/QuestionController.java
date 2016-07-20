@@ -52,7 +52,7 @@ public class QuestionController {
         Object user = session.getAttribute("user");
 
         Object question = session.getAttribute("question");
-        Question ques = question==null?service.showQuestion(id,user==null?-1:((User)user).getId()):(Question)question;
+        Question ques = question==null?service.showQuestion(id,user==null?-1:((User)user).getId()):(QuestionVO)question;
         
         session.setAttribute("question", null);
         
