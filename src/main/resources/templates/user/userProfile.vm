@@ -7,7 +7,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>$userInfo.userName - 软乎</title>
 
-    #parse("/templates/commonPart/commonCssAndJs.vm")
+    #parse("commonPart/commonCssAndJs.vm")
     <link rel="stylesheet" href="/plugins/datepicker/datepicker3.css">
 
 </head>
@@ -15,7 +15,7 @@
 <body class="hold-transition skin-blue-light layout-top-nav">
 <div class="wrapper">
 
-    #parse("/templates/commonPart/mainHeader.vm")
+    #parse("commonPart/mainHeader.vm")
 
     <div class="content-wrapper">
         <div class="container">
@@ -25,12 +25,12 @@
         <div class="">
             <div class="row">
                 <div class="col-md-9" style="margin-top: 40px">
-                    #parse("/templates/user/userDetail.vm")
+                    #parse("user/userDetail.vm")
                 </div>
 
                 <div class="col-md-3" style="margin-top: 40px">
 
-                    #parse("/templates/user/user_rightSideBar.vm")
+                    #parse("user/user_rightSideBar.vm")
                 </div>
             </div>
             <div class="row" style="margin: 10px 10px">
@@ -51,7 +51,7 @@
     </div>
     <!-- ./wrapper -->
 
-    #parse("/templates/commonPart/addtionalJs.vm")
+    #parse("commonPart/addtionalJs.vm")
 
 
     <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>

@@ -21,7 +21,7 @@ $oneQuestion.voteCount </span> 投票 </li>
 		<div class="q-ltop-content">
 			<h2>
 				<a href="/question/$oneQuestion.id">
-					$oneQuestion.title
+					$!oneQuestion.title
 				</a>
 			</h2>
 		</div>

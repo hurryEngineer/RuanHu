@@ -45,7 +45,7 @@ public class UserProfileController {
     String showUserQuestion(@RequestParam("userName") String userName,Model model) {
         model.addAttribute("userName",userName);
         model.addAttribute("activities",profileService.getQuestionByName(userName));
-        return "/user/user_questionList";
+        return "user/user_questionList";
     }
 
     @RequestMapping(value = "/userProfile/showAnswers")
@@ -53,7 +53,7 @@ public class UserProfileController {
         model.addAttribute("userName",userName);
         System.out.println(profileService.getAnswerByName(userName));
         model.addAttribute("activities",profileService.getAnswerByName(userName));
-        return "/user/user_answerList";
+        return "user/user_answerList";
     }
 
     /**

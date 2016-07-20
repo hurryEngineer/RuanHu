@@ -32,14 +32,14 @@
                         <i class="icon fa fa-envelope-o margin-r-5"></i>
 
                         <span class="info-wrap">
-                            <span class="email item text-muted" >${userInfo.email}</span>
+                            <span class="email item text-muted" >$!{userInfo.email}</span>
                         </span>
                     </div>
 
                     <div class="item">
                         <i class="icon fa fa-calendar margin-r-5"></i>
                         <span class="info-wrap">
-                            <span class="item text-muted createdAt" >${userInfo.createdAt}</span>
+                            <span class="item text-muted createdAt" >$!{userInfo.createdAt}</span>
                         </span>
                     </div>
 
@@ -48,7 +48,7 @@
 
                         <span class="info-wrap">
                             <i class="icon fa fa-map-signs margin-r-5"></i>
-                            <span class="location item text-muted" >  $userInfo.location</span>
+                            <span class="location item text-muted" >  $!{userInfo.location}</span>
                             <a class="zu-edit-button edit label label-info" name="edit" href="javascript:;" style="margin-left: 10px"><i class="zu-edit-button-icon fa fa-edit margin-r-4"></i><span class="edit-msg">修改</span></a>
                         </span>
                         <span class='info-empty-wrap'>
@@ -68,7 +68,7 @@
                     <span class="item editable-group " id="birthday-group" >
                         <span class="info-wrap">
                             <i class="icon fa fa-birthday-cake margin-r-5"></i>
-                            <span class="birthday item text-muted">$userInfo.birthDate</span>
+                            <span class="birthday item text-muted">$!{userInfo.birthDate}</span>
                             <a class="zu-edit-button edit label label-info" name="edit" href="javascript:;" style="margin-left: 10px">
                                 <i class="zu-edit-button-icon fa fa-edit margin-r-4"></i><span class="edit-msg">修改</span></a>
                         </span>

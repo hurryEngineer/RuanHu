@@ -33,7 +33,7 @@
 							<hr />
 							
 						#foreach($oneQuestion in $questions)
-							#parse("/listItem/questionListItem.vm")
+							#parse("listItem/questionListItem.vm")
 						#end
 						
 						</div>

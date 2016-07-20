@@ -90,11 +90,11 @@ public final class Gravatar {
 		}
 
 	}
-
-	public static void main(String[] args) {
-		Gravatar g = new Gravatar();
-		g.setSize(5);
-		System.out.println(g.getUrl("705103197@qq.com"));
-	}
+//
+//	public static void main(String[] args) {
+//		Gravatar g = new Gravatar();
+//		g.setSize(5);
+//		System.out.println(g.getUrl("705103197@qq.com"));
+//	}
 
 }

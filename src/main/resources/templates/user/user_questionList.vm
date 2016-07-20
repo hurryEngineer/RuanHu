@@ -22,7 +22,7 @@
                     <div class="timeline-item">
                         <span class="time"><i class="fa fa-clock-o"></i> $one.createAtForView</span>
 
-                        <h3 class="timeline-header"> 提出了问题 <a href='springUrl("/questions/${one.id}")'>${one.title}</a></h3>
+                        <h3 class="timeline-header"> 提出了问题 <a href='/question/${one.id}'>${one.title}</a></h3>
 
                         <div class="timeline-body">
                             ${one.content}
