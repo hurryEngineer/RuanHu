@@ -1,13 +1,13 @@
 package edu.nju.data.dao;
 
-import edu.nju.data.entity.Document;
-import edu.nju.data.entity.Notification;
+import edu.nju.data.entity.api.Document;
+import edu.nju.data.entity.api.Notification;
 import edu.nju.data.util.Pager;
 
 /**
  * Created by Dora on 2016/7/20.
  */
-public interface TssDao {
+public interface TssDAO {
 
     /**
      * 通过id查询ppt
