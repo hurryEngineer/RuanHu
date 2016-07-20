@@ -74,25 +74,20 @@ public class QuestionImpl implements QuestionService {
     }
 
     @Override
-    public void vote(String questionId, String userId, VoteType type) {
+    public boolean vote(String questionId, String userId, VoteType type) {
         Vote vote = new Vote();
         vote.setAuthorId(Long.valueOf(userId));
         vote.setCreatedAt(new Timestamp(new Date().getTime()));
         vote.setLastUpdatedAt(new Timestamp(new Date().getTime()));
         vote.setQuestionId(Long.valueOf(questionId));
         vote.setVoteType(type);
-        voteDAO.vote(vote);
-    }
-
-    @Override
-    public void unVote(String questionId, String userId, VoteType type) {
-        Vote vote = new Vote();
-        vote.setAuthorId(Long.valueOf(userId));
-        vote.setCreatedAt(new Timestamp(new Date().getTime()));
-        vote.setLastUpdatedAt(new Timestamp(new Date().getTime()));
-        vote.setQuestionId(Long.valueOf(questionId));
-        vote.setVoteType(type);
-        voteDAO.cancel(vote);
+        if (voteDAO.hasVoteQuestion(Long.valueOf(userId),Long.valueOf(questionId),type)) {
+            voteDAO.cancel(vote);
+            return false;
+        } else {
+            voteDAO.vote(vote);
+            return true;
+        }
     }
 
 }

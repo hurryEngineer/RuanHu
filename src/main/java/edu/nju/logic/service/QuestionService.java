@@ -30,7 +30,13 @@ public interface QuestionService {
      */
     List<AnswerVO> getAnswers(long questionId, int pageNum, int pageSize);
 
-    void vote(String questionId, String userId, VoteType type);
+    /**
+     * 为回答投票
+     * @param questionId 问题id
+     * @param userId 用户id
+     * @param type 赞同或反对
+     * @return 如果之前已经点过同样的了就取消之前的，返回false， 否则返回true
+     */
+    boolean vote(String questionId, String userId, VoteType type);
 
-    void unVote(String questionId, String userId, VoteType type);
 }

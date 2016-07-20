@@ -60,24 +60,20 @@ public class AnswerImpl implements AnswerService {
     }
 
     @Override
-    public void vote(String questionId, String answerId, String userId, VoteType type) {
+    public boolean vote(String questionId, String answerId, String userId, VoteType type) {
         Vote vote = new Vote();
         vote.setVoteType(type);
         vote.setAnswerId(Long.valueOf(answerId));
         vote.setAuthorId(Long.valueOf(userId));
         vote.setCreatedAt(new Timestamp(new Date().getTime()));
         vote.setLastUpdatedAt(new Timestamp(new Date().getTime()));
-        voteDAO.vote(vote);
+        if (voteDAO.hasVoteAnswer(Long.valueOf(userId),Long.valueOf(answerId),type)) {
+            voteDAO.cancel(vote);
+            return false;
+        } else {
+            voteDAO.vote(vote);
+        }
+        return true;
     }
 
-    @Override
-    public void unVote(String questionId, String answerId, String userId, VoteType type) {
-        Vote vote = new Vote();
-        vote.setVoteType(type);
-        vote.setAnswerId(Long.valueOf(answerId));
-        vote.setAuthorId(Long.valueOf(userId));
-        vote.setCreatedAt(new Timestamp(new Date().getTime()));
-        vote.setLastUpdatedAt(new Timestamp(new Date().getTime()));
-        voteDAO.cancel(vote);
-    }
 }
