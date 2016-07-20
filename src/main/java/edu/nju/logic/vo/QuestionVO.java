@@ -1,6 +1,10 @@
 package edu.nju.logic.vo;
 
 import edu.nju.data.entity.Question;
+import edu.nju.data.entity.api.Document;
+import edu.nju.data.entity.api.WikiItem;
+
+import java.util.List;
 
 /**
  * Created by cuihao on 2016/7/14.
@@ -10,6 +14,8 @@ public class QuestionVO extends Question implements ViewTime {
     private String createAtForView;
     private String updateAtForView;
     private int isVote;
+    private List<WikiItem> wikiItems;
+    private List<Document> documents;
 
     public QuestionVO(Question question){
         this.setId(question.getId());
@@ -49,5 +55,21 @@ public class QuestionVO extends Question implements ViewTime {
 
     public void setVote(int vote) {
         this.isVote = vote;
+    }
+
+    public List<Document> getDocuments() {
+        return documents;
+    }
+
+    public void setDocuments(List<Document> documents) {
+        this.documents = documents;
+    }
+
+    public List<WikiItem> getWikiItems() {
+        return wikiItems;
+    }
+
+    public void setWikiItems(List<WikiItem> wikiItems) {
+        this.wikiItems = wikiItems;
     }
 }
