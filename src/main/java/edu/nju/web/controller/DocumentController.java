@@ -1,10 +1,10 @@
 package edu.nju.web.controller;
 
 import edu.nju.data.entity.api.Document;
+import edu.nju.logic.service.DocumentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -12,16 +12,25 @@ import java.util.List;
  * Created by cuihao on 2016/7/20.
  */
 @Controller
-@RequestMapping("/api")
+@RequestMapping("/api/doc")
 public class DocumentController {
+
+    @Autowired
+    private DocumentService documentService;
+
     @RequestMapping("/ppt/{id}")
     @ResponseBody
     public Document getDocById(@PathVariable long id){
-        return null;
+        return documentService.getDocById(id);
     }
-    @RequestMapping("/ppt/")
+    @RequestMapping("/search")
     @ResponseBody
-    public List<Document> searchDocuments(){
-        return null;
+    public List<Document> searchDocuments(@RequestParam("key")String key, @RequestParam("page") int page){
+        return documentService.searchDocuments(key,page);
+    }
+    @RequestMapping(value = "/notification", method = RequestMethod.POST)
+    public void sendMessage(@RequestParam("message")String message, @RequestParam("name") String userName,
+                            @RequestParam("id") String userId){
+        documentService.sendMessage(userName,message,userId);
     }
 }
