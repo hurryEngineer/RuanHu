@@ -141,6 +141,6 @@ public class VoteDAOImpl implements VoteDAO {
             Answer answer = (Answer) query.getSingleResult();
             return answer.getVoteCount();
         }
-        return 0;
+
     }
 }

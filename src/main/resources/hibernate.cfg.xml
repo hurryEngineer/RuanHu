@@ -9,20 +9,15 @@
     <property name="current_session_context_class">thread</property>
     <property name="packagesToScan" >entity</property>
     <mapping class="edu.nju.data.entity.Answer"/>
-      <mapping class="edu.nju.data.entity.AnswerComments"/>
-      <mapping class="edu.nju.data.entity.AnswerVotes"/>
-      <mapping class="edu.nju.data.entity.Comment"/>
-      <mapping class="edu.nju.data.entity.Question"/>
-      <mapping class="edu.nju.data.entity.QuestionComments"/>
-      <mapping class="edu.nju.data.entity.QuestionVotes"/>
-      <mapping class="edu.nju.data.entity.Vote"/>
-      <mapping class="edu.nju.data.entity.User"/>
+    <mapping class="edu.nju.data.entity.Comment"/>
+    <mapping class="edu.nju.data.entity.Question"/>
+    <mapping class="edu.nju.data.entity.Vote"/>
+    <mapping class="edu.nju.data.entity.User"/>
     <mapping class="edu.nju.data.entity.AlibabaKey"/>
     <mapping class="edu.nju.data.entity.AnswerDocument"/>
     <mapping class="edu.nju.data.entity.AnswerWiki"/>
     <mapping class="edu.nju.data.entity.QuestionDocument"/>
     <mapping class="edu.nju.data.entity.QuestionWiki"/>
-
 
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->
