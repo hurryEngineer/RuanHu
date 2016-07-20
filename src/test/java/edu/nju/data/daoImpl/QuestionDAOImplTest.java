@@ -83,7 +83,7 @@ public class QuestionDAOImplTest {
         question.setContent("如题");
         List wikiIDs = new ArrayList();
         List docuIDs = new ArrayList();
-        for(int i=1;i<=3;i++){
+        for(long i=1;i<=3;i++){
             wikiIDs.add(i);
             docuIDs.add(2*i-1);
         }

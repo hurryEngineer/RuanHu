@@ -7,12 +7,12 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "question_document", schema = "RuanHu", catalog = "")
-@IdClass(QuestionDocumentPK.class)
 public class QuestionDocument {
     private long questionId;
     private long documentId;
+    private Long id;
 
-    @Id
+    @Basic
     @Column(name = "question_id")
     public long getQuestionId() {
         return questionId;
@@ -22,7 +22,7 @@ public class QuestionDocument {
         this.questionId = questionId;
     }
 
-    @Id
+    @Basic
     @Column(name = "document_id")
     public long getDocumentId() {
         return documentId;
@@ -30,6 +30,17 @@ public class QuestionDocument {
 
     public void setDocumentId(long documentId) {
         this.documentId = documentId;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override
@@ -41,6 +52,7 @@ public class QuestionDocument {
 
         if (questionId != that.questionId) return false;
         if (documentId != that.documentId) return false;
+        if (id != that.id) return false;
 
         return true;
     }
@@ -49,6 +61,7 @@ public class QuestionDocument {
     public int hashCode() {
         int result = (int) (questionId ^ (questionId >>> 32));
         result = 31 * result + (int) (documentId ^ (documentId >>> 32));
+        result = 31 * result + (int) (id ^ (id >>> 32));
         return result;
     }
 }

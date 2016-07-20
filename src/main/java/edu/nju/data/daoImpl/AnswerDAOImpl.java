@@ -70,7 +70,6 @@ public class AnswerDAOImpl implements AnswerDAO {
         Answer result = save_answer(answer);
         wikiDAO.insertAnswer(result.getId() , wikiIDs);
         documentDAO.insertAnswer(result.getId() , docuIDs);
-
         return result;
     }
 
