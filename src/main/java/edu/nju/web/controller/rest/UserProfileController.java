@@ -1,4 +1,4 @@
-package edu.nju.web.controller;
+package edu.nju.web.controller.rest;
 
 import edu.nju.data.entity.User;
 import edu.nju.logic.service.UserProfileService;
@@ -21,6 +21,7 @@ import java.util.Map;
 @Controller
 //@RequestMapping("/userProfile")
 @SessionAttributes("user")
+@RequestMapping("/rest")
 public class UserProfileController {
     @Autowired
     private UserProfileService profileService;

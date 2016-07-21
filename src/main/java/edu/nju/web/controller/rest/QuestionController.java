@@ -1,4 +1,4 @@
-package edu.nju.web.controller;
+package edu.nju.web.controller.rest;
 
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
@@ -29,6 +29,7 @@ import java.util.Map;
 
 @Controller
 @SessionAttributes("user")
+@RequestMapping("/rest")
 public class QuestionController {
 
     @Autowired
@@ -85,7 +86,7 @@ public class QuestionController {
     String editQuestion(@RequestParam("id")String questionId, @RequestParam("title")String title,
                       @RequestParam("description") String desciption) {
         service.updateQustion(Long.valueOf(questionId),title,desciption);
-        return "redirect:/question/"+questionId;
+        return "redirect:/rest/question/"+questionId;
     }
 
     @RequestMapping(value = "/question/delete", method = RequestMethod.POST)
@@ -93,9 +94,9 @@ public class QuestionController {
         boolean result = service.deleteQuestion(Long.valueOf(questionId),Long.valueOf(userId));
         model.addAttribute("deleteResult",result);
         if (result) {
-            return "redirect:/question";
+            return "redirect:/rest/question";
         } else {
-            return "redirect:/question/"+questionId;
+            return "redirect:/rest/question/"+questionId;
         }
     }
 
@@ -121,10 +122,10 @@ public class QuestionController {
             session.setAttribute("question",questionVO);
 
 
-            return "redirect:/question/"+question.getId();
+            return "redirect:/rest/question/"+question.getId();
         }
 
-        return "redirect:/ask";
+        return "redirect:/rest/ask";
     }
 
     @RequestMapping(value = "/ask",method = RequestMethod.GET)
