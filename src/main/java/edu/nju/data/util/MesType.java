@@ -7,7 +7,7 @@ public enum MesType {
     /**
      *  当用户为其他用户点赞时，通知被点赞的用户
      */
-    vote,
+    voteAnswer, voteQuestion,
     /**
      *  当用户评论其他用户时，通知被评论的用户
      */

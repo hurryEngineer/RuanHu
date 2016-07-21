@@ -22,4 +22,5 @@ public class InviteController {
         inviteService.inivite(Long.valueOf(questionId),Long.valueOf(userId),inviteNames);
         return "redirect:/question/"+questionId;
     }
+
 }

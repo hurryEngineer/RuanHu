@@ -2,6 +2,7 @@ package edu.nju.data.daoImpl;
 
 import edu.nju.RuanHuApplication;
 import edu.nju.data.dao.UserDAO;
+import edu.nju.data.entity.Message;
 import edu.nju.data.entity.User;
 import edu.nju.data.util.VerifyResult;
 import org.junit.Test;
@@ -135,6 +136,16 @@ public class UserDAOImplTest {
 
     @Test
     public void getAllMessage() throws Exception {
+        Long receiverID = new Long(2);
+        List<Message> messages = userDAO.getAllMessage(receiverID);
+        if(messages==null){
+            fail();
+        }else{
+            System.out.print("\n");
+            for(Message message : messages){
+                System.out.println(message.getMesgType().toString() +"  "+message.getContent() );
+            }
+        }
 
     }
 

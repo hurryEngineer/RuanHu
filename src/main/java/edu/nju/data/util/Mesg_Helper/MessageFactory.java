@@ -27,11 +27,16 @@ public class MessageFactory implements MesFactoryInterface {
 
                 break;
 
-            case vote:
+            case voteAnswer:
 
                 content = senderName + "赞了我";
-
                 break;
+
+            case voteQuestion:
+
+                content = senderName + "赞了我";
+                break;
+
             case comment:
 
                 content = senderName + "评论了我";
