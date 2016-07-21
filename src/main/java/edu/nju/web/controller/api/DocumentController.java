@@ -1,4 +1,4 @@
-package edu.nju.web.controller;
+package edu.nju.web.controller.api;
 
 import edu.nju.data.entity.api.Document;
 import edu.nju.logic.service.DocumentService;

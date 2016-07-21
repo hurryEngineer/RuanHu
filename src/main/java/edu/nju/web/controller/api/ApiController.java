@@ -1,4 +1,4 @@
-package edu.nju.web.controller;
+package edu.nju.web.controller.api;
 
 import edu.nju.logic.service.RelationService;
 import org.springframework.beans.factory.annotation.Autowired;

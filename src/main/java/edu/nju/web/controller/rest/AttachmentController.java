@@ -1,4 +1,4 @@
-package edu.nju.web.controller;
+package edu.nju.web.controller.rest;
 
 import edu.nju.web.util.PostObjectPolicy;
 import org.springframework.stereotype.Controller;
@@ -16,6 +16,7 @@ import java.util.Map;
  */
 @Controller
 @SessionAttributes("user")
+@RequestMapping("/rest")
 public class AttachmentController {
 
 

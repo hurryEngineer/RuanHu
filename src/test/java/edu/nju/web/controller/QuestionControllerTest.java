@@ -3,6 +3,7 @@ package edu.nju.web.controller;
 import edu.nju.RuanHuApplication;
 import edu.nju.data.entity.User;
 import edu.nju.logic.service.LoginService;
+import edu.nju.web.controller.rest.QuestionController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
