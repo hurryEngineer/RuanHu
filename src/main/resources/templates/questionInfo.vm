@@ -129,8 +129,8 @@ $question.content
                                                     <th style="width: 60px">下载</th>
                                                 </tr>
 ##													#foreach($onePpt in $question.pptItems)
-##														#parse("listItem/wikiListItem.vm")
-##													#end
+												##														#parse("listItem/wikiListItem.vm")
+												##													#end
 
                                                 <tr>
                                                     <td>软工二第二章</td>

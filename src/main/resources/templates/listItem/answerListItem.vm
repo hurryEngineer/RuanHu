@@ -3,7 +3,7 @@
 	<div class="col-md-2 col-xs-2">
 		<ul class="question-upDown">
 			<li title="" data-original-title="This is useful.">
-				<a data-container="body" data-toggle="tooltip" title="顶一下" data-content="You must have 5 points to vote up." href="javascript:void(0)" data-name="vote_up" class="action vote vote-up img-circle" data-original-title="" title="">
+				<a data-container="body" data-toggle="tooltip" title="赞同" data-content="You must have 5 points to vote up." href="javascript:void(0)" data-name="vote_up" class="action vote vote-up img-circle" data-original-title="" title="">
 					<i answerid="$oneAnswer.id" onclick="upVote(this)" class="fa fa-chevron-up"></i>
 				</a>
 			</li>
@@ -13,7 +13,7 @@
 			</li>
 
 			<li title="" data-original-title="This is not useful">
-				<a data-container="body" data-toggle="tooltip" title="踩一下" data-content="You must have 500 points to vote down." href="javascript:void(0)" data-name="vote_down" class="action vote vote-down img-circle " data-original-title="" title="">
+				<a data-container="body" data-toggle="tooltip" title="反对" data-content="You must have 500 points to vote down." href="javascript:void(0)" data-name="vote_down" class="action vote vote-down img-circle " data-original-title="" title="">
 					<i answerid="$oneAnswer.id" onclick="downVote(this)" class="fa fa-chevron-down"></i>
 				</a>
 			</li>
@@ -31,6 +31,54 @@
 $!oneAnswer.content
                 </textarea>
 		</div>
+
+
+
+        <div class="box box-solid">
+            <div class="box-header with-border">
+                <i class="fa fa-text-width"></i>
+                <h3 class="box-title">WIKI</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+				#foreach($oneWiki in $oneAnswer.wikiItems)
+					#parse("listItem/wikiListItem.vm")
+				#end
+		    </div>
+            <!-- /.box-body -->
+        </div>
+
+
+
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">相关ppt</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <th>文件名</th>
+                        <th style="width: 60px">下载</th>
+                    </tr>
+					#foreach($onePpt in $oneAnswer.pptItems)
+						#parse("listItem/wikiListItem.vm")
+					#end
+
+                    <tr>
+                        <td>软工二第二章</td>
+                        <td><a href="#" ><span class="badge bg-red"><i class="ion ion-ios-cloud-download-outline"></i></span></a></td>
+                        <!--<td><span class="badge bg-red">55%</span></td>-->
+                    </tr>
+
+                    </tbody></table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+
+
+
 
 		<div class="question-cat answerDiv">
 			<div class="clearfix"></div>
