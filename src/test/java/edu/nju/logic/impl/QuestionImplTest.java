@@ -42,7 +42,7 @@ public class QuestionImplTest {
       //  q.setAuthorId(Long.valueOf("1"));
         q.setLastUpdatedAt(new Timestamp(new Date().getTime()));
 
-        System.out.println(service.saveQuestion(q,new User().getId()));
+        //System.out.println(service.saveQuestion(q,new User().getId()));
     }
 
 }
