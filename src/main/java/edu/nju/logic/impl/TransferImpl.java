@@ -45,7 +45,7 @@ public class TransferImpl implements TransferService {
             questionVO.setCreateAtForView(timeService.timeToString(question.getCreatedAt()));
         if (question.getLastUpdatedAt()!=null)
             questionVO.setUpdateAtForView(timeService.timeToString(question.getLastUpdatedAt()));
-        questionVO.setVote(voteDAO.hasVoteQuestion(userId, question.getId()));
+        questionVO.setIsVote(voteDAO.hasVoteQuestion(userId, question.getId()));
         questionVO.setWikiItems(questionDAO.getRelatedWikiItems(question.getId()));
         questionVO.setDocuments(questionDAO.getRelatedDocuments(question.getId()));
         return questionVO;

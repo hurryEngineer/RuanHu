@@ -20,6 +20,7 @@ function parseAllMarkDown() {
 
 //维基条目搜索框的class是 wiki-selection
 function initWikiSelection() {
+	console.log("init wiki selection");
 	$(function() {
 
 		var wikiSelection = $(".wiki-selection").select2({
@@ -34,13 +35,13 @@ function initWikiSelection() {
 
 		wikiSelection.select2({
 			ajax: {
-				url: "https://api.github.com/search/repositories",
+				url: "/json/wiki/search",
 				dataType: 'json',
 				delay: 250,
 				data: function(params) {
 					return {
-						q: params.term, // search term
-						page: params.page
+						key: params.term, // search term
+						page: params.page || 1
 					};
 				},
 				processResults: function(data, params) {
@@ -51,9 +52,9 @@ function initWikiSelection() {
 					params.page = params.page || 1;
 
 					return {
-						results: data.items,
+						results: data,
 						pagination: {
-							more: (params.page * 30) < data.total_count
+							more: (params.page * 30) < data.length
 						}
 					};
 				},
@@ -141,6 +142,18 @@ function formatDocItem(wikiItem){
 //      <p>Spring是一个开源框架，Spring是一个轻量级的Java 开发框架，由Rod Johnson创建。简单来说，Spring是一个分层的JavaSE/EEfull-stack(一站式) 轻量级开源框架。</p>
 //      <small>来自 wiki条目<cite title="Source Title"><a href="#" >Spring</a></cite></small>
 //  </blockquote>
+
+	<blockquote>
+	<h3><a href="#" >$oneWiki.title</a><h3>
+    <div id="question-wiki-markdown-$oneWiki.id" class="pure-markdown q-ltop-content">
+        <textarea style="display:none;">
+$oneWiki.content 这是一段内容
+        </textarea>
+    </div>
+
+    <!--<small>来自 wiki条目<cite title="Source Title"><a href="#" >$oneWiki.title</a></cite></small>-->
+</blockquote>
+
 	return "b";
 }
 

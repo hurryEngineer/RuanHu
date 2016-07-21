@@ -25,7 +25,7 @@ public class Pager<T> {
     public Pager(List<T> data) {
         this.data = data;
         this.page = 1;
-        this.page = 10;
+        this.size = 10;
     }
 
     public Pager(List<T> data, int page, int size) {

@@ -2,6 +2,7 @@ package edu.nju.web.controller;
 
 import edu.nju.data.entity.Question;
 import edu.nju.data.entity.User;
+import edu.nju.data.entity.api.WikiItem;
 import edu.nju.data.util.VoteType;
 import edu.nju.logic.service.QuestionService;
 import edu.nju.logic.service.TransferService;
@@ -35,6 +36,9 @@ public class QuestionController {
 
     @Autowired
     TransferService timeService;
+
+    @Autowired
+    WikiService wikiService;
 
     @RequestMapping(value="/question",method = RequestMethod.GET)
     String showAllQuestions(@RequestParam(value = "page", defaultValue = "1") int page, Model model, HttpSession session) {
@@ -114,7 +118,14 @@ public class QuestionController {
     }
 
     @RequestMapping(value = "/ask",method = RequestMethod.GET)
-    String newQuestion(){
+    String newQuestion(@RequestParam(value = "wikiId",defaultValue = "-1")String wikiId, Model model){
+        long wikiIdNum = Long.valueOf(wikiId);
+        if (wikiIdNum >= 0) {
+            WikiItem wikiItem = wikiService.getWikiById(wikiIdNum);
+            if (wikiItem!=null) {
+                model.addAttribute("wiki", wikiItem);
+            }
+        }
         return "askQuestion";
     }
 

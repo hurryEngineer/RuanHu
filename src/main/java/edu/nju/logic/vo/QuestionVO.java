@@ -49,12 +49,12 @@ public class QuestionVO extends Question implements ViewTime {
         this.updateAtForView = updateAtForView;
     }
 
-    public int isVote() {
+    public int getIsVote() {
         return isVote;
     }
 
-    public void setVote(int vote) {
-        this.isVote = vote;
+    public void setIsVote(int isVote) {
+        this.isVote = isVote;
     }
 
     public List<Document> getDocuments() {
