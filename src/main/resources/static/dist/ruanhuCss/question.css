@@ -41,17 +41,20 @@ ul.question-upDown li:last-child {
 }
 
 .answer-btn {
+    position: relative;
     border: none;
     color: #fff;
-    display: block;
+    display: inline-block;
     height: 40px;
     width: 15%;
+    margin-right:30px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
     background-color: #3397db;
     font-size: 14px;
     font-weight: 700;
+    /*float: left;*/
 }
 
 

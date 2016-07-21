@@ -96,7 +96,12 @@
 									</ul>
 								</div>
 								<div class="col-md-10 col-xs-6">
-                                    <div id="edit-question-field">
+                                    <div id="edit-question">
+                                        <div id="edit-question-field">
+                                        </div>
+                                        <button id="btn_submit_question" class="answer-btn" style="display: none">提交问题</button>
+                                        <button id="btn_cancel_question" class="answer-btn" style="display: none">取消修改</button>
+
                                     </div>
 
                                     <div id="question-show-area">
@@ -376,7 +381,8 @@ $question.content
                             $("#question-show-area").hide();
 
                             $("#edit-question-field").append("<div id=\"ques-editormd\"></div>");
-                            $("#edit-question-field").append("<button id=\"btn_submit_question\" class=\"answer-btn\">提交问题</button>");
+                            $("#btn_submit_question").css('display','inline');
+                            $("#btn_cancel_question").css('display','inline');
                             quesEditormd = editormd("ques-editormd", {
                                 width: "100%",
                                 height: 440,
@@ -389,21 +395,33 @@ $question.content
                             });
                         });
                    });
-
+                    $("#btn_cancel_question").click(function(){
+                        quesEditormd.editor.remove();
+                        $("#question-show-area").show();
+                        $("#edit-question").hide();
+                    });
+                    $("#btn_submit_question").click(function(){
+                        $("#question-show-area").show();
+                    });
                 });
+
+
+
+
                 var answerEditormd;
                 function editAnswer(obj) {
 
                     var answerIdThis = obj.getAttribute("answerid");
-                    alert(answerIdThis);
+
                     $.getScript("/editor.md-master/editormd.js", function() {
-                        $("#answer-show-area-answerIdThis").hide();
-                        $("#edit-answer-field-answerIdThis").append("<div id=\"answer-editormd\"></div>");
-                        $("#edit-answer-field-answerIdThis").append("<button id=\"btn_submit_answer\" class=\"answer-btn\">提交修改</button>");
+                        $("#answer-show-area-"+answerIdThis).hide();
+                        $("#btn_submit_answer-"+answerIdThis).css('display','inline');
+                        $("#btn_cancel_answer-"+answerIdThis).css('display','inline');
+                        $("#edit-answer-field-"+answerIdThis).append("<div id=\"answer-editormd\"></div>");
                         answerEditormd = editormd("answer-editormd", {
                             width: "100%",
                             height: 440,
-                            markdown :  $("#answer-textarea-answerIdThis").text(),
+                            markdown :  $("#answer-textarea-"+answerIdThis).text(),
                             path : '/editor.md-master/lib/',
                             emoji: true,
                             toolbarIcons: function() {
@@ -411,8 +429,21 @@ $question.content
                             },
                         });
                     });
+                    $("#btn_cancel_answer-"+answerIdThis).click(function(){
 
+                        answerEditormd.editor.remove();
+                        $("#answer-show-area-"+answerIdThis).show();
+                        $("#edit-answer-"+answerIdThis).hide();
+
+                    });
+                    $("#btn_submit_answer-"+answerIdThis).click(function(){
+                        $("#answer-show-area-"+answerIdThis).show();
+                    });
                 }
+
+
+
+
 			</script>
 
 

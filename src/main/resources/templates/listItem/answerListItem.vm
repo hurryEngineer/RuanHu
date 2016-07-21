@@ -42,8 +42,11 @@
             </ul>
         </div>
 
-
-        <div id="edit-answer-field-$oneAnswer.id">
+        <div id="edit-answer-$oneAnswer.id">
+            <div id="edit-answer-field-$oneAnswer.id">
+            </div>
+            <button id="btn_submit_answer-$oneAnswer.id" class="answer-btn" style="display: none">提交问题</button>
+            <button id="btn_cancel_answer-$oneAnswer.id" class="answer-btn" style="display: none">取消修改</button>
         </div>
 
 

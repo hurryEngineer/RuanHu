@@ -1,6 +1,6 @@
 ## 一个pptItemn叫onePpt
 <tr>
-    <td><img src="$onePpt.icon">
+    <td><img src="$onePpt.icon" width=20px height=20px>
         $onePpt.title</td>
     <td><a href="$onePpt.url" ><span class="badge bg-red"><i class="ion ion-ios-cloud-download-outline"></i></span></a></td>
     <!--<td><span class="badge bg-red">55%</span></td>-->
