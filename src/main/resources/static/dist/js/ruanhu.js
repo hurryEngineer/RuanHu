@@ -24,12 +24,15 @@ function initWikiSelection() {
 	$(function() {
 
 		var wikiSelection = $(".wiki-selection").select2({
-			tags: false
+			tags: false,
+			
 		});
 
 		wikiSelection.on("select2:selecting",
 			function(e) {
 				wikiSelection.select2("close");
+				//e.params.args.data是一个wiki item
+				addWikiSelection(e.params.args.data);
 				e.preventDefault();
 			});
 
@@ -45,10 +48,79 @@ function initWikiSelection() {
 					};
 				},
 				processResults: function(data, params) {
-					// parse the results into the format expected by Select2
-					// since we are using custom formatting functions we do not need to
-					// alter the remote JSON data, except to indicate that infinite
-					// scrolling can be used
+					params.page = params.page || 1;
+
+					return {
+						results: data,
+						pagination: {
+							more: (params.page * 30) < data.length
+						}
+					};
+				},
+				cache: true
+			},
+			language: "zh-CN",
+			escapeMarkup: function(markup) {
+				return markup;
+			},
+			minimumInputLength: 1,
+			templateResult: formatWikiItem,
+		});
+
+	});
+
+}
+
+function formatWikiItem(wikiItem){
+	var html = '<i class="fa fa-text-width"></i> <h3 class="wiki-selection-title">$title</h3>';
+	return html.replace("\$title",wikiItem.title);
+}
+
+function addWikiSelection(wikiItem){
+	
+	var wikiBox = $(".wiki-box");
+	if(wikiBox.css("display") == "none"){
+		wikiBox.css("display","");
+	}
+	
+	var html = '<blockquote> \
+		<h4><a href="#" >$title</a><h4> \
+	    <p>$content</p> \
+	</blockquote> ';
+	
+	html = html.replace("\$title",wikiItem.title);
+	html = html.replace("\$content",wikiItem.content);
+	
+	wikiBox.children(".box-body").append(html);
+	
+}
+
+//document搜索框的class是 doc-selection
+function initDocumentSelection() {
+	$(function() {
+
+		var docSelection = $(".doc-selection").select2({
+			tags: false
+		});
+
+		docSelection.on("select2:selecting",
+			function(e) {
+				docSelection.select2("close");
+				e.preventDefault();
+			});
+
+		docSelection.select2({
+			ajax: {
+				url: "/json/doc/search",
+				dataType: 'json',
+				delay: 250,
+				data: function(params) {
+					return {
+						key: params.term, 
+						page: params.page
+					};
+				},
+				processResults: function(data, params) {
 					params.page = params.page || 1;
 
 					return {
@@ -63,100 +135,18 @@ function initWikiSelection() {
 			escapeMarkup: function(markup) {
 				return markup;
 			},
+			language : "zh-CN",
 			minimumInputLength: 1,
-			templateResult: formatWikiItem,
-			templateSelection: formatWikiSelection
+			templateResult: formatDocItem
 		});
 
 	});
 
 }
 
-function formatWikiItem(wikiItem){
-//	<blockquote>
-//      <p>Spring是一个开源框架，Spring是一个轻量级的Java 开发框架，由Rod Johnson创建。简单来说，Spring是一个分层的JavaSE/EEfull-stack(一站式) 轻量级开源框架。</p>
-//      <small>来自 wiki条目<cite title="Source Title"><a href="#" >Spring</a></cite></small>
-//  </blockquote>
-	return "b";
-}
+function formatDocItem(docItem){
 
-function formatWikiSelection(){
-	return "a";
-}
-
-//document搜索框的class是 document-selection
-function initDocumentSelection() {
-	$(function() {
-
-		var docSelection = $(".document-selection").select2({
-			tags: false
-		});
-
-		docSelection.on("select2:selecting",
-			function(e) {
-				docSelection.select2("close");
-				e.preventDefault();
-			});
-
-		docSelection.select2({
-			ajax: {
-				url: "https://api.github.com/search/repositories",
-				dataType: 'json',
-				delay: 250,
-				data: function(params) {
-					return {
-						q: params.term, // search term
-						page: params.page
-					};
-				},
-				processResults: function(data, params) {
-					// parse the results into the format expected by Select2
-					// since we are using custom formatting functions we do not need to
-					// alter the remote JSON data, except to indicate that infinite
-					// scrolling can be used
-					params.page = params.page || 1;
-
-					return {
-						results: data.items,
-						pagination: {
-							more: (params.page * 30) < data.total_count
-						}
-					};
-				},
-				cache: true
-			},
-			escapeMarkup: function(markup) {
-				return markup;
-			},
-			minimumInputLength: 1,
-			templateResult: formatDocItem,
-			templateSelection: formatDocSelection
-		});
-
-	});
-
-}
-
-function formatDocItem(wikiItem){
-//	<blockquote>
-//      <p>Spring是一个开源框架，Spring是一个轻量级的Java 开发框架，由Rod Johnson创建。简单来说，Spring是一个分层的JavaSE/EEfull-stack(一站式) 轻量级开源框架。</p>
-//      <small>来自 wiki条目<cite title="Source Title"><a href="#" >Spring</a></cite></small>
-//  </blockquote>
-
-	<blockquote>
-	<h3><a href="#" >$oneWiki.title</a><h3>
-    <div id="question-wiki-markdown-$oneWiki.id" class="pure-markdown q-ltop-content">
-        <textarea style="display:none;">
-$oneWiki.content 这是一段内容
-        </textarea>
-    </div>
-
-    <!--<small>来自 wiki条目<cite title="Source Title"><a href="#" >$oneWiki.title</a></cite></small>-->
-</blockquote>
-
-	return "b";
-}
-
-function formatDocSelection(){
-	return "a";
+    var html = '<img src="$icon" width=15px height=15px ></img> <h3 class="box-title">$docItem.title</h3>';
+	return html.replace("\$icon",docItem.icon).replace("\$title",docItem.title);
+	
 }
