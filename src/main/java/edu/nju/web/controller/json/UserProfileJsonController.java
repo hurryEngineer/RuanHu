@@ -1,5 +1,6 @@
 package edu.nju.web.controller.json;
 
+import edu.nju.data.entity.Message;
 import edu.nju.data.entity.User;
 import edu.nju.logic.service.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by cuihao on 2016/7/12.
@@ -17,22 +19,22 @@ import javax.servlet.http.HttpSession;
 @SessionAttributes("user")
 @RequestMapping("/json")
 public class UserProfileJsonController {
+
     @Autowired
     private UserProfileService profileService;
 
-    /**
-     * 编辑用户信
-     * @param birthday 编辑后的用户生日
-     * @param session {@link HttpSession}
-     */
-//    @RequestMapping(value = "/edit", method = RequestMethod.POST)
-//    public void editProfile(@RequestParam("description") String description,
-//                            @RequestParam("location") String location,
-//                            @RequestParam("birthday") String birthday, HttpSession session){
-//        Object user = session.getAttribute("user");
-//        if (user!=null)
-//            profileService.editProfile((User)user, description, location, birthday);
-//    }
+
+    @RequestMapping(value = "/user/search", method = RequestMethod.GET)
+    @ResponseBody
+    List<User> getUserByNameKey(@RequestParam("key")String nameKey) {
+        return profileService.getSearchUser(nameKey);
+    }
+
+    @RequestMapping(value = "/user/message", method = RequestMethod.GET)
+    @ResponseBody
+    List<Message> getUserMessage(@RequestParam("userId") long userId) {
+        return profileService.getUserMessage(userId);
+    }
 
     @RequestMapping(value = "/editBirthday", method = RequestMethod.POST)
     @ResponseBody

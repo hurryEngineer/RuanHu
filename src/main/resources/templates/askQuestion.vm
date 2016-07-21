@@ -16,7 +16,12 @@
 		
 		<title>问题详情 - 软乎</title>
 
-
+		<style type="text/css">
+			p{
+				margin-left: 12px;
+				font-size: 16px;
+			}
+		</style>
 
 
 	</head>
@@ -43,7 +48,7 @@
 							
 							
 							<div class="row">
-								<p><b>标题</b></p>
+								<p>标题</p>
 							</div>
 							
 							<div class="body-question">
@@ -57,7 +62,7 @@
 							<div id="question-tag-container">
 							
 							<div class="row">
-								<p><b>添加标签</b></p>
+								<p>添加标签</p>
 							</div>
 							
 							<input data-provide="typeahead" type="text" class="submit-input tags-input" id="question_tags" name="question_tags" placeholder="回车添加标签">
@@ -71,15 +76,12 @@
 							
 							</div>
 							
-			<div class="form-group">
-                <select class="form-control wiki-selection" multiple="multiple" data-placeholder="引用wiki" style="width: 100%;">
-                </select>
-            </div>
-							<!--<input class="submit-input tags-input" placeholder="添加wiki引用">-->
+							#parse("commonPart/wikiSelector.vm")
 						
+							#parse("commonPart/docSelector.vm")
 								
 							<div class="row">
-									<p><b>问题说明</b></p>
+									<p>问题说明</p>
 							</div>
 								
 							
@@ -121,7 +123,7 @@
 			
 			var multipleSelect = null;
 			
-			initWikiSelection();
+//			initWikiSelection();
 			
 		
 		</script>

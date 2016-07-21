@@ -1,10 +1,11 @@
 ## 一个wiki叫oneWiki
 <blockquote>
+	<h3><a href="#" >$oneWiki.title</a><h3>
     <div id="question-wiki-markdown-$oneWiki.id" class="pure-markdown q-ltop-content">
         <textarea style="display:none;">
 $oneWiki.content 这是一段内容
         </textarea>
     </div>
 
-    <small>来自 wiki条目<cite title="Source Title"><a href="#" >$oneWiki.title</a></cite></small>
+    <!--<small>来自 wiki条目<cite title="Source Title"><a href="#" >$oneWiki.title</a></cite></small>-->
 </blockquote>

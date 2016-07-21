@@ -1,0 +1,33 @@
+<div class="row">
+	<p>添加文档引用</p>
+</div>
+
+<div class="box doc-box" style="display: none;">
+	<div class="box-header">
+		<h3 class="box-title">相关文档</h3>
+	</div>
+	<!-- /.box-header -->
+	<div class="box-body no-padding">
+		<table class="table table-striped">
+			<tbody>
+				<tr>
+					<th>文件名</th>
+					<th style="width: 60px">下载</th>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<div class="form-group">
+			<select class="form-control doc-selection" multiple="multiple" data-placeholder="引用文档" style="width: 100%;">
+			</select>
+		</div>
+	</div>
+</div>
+
+<script>
+	initDocumentSelection();
+</script>

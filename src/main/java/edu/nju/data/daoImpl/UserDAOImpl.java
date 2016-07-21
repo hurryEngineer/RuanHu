@@ -3,6 +3,7 @@ package edu.nju.data.daoImpl;
 import edu.nju.common.jgravatar.Gravatar;
 import edu.nju.data.dao.BaseDAO;
 import edu.nju.data.dao.UserDAO;
+import edu.nju.data.entity.Message;
 import edu.nju.data.entity.User;
 import edu.nju.data.util.CommonParas;
 import edu.nju.data.util.VerifyResult;
@@ -98,6 +99,16 @@ public class UserDAOImpl implements UserDAO {
 
         baseDAO.update(user);
 
+    }
+
+    @Override
+    public List<User> search(String partName) {
+        return null;
+    }
+
+    @Override
+    public List<Message> getAllMessage(Long userID) {
+        return null;
     }
 
 

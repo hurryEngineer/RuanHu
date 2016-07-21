@@ -21,5 +21,4 @@ public interface MessageDAO {
     void deleteByMesID(Long mesID);
 
 
-
 }
