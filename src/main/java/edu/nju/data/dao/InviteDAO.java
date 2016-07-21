@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by ss14 on 2016/7/21.
  */
-public interface inviteDAO {
+public interface InviteDAO {
 
     /**
      * 保存邀请信息到数据库

@@ -11,11 +11,6 @@ import java.util.List;
  */
 public interface MesFactoryInterface {
 
-
-
-    String createContent(MesType type ,String senderName);
-
-
     /**
      * 创建单条消息，消息的content字段由系统提供
      * @param type
@@ -24,7 +19,7 @@ public interface MesFactoryInterface {
      * @param receiver
      * @return
      */
-    Message createMesage(MesType type , Long srcID , User sender , User receiver);
+    Message createMessage(MesType type , Long srcID , User sender , User receiver);
 
 
     /**
@@ -35,6 +30,6 @@ public interface MesFactoryInterface {
      * @param receivers
      * @return
      */
-    List<Message> createMesage(MesType type , Long srcID , User sender , List<User> receivers);
+    List<Message> createMessage(MesType type , Long srcID , User sender , List<User> receivers);
 
 }
