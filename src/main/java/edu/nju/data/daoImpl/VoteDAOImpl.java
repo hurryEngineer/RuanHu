@@ -56,6 +56,7 @@ public class VoteDAOImpl implements VoteDAO {
 
             System.err.println("Vote！！！！");
             save(vote);
+
         }else if(resultList.size()>=1){
             /**
              * 重复Vote,取消赞
@@ -77,52 +78,44 @@ public class VoteDAOImpl implements VoteDAO {
     }
 
     @Override
-    public void cancel(Vote vote) {
-        Query query = em.createQuery
-                ("from Vote v where v.authorId = ?1 and  ( v.answerId =?2 or v.questionId = ?3)");
-        query.setParameter(1,vote.getAuthorId());
-        query.setParameter(2,vote.getAnswerId());
-        query.setParameter(3,vote.getQuestionId());
-
-        List<Vote>result = query.getResultList();
-        if(result!=null && result.size()>0) {
-            baseDAO.delete(Vote.class , result.get(0).getId());
-        }else{
-            System.out.print("取消不存在的Vote!!!!");
-        }
-
-
-    }
-
-    @Override
-    public boolean hasVoteQuestion(long userId, long questionId, VoteType type) {
+    public int hasVoteQuestion(long userId, long questionId) {
         Query query = em.createQuery
                 (" from Vote v where v.authorId = ?1 and v.questionId = ?2 ");
         query.setParameter(1,userId);
         query.setParameter(2,questionId);
         List<Vote> resultList = query.getResultList();
         if(resultList==null){
-            return false;
+            return 0;
         }else if(resultList.size()==0){
-            return  false;
+            return  0;
+        }else{
+            if(resultList.get(0).getVoteType()==VoteType.up){
+                return 1;
+            }else{
+                return -1;
+            }
         }
-        return true;
-
     }
 
     @Override
-    public boolean hasVoteAnswer(long userId, long answerId, VoteType type) {
+    public int hasVoteAnswer(long userId, long answerId) {
         Query query = em.createQuery
                 (" from Vote v where v.authorId = ?1 and v.answerID = ?2 ");
         query.setParameter(1,userId);
         query.setParameter(2,answerId);
         List<Vote> resultList = query.getResultList();
         if(resultList==null){
-            return false;
+            return 0;
         }else if(resultList.size()==0){
-            return  false;
+            return  0;
+        }else{
+            if(resultList.get(0).getVoteType()==VoteType.up){
+                return 1;
+            }else{
+                return -1;
+            }
         }
-        return true;
+
     }
 
 

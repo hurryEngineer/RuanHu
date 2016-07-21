@@ -23,6 +23,7 @@ public class BaseDAOImpl implements BaseDAO {
     @Override
     public void insert(Object obj) {
         em.persist(obj);
+        em.flush();
     }
 
 
@@ -30,6 +31,7 @@ public class BaseDAOImpl implements BaseDAO {
     public void delete( Class<?> c, long id) {
         Object ob =load(c,id);
         em.remove(ob);
+        em.flush();
 
     }
 
