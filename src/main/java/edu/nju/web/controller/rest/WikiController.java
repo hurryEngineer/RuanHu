@@ -1,4 +1,4 @@
-package edu.nju.web.controller.api;
+package edu.nju.web.controller.rest;
 
 import edu.nju.data.dao.http.Wiki_httpDAO;
 import edu.nju.data.entity.api.WikiItem;
@@ -14,7 +14,7 @@ import java.util.List;
  * Created by cuihao on 2016/7/20.
  */
 @Controller
-@RequestMapping("/api/wiki")
+@RequestMapping("/rest/wiki")
 public class WikiController {
 
     @Autowired
