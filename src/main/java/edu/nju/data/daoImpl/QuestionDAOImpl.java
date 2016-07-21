@@ -5,6 +5,7 @@ import edu.nju.data.dao.http.Tss_httpDAO;
 import edu.nju.data.dao.http.Wiki_httpDAO;
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
+import edu.nju.data.entity.User;
 import edu.nju.data.entity.api.Document;
 import edu.nju.data.entity.api.WikiItem;
 import edu.nju.data.util.CommonParas;
@@ -84,6 +85,15 @@ public class QuestionDAOImpl implements QuestionDAO {
         wikiDAO.insertQuestion(result.getId() , wikiIDs);
         documentDAO.insertQuestion(result.getId(),docuIDs);
         return result;
+
+    }
+
+    //TODO
+    @Override
+    public Question createQuestion
+            (Question question, List wikiIDs, List docuIDs, List<User> invitees) {
+
+        return null;
 
     }
 

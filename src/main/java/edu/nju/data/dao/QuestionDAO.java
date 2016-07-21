@@ -2,6 +2,7 @@ package edu.nju.data.dao;
 
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
+import edu.nju.data.entity.User;
 import edu.nju.data.entity.api.Document;
 import edu.nju.data.entity.api.WikiItem;
 import edu.nju.data.util.HQL_Helper.Enums.OrderByMethod;
@@ -43,7 +44,20 @@ public interface QuestionDAO {
      * @param docuIDs   如果没有引用文件,就应该为null
      * @return  返回带ID的问题;
      */
-    Question createQuestion(Question question , List  wikiIDs , List docuIDs);
+    Question createQuestion
+            (Question question , List  wikiIDs , List docuIDs);
+
+
+    /**
+     * 保存一个带引用，带邀请的问题
+     * @param question
+     * @param wikiIDs
+     * @param docuIDs
+     * @param invitees  被邀请回答问题的用户列表,如果没有邀请列表就为null
+     * @return
+     */
+    Question createQuestion
+            (Question question , List wikiIDs , List docuIDs , List<User> invitees);
 
 
     /**
