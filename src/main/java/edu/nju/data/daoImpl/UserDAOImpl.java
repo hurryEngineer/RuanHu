@@ -105,7 +105,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public List<User> search(String partName)
     {
-        Query query = em.createQuery(" from User u where u.userName like : partName ");
+        Query query = em.createQuery(" from User u where u.userName like :partName ");
         query.setParameter( "partName" , "%" +partName+"%");
         List<User> users = query.getResultList();
         return users;
