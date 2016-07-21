@@ -7,7 +7,6 @@ import edu.nju.data.entity.Question;
 import edu.nju.data.entity.Vote;
 import edu.nju.data.util.VoteType;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
