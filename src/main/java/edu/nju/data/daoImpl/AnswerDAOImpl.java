@@ -1,6 +1,8 @@
 package edu.nju.data.daoImpl;
 
 import edu.nju.data.dao.*;
+import edu.nju.data.dao.http.Tss_httpDAO;
+import edu.nju.data.dao.http.Wiki_httpDAO;
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.api.Document;
 import edu.nju.data.entity.api.WikiItem;
@@ -18,6 +20,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,6 +40,10 @@ public class AnswerDAOImpl implements AnswerDAO {
     WikiDAO wikiDAO;
     @Autowired
     DocumentDAO documentDAO;
+    @Autowired
+    Wiki_httpDAO wiki_httpDAO;
+    @Autowired
+    Tss_httpDAO docu_httpDAO;
 
     @PersistenceContext
     EntityManager em;
@@ -246,13 +254,46 @@ public class AnswerDAOImpl implements AnswerDAO {
     }
 
     @Override
-    public List<WikiItem> getRelatedWikiItems(long QuestionID) {
-        return null;
+    public List<WikiItem> getRelatedWikiItems(long answerID) {
+        List<WikiItem> result = new ArrayList<>();
+        List ids = new ArrayList();
+
+        Query query = em.createQuery("select aw.wikiId from AnswerWiki aw where aw.answerId = ?1 ");
+        query.setParameter(1,answerID);
+        ids.addAll(query.getResultList());
+
+        for(int i=0;i<ids.size();i++){
+
+            try {
+                result.add(wiki_httpDAO.getWikiById((Long) ids.get(i)));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        return result;
     }
 
     @Override
-    public List<Document> getRelatedDocuments(long QuestionID) {
-        return null;
+    public List<Document> getRelatedDocuments(long answerID) {
+        List<Document> result = new ArrayList<>();
+        List ids = new ArrayList();
+
+        Query query = em.createQuery
+                ("select ad.documentId from AnswerDocument  ad where ad.answerId = ?1 ");
+        query.setParameter(1,answerID);
+        ids.addAll(query.getResultList());
+
+        for(int i=0 ; i<ids.size() ;i++){
+            try {
+                result.add(docu_httpDAO.getDocumentById((Long) ids.get(i)));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return result;
     }
 
 
