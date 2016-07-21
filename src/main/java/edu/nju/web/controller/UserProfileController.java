@@ -53,7 +53,7 @@ public class UserProfileController {
     String showAnswers(@RequestParam("userName") String userName, Model model, HttpSession session) {
         Object user = session.getAttribute("user");
         model.addAttribute("userName",userName);
-        System.out.println(profileService.getAnswerByName(userName,user==null?-1:((User)user).getId()));
+//        System.out.println(profileService.getAnswerByName(userName,user==null?-1:((User)user).getId()));
         model.addAttribute("activities",profileService.getAnswerByName(userName,user==null?-1:((User)user).getId()));
         return "user/user_answerList";
     }

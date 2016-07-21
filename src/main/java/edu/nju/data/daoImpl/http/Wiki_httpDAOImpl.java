@@ -51,14 +51,15 @@ public class Wiki_httpDAOImpl implements Wiki_httpDAO {
 
         ObjectMapper mapper = new ObjectMapper();
         List<WikiItem> list = new ArrayList<>();
-        WikiItem wi = new WikiItem();
-        wi = getWikiByString(s);
+        WikiItem wi = getWikiByString(s);
         wi.setId(1);
         list.add(wi);
-        wi.setId(2);
-        list.add(wi);
-        wi.setId(3);
-        list.add(wi);
+        WikiItem wi2 = getWikiByString(s);
+        wi2.setId(2);
+        list.add(wi2);
+        WikiItem wi3 = getWikiByString(s);
+        wi3.setId(3);
+        list.add(wi3);
         Pager<WikiItem> pager = new Pager<WikiItem>(list);
 
         return pager;
