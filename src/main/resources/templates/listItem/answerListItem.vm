@@ -3,9 +3,9 @@
 	<div class="col-md-2 col-xs-2">
 		<ul class="question-upDown">
 			<li title="" data-original-title="This is useful.">
-				<a data-container="body" data-toggle="tooltip" title="赞同" data-content="You must have 5 points to vote up." href="javascript:void(0)" data-name="vote_up" class="action vote vote-up img-circle" data-original-title="" title="">
-					<i answerid="$oneAnswer.id" onclick="upVote(this)" class="fa fa-chevron-up"></i>
-				</a>
+                <a data-container="body" isVote="$oneAnswer.isVote" answerid="$oneAnswer.id" onclick="upVote(this)" data-toggle="tooltip" title="顶一下" data-content="You must have 5 points to vote up." href="javascript:void(0)" data-name="vote_up" class="action vote vote-up img-circle" data-original-title="" title="">
+                    <i  class="fa fa-chevron-up"></i>
+                </a>
 			</li>
 
 			<li data-original-title="" title="">
@@ -13,9 +13,9 @@
 			</li>
 
 			<li title="" data-original-title="This is not useful">
-				<a data-container="body" data-toggle="tooltip" title="反对" data-content="You must have 500 points to vote down." href="javascript:void(0)" data-name="vote_down" class="action vote vote-down img-circle " data-original-title="" title="">
-					<i answerid="$oneAnswer.id" onclick="downVote(this)" class="fa fa-chevron-down"></i>
-				</a>
+                <a data-container="body" isVote="$oneAnswer.isVote" data-toggle="tooltip" title="踩一下" data-content="You must have 500 points to vote down." href="javascript:void(0)" data-name="vote_down" class="action vote vote-down img-circle " data-original-title="" title="">
+                    <i answerid="$oneAnswer.id" onclick="downVote(this)" class="fa fa-chevron-down"></i>
+                </a>
 			</li>
 
 			<!--<li class="single-question-pump" data-original-title="" title="">
@@ -33,7 +33,6 @@ $!oneAnswer.content
 		</div>
 
 
-
         <div class="box box-solid">
             <div class="box-header with-border">
                 <i class="fa fa-text-width"></i>
@@ -44,7 +43,7 @@ $!oneAnswer.content
 				#foreach($oneWiki in $oneAnswer.wikiItems)
 					#parse("listItem/wikiListItem.vm")
 				#end
-		    </div>
+            </div>
             <!-- /.box-body -->
         </div>
 
@@ -62,9 +61,9 @@ $!oneAnswer.content
                         <th>文件名</th>
                         <th style="width: 60px">下载</th>
                     </tr>
-					#foreach($onePpt in $oneAnswer.pptItems)
-						#parse("listItem/wikiListItem.vm")
-					#end
+						#foreach($onePpt in $oneAnswer.pptItems)
+							#parse("listItem/wikiListItem.vm")
+						#end
 
                     <tr>
                         <td>软工二第二章</td>
@@ -80,7 +79,7 @@ $!oneAnswer.content
 
 
 
-		<div class="question-cat answerDiv">
+        <div class="question-cat answerDiv">
 			<div class="clearfix"></div>
 			<a href="/userProfile/$oneAnswer.author.userName">
 				<span class="author-avatar">
@@ -92,6 +91,7 @@ $!oneAnswer.content
 				编辑于 $oneAnswer.getUpdateAtForView()
 			</span>
 		</div>
+
 
 
 

@@ -64,7 +64,7 @@ public class TransferImpl implements TransferService {
             answerVO.setCreateAtForView(timeService.timeToString(answer.getCreatedAt()));
         if (answer.getLastUpdatedAt()!=null)
             answerVO.setUpdateAtForView(timeService.timeToString(answer.getLastUpdatedAt()));
-        answerVO.setVote(voteDAO.hasVoteAnswer(userId, answer.getId()));
+        answerVO.setIsVote(voteDAO.hasVoteAnswer(userId, answer.getId()));
         return answerVO;
     }
 }

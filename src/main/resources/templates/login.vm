@@ -29,7 +29,7 @@
             
             $.ajax({
                 type: "post",
-                url:"/loginVerify",
+                url:"/json/loginVerify",
                 data: $("#loginForm").serialize(),
                 success: function(msg){
                 	console.log(msg);

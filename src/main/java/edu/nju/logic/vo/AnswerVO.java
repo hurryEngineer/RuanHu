@@ -47,12 +47,12 @@ public class AnswerVO extends Answer implements ViewTime{
         this.updateAtForView = updateAtForView;
     }
 
-    public int isVote() {
+    public int getIsVote() {
         return isVote;
     }
 
-    public void setVote(int vote) {
-        this.isVote = vote;
+    public void setIsVote(int isVote) {
+        this.isVote = isVote;
     }
 
     public List<Document> getDocuments() {
@@ -69,5 +69,16 @@ public class AnswerVO extends Answer implements ViewTime{
 
     public void setWikiItems(List<WikiItem> wikiItems) {
         this.wikiItems = wikiItems;
+    }
+
+    @Override
+    public String toString() {
+        return "AnswerVO{" +
+                "createAtForView='" + createAtForView + '\'' +
+                ", updateAtForView='" + updateAtForView + '\'' +
+                ", isVote=" + isVote +
+                ", wikiItems=" + wikiItems +
+                ", documents=" + documents +
+                "} " + super.toString();
     }
 }
