@@ -129,34 +129,9 @@
 			
 			var multipleSelect = null;
 			
-			$(function(){
-				multipleSelect = $(".select2").select2({
-  					tags: false
-				});
-				
-				multipleSelect.on("select2:selecting", 
-					function (e) {
-						console.log("selecting");
-						multipleSelect.select2("close");
-						e.preventDefault() 
-				});
-				
-			});
+			initWikiSelection();
 			
 		
-//			$("#btn_submit_question").click(function(){
-//				var content = testEditor.getMarkdown();
-//				var title=${"question_title"}
-//				
-//				$.ajax({
-//				type:'post',
-//				url:'${pageContext.request.contextPath}/newQuestion.action',
-//				data:'&title='+title+'&description='+content,
-//				success:function(data){
-//					
-//				}
-//			});
-//			});
 		</script>
 		##parse("commonPart/addtionalJs.vm")
 	</body>
