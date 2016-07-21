@@ -37,7 +37,7 @@ public class AnswerJsonController {
                               @RequestParam("wikis")List wikiIds,
                               @RequestParam("docs")List docIds, HttpSession session){
         User user = (User) session.getAttribute("user");
-        return answerService.saveAnswer(Long.valueOf(questionId), user.getId(), markedText);
+        return answerService.saveAnswer(Long.valueOf(questionId), user.getId(), markedText, wikiIds, docIds);
     }
 
     /**

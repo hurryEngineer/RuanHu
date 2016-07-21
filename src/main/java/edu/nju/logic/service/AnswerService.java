@@ -5,6 +5,8 @@ import edu.nju.data.entity.User;
 import edu.nju.data.util.VoteType;
 import edu.nju.logic.vo.AnswerVO;
 
+import java.util.List;
+
 /**
  * 回答接口
  * @author cuihao
@@ -26,7 +28,7 @@ public interface AnswerService {
      * @param text 回答的内容
      * @return 是否保存成功
      */
-    boolean saveAnswer(long questionId, long userId, String text);
+    boolean saveAnswer(long questionId, long userId, String text, List wikiIds, List docIds);
 
     /**
      * 修改回答

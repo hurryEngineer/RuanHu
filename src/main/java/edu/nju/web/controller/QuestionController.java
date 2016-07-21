@@ -5,6 +5,7 @@ import edu.nju.data.entity.User;
 import edu.nju.data.util.VoteType;
 import edu.nju.logic.service.QuestionService;
 import edu.nju.logic.service.TransferService;
+import edu.nju.logic.service.WikiService;
 import edu.nju.logic.vo.AnswerVO;
 import edu.nju.logic.vo.QuestionVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,7 +100,7 @@ public class QuestionController {
             question.setCreatedAt(new Timestamp(new Date().getTime()));
             question.setContent(description);
 
-            question = service.saveQuestion(question, user.getId());
+            question = service.saveQuestion(question, user.getId(), wikiIds, docIds);
             QuestionVO questionVO = timeService.transferQuestion(question, user.getId());
             session.setAttribute("question",questionVO);
 

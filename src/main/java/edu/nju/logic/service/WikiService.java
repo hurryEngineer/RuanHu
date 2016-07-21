@@ -1,5 +1,6 @@
 package edu.nju.logic.service;
 
+import edu.nju.data.entity.api.Document;
 import edu.nju.data.entity.api.WikiItem;
 
 import java.util.List;
@@ -28,4 +29,25 @@ public interface WikiService {
      * @return 处理好后的文字
      */
     String keyMatch(String content);
+
+    /**
+     * 根据wikiID获取与之相关的问题ID
+     */
+    List<WikiItem> getRelatedWikis(long questionId);
+
+
+    /**
+     * 根据wikiID获取与之相关的文件ID
+     */
+    List<Document> getRelatedDocuments(long questionId);
+
+    /**
+     * 插入与某一个问题相关的一系列wiki条目
+     */
+    void insertQuestion(long questionID , List wikiIDs);
+
+    /**
+     * 插入与某一个回答相关的一系列wiki条目
+     */
+    void insertAnswer(long answerID , List wikiIDs);
 }
