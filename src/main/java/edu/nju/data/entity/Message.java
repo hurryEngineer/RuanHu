@@ -16,8 +16,8 @@ public class Message {
     private String content;
     private Timestamp createdAt =new Timestamp( new Date().getTime());
     private Short checked = 0;
-    private User receiver;
-    private User sender;
+    private User receiver = new User();
+    private User sender = new User();
 
 
     @Transient

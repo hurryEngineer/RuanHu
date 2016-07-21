@@ -86,7 +86,7 @@
             "bold", "del", "italic", "quote", "uppercase", "|", 
             "h3","|", 
             "list-ul", "list-ol", "hr", "|",
-            "link",  "image", "code-block", "table", "datetime", "emoji", "|",
+            "link",   "code-block", "table", "datetime", "emoji", "|",
             "watch", "preview", "fullscreen", "|",
             "help", 
         ],

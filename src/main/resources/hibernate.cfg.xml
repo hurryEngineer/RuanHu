@@ -23,7 +23,7 @@
 
      <!-- <property name="hbm2ddl.auto">update</property> -->
      <!--DB schema will be updated if needed-->
-     <property name="hbm2ddl.auto">update</property>
+     <!--<property name="hbm2ddl.auto">update</property>-->
 
   </session-factory>
 </hibernate-configuration>

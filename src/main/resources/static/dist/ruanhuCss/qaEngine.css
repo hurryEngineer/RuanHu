@@ -1472,7 +1472,7 @@ ul.post-controls {
 	right: 0;
 	padding: 0;
 	margin-right: 15px;
-	display: none;
+	/*display: none;*/
 }
 
 ul.post-controls li {

@@ -76,8 +76,9 @@
 							
 							</div>
 							
-							#parse("commonPart/wikiSelecor.vm")
+							#parse("commonPart/wikiSelector.vm")
 						
+							#parse("commonPart/docSelector.vm")
 								
 							<div class="row">
 									<p>问题说明</p>
@@ -122,7 +123,7 @@
 			
 			var multipleSelect = null;
 			
-			initWikiSelection();
+//			initWikiSelection();
 			
 		
 		</script>

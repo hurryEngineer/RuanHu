@@ -6,6 +6,7 @@ import edu.nju.data.dao.UserDAO;
 import edu.nju.data.entity.Message;
 import edu.nju.data.entity.User;
 import edu.nju.data.util.CommonParas;
+import edu.nju.data.util.HQL_Helper.Impl.QueryHqlMaker;
 import edu.nju.data.util.VerifyResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -84,7 +85,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User getUserByName(String username) {
-        Query query = em.createQuery( " from User where userName = ?1" );
+        Query query = em.createQuery( " from User where userName = ?1 " );
         query.setParameter(1,username);
         return (User) query.getSingleResult();
     }
@@ -102,13 +103,22 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public List<User> search(String partName) {
-        return null;
+    public List<User> search(String partName)
+    {
+        Query query = em.createQuery(" from User u where u.userName like : partName ");
+        query.setParameter( "partName" , "%" +partName+"%");
+        List<User> users = query.getResultList();
+        return users;
     }
 
     @Override
     public List<Message> getAllMessage(Long userID) {
-        return null;
+
+        Query query = em.createQuery(" from Message m where m.receiver.id = ?1 ");
+        query.setParameter(1,userID);
+        List<Message> messages = query.getResultList();
+        return messages;
+
     }
 
 
