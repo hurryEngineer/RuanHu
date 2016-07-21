@@ -8,6 +8,7 @@ import edu.nju.data.entity.Vote;
 import edu.nju.data.util.HQL_Helper.Enums.OrderByMethod;
 import edu.nju.data.util.HQL_Helper.Enums.OrderByPara;
 import edu.nju.data.util.HQL_Helper.Enums.WherePara;
+import edu.nju.data.util.MesType;
 import edu.nju.data.util.VoteType;
 import edu.nju.logic.service.InviteService;
 import edu.nju.logic.service.QuestionService;
@@ -39,6 +40,9 @@ public class QuestionImpl implements QuestionService {
     VoteDAO voteDAO;
 
     @Autowired
+    MessageDAO messageDAO;
+
+    @Autowired
     TransferService timeService;
 
     @Autowired
@@ -49,6 +53,9 @@ public class QuestionImpl implements QuestionService {
 
     @Autowired
     DocumentDAO documentDAO;
+
+    @Autowired
+    UserDAO userDAO;
 
     @Override
     public QuestionVO showQuestion(long id, long userId) {
@@ -111,6 +118,9 @@ public class QuestionImpl implements QuestionService {
         vote.setLastUpdatedAt(new Timestamp(new Date().getTime()));
         vote.setQuestionId(Long.valueOf(questionId));
         vote.setVoteType(type);
+        Question question = questionDAO.getQuestionByID(Long.valueOf(questionId));
+        User sender = userDAO.getUserByID(Long.valueOf(userId));
+        messageDAO.sendMessage(MesType.vote, question.getId(), sender, question.getAuthor());
         return voteDAO.vote(vote);
     }
 

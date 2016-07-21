@@ -1,12 +1,11 @@
 package edu.nju.logic.impl;
 
-import edu.nju.data.dao.AnswerDAO;
-import edu.nju.data.dao.QuestionDAO;
-import edu.nju.data.dao.VoteDAO;
+import edu.nju.data.dao.*;
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
 import edu.nju.data.entity.User;
 import edu.nju.data.entity.Vote;
+import edu.nju.data.util.MesType;
 import edu.nju.data.util.VoteType;
 import edu.nju.logic.service.AnswerService;
 import edu.nju.logic.vo.AnswerVO;
@@ -32,6 +31,12 @@ public class AnswerImpl implements AnswerService {
     @Autowired
     private QuestionDAO questionDAO;
 
+    @Autowired
+    private UserDAO userDAO;
+
+    @Autowired
+    private MessageDAO messageDAO;
+
     @Override
     public boolean markAsSolution(User user, long questionId, long answerId) {
         Question question = questionDAO.getQuestionByID(questionId);
@@ -53,6 +58,9 @@ public class AnswerImpl implements AnswerService {
         answer.setCreatedAt(new Timestamp(new Date().getTime()));
         answer.setLastUpdatedAt(new Timestamp(new Date().getTime()));
         answerDAO.createAnswer(answer, wikiIds, docIds);
+        Question question = questionDAO.getQuestionByID(questionId);
+        User sender = userDAO.getUserByID(userId);
+        messageDAO.sendMessage(MesType.answer,questionId,sender,question.getAuthor());
         return true;
     }
 
@@ -87,6 +95,9 @@ public class AnswerImpl implements AnswerService {
         vote.setAuthorId(Long.valueOf(userId));
         vote.setCreatedAt(new Timestamp(new Date().getTime()));
         vote.setLastUpdatedAt(new Timestamp(new Date().getTime()));
+        Answer answer = answerDAO.getAnswerByID(Long.valueOf(answerId));
+        User sender = userDAO.getUserByID(Long.valueOf(userId));
+        messageDAO.sendMessage(MesType.vote, answer.getId(), sender, answer.getAuthor());
         return voteDAO.vote(vote);
     }
 
