@@ -1,5 +1,7 @@
 package edu.nju.data.entity;
 
+import edu.nju.data.util.MesType;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -11,7 +13,7 @@ import java.util.Date;
 @Entity
 public class Message {
     private Long id;
-    private Serializable mesgType;
+    private MesType mesgType;
     private Long sourceId;
     private String content;
     private Timestamp createdAt =new Timestamp( new Date().getTime());
@@ -55,13 +57,14 @@ public class Message {
         this.id = id;
     }
 
-    @Basic
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "mesg_type")
-    public Serializable getMesgType() {
+    public MesType getMesgType() {
         return mesgType;
     }
 
-    public void setMesgType(Serializable mesgType) {
+    public void setMesgType(MesType mesgType) {
         this.mesgType = mesgType;
     }
 
