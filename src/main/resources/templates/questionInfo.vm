@@ -179,7 +179,6 @@ $question.content
 							
 							
 							#foreach($oneAnswer in $answerOfQuestion)
-								<script>console.log('$oneAnswer.isVote')</script>
 								#parse("listItem/answerListItem.vm")
 							#end
 							
