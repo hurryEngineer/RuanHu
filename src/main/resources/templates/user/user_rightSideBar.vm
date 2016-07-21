@@ -18,8 +18,8 @@
 			<li>
 				<a href="#">
 					<i class="fa fa-th"></i>
-					<span>  收  藏</span>
-##                    <span class="label label-warning pull-right">${}</span>
+					<span>  通  知</span>
+                    <span class="label label-warning pull-right">10</span>
 				</a>
 			</li>
 			<li>
