@@ -3,6 +3,8 @@ package edu.nju.data.daoImpl;
 import edu.nju.data.dao.BaseDAO;
 import edu.nju.data.dao.MessageDAO;
 import edu.nju.data.entity.Message;
+import edu.nju.data.entity.User;
+import edu.nju.data.util.MesType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +26,11 @@ public class MessageDAOImpl implements MessageDAO {
     @PersistenceContext
     EntityManager em;
 
+
+    @Override
+    public void sendMessage(MesType type, Long scrId, User sender, User receiver) {
+
+    }
 
     @Override
     public void save(Message mes) {
