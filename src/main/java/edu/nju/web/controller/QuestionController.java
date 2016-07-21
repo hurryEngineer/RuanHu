@@ -9,6 +9,7 @@ import edu.nju.logic.service.WikiService;
 import edu.nju.logic.vo.AnswerVO;
 import edu.nju.logic.vo.QuestionVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -85,8 +86,9 @@ public class QuestionController {
 
     
     @RequestMapping(value = "/submitQuestion",method = RequestMethod.POST)
-    String newQuestion(String title, String description, List wikiIds, List docIds, HttpSession session, @ModelAttribute("user")User user){
-        System.out.println("submit a question!");
+    String newQuestion(String title, String description,
+            @RequestParam(defaultValue="") List<Long> wikiIds,
+            @RequestParam(defaultValue="") List<Long> docIds, HttpSession session, @ModelAttribute("user")User user){
         Map<String,Object> result = new HashMap<>();
         Question question;
 

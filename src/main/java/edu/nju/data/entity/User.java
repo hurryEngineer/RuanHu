@@ -19,7 +19,9 @@ public class User {
     private Timestamp createdAt = new Timestamp( new java.util.Date().getTime());
     private Date birthDate;
 
-
+    public void setId(long id) {
+        this.id = id;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
