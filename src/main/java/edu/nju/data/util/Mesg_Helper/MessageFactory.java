@@ -5,6 +5,7 @@ import edu.nju.data.entity.User;
 import edu.nju.data.util.MesType;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,8 +15,8 @@ import java.util.List;
 public class MessageFactory implements MesFactoryInterface {
 
 
-    @Override
-    public String createContent(MesType type, String senderName ) {
+
+    private String createContent(MesType type, String senderName ) {
         String content;
 
         switch (type){
@@ -48,7 +49,7 @@ public class MessageFactory implements MesFactoryInterface {
     }
 
     @Override
-    public Message createMesage(MesType type, Long srcID, User sender , User receiver) {
+    public Message createMessage(MesType type, Long srcID, User sender , User receiver) {
         Message message = new Message();
         message.setMesgType(type);
         message.setSourceId(srcID);
@@ -59,8 +60,14 @@ public class MessageFactory implements MesFactoryInterface {
     }
 
     @Override
-    public List<Message> createMesage(MesType type, Long srcID, User sender, List<User> receivers) {
-        return null;
+    public List<Message> createMessage(MesType type, Long srcID, User sender, List<User> receivers) {
+        List<Message> messages = new ArrayList<>();
+
+        for (User receiver : receivers){
+            messages.add( createMessage(type,srcID,sender,receiver) );
+        }
+
+        return messages;
     }
 
 
