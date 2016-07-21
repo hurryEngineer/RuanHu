@@ -13,13 +13,13 @@ import java.util.Map;
  * 对外提供的api
  */
 @Controller
-@RequestMapping("/api/relation")
+@RequestMapping("/api")
 public class ApiController {
 
     @Autowired
     private RelationService relationService;
 
-    @RequestMapping(value = "/ppt/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/relation/ppt/{id}", method = RequestMethod.GET)
     @ResponseBody
     Map<String, Object> getPPTRelation(@PathVariable long id){
         Map<String,Object> map = new HashMap<>();
@@ -29,7 +29,7 @@ public class ApiController {
         return map;
     }
 
-    @RequestMapping(value = "/wiki/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/relation/wiki/{id}",method = RequestMethod.GET)
     @ResponseBody
     Map<String, Object> getWikiRelation(@PathVariable long id){
         Map<String, Object> map = new HashMap<>();
@@ -37,5 +37,10 @@ public class ApiController {
         map.put("pptIds", relationService.getRelatedDocByWiki(id));
         map.put("questionIds", relationService.getRelatedQuestionByWiki(id));
         return map;
+    }
+
+    @RequestMapping(value = "/ask",method = RequestMethod.GET)
+    String askQuestionByWiki(@RequestParam("wikiId")String wikiId) {
+        return "redirect:/ask?wikiId="+wikiId;
     }
 }
