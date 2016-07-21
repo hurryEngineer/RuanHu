@@ -100,7 +100,7 @@ public class VoteDAOImpl implements VoteDAO {
     @Override
     public int hasVoteAnswer(long userId, long answerId) {
         Query query = em.createQuery
-                (" from Vote v where v.authorId = ?1 and v.answerID = ?2 ");
+                (" from Vote v where v.authorId = ?1 and v.answerId = ?2 ");
         query.setParameter(1,userId);
         query.setParameter(2,answerId);
         List<Vote> resultList = query.getResultList();

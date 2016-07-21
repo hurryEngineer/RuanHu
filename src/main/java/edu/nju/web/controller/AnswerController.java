@@ -69,7 +69,7 @@ public class AnswerController {
     public String editAnswer(@RequestParam("qid")String questionId, @RequestParam("aid")String answerId,
                            @RequestParam("text")String text) {
         answerService.editAnswer(Long.valueOf(answerId),text);
-        return "redirect:/json/question/"+questionId;
+        return "redirect:/question/"+questionId;
     }
 
     /**
@@ -85,7 +85,7 @@ public class AnswerController {
                                @RequestParam("qid")String questionId, Model model) {
         boolean result = answerService.deleteAnswer(Long.valueOf(answerId),Long.valueOf(userId));
         model.addAttribute("deleteResult",result);
-        return "redirect:/json/question/"+questionId;
+        return "redirect:/question/"+questionId;
     }
 
 

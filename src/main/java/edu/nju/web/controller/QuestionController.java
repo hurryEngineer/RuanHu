@@ -26,7 +26,6 @@ import java.util.Map;
 
 @Controller
 @SessionAttributes("user")
-@RequestMapping("/json")
 public class QuestionController {
 
     @Autowired
@@ -67,7 +66,7 @@ public class QuestionController {
     String editQuestion(@RequestParam("id")String questionId, @RequestParam("title")String title,
                       @RequestParam("description") String desciption) {
         service.updateQustion(Long.valueOf(questionId),title,desciption);
-        return "redirect:/json/question/"+questionId;
+        return "redirect:/question/"+questionId;
     }
 
     @RequestMapping(value = "/question/delete", method = RequestMethod.POST)
@@ -75,9 +74,9 @@ public class QuestionController {
         boolean result = service.deleteQuestion(Long.valueOf(questionId),Long.valueOf(userId));
         model.addAttribute("deleteResult",result);
         if (result) {
-            return "redirect:/json/question";
+            return "redirect:/question";
         } else {
-            return "redirect:/json/question/"+questionId;
+            return "redirect:/question/"+questionId;
         }
     }
 
@@ -103,10 +102,10 @@ public class QuestionController {
             session.setAttribute("question",questionVO);
 
 
-            return "redirect:/json/question/"+question.getId();
+            return "redirect:/question/"+question.getId();
         }
 
-        return "redirect:/json/ask";
+        return "redirect:/ask";
     }
 
     @RequestMapping(value = "/ask",method = RequestMethod.GET)
