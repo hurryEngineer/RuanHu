@@ -47,9 +47,9 @@
 							<div class="row">
 
 								<div class="col-md-2 col-xs-2">
-									<ul class="question-upDown">
+									<ul class="question-upDown" isVote="$question.isVote">
 										<li title="" data-original-title="This is useful.">
-											<a id="up" title="顶一下" isVote="$question.isVote" onclick="upQuesVote(this)" data-container="body" data-toggle="tooltip" data-content="You must have 5 points to vote up." href="javascript:void(0)" data-name="vote_up" class="action vote vote-up img-circle " data-original-title="" title="">
+											<a id="up" title="顶一下" onclick="upQuesVote(this,this.parentNode.parentNode)" data-container="body" data-toggle="tooltip" data-content="You must have 5 points to vote up." href="javascript:void(0)" data-name="vote_up" class="action vote vote-up img-circle " data-original-title="" title="">
 												<i class="fa fa-chevron-up"></i>
 											</a>
 										</li>
@@ -58,8 +58,8 @@
 										<span id="questionVoteCount" itemprop="upvoteCount" class="vote-count">$question.voteCount</span>
 										</li>
 									 
-										<li title="" data-original-title="This is not useful">
-											<a id="down" title="踩一下" isVote="$question.isVote" onclick="downQuesVote(this)" data-container="body" data-toggle="tooltip" data-content="You must have 500 points to vote down." href="javascript:void(0)" data-name="vote_down" class="action vote vote-down img-circle " data-original-title="" title="">
+										<li title="" data-original-title="This is useless">
+											<a id="down" title="踩一下"  onclick="downQuesVote(this,this.parentNode.parentNode)" data-container="body" data-toggle="tooltip" data-content="You must have 500 points to vote down." href="javascript:void(0)" data-name="vote_down" class="action vote vote-down img-circle " data-original-title="" title="">
 											<i class="fa fa-chevron-down"></i>
 											</a>
 										</li>
@@ -240,7 +240,7 @@ $question.content
 
 
                 function upVote(obj,prt) {
-					console.log("up-vote");
+//					console.log("up-vote");
                     var answerIdThis = prt.getAttribute("answerid");
                     var userIdThis = $user.id;
                     $.ajax({
@@ -248,13 +248,13 @@ $question.content
                         url: "/json/answer/upVote",
                         data: {questionId: aQuestionId, answerId:answerIdThis, userId:userIdThis},
                         success: function(msg){
-							console.log("msg"+msg);
+//							console.log("msg"+msg);
                             $("#answerVoteCount").text(msg);
 
-							console.log("up:"+prt.getAttribute("isVote"));
+//							console.log("up:"+prt.getAttribute("isVote"));
 							if(prt.getAttribute("isVote")!=1) {
                                 prt.setAttribute("isVote",1);
-                                alert(prt.childNodes);
+                                prt.getElementsByClassName('vote-down')[0].setAttribute("class","action vote vote-down img-circle");
                                 obj.setAttribute("class", "action vote vote-up img-circle bg-blue");
                             }else{
                                 prt.setAttribute("isVote",0);
@@ -265,30 +265,32 @@ $question.content
                     });
                 }
 
-                function downVote(obj,circle) {
-                    var answerIdThis = obj.getAttribute("answerid");
+                function downVote(obj,prt) {
+                    var answerIdThis = prt.getAttribute("answerid");
                     var userIdThis = $user.id;
                     $.ajax({
                         type : "GET",
                         url: "/json/answer/downVote",
                         data: {questionId: aQuestionId, answerId:answerIdThis, userId:userIdThis},
                         success: function(msg){
-                            //console.log("msg"+msg);
+//                            console.log("msg"+msg);
                             $("#answerVoteCount").text(msg);
 
-//							console.log("up:"+obj.getAttribute("isVote"));
-                            if(obj.getAttribute("isVote")!=-1) {
-                                obj.setAttribute("isVote",-1);
+                            console.log("up:"+prt.getAttribute("isVote"));
+                            if(prt.getAttribute("isVote")!=-1) {
+                                prt.setAttribute("isVote",-1);
+                                prt.getElementsByClassName('vote-up')[0].setAttribute("class","action vote vote-up img-circle");
                                 obj.setAttribute("class", "action vote vote-down img-circle bg-blue");
                             }else{
-                                obj.setAttribute("isVote",0);
+                                prt.setAttribute("isVote",0);
                                 obj.setAttribute("class","action vote vote-down img-circle");
                             }
+
                         }
                     });
                 }
 
-                function upQuesVote(obj) {
+                function upQuesVote(obj,prt) {
 //					console.log("up-vote");
                     var id = aQuestionId;
                     var userIdThis = $user.id;
@@ -298,15 +300,15 @@ $question.content
                         data: {questionId: id, userId:userIdThis},
                         dataType : "json",
                         success: function(msg){
-							console.log("msg"+msg);
+//							console.log("msg"+msg);
                             $("#questionVoteCount").text(msg);
 
-							console.log("up:"+obj.getAttribute("isVote"));
-                            if(obj.getAttribute("isVote")!=1) {
-                                obj.setAttribute("isVote",1);
+                            if(prt.getAttribute("isVote")!=1) {
+                                prt.setAttribute("isVote",1);
+                                prt.getElementsByClassName('vote-down')[0].setAttribute("class","action vote vote-down img-circle");
                                 obj.setAttribute("class", "action vote vote-up img-circle bg-blue");
                             }else{
-                                obj.setAttribute("isVote",0);
+                                prt.setAttribute("isVote",0);
                                 obj.setAttribute("class","action vote vote-up img-circle");
                             }
 
@@ -314,7 +316,7 @@ $question.content
                     });
                 }
 
-                function downQuesVote(obj) {
+                function downQuesVote(obj,prt) {
 //					console.log("up-vote");
                     var id = aQuestionId;
                     var userIdThis = $user.id;
@@ -324,16 +326,16 @@ $question.content
                         data: {questionId: id, userId:userIdThis},
                         dataType : "json",
                         success: function(msg){
-                            console.log("msg"+msg);
+//                            console.log("msg"+msg);
                             $("#questionVoteCount").text(msg);
 
-                            console.log("up:"+obj.getAttribute("isVote"));
-                            if(obj.getAttribute("isVote")!=-1) {
-                                obj.setAttribute("isVote",-1);
-                                obj.setAttribute("class", "action vote vote-up img-circle bg-blue");
+                            if(prt.getAttribute("isVote")!=-1) {
+                                prt.setAttribute("isVote",-1);
+                                prt.getElementsByClassName('vote-up')[0].setAttribute("class","action vote vote-up img-circle");
+                                obj.setAttribute("class", "action vote vote-down img-circle bg-blue");
                             }else{
-                                obj.setAttribute("isVote",0);
-                                obj.setAttribute("class","action vote vote-up img-circle");
+                                prt.setAttribute("isVote",0);
+                                obj.setAttribute("class","action vote vote-down img-circle");
                             }
 
                         }
