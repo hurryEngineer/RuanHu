@@ -1,6 +1,7 @@
 package edu.nju.data.daoImpl;
 
 import edu.nju.data.dao.*;
+import edu.nju.data.dao.http.Tss_httpDAO;
 import edu.nju.data.dao.http.Wiki_httpDAO;
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
@@ -42,6 +43,8 @@ public class QuestionDAOImpl implements QuestionDAO {
     DocumentDAO documentDAO;
     @Autowired
     Wiki_httpDAO wiki_httpDAO;
+    @Autowired
+    Tss_httpDAO docu_httpDAO;
 
     @PersistenceContext
     EntityManager em;
@@ -213,6 +216,24 @@ public class QuestionDAOImpl implements QuestionDAO {
 
     @Override
     public List<Document> getRelatedDocuments(long QuestionID) {
-        return null;
+        List<Document> result = new ArrayList<>();
+        List ids = new ArrayList();
+
+        Query query =
+                em.createQuery("select qd.documentId from QuestionDocument qd where qd.questionId = ?1");
+        query.setParameter(1,QuestionID);
+        ids.addAll(query.getResultList());
+
+        for(int i=0;i<ids.size();i++){
+            try {
+                result.add(docu_httpDAO.getDocumentById((Long) ids.get(i)));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return result;
+
+
     }
 }

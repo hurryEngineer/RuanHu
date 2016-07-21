@@ -1,11 +1,9 @@
 package edu.nju.data.daoImpl;
 
-
 import edu.nju.RuanHuApplication;
 import edu.nju.data.dao.QuestionDAO;
 import edu.nju.data.entity.Question;
-import edu.nju.data.util.HQL_Helper.Enums.OrderByMethod;
-import edu.nju.data.util.HQL_Helper.Enums.OrderByPara;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +26,15 @@ import static org.junit.Assert.*;
 @WebAppConfiguration
 public class QuestionDAOImplTest {
 
+    @Test
+    public void getRelatedWikiItems() throws Exception {
+
+    }
+
+    @Test
+    public void getRelatedDocuments() throws Exception {
+
+    }
 
 
     @Autowired

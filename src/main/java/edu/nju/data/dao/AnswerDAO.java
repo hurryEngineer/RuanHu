@@ -154,16 +154,16 @@ public interface AnswerDAO {
 
     /**
      * 获取与某个回答相关的wikiItem列表
-     * @param QuestionID
+     * @param answerID
      * @return
      */
-    List<WikiItem> getRelatedWikiItems(long QuestionID);
+    List<WikiItem> getRelatedWikiItems(long answerID);
 
     /**
      * 获取与某个回答相关的文件列表
-     * @param QuestionID
+     * @param answerID
      * @return
      */
-    List<Document> getRelatedDocuments(long QuestionID);
+    List<Document> getRelatedDocuments(long answerID);
 
 }
