@@ -1,9 +1,9 @@
 ## 一个answer叫oneAnswer
 <div class="row">
 	<div class="col-md-2 col-xs-2">
-		<ul class="question-upDown">
+		<ul class="question-upDown" isVote="$oneAnswer.isVote" answerid="$oneAnswer.id">
 			<li title="" data-original-title="This is useful.">
-                <a data-container="body" isVote="$oneAnswer.isVote" answerid="$oneAnswer.id" onclick="upVote(this)" data-toggle="tooltip" title="顶一下" data-content="You must have 5 points to vote up." href="javascript:void(0)" data-name="vote_up" class="action vote vote-up img-circle" data-original-title="" title="">
+                <a data-container="body" onclick="upVote(this,this.parentNode.parentNode)" data-toggle="tooltip" title="顶一下" data-content="You must have 5 points to vote up." href="javascript:void(0)" data-name="vote_up" class="action vote vote-up img-circle" data-original-title="" title="">
                     <i  class="fa fa-chevron-up"></i>
                 </a>
 			</li>
@@ -13,8 +13,8 @@
 			</li>
 
 			<li title="" data-original-title="This is not useful">
-                <a data-container="body" isVote="$oneAnswer.isVote" data-toggle="tooltip" title="踩一下" data-content="You must have 500 points to vote down." href="javascript:void(0)" data-name="vote_down" class="action vote vote-down img-circle " data-original-title="" title="">
-                    <i answerid="$oneAnswer.id" onclick="downVote(this)" class="fa fa-chevron-down"></i>
+                <a data-container="body" onclick="downVote(this,this.parentNode.parentNode)" data-toggle="tooltip" title="踩一下" data-content="You must have 500 points to vote down." href="javascript:void(0)" data-name="vote_down" class="action vote vote-down img-circle " data-original-title="" title="">
+                    <i class="fa fa-chevron-down"></i>
                 </a>
 			</li>
 

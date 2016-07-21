@@ -20,6 +20,7 @@ function parseAllMarkDown() {
 
 //维基条目搜索框的class是 wiki-selection
 function initWikiSelection() {
+	console.log("init wiki selection");
 	$(function() {
 
 		var wikiSelection = $(".wiki-selection").select2({
@@ -34,13 +35,13 @@ function initWikiSelection() {
 
 		wikiSelection.select2({
 			ajax: {
-				url: "https://api.github.com/search/repositories",
+				url: "/json/wiki/search",
 				dataType: 'json',
 				delay: 250,
 				data: function(params) {
 					return {
-						q: params.term, // search term
-						page: params.page
+						key: params.term, // search term
+						page: params.page || 1
 					};
 				},
 				processResults: function(data, params) {
@@ -51,9 +52,9 @@ function initWikiSelection() {
 					params.page = params.page || 1;
 
 					return {
-						results: data.items,
+						results: data,
 						pagination: {
-							more: (params.page * 30) < data.total_count
+							more: (params.page * 30) < data.length
 						}
 					};
 				},
