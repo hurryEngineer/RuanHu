@@ -1,8 +1,6 @@
 package edu.nju.logic.impl;
 
-import edu.nju.data.dao.AnswerDAO;
-import edu.nju.data.dao.QuestionDAO;
-import edu.nju.data.dao.VoteDAO;
+import edu.nju.data.dao.*;
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
 import edu.nju.data.entity.Vote;
@@ -41,6 +39,12 @@ public class QuestionImpl implements QuestionService {
     @Autowired
     TransferService timeService;
 
+    @Autowired
+    WikiDAO wikiDAO;
+
+    @Autowired
+    DocumentDAO documentDAO;
+
     @Override
     public QuestionVO showQuestion(long id, long userId) {
         Question question = questionDAO.getQuestionByID(id);
@@ -48,8 +52,9 @@ public class QuestionImpl implements QuestionService {
     }
 
     @Override
-    public QuestionVO saveQuestion(Question question, long userId) {
-        return timeService.transferQuestion(questionDAO.save_question(question),userId);
+    public QuestionVO saveQuestion(Question question, long userId, List wikiIds, List docIds) {
+        QuestionVO questionVO =  timeService.transferQuestion(questionDAO.createQuestion(question,wikiIds,docIds),userId);
+        return questionVO;
     }
 
     @Override
