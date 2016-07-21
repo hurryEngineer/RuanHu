@@ -24,8 +24,17 @@
     padding-top: 5px;
     padding-bottom: 5px;
 }
+.wiki-selection-title{
+	display: inline-block;
+    font-size: 16px;
+    margin: 0;
+    line-height: 1;
+}
 
 blockquote{
 	font-size: 16px;
+}	
+blockquote .p{
+	font-size: 14px;
 }	
 			
