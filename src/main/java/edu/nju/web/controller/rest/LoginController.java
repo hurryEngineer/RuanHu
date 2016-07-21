@@ -1,4 +1,4 @@
-package edu.nju.web.controller;
+package edu.nju.web.controller.rest;
 
 import edu.nju.data.entity.User;
 import edu.nju.data.util.VerifyResult;
@@ -24,6 +24,7 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 @SessionAttributes("user")
+@RequestMapping("/rest")
 public class LoginController {
 
     @Autowired

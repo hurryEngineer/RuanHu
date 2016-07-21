@@ -1,4 +1,4 @@
-package edu.nju.web.controller;
+package edu.nju.web.controller.api;
 
 import edu.nju.data.dao.http.Wiki_httpDAO;
 import edu.nju.data.entity.api.WikiItem;

@@ -1,4 +1,4 @@
-package edu.nju.web.controller;
+package edu.nju.web.controller.rest;
 
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.User;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/answer")
+@RequestMapping("/rest/answer")
 @SessionAttributes("user")
 public class AnswerController {
 
@@ -107,7 +107,7 @@ public class AnswerController {
     public String editAnswer(@RequestParam("qid")String questionId, @RequestParam("aid")String answerId,
                            @RequestParam("text")String text) {
         answerService.editAnswer(Long.valueOf(answerId),text);
-        return "redirect:/question/"+questionId;
+        return "redirect:/rest/question/"+questionId;
     }
 
     /**
@@ -123,7 +123,7 @@ public class AnswerController {
                                @RequestParam("qid")String questionId, Model model) {
         boolean result = answerService.deleteAnswer(Long.valueOf(answerId),Long.valueOf(userId));
         model.addAttribute("deleteResult",result);
-        return "redirect:/question/"+questionId;
+        return "redirect:/rest/question/"+questionId;
     }
 
     /**
