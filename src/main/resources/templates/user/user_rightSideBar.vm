@@ -3,21 +3,21 @@
 		<ul class="sidebar-menu fixed">
 			<li>
 				<a href="#" id="question-nav">
-					<i class="fa fa-dashboard"></i>
+					<i class="fa fa-question-circle"></i>
 					<span>  提  问</span>
                     <span class="label label-warning pull-right">${questionCount}</span>
 				</a>
 			</li>
 			<li>
 				<a href="#" id="answer-nav">
-					<i class="fa fa-files-o"></i>
+					<i class="fa  fa-pencil-square-o"></i>
 					<span>  回  答</span>
                     <span class="label label-warning pull-right">${answerCount}</span>
 				</a>
 			</li>
-			<li>
-				<a href="#">
-					<i class="fa fa-th"></i>
+			<li hidden>
+				<a href="#" id="notification-nav">
+					<i class="fa fa-bullhorn"></i>
 					<span>  通  知</span>
                     <span class="label label-warning pull-right">10</span>
 				</a>
