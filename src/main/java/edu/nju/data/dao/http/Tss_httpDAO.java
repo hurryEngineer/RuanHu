@@ -18,8 +18,6 @@ public interface Tss_httpDAO {
      */
     public Document getDocumentById(long id) throws IOException;
 
-    Document getDocumentByString(String s) throws IOException;
-
     /**
      * 通过关键字搜索ppt
      * @param keyword

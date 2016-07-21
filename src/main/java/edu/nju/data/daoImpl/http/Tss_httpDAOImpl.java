@@ -20,29 +20,37 @@ import java.util.List;
 public class Tss_httpDAOImpl implements Tss_httpDAO {
 
     String url = "";
+    String s = "{\"exist\":1,\"data\":{\"id\":1,\"icon\":\"\",\"url\":\"\",\"title\":\"数据库设计\"}}\n";
 
 
     @Override
     public Document getDocumentById(long id) throws IOException{
 
-        String s = HttpRequest.sendGet(url);
+//        String s = HttpRequest.sendGet(url);
         return getDocumentByString(s);
     }
 
-    @Override
-    public Document getDocumentByString(String s) throws IOException {
+    private Document getDocumentByString(String s) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        Document document = mapper.readValue(s, Document.class);
+        Document document = mapper.readValue(mapper.readTree(s).get("data").toString(), Document.class);
         return document;
     }
 
     @Override
     public Pager<Document> searchDocumentsByKeyword(String keyword, int page, int size) throws IOException{
 
-        String s = HttpRequest.sendGet(url);
+//        String s = HttpRequest.sendGet(url);
+//        List<Document> list = new ArrayList<>();
+//        ObjectMapper mapper = new ObjectMapper();
+//        list = mapper.readValue(s, new TypeReference<List<Document>>() {});
+//        Pager<Document> pager = new Pager<Document>(list);
+
+
         List<Document> list = new ArrayList<>();
-        ObjectMapper mapper = new ObjectMapper();
-        list = mapper.readValue(s, new TypeReference<List<Document>>() {});
+        Document d = getDocumentByString(s);
+        list.add(d);
+        d.setId(3);
+        list.add(d);
         Pager<Document> pager = new Pager<Document>(list);
 
         return pager;

@@ -10,7 +10,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Document {
 
-    private String id;
+    private long id;
 
     private String title;
 
@@ -18,11 +18,11 @@ public class Document {
 
     private String icon;
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
