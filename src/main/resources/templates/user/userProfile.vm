@@ -36,7 +36,7 @@
                 <div class="row" style="margin: 10px 10px">
                     <div class="box box-primary" id='current'>
                         <div class="box-header with-border">
-                            <h3 class="box-title"> ${userName} 提出的问题</h3>
+                            <h3 class="box-title"> ${userName}</h3>
                         </div><!-- /.box-header -->
 
                         <div class="box-body"></div>
@@ -62,10 +62,9 @@
             $(this).parent().parent().children('.edit-wrap').css("display","inline");
         });
 
-
-
         var editAllowed = $!isMe;
         if(editAllowed) {
+            $('#notification-nav').parent().show();
 
             $('.zu-edit-button').css("display", "inline");
 
@@ -138,7 +137,13 @@
 
         }
 
-        $("#current").load("/userProfile/showQuestion?userName=" + '$!{userInfo.userName}');
+
+        var trigger = window.location.search.substring(1);
+        if(trigger=='trigger') {
+            console.log(trigger);
+            $("#current").load("/userProfile/showAnswers?userName=" + '$!{userInfo.userName}');
+        }else
+            $("#current").load("/userProfile/showQuestion?userName=" + '$!{userInfo.userName}');
         $('#question-nav').click(function() {
             $("#current").append('<div class="overlay" > <i class="fa fa-refresh fa-spin"></i> </div>');
             $("#current").load("/userProfile/showQuestion?userName=" + '$!{userInfo.userName}');
