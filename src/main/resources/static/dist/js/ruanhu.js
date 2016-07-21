@@ -17,6 +17,11 @@ function parseAllMarkDown() {
 	);
 }
 
+//初始化wiki和doc的选择框
+function initSelection(){
+	initWikiSelection();
+	initDocumentSelection();
+}
 
 //维基条目搜索框的class是 wiki-selection
 function initWikiSelection() {
@@ -78,10 +83,7 @@ function formatWikiItem(wikiItem){
 
 function addWikiSelection(wikiItem){
 	
-	var wikiBox = $(".wiki-box");
-	if(wikiBox.css("display") == "none"){
-		wikiBox.css("display","");
-	}
+	showBox("wiki-box");
 	
 	var html = '<blockquote> \
 		<h4><a href="#" >$title</a><h4> \
@@ -117,7 +119,7 @@ function initDocumentSelection() {
 				data: function(params) {
 					return {
 						key: params.term, 
-						page: params.page
+						page: params.page||1
 					};
 				},
 				processResults: function(data, params) {
@@ -149,4 +151,25 @@ function formatDocItem(docItem){
     var html = '<img src="$icon" width=15px height=15px ></img> <h3 class="box-title">$docItem.title</h3>';
 	return html.replace("\$icon",docItem.icon).replace("\$title",docItem.title);
 	
+}
+
+function addDocSelection(docItem){
+	showBox("doc-box");
+	
+	var html = '<blockquote> \
+		<h4><a href="#" >$title</a><h4> \
+	    <p>$content</p> \
+	</blockquote> ';
+	
+	html = html.replace("\$title",wikiItem.title);
+	html = html.replace("\$content",wikiItem.content);
+	
+	wikiBox.children(".box-body").append(html);
+}
+
+function showBox(classStr){
+	var box = $("."+classStr);
+	if(box.css("display") == "none"){
+		box.css("display","");
+	}
 }

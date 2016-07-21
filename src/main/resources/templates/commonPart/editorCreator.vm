@@ -30,14 +30,10 @@
 			path: '/editor.md-master/lib/',
 			watch: true,
 			emoji: true,
-			
-			imageUpload: true,
-			imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-			imageUploadURL: "./php/upload.php?test=dfdf",
-			
+
 			toolbarIcons: function() {
-				return editormd.toolbarModes["simple"]
-			},
+                return editormd.toolbarModes["simple"]
+            },
 
 			onload: editorOnLoad
 

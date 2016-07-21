@@ -47,9 +47,9 @@
 							<div class="row">
 
 								<div class="col-md-2 col-xs-2">
-									<ul class="question-upDown">
+									<ul class="question-upDown" isVote="$question.isVote">
 										<li title="" data-original-title="This is useful.">
-											<a id="up" title="顶一下" isVote="$question.isVote" onclick="upQuesVote(this)" data-container="body" data-toggle="tooltip" data-content="You must have 5 points to vote up." href="javascript:void(0)" data-name="vote_up" class="action vote vote-up img-circle " data-original-title="" title="">
+											<a id="up" title="支持" onclick="upQuesVote(this,this.parentNode.parentNode)" data-container="body" data-toggle="tooltip" data-content="You must have 5 points to vote up." href="javascript:void(0)" data-name="vote_up" class="action vote vote-up img-circle " data-original-title="" title="">
 												<i class="fa fa-chevron-up"></i>
 											</a>
 										</li>
@@ -58,33 +58,70 @@
 										<span id="questionVoteCount" itemprop="upvoteCount" class="vote-count">$question.voteCount</span>
 										</li>
 									 
-										<li title="" data-original-title="This is not useful">
-											<a id="down" title="踩一下" isVote="$question.isVote" onclick="downQuesVote(this)" data-container="body" data-toggle="tooltip" data-content="You must have 500 points to vote down." href="javascript:void(0)" data-name="vote_down" class="action vote vote-down img-circle " data-original-title="" title="">
+										<li title="" data-original-title="This is useless">
+											<a id="down" title="反对"  onclick="downQuesVote(this,this.parentNode.parentNode)" data-container="body" data-toggle="tooltip" data-content="You must have 500 points to vote down." href="javascript:void(0)" data-name="vote_down" class="action vote vote-down img-circle " data-original-title="" title="">
 											<i class="fa fa-chevron-down"></i>
 											</a>
 										</li>
 									 
+										<!--<li class="single-question-pump" data-original-title="" title="">
+										</li>-->
 									</ul>
 									<div class="pumping">
 									</div>
 								</div>
 								<div>
+
+                                    <ul class="post-controls">
+                                        <li>
+                                            <a href="#"  data-toggle="tooltip" data-original-title="Edit" data-name="edit" class="post-edit-qes action">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-toggle="tooltip" data-original-title="Delete" data-name="delete" class="post-delete-qes action">
+                                                <i class="fa fa-trash-o"></i>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+
+
 									<ul class="question-tags">
 										<li>
 											<a class="q-tag">
 												无标签</a>
 										</li>
-										
-										
+
 									</ul>
 								</div>
 								<div class="col-md-10 col-xs-6">
-									
+                                    <div id="edit-question-field">
+                                    </div>
+
+                                    <div id="question-show-area">
 									<div id="answer-markdown-area-$question.id" class="pure-markdown q-ltop-content">
-                						<textarea style="display:none;">
+                						<textarea style="display:none;" id="question-textarea">
 $question.content
                	 						</textarea>
 									</div>
+                                    </div>
+
+
+                                    <div class="box box-solid">
+                                        <div class="box-header with-border">
+                                            <i class="fa fa-text-width"></i>
+                                            <h3 class="box-title">wiki</h3>
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body">
+                                            #foreach($oneWiki in $question.wikiItems)
+                                                #parse("listItem/wikiListItem.vm")
+                                            #end
+                                        </div>
+                                        <!-- /.box-body -->
+                                    </div>
+
 
 
                                     <div class="box">
@@ -94,53 +131,25 @@ $question.content
                                         <!-- /.box-header -->
                                         <div class="box-body no-padding">
                                             <table class="table table-striped">
-                                                <tbody><tr>
+                                                <tbody>
+                                                <tr>
                                                     <th>文件名</th>
                                                     <th style="width: 60px">下载</th>
                                                 </tr>
-                                                <tr>
-                                                    <td>数据库设计</td>
-                                                    <td><a href="#" ><span class="badge bg-red"><i class="ion ion-ios-cloud-download-outline"></i></span></a></td>
-                                                    <!--<td><span class="badge bg-red">55%</span></td>-->
-                                                </tr>
+                                                    #foreach($onePpt in $question.documents)
+                                                        #parse("listItem/pptListItem.vm")
+                                                    #end
+
                                                 <tr>
                                                     <td>软工二第二章</td>
                                                     <td><a href="#" ><span class="badge bg-red"><i class="ion ion-ios-cloud-download-outline"></i></span></a></td>
                                                     <!--<td><span class="badge bg-red">55%</span></td>-->
                                                 </tr>
-                                                <tr>
-                                                    <td>数据结构---快排</td>
-                                                    <td><a href="#" ><span class="badge bg-red"><i class="ion ion-ios-cloud-download-outline"></i></span></a></td>
-                                                    <!--<td><span class="badge bg-red">55%</span></td>-->
-                                                </tr>
+
                                                 </tbody></table>
                                         </div>
                                         <!-- /.box-body -->
                                     </div>
-                                    <!-- /.widget-user -->
-
-
-
-                                    <div class="box box-solid">
-                                        <div class="box-header with-border">
-                                            <i class="fa fa-text-width"></i>
-
-                                            <h3 class="box-title">WIKI</h3>
-                                        </div>
-                                        <!-- /.box-header -->
-                                        <div class="box-body">
-                                            <blockquote>
-                                                <p>Spring是一个开源框架，Spring是一个轻量级的Java 开发框架，由Rod Johnson创建。简单来说，Spring是一个分层的JavaSE/EEfull-stack(一站式) 轻量级开源框架。</p>
-                                                <small>来自 wiki条目<cite title="Source Title"><a href="#" >Spring</a></cite></small>
-                                            </blockquote>
-                                            <blockquote>
-                                                <p>Spring是一个开源框架，Spring是一个轻量级的Java 开发框架，由Rod Johnson创建。简单来说，Spring是一个分层的JavaSE/EEfull-stack(一站式) 轻量级开源框架。</p>
-                                                <small>来自 wiki条目<cite title="Source Title"><a href="#" >Spring</a></cite></small>
-                                            </blockquote>
-                                        </div>
-                                        <!-- /.box-body -->
-                                    </div>
-
 
 
                                     <div class="q-lbtm-content">
@@ -177,7 +186,6 @@ $question.content
 							
 							
 							#foreach($oneAnswer in $answerOfQuestion)
-								<script>console.log('$oneAnswer.isVote')</script>
 								#parse("listItem/answerListItem.vm")
 							#end
 							
@@ -238,7 +246,7 @@ $question.content
 
 
                 function upVote(obj,prt) {
-					console.log("up-vote");
+//					console.log("up-vote");
                     var answerIdThis = prt.getAttribute("answerid");
                     var userIdThis = $user.id;
                     $.ajax({
@@ -246,13 +254,13 @@ $question.content
                         url: "/json/answer/upVote",
                         data: {questionId: aQuestionId, answerId:answerIdThis, userId:userIdThis},
                         success: function(msg){
-							console.log("msg"+msg);
+//							console.log("msg"+msg);
                             $("#answerVoteCount").text(msg);
 
-							console.log("up:"+prt.getAttribute("isVote"));
+//							console.log("up:"+prt.getAttribute("isVote"));
 							if(prt.getAttribute("isVote")!=1) {
                                 prt.setAttribute("isVote",1);
-                                alert(prt.childNodes);
+                                prt.getElementsByClassName('vote-down')[0].setAttribute("class","action vote vote-down img-circle");
                                 obj.setAttribute("class", "action vote vote-up img-circle bg-blue");
                             }else{
                                 prt.setAttribute("isVote",0);
@@ -263,30 +271,32 @@ $question.content
                     });
                 }
 
-                function downVote(obj,circle) {
-                    var answerIdThis = obj.getAttribute("answerid");
+                function downVote(obj,prt) {
+                    var answerIdThis = prt.getAttribute("answerid");
                     var userIdThis = $user.id;
                     $.ajax({
                         type : "GET",
                         url: "/json/answer/downVote",
                         data: {questionId: aQuestionId, answerId:answerIdThis, userId:userIdThis},
                         success: function(msg){
-                            //console.log("msg"+msg);
+//                            console.log("msg"+msg);
                             $("#answerVoteCount").text(msg);
 
-//							console.log("up:"+obj.getAttribute("isVote"));
-                            if(obj.getAttribute("isVote")!=-1) {
-                                obj.setAttribute("isVote",-1);
+                            console.log("up:"+prt.getAttribute("isVote"));
+                            if(prt.getAttribute("isVote")!=-1) {
+                                prt.setAttribute("isVote",-1);
+                                prt.getElementsByClassName('vote-up')[0].setAttribute("class","action vote vote-up img-circle");
                                 obj.setAttribute("class", "action vote vote-down img-circle bg-blue");
                             }else{
-                                obj.setAttribute("isVote",0);
+                                prt.setAttribute("isVote",0);
                                 obj.setAttribute("class","action vote vote-down img-circle");
                             }
+
                         }
                     });
                 }
 
-                function upQuesVote(obj) {
+                function upQuesVote(obj,prt) {
 //					console.log("up-vote");
                     var id = aQuestionId;
                     var userIdThis = $user.id;
@@ -296,15 +306,15 @@ $question.content
                         data: {questionId: id, userId:userIdThis},
                         dataType : "json",
                         success: function(msg){
-							console.log("msg"+msg);
+//							console.log("msg"+msg);
                             $("#questionVoteCount").text(msg);
 
-							console.log("up:"+obj.getAttribute("isVote"));
-                            if(obj.getAttribute("isVote")!=1) {
-                                obj.setAttribute("isVote",1);
+                            if(prt.getAttribute("isVote")!=1) {
+                                prt.setAttribute("isVote",1);
+                                prt.getElementsByClassName('vote-down')[0].setAttribute("class","action vote vote-down img-circle");
                                 obj.setAttribute("class", "action vote vote-up img-circle bg-blue");
                             }else{
-                                obj.setAttribute("isVote",0);
+                                prt.setAttribute("isVote",0);
                                 obj.setAttribute("class","action vote vote-up img-circle");
                             }
 
@@ -312,7 +322,7 @@ $question.content
                     });
                 }
 
-                function downQuesVote(obj) {
+                function downQuesVote(obj,prt) {
 //					console.log("up-vote");
                     var id = aQuestionId;
                     var userIdThis = $user.id;
@@ -322,16 +332,16 @@ $question.content
                         data: {questionId: id, userId:userIdThis},
                         dataType : "json",
                         success: function(msg){
-                            console.log("msg"+msg);
+//                            console.log("msg"+msg);
                             $("#questionVoteCount").text(msg);
 
-                            console.log("up:"+obj.getAttribute("isVote"));
-                            if(obj.getAttribute("isVote")!=-1) {
-                                obj.setAttribute("isVote",-1);
-                                obj.setAttribute("class", "action vote vote-up img-circle bg-blue");
+                            if(prt.getAttribute("isVote")!=-1) {
+                                prt.setAttribute("isVote",-1);
+                                prt.getElementsByClassName('vote-up')[0].setAttribute("class","action vote vote-up img-circle");
+                                obj.setAttribute("class", "action vote vote-down img-circle bg-blue");
                             }else{
-                                obj.setAttribute("isVote",0);
-                                obj.setAttribute("class","action vote vote-up img-circle");
+                                prt.setAttribute("isVote",0);
+                                obj.setAttribute("class","action vote vote-down img-circle");
                             }
 
                         }
@@ -358,7 +368,51 @@ $question.content
 
                 $("[data-toggle='tooltip']").tooltip();
 
+                var quesEditormd;
 
+                $(function() {
+                    $(".post-edit-qes.action").click(function(){
+                        $.getScript("/editor.md-master/editormd.js", function() {
+                            $("#question-show-area").hide();
+
+                            $("#edit-question-field").append("<div id=\"ques-editormd\"></div>");
+                            $("#edit-question-field").append("<button id=\"btn_submit_question\" class=\"answer-btn\">提交问题</button>");
+                            quesEditormd = editormd("ques-editormd", {
+                                width: "100%",
+                                height: 440,
+                                markdown :  $("#question-textarea").text(),
+                                path : '/editor.md-master/lib/',
+                                emoji: true,
+                                toolbarIcons: function() {
+                                    return editormd.toolbarModes["simple"]
+                                },
+                            });
+                        });
+                   });
+
+                });
+                var answerEditormd;
+                function editAnswer(obj) {
+
+                    var answerIdThis = obj.getAttribute("answerid");
+                    alert(answerIdThis);
+                    $.getScript("/editor.md-master/editormd.js", function() {
+                        $("#answer-show-area-answerIdThis").hide();
+                        $("#edit-answer-field-answerIdThis").append("<div id=\"answer-editormd\"></div>");
+                        $("#edit-answer-field-answerIdThis").append("<button id=\"btn_submit_answer\" class=\"answer-btn\">提交修改</button>");
+                        answerEditormd = editormd("answer-editormd", {
+                            width: "100%",
+                            height: 440,
+                            markdown :  $("#answer-textarea-answerIdThis").text(),
+                            path : '/editor.md-master/lib/',
+                            emoji: true,
+                            toolbarIcons: function() {
+                                return editormd.toolbarModes["simple"]
+                            },
+                        });
+                    });
+
+                }
 			</script>
 
 
