@@ -15,7 +15,7 @@ public class Answer implements DateInterface{
     private Question question = new Question();
     private Timestamp createdAt = new Timestamp( new Date().getTime());
     private Timestamp lastUpdatedAt = new Timestamp( new Date().getTime());
-    private Integer voteCount= new Integer(0);
+    private Integer voteCount = new Integer(0);
     private Byte solution = 0;
     private User author = new User();
     private List<Comment> commentList;
