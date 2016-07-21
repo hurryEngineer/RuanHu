@@ -15,8 +15,36 @@ public class MessageFactory implements MesFactoryInterface {
 
 
     @Override
-    public String createContent(MesType type, String receiverName) {
-        return null;
+    public String createContent(MesType type, String senderName ) {
+        String content;
+
+        switch (type){
+
+            case invite:
+
+                content = senderName + "邀请我回答问题";
+
+                break;
+
+            case vote:
+
+                content = senderName + "赞了我";
+
+                break;
+            case comment:
+
+                content = senderName + "评论了我";
+                break;
+            case answer:
+
+                content = senderName + "回答了我的问题";
+                break;
+
+            default:
+                content = "";
+        }
+
+        return content;
     }
 
     @Override
@@ -26,6 +54,7 @@ public class MessageFactory implements MesFactoryInterface {
         message.setSourceId(srcID);
         message.setSenderId(sender.getId());
         message.setReceiverId(receiver.getId());
+        message.setContent(createContent(type,sender.getUserName()) );
         return message;
     }
 

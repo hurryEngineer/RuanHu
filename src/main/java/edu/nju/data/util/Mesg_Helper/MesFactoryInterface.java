@@ -13,7 +13,7 @@ public interface MesFactoryInterface {
 
 
 
-    String createContent(MesType type , String receiverName);
+    String createContent(MesType type ,String senderName);
 
 
     /**
