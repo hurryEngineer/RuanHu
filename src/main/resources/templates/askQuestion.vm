@@ -118,7 +118,12 @@
 				var questionTitle = document.getElementById("question_title").value;
 				var questionDescript = testEditor.getMarkdown();
 				testEditor.clearStorage();
-				$.stdPost("/submitQuestion",{title: questionTitle, description: questionDescript});
+				$.stdPost("/submitQuestion",
+					{title: questionTitle, 
+					 wikiIds : wikiIdList,
+					 docIds : docIdList,
+					 description: questionDescript
+				});
 			}
 			
 			var multipleSelect = null;

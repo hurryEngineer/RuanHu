@@ -16,11 +16,10 @@ $.extend({
 });
 
 function removeByIdList(data,idList){
-	console.log(idList);
-	console.log(data);
 	for(var i=0;i<data.length;i++){
 		if($.inArray(data[i].id,idList)!=-1){
 			$.remove(data,data[i]);
+			i-=1;
 		}
 	}
 }
@@ -159,7 +158,7 @@ function initDocumentSelection() {
 				},
 				processResults: function(data, params) {
 					params.page = params.page || 1;
-
+					removeByIdList(data,docIdList);
 					return {
 						results: data,
 						pagination: {
@@ -190,6 +189,9 @@ function formatDocItem(docItem){
 }
 
 function addDocSelection(docItem){
+	
+	docIdList.push(docItem.id);
+	
 	docBox = showBox("doc-box");
 	
 	var html = ' <tr> \

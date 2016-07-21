@@ -93,6 +93,10 @@ public class QuestionController {
                        @RequestParam(defaultValue = "") List<Long> docIds,
                        @RequestParam(defaultValue = "") List<String> inviteNames,
                        HttpSession session, @ModelAttribute("user")User user){
+        
+        System.out.println(wikiIds);
+        System.out.println(docIds);
+        
         Map<String,Object> result = new HashMap<>();
         Question question;
 
