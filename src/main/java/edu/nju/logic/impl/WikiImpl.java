@@ -1,6 +1,9 @@
 package edu.nju.logic.impl;
 
+import edu.nju.data.dao.QuestionDAO;
+import edu.nju.data.dao.WikiDAO;
 import edu.nju.data.dao.http.Wiki_httpDAO;
+import edu.nju.data.entity.api.Document;
 import edu.nju.data.entity.api.WikiItem;
 import edu.nju.data.util.Pager;
 import edu.nju.logic.service.WikiService;
@@ -19,6 +22,12 @@ public class WikiImpl implements WikiService {
 
     @Autowired
     private Wiki_httpDAO wiki_httpDAO;
+
+    @Autowired
+    private WikiDAO wikiDAO;
+
+    @Autowired
+    private QuestionDAO questionDAO;
 
     @Override
     public WikiItem getWikiById(long id) {
@@ -55,5 +64,27 @@ public class WikiImpl implements WikiService {
             e.printStackTrace();
         }
         return result;
+    }
+
+    @Override
+    public List<WikiItem> getRelatedWikis(long questionId) {
+        return questionDAO.getRelatedWikiItems(questionId);
+    }
+
+    @Override
+    public List<Document> getRelatedDocuments(long questionId) {
+        return questionDAO.getRelatedDocuments(questionId);
+    }
+
+
+    @Override
+    public void insertQuestion(long questionID, List wikiIDs) {
+        wikiDAO.insertQuestion(questionID, wikiIDs);
+
+    }
+
+    @Override
+    public void insertAnswer(long answerID, List wikiIDs) {
+        wikiDAO.insertAnswer(answerID,wikiIDs);
     }
 }

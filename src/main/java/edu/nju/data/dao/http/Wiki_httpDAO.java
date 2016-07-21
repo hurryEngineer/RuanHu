@@ -17,9 +17,6 @@ public interface Wiki_httpDAO {
      */
     public WikiItem getWikiById(long id) throws IOException;
 
-
-    WikiItem getWikiByString(String s) throws IOException;
-
     /**
      * 通过关键字查询wiki条目
      * @param keyword
