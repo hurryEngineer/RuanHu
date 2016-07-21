@@ -135,19 +135,27 @@
                 autoclose: true
             });
 
+            $('#notification-nav').click(function() {
+                $("#current").append('<div class="overlay" > <i class="fa fa-refresh fa-spin"></i> </div>');
+                $("#current").load("/userProfile/showAnswers?userName=" + '$!{userInfo.userName}');
+            });
+
         }
 
 
         var trigger = window.location.search.substring(1);
         if(trigger=='trigger') {
-            console.log(trigger);
+//            表示是从用户消息下拉列表跳转来
             $("#current").load("/userProfile/showAnswers?userName=" + '$!{userInfo.userName}');
-        }else
+        }else {
             $("#current").load("/userProfile/showQuestion?userName=" + '$!{userInfo.userName}');
+        }
+
         $('#question-nav').click(function() {
             $("#current").append('<div class="overlay" > <i class="fa fa-refresh fa-spin"></i> </div>');
             $("#current").load("/userProfile/showQuestion?userName=" + '$!{userInfo.userName}');
         });
+
         $('#answer-nav').click(function() {
             $("#current").append('<div class="overlay" > <i class="fa fa-refresh fa-spin"></i> </div>');
             $("#current").load("/userProfile/showAnswers?userName=" + '$!{userInfo.userName}');
