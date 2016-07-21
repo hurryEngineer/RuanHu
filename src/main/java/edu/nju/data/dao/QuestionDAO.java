@@ -2,6 +2,7 @@ package edu.nju.data.dao;
 
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
+import edu.nju.data.entity.User;
 import edu.nju.data.entity.api.Document;
 import edu.nju.data.entity.api.WikiItem;
 import edu.nju.data.util.HQL_Helper.Enums.OrderByMethod;
@@ -43,7 +44,9 @@ public interface QuestionDAO {
      * @param docuIDs   如果没有引用文件,就应该为null
      * @return  返回带ID的问题;
      */
-    Question createQuestion(Question question , List  wikiIDs , List docuIDs);
+    Question createQuestion
+            (Question question , List  wikiIDs , List docuIDs);
+
 
 
     /**

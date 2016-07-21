@@ -19,6 +19,31 @@ public class Message {
     private User receiver;
     private User sender;
 
+
+    @Transient
+    public void setSenderId(Long id){
+        sender.setId(id);
+    }
+
+    @Transient
+    public Long getSenderId(){
+        return sender.getId();
+    }
+
+
+    @Transient
+    public void setReceiverId(Long id){
+        receiver.setId(id);
+    }
+
+    @Transient
+    public Long getReceiverId(){
+        return receiver.getId();
+    }
+
+
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
