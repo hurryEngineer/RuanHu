@@ -140,7 +140,7 @@
                 var val = $('#description-input').val();
                 jQuery.ajax({
                     type: "POST",
-                    url: "/editDescription",
+                    url: "/json/editDescription",
                     data: {"description": val},
                     dataType: "json",
                     success: function () {
@@ -161,7 +161,7 @@
 
                 jQuery.ajax({
                     type: "POST",
-                    url: "/editBirthday",
+                    url: "/json/editBirthday",
                     data: {"birthday": val},
                     dataType: "json",
                     success: function () {
@@ -181,7 +181,7 @@
                 var val = $('#location-input').val();
                 jQuery.ajax({
                     type: "POST",
-                    url: "/editLocation",
+                    url: "/json/editLocation",
                     data: {"location": val},
                     dataType: "json",
                     success: function () {

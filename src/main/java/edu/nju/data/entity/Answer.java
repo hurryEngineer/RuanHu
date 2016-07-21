@@ -165,4 +165,18 @@ public class Answer implements DateInterface{
     }
 
 
+    @Override
+    public String toString() {
+        return "Answer{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", question=" + question +
+                ", createdAt=" + createdAt +
+                ", lastUpdatedAt=" + lastUpdatedAt +
+                ", voteCount=" + voteCount +
+                ", solution=" + solution +
+                ", author=" + author +
+                ", commentList=" + commentList +
+                '}';
+    }
 }
