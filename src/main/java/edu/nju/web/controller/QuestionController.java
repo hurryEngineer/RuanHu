@@ -58,6 +58,8 @@ public class QuestionController {
         model.addAttribute("question",ques);
         model.addAttribute("answerOfQuestion",answerVOs);
 
+        System.out.println(answerVOs);
+
         return "questionInfo";
         
     }

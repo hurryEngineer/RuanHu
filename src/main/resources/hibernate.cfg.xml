@@ -20,7 +20,7 @@
     <mapping class="edu.nju.data.entity.QuestionDocument"/>
     <mapping class="edu.nju.data.entity.QuestionWiki"/>
 
-    <!-- DB schema will be updated if needed -->
+     <!--DB schema will be updated if needed-->
      <property name="hbm2ddl.auto">update</property>
   </session-factory>
 </hibernate-configuration>
