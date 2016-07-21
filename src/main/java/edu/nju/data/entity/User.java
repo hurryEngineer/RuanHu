@@ -147,4 +147,19 @@ public class User {
         result = 31 * result + (birthDate != null ? birthDate.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", location='" + location + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", photoUri='" + photoUri + '\'' +
+                ", description='" + description + '\'' +
+                ", createdAt=" + createdAt +
+                ", birthDate=" + birthDate +
+                '}';
+    }
 }

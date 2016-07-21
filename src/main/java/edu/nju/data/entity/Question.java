@@ -167,4 +167,20 @@ public class Question implements DateInterface{
     public void setCommentList(List<Comment> commentList) {
         this.commentList = commentList;
     }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "id=" + id +
+                ", answerCount=" + answerCount +
+                ", voteCount=" + voteCount +
+                ", viewCount=" + viewCount +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", createdAt=" + createdAt +
+                ", lastUpdatedAt=" + lastUpdatedAt +
+                ", author=" + author +
+                ", commentList=" + commentList +
+                '}';
+    }
 }

@@ -1,3 +1,29 @@
+$.extend({
+	remove : function(list, item) {
+		var index = jQuery.inArray(item,list);
+		if(index!=-1){
+			list.splice(index,1);
+		}
+	}
+});
+
+$.extend({
+	removeList : function(originList, otherList) {
+		for(var i=0;i<otherList.length;i++){
+			$.remove(originList,otherList[i]);
+		}
+	}
+});
+
+function removeByIdList(data,idList){
+	for(var i=0;i<data.length;i++){
+		if($.inArray(data[i].id,idList)!=-1){
+			$.remove(data,data[i]);
+			i-=1;
+		}
+	}
+}
+
 //还未转化为html的带class: pure-markdown
 function parseMarkdownToHtmlById(id) {
 	$("#" + id).removeClass("pure-markdown");
@@ -22,6 +48,9 @@ function initSelection(){
 	initWikiSelection();
 	initDocumentSelection();
 }
+
+var wikiIdList=[];
+var docIdList=[];
 
 //维基条目搜索框的class是 wiki-selection
 function initWikiSelection() {
@@ -54,7 +83,9 @@ function initWikiSelection() {
 				},
 				processResults: function(data, params) {
 					params.page = params.page || 1;
-
+					
+					removeByIdList(data,wikiIdList);
+					
 					return {
 						results: data,
 						pagination: {
@@ -64,6 +95,7 @@ function initWikiSelection() {
 				},
 				cache: true
 			},
+			tags: false,
 			language: "zh-CN",
 			escapeMarkup: function(markup) {
 				return markup;
@@ -77,13 +109,14 @@ function initWikiSelection() {
 }
 
 function formatWikiItem(wikiItem){
-	var html = '<i class="fa fa-text-width"></i> <h3 class="wiki-selection-title">$title</h3>';
+	var html = '<i class="fa fa-text-width"></i> <h3 class="selection-title">$title</h3>';
 	return html.replace("\$title",wikiItem.title);
 }
 
 function addWikiSelection(wikiItem){
 	
-	showBox("wiki-box");
+	wikiIdList.push(wikiItem.id);
+	var wikiBox = showBox("wiki-box");
 	
 	var html = '<blockquote> \
 		<h4><a href="#" >$title</a><h4> \
@@ -108,6 +141,7 @@ function initDocumentSelection() {
 		docSelection.on("select2:selecting",
 			function(e) {
 				docSelection.select2("close");
+				addDocSelection(e.params.args.data);
 				e.preventDefault();
 			});
 
@@ -118,13 +152,13 @@ function initDocumentSelection() {
 				delay: 250,
 				data: function(params) {
 					return {
-						key: params.term, 
+						key: params.term||"", 
 						page: params.page||1
 					};
 				},
 				processResults: function(data, params) {
 					params.page = params.page || 1;
-
+					removeByIdList(data,docIdList);
 					return {
 						results: data,
 						pagination: {
@@ -134,6 +168,7 @@ function initDocumentSelection() {
 				},
 				cache: true
 			},
+			tags: false,
 			escapeMarkup: function(markup) {
 				return markup;
 			},
@@ -148,23 +183,33 @@ function initDocumentSelection() {
 
 function formatDocItem(docItem){
 
-    var html = '<img src="$icon" width=15px height=15px ></img> <h3 class="box-title">$docItem.title</h3>';
+    var html = '<img src="$icon" alt="a" width=20px height=20px ></img> <h3 class="selection-title">$title</h3>';
 	return html.replace("\$icon",docItem.icon).replace("\$title",docItem.title);
 	
 }
 
 function addDocSelection(docItem){
-	showBox("doc-box");
 	
-	var html = '<blockquote> \
-		<h4><a href="#" >$title</a><h4> \
-	    <p>$content</p> \
-	</blockquote> ';
+	docIdList.push(docItem.id);
 	
-	html = html.replace("\$title",wikiItem.title);
-	html = html.replace("\$content",wikiItem.content);
+	docBox = showBox("doc-box");
 	
-	wikiBox.children(".box-body").append(html);
+	var html = ' <tr> \
+	    <td>$title</td> \
+	    <td> \
+	    	<a href="$url" > \
+	    		<span class="badge bg-red"> \
+	    			<i class="ion ion-ios-cloud-download-outline"> \
+	    			</i> \
+	    		</span> \
+	    	</a> \
+	    </td> \
+	</tr> ';
+	
+	html = html.replace("\$title",docItem.title);
+	html = html.replace("\$url",docItem.url);
+	
+	docBox.children(".box-body").children(".table").children("tbody").append(html);
 }
 
 function showBox(classStr){
@@ -172,4 +217,5 @@ function showBox(classStr){
 	if(box.css("display") == "none"){
 		box.css("display","");
 	}
+	return box;
 }

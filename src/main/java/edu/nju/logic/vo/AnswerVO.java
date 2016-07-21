@@ -26,7 +26,7 @@ public class AnswerVO extends Answer implements ViewTime{
         this.setContent(answer.getContent());
         this.setCommentList(answer.getCommentList());
         this.setSolution(answer.getSolution());
-        this.setQuestionId(answer.getQuestionId());
+        this.setQuestion(answer.getQuestion());
     }
 
     @Override

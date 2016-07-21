@@ -43,11 +43,17 @@ public class UserProfileController {
         return "user/user_questionList";
     }
 
+    @RequestMapping(value = "/userProfile/message")
+    String showUserMessage(@RequestParam("userId") String userId, Model model, HttpSession session) {
+        model.addAttribute("message",profileService.getUserMessage(Long.valueOf(userId)));
+        return "user/user_notificationList";
+    }
+
     @RequestMapping(value = "/userProfile/showAnswers")
     String showAnswers(@RequestParam("userName") String userName, Model model, HttpSession session) {
         Object user = session.getAttribute("user");
         model.addAttribute("userName",userName);
-        System.out.println(profileService.getAnswerByName(userName,user==null?-1:((User)user).getId()));
+//        System.out.println(profileService.getAnswerByName(userName,user==null?-1:((User)user).getId()));
         model.addAttribute("activities",profileService.getAnswerByName(userName,user==null?-1:((User)user).getId()));
         return "user/user_answerList";
     }
