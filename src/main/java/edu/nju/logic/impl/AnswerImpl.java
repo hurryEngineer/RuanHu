@@ -58,7 +58,7 @@ public class AnswerImpl implements AnswerService {
         answer.setCreatedAt(new Timestamp(new Date().getTime()));
         answer.setLastUpdatedAt(new Timestamp(new Date().getTime()));
         answerDAO.createAnswer(answer, wikiIds, docIds);
-        Question question = questionDAO.getQuestionByID(questionId);
+        Question question = answer.getQuestion();
         User sender = userDAO.getUserByID(userId);
         messageDAO.sendMessage(MesType.answer,questionId,sender,question.getAuthor());
         return true;
