@@ -1,10 +1,10 @@
 <div class="row">
-	<p>添加wiki引用</p>
+	<p>添加文档引用</p>
 </div>
 
-<div class="box">
+<div class="box doc-box" style="display: none;">
 	<div class="box-header">
-		<h3 class="box-title">相关ppt</h3>
+		<h3 class="box-title">相关文档</h3>
 	</div>
 	<!-- /.box-header -->
 	<div class="box-body no-padding">
@@ -27,3 +27,7 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	initDocumentSelection();
+</script>

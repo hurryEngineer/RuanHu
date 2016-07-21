@@ -7,7 +7,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>$userInfo.userName - 软乎</title>
 
-    #parse("commonPart/commonCssAndJs.vm")
+    #parse("/templates/commonPart/commonCssAndJs.vm")
     <link rel="stylesheet" href="/plugins/datepicker/datepicker3.css">
 
 </head>
@@ -15,50 +15,129 @@
 <body class="hold-transition skin-blue-light layout-top-nav">
 <div class="wrapper">
 
-    #parse("commonPart/mainHeader.vm")
+    #parse("/templates/commonPart/mainHeader.vm")
 
     <div class="content-wrapper">
         <div class="container">
 
-##            <div class="zg-wrap zu-main clearfix "  role="main">
-##                <div class="zu-main-content">
-        <div class="">
-            <div class="row">
-                <div class="col-md-9" style="margin-top: 40px">
-                    #parse("user/userDetail.vm")
+        ##            <div class="zg-wrap zu-main clearfix "  role="main">
+        ##                <div class="zu-main-content">
+            <div class="">
+                <div class="row">
+                    <div class="col-md-9" style="margin-top: 40px">
+                        #parse("/templates/user/userDetail.vm")
+                    </div>
+
+                    <div class="col-md-3" style="margin-top: 40px">
+
+                        #parse("/templates/user/user_rightSideBar.vm")
+                    </div>
                 </div>
+                <div class="row" style="margin: 10px 10px">
+                    <div class="box box-primary" id='current'>
+                        <div class="box-header with-border">
+                            <h3 class="box-title"> ${userName} 提出的问题</h3>
+                        </div><!-- /.box-header -->
 
-                <div class="col-md-3" style="margin-top: 40px">
+                        <div class="box-body"></div>
 
-                    #parse("user/user_rightSideBar.vm")
-                </div>
-            </div>
-            <div class="row" style="margin: 10px 10px">
-                <div class="box box-primary" id='current'>
-                    <div class="box-header with-border">
-                        <h3 class="box-title"> ${userName} 提出的问题</h3>
-                    </div><!-- /.box-header -->
-
-                    <div class="box-body"></div>
-
-                    <div class="overlay" >
-                        <i class="fa fa-refresh fa-spin"></i>
+                        <div class="overlay" >
+                            <i class="fa fa-refresh fa-spin"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
     </div>
     <!-- ./wrapper -->
 
-    #parse("commonPart/addtionalJs.vm")
+    #parse("/templates/commonPart/addtionalJs.vm")
 
-
-    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 
     <script src="/plugins/datepicker/bootstrap-datepicker.js"></script>
 
     <script>
+        $('.zu-edit-button').click(function(){
+            $(this).parent().css("display","none");
+            $(this).parent().parent().children('.edit-wrap').css("display","inline");
+        });
+
+
+
+        var editAllowed = $!isMe;
+        if(editAllowed) {
+
+            $('.zu-edit-button').css("display", "inline");
+
+            $('#editDescription').click(function () {
+                var val = $('#description-input').val();
+                jQuery.ajax({
+                    type: "POST",
+                    url: "/json/editDescription",
+                    data: {"description": val},
+                    dataType: "json",
+                    success: function () {
+                        $('.edit-wrap').css("display", "none");
+                        $('.info-wrap').css("display", "inline");
+                        $('.description').text(val);
+                    }, error: function (xhr) {
+                        console.log(xhr.responseText);
+                        $('.edit-wrap').css("display", "none");
+                        $('.info-wrap').css("display", "inline");
+                        $('.description').text(val);
+                    }
+                });
+            });
+
+            $('#editBirthday').click(function () {
+                var val = $('#datepicker').val();
+
+                jQuery.ajax({
+                    type: "POST",
+                    url: "/json/editBirthday",
+                    data: {"birthday": val},
+                    dataType: "json",
+                    success: function () {
+                        $('.edit-wrap').css("display", "none");
+                        $('.info-wrap').css("display", "inline");
+                        $('.birthday').text(val);
+                    }, error: function (xhr) {
+                        console.log(xhr.responseText);
+                        $('.edit-wrap').css("display", "none");
+                        $('.info-wrap').css("display", "inline");
+                        $('.birthday').text(val);
+                    }
+                });
+            });
+
+            $('#editLocation').click(function () {
+                var val = $('#location-input').val();
+                jQuery.ajax({
+                    type: "POST",
+                    url: "/json/editLocation",
+                    data: {"location": val},
+                    dataType: "json",
+                    success: function () {
+                        $('.edit-wrap').css("display", "none");
+                        $('.info-wrap').css("display", "inline");
+                        $('.location').text(val);
+                    }, error: function (xhr) {
+                        console.log(xhr.responseText);
+                        $('.edit-wrap').css("display", "none");
+                        $('.info-wrap').css("display", "inline");
+                        $('.location').text(val);
+                    }
+                });
+            });
+
+
+            //Date picker
+            $('#datepicker').datepicker({
+                autoclose: true
+            });
+
+        }
+
         $("#current").load("/userProfile/showQuestion?userName=" + '$!{userInfo.userName}');
         $('#question-nav').click(function() {
             $("#current").append('<div class="overlay" > <i class="fa fa-refresh fa-spin"></i> </div>');
@@ -68,6 +147,7 @@
             $("#current").append('<div class="overlay" > <i class="fa fa-refresh fa-spin"></i> </div>');
             $("#current").load("/userProfile/showAnswers?userName=" + '$!{userInfo.userName}');
         });
+
 
     </script>
 
