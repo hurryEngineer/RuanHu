@@ -9,7 +9,13 @@ import edu.nju.data.util.MesType;
  */
 public interface MessageDAO {
 
-
+    /**
+     * 当有人回答了我的问题，为我的问题或者回答点赞，评论我的问题或者回答时 ，通知我
+     * @param type
+     * @param scrId    事件源ID，包括问题ID 和 回答ID
+     * @param sender
+     * @param receiver
+     */
     void sendMessage(MesType type , Long scrId , User sender , User receiver );
 
 

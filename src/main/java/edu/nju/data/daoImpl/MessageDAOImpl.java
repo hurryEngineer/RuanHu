@@ -5,6 +5,7 @@ import edu.nju.data.dao.MessageDAO;
 import edu.nju.data.entity.Message;
 import edu.nju.data.entity.User;
 import edu.nju.data.util.MesType;
+import edu.nju.data.util.Mesg_Helper.MesFactoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,15 +23,14 @@ public class MessageDAOImpl implements MessageDAO {
 
     @Autowired
     BaseDAO baseDAO;
+    @Autowired
+    MesFactoryInterface mesFactory;
 
     @PersistenceContext
     EntityManager em;
 
 
-    @Override
-    public void sendMessage(MesType type, Long scrId, User sender, User receiver) {
 
-    }
 
     @Override
     public void save(Message mes) {
@@ -92,6 +92,16 @@ public class MessageDAOImpl implements MessageDAO {
     public void deleteByMesID(Long mesID) {
 
         baseDAO.delete(Message.class , mesID);
+
+    }
+
+
+
+    @Override
+    public void sendMessage(MesType type, Long scrId, User sender, User receiver) {
+
+        Message message = mesFactory.createMessage(type,scrId,sender,receiver);
+        save_id(message);
 
     }
 }
