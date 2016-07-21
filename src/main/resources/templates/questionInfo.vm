@@ -226,37 +226,38 @@ $question.content
 
 
                 $('.vote-up').each(function () {
-                    if($(this).attr('isVote')==1){
+                    if($(this).parent().parent().attr('isVote')==1){
                         $(this).addClass('bg-blue');
                     }
 
                 });
                 $('.vote-down').each(function () {
-                    if($(this).attr('isVote')==-1){
+                    if($(this).parent().parent().attr('isVote')==-1){
                         $(this).addClass('bg-blue');
                     }
 
                 });
 
 
-                function upVote(obj) {
-//					console.log("up-vote");
-                    var answerIdThis = obj.getAttribute("answerid");
+                function upVote(obj,prt) {
+					console.log("up-vote");
+                    var answerIdThis = prt.getAttribute("answerid");
                     var userIdThis = $user.id;
                     $.ajax({
                         type : "GET",
                         url: "/json/answer/upVote",
                         data: {questionId: aQuestionId, answerId:answerIdThis, userId:userIdThis},
                         success: function(msg){
-//							console.log("msg"+msg);
+							console.log("msg"+msg);
                             $("#answerVoteCount").text(msg);
 
-//							console.log("up:"+obj.getAttribute("isVote"));
-							if(obj.getAttribute("isVote")!=1) {
-                                obj.setAttribute("isVote",1);
+							console.log("up:"+prt.getAttribute("isVote"));
+							if(prt.getAttribute("isVote")!=1) {
+                                prt.setAttribute("isVote",1);
+                                alert(prt.childNodes);
                                 obj.setAttribute("class", "action vote vote-up img-circle bg-blue");
                             }else{
-                                obj.setAttribute("isVote",0);
+                                prt.setAttribute("isVote",0);
                                 obj.setAttribute("class","action vote vote-up img-circle");
 							}
 
@@ -264,7 +265,7 @@ $question.content
                     });
                 }
 
-                function downVote(obj) {
+                function downVote(obj,circle) {
                     var answerIdThis = obj.getAttribute("answerid");
                     var userIdThis = $user.id;
                     $.ajax({
@@ -315,19 +316,20 @@ $question.content
 
                 function downQuesVote(obj) {
 //					console.log("up-vote");
-                    var answerIdThis = obj.getAttribute("answerid");
+                    var id = aQuestionId;
                     var userIdThis = $user.id;
                     $.ajax({
                         type : "GET",
-                        url: "/answer/upVote",
-                        data: {questionId: aQuestionId, answerId:answerIdThis, userId:userIdThis},
+                        url: "/json/down",
+                        data: {questionId: id, userId:userIdThis},
+                        dataType : "json",
                         success: function(msg){
-//							console.log("msg"+msg);
-                            $("#answerVoteCount").text(msg);
+                            console.log("msg"+msg);
+                            $("#questionVoteCount").text(msg);
 
-//							console.log("up:"+obj.getAttribute("isVote"));
-                            if(obj.getAttribute("isVote")!=1) {
-                                obj.setAttribute("isVote",1);
+                            console.log("up:"+obj.getAttribute("isVote"));
+                            if(obj.getAttribute("isVote")!=-1) {
+                                obj.setAttribute("isVote",-1);
                                 obj.setAttribute("class", "action vote vote-up img-circle bg-blue");
                             }else{
                                 obj.setAttribute("isVote",0);
