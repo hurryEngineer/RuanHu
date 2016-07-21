@@ -158,7 +158,7 @@
 
         $('#answer-nav').click(function() {
             $("#current").append('<div class="overlay" > <i class="fa fa-refresh fa-spin"></i> </div>');
-            $("#current").load("/userProfile/showAnswers?userName=" + '$!{userInfo.userName}');
+            $("#current").load("/json/user/message?userName=" + '$!{userInfo.userName}');
         });
 
 
