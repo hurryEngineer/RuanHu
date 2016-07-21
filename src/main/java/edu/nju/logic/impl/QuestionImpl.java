@@ -3,11 +3,13 @@ package edu.nju.logic.impl;
 import edu.nju.data.dao.*;
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
+import edu.nju.data.entity.User;
 import edu.nju.data.entity.Vote;
 import edu.nju.data.util.HQL_Helper.Enums.OrderByMethod;
 import edu.nju.data.util.HQL_Helper.Enums.OrderByPara;
 import edu.nju.data.util.HQL_Helper.Enums.WherePara;
 import edu.nju.data.util.VoteType;
+import edu.nju.logic.service.InviteService;
 import edu.nju.logic.service.QuestionService;
 import edu.nju.logic.service.TimeService;
 import edu.nju.logic.service.TransferService;
@@ -40,6 +42,9 @@ public class QuestionImpl implements QuestionService {
     TransferService timeService;
 
     @Autowired
+    InviteService inviteService;
+
+    @Autowired
     WikiDAO wikiDAO;
 
     @Autowired
@@ -52,8 +57,9 @@ public class QuestionImpl implements QuestionService {
     }
 
     @Override
-    public QuestionVO saveQuestion(Question question, long userId, List wikiIds, List docIds) {
+    public QuestionVO saveQuestion(Question question, long userId, List wikiIds, List docIds, List<String> inviteNames) {
         QuestionVO questionVO =  timeService.transferQuestion(questionDAO.createQuestion(question,wikiIds,docIds),userId);
+        inviteService.inivite(question.getId(), userId, inviteNames);
         return questionVO;
     }
 

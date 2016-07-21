@@ -4,6 +4,7 @@ import edu.nju.data.dao.AnswerDAO;
 import edu.nju.data.dao.QuestionDAO;
 import edu.nju.data.dao.UserDAO;
 import edu.nju.data.entity.Answer;
+import edu.nju.data.entity.Message;
 import edu.nju.data.entity.Question;
 import edu.nju.data.entity.User;
 import edu.nju.data.util.HQL_Helper.Enums.OrderByPara;
@@ -133,5 +134,15 @@ public class UserProfileImpl implements UserProfileService {
         if (activityVOs.size()>0)
             Collections.sort(activityVOs);
         return activityVOs;
+    }
+
+    @Override
+    public List<Message> getUserMessage(long userId) {
+        return userDAO.getAllMessage(userId);
+    }
+
+    @Override
+    public List<User> getSearchUser(String keyword) {
+        return userDAO.search(keyword);
     }
 }

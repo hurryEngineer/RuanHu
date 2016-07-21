@@ -1,6 +1,7 @@
 package edu.nju.logic.service;
 
 import edu.nju.data.entity.Answer;
+import edu.nju.data.entity.Message;
 import edu.nju.data.entity.Question;
 import edu.nju.data.entity.User;
 import edu.nju.logic.vo.ActivityVO;
@@ -41,5 +42,9 @@ public interface UserProfileService {
     List<AnswerVO> getAnswerByName(String name, long userId);
 
     List<ActivityVO> orderedActivity(List<QuestionVO> questionVOs, List<AnswerVO> answerVOs);
+
+    List<Message> getUserMessage(long userId);
+
+    List<User> getSearchUser(String keyword);
 
 }

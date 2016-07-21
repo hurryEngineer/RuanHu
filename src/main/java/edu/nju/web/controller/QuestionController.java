@@ -91,8 +91,10 @@ public class QuestionController {
     
     @RequestMapping(value = "/submitQuestion",method = RequestMethod.POST)
     String newQuestion(String title, String description,
-            @RequestParam(defaultValue="") List<Long> wikiIds,
-            @RequestParam(defaultValue="") List<Long> docIds, HttpSession session, @ModelAttribute("user")User user){
+                       @RequestParam(defaultValue = "") List<Long> wikiIds,
+                       @RequestParam(defaultValue = "") List<Long> docIds,
+                       @RequestParam(defaultValue = "") List<String> inviteNames,
+                       HttpSession session, @ModelAttribute("user")User user){
         Map<String,Object> result = new HashMap<>();
         Question question;
 
@@ -106,7 +108,7 @@ public class QuestionController {
             question.setCreatedAt(new Timestamp(new Date().getTime()));
             question.setContent(description);
 
-            question = service.saveQuestion(question, user.getId(), wikiIds, docIds);
+            question = service.saveQuestion(question, user.getId(), wikiIds, docIds, inviteNames);
             QuestionVO questionVO = timeService.transferQuestion(question, user.getId());
             session.setAttribute("question",questionVO);
 
