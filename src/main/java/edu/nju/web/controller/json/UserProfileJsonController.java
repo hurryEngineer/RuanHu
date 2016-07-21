@@ -24,12 +24,22 @@ public class UserProfileJsonController {
     private UserProfileService profileService;
 
 
+    /**
+     * 搜索用户（邀请回答时用）
+     * @param nameKey 用户名关键字
+     * @return 符合关键词的用户信息
+     */
     @RequestMapping(value = "/user/search", method = RequestMethod.GET)
     @ResponseBody
     List<User> getUserByNameKey(@RequestParam("key")String nameKey) {
         return profileService.getSearchUser(nameKey);
     }
 
+    /**
+     * 获取用户的消息
+     * @param userId 用户id
+     * @return 用户所有的消息
+     */
     @RequestMapping(value = "/user/message", method = RequestMethod.GET)
     @ResponseBody
     List<Message> getUserMessage(@RequestParam("userId") long userId) {
