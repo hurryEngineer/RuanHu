@@ -1,4 +1,4 @@
-package edu.nju.web.controller.rest;
+package edu.nju.web.controller;
 
 import edu.nju.data.entity.api.Document;
 import edu.nju.logic.service.DocumentService;
@@ -12,22 +12,12 @@ import java.util.List;
  * Created by cuihao on 2016/7/20.
  */
 @Controller
-@RequestMapping("/rest/doc")
-public class DocumentController {
+@RequestMapping("/doc")
+public class DocController {
 
     @Autowired
     private DocumentService documentService;
 
-    @RequestMapping("/ppt/{id}")
-    @ResponseBody
-    public Document getDocById(@PathVariable long id){
-        return documentService.getDocById(id);
-    }
-    @RequestMapping("/search")
-    @ResponseBody
-    public List<Document> searchDocuments(@RequestParam("key")String key, @RequestParam("page") int page){
-        return documentService.searchDocuments(key,page);
-    }
     @RequestMapping(value = "/notification", method = RequestMethod.POST)
     public void sendMessage(@RequestParam("message")String message, @RequestParam("name") String userName,
                             @RequestParam("id") String userId){

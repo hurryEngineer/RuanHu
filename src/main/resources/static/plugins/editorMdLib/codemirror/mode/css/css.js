@@ -461,7 +461,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
     "perspective-origin", "pitch", "pitch-range", "play-during", "position",
     "presentation-level", "punctuation-trim", "quotes", "region-break-after",
     "region-break-before", "region-break-inside", "region-fragment",
-    "rendering-intent", "resize", "rest", "rest-after", "rest-before", "richness",
+    "rendering-intent", "resize", "rest", "json-after", "json-before", "richness",
     "right", "rotation", "rotation-point", "ruby-align", "ruby-overhang",
     "ruby-position", "ruby-span", "shape-image-threshold", "shape-inside", "shape-margin",
     "shape-outside", "size", "speak", "speak-as", "speak-header",

@@ -174,7 +174,7 @@ CodeMirror.defineMode("xquery", function() {
     else {
       var known = keywords.propertyIsEnumerable(ch) && keywords[ch];
 
-      // if there's a EQName ahead, consume the rest of the string portion, it's likely a function
+      // if there's a EQName ahead, consume the json of the string portion, it's likely a function
       if(isEQName && ch === '\"') while(stream.next() !== '"'){}
       if(isEQName && ch === '\'') while(stream.next() !== '\''){}
 

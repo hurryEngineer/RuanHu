@@ -1,8 +1,10 @@
-package edu.nju.web.controller.rest;
+package edu.nju.web.controller;
 
 import edu.nju.web.util.PostObjectPolicy;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +18,6 @@ import java.util.Map;
  */
 @Controller
 @SessionAttributes("user")
-@RequestMapping("/rest")
 public class AttachmentController {
 
 

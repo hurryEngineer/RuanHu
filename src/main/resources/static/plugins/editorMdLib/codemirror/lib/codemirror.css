@@ -147,7 +147,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
 
 /* STOP */
 
-/* The rest of this file contains styles related to the mechanics of
+/* The json of this file contains styles related to the mechanics of
    the editor. You probably shouldn't touch them. */
 
 .CodeMirror {
@@ -236,7 +236,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   min-height: 1px; /* prevents collapsing before first draw */
 }
 .CodeMirror pre {
-  /* Reset some styles that the rest of the page might have set */
+  /* Reset some styles that the json of the page might have set */
   -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;
   border-width: 0;
   background: transparent;

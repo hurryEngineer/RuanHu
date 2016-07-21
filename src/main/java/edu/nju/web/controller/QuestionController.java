@@ -1,16 +1,13 @@
-package edu.nju.web.controller.rest;
+package edu.nju.web.controller;
 
-import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
 import edu.nju.data.entity.User;
 import edu.nju.data.util.VoteType;
 import edu.nju.logic.service.QuestionService;
-import edu.nju.logic.service.TimeService;
 import edu.nju.logic.service.TransferService;
 import edu.nju.logic.vo.AnswerVO;
 import edu.nju.logic.vo.QuestionVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +26,7 @@ import java.util.Map;
 
 @Controller
 @SessionAttributes("user")
-@RequestMapping("/rest")
+@RequestMapping("/json")
 public class QuestionController {
 
     @Autowired
@@ -66,27 +63,11 @@ public class QuestionController {
         
     }
 
-    @RequestMapping(value = "/question/get", method = RequestMethod.GET)
-    @ResponseBody
-    QuestionVO getQuestion(@RequestParam("id")String questionId, HttpSession session) {
-        Object user = session.getAttribute("user");
-        return service.showQuestion(Long.valueOf(questionId),user==null?-1:((User)user).getId());
-    }
-    
-    @RequestMapping(value="/question/{id}/answers",method = RequestMethod.GET)
-    @ResponseBody
-    List<AnswerVO> showAnswers(@PathVariable long id, @RequestParam(value = "page", defaultValue = "1") int page, HttpSession session) {
-
-        Object user = session.getAttribute("user");
-
-        return service.getAnswers(id, page, 10, user==null?-1:((User)user).getId());
-    }
-
     @RequestMapping(value = "/question/edit",method = RequestMethod.POST)
     String editQuestion(@RequestParam("id")String questionId, @RequestParam("title")String title,
                       @RequestParam("description") String desciption) {
         service.updateQustion(Long.valueOf(questionId),title,desciption);
-        return "redirect:/rest/question/"+questionId;
+        return "redirect:/json/question/"+questionId;
     }
 
     @RequestMapping(value = "/question/delete", method = RequestMethod.POST)
@@ -94,9 +75,9 @@ public class QuestionController {
         boolean result = service.deleteQuestion(Long.valueOf(questionId),Long.valueOf(userId));
         model.addAttribute("deleteResult",result);
         if (result) {
-            return "redirect:/rest/question";
+            return "redirect:/json/question";
         } else {
-            return "redirect:/rest/question/"+questionId;
+            return "redirect:/json/question/"+questionId;
         }
     }
 
@@ -122,10 +103,10 @@ public class QuestionController {
             session.setAttribute("question",questionVO);
 
 
-            return "redirect:/rest/question/"+question.getId();
+            return "redirect:/json/question/"+question.getId();
         }
 
-        return "redirect:/rest/ask";
+        return "redirect:/json/ask";
     }
 
     @RequestMapping(value = "/ask",method = RequestMethod.GET)
@@ -133,29 +114,6 @@ public class QuestionController {
         return "askQuestion";
     }
 
-    /**
-     * 投票：赞同票
-     * @param questionId 问题id
-     * @param userId 用户id
-     * @return 如果之前没有投过赞同票，票数增加1，返回 1
-     *          如果之前投过赞同票，票数减少1， 返回 -1
-     *          如果之前投的反对票，票数增加2，返回 2
-     */
-    @RequestMapping(value = "/up")
-    int upVote(String questionId, String userId){
-        return service.vote(questionId,userId, VoteType.up);
-    }
-
-    /**
-     * 投票：反对票
-     * @param questionId 问题id
-     * @param userId 用户id
-     * @return 投票后的总票数
-     */
-    @RequestMapping(value = "/down")
-    int downVote(String questionId, String userId){
-        return service.vote(questionId,userId, VoteType.down);
-    }
 
 
 }

@@ -65,7 +65,7 @@ public class VoteDAOImplTest {
         vote.setAnswerId(answerID);
         vote.setVoteType(VoteType.up);
 
-        voteDAO.cancel(vote);
+        //voteDAO.cancel(vote);
 
 
     }

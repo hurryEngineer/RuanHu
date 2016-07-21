@@ -100,7 +100,7 @@ CodeMirror.defineMode("puppet", function () {
       if (stream.match(/(\s+)?[\w:_]+(\s+)?/)) {
         return 'def';
       }
-      // Match the rest it the next time around
+      // Match the json it the next time around
       stream.match(/\s+{/);
       state.inDefinition = false;
     }
@@ -191,7 +191,7 @@ CodeMirror.defineMode("puppet", function () {
       }
       return "operator";
     }
-    // Keep advancing through all the rest
+    // Keep advancing through all the json
     stream.eatWhile(/[\w-]/);
     // Return a blank line for everything else
     return null;

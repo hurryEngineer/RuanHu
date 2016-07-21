@@ -3,7 +3,7 @@ package edu.nju.web.controller;
 import edu.nju.RuanHuApplication;
 import edu.nju.data.entity.User;
 import edu.nju.logic.service.LoginService;
-import edu.nju.web.controller.rest.QuestionController;
+import edu.nju.web.controller.json.QuestionJsonController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -45,7 +45,7 @@ public class QuestionControllerTest {
     private LoginService loginService;
 
     @Autowired
-    QuestionController controller;
+    QuestionJsonController controller;
 
     private MockMvc mockMvc;
 

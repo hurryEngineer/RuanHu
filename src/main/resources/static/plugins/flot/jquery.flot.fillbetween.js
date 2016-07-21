@@ -105,7 +105,7 @@ jquery.flot.stack.js plugin, possibly some code could be shared.
 
 				} else if ( j >= otherpoints.length ) {
 
-					// for lines, we can't use the rest of the points
+					// for lines, we can't use the json of the points
 
 					if ( !withlines ) {
 						for ( m = 0; m < ps; ++m ) {

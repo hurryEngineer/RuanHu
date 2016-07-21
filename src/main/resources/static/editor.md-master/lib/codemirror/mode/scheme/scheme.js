@@ -177,7 +177,7 @@ CodeMirror.defineMode("scheme", function () {
                     } else if (/^[-+0-9.]/.test(ch) && isDecimalNumber(stream, true)) { // match non-prefixed number, must be decimal
                         returnType = NUMBER;
                     } else if (ch == ";") { // comment
-                        stream.skipToEnd(); // rest of the line is a comment
+                        stream.skipToEnd(); // json of the line is a comment
                         returnType = COMMENT;
                     } else if (ch == "(" || ch == "[") {
                       var keyWord = ''; var indentTemp = stream.column(), letter;

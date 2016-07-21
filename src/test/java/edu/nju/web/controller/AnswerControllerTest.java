@@ -4,7 +4,7 @@ import edu.nju.RuanHuApplication;
 import edu.nju.data.dao.UserDAO;
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.User;
-import edu.nju.web.controller.rest.AnswerController;
+import edu.nju.web.controller.json.AnswerJsonController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,7 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class AnswerControllerTest {
 
     @Autowired
-    private AnswerController answerController;
+    private AnswerJsonController answerJsonController;
 
     @Autowired
     private WebApplicationContext webApplicationContext;
