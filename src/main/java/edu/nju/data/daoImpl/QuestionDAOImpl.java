@@ -88,15 +88,6 @@ public class QuestionDAOImpl implements QuestionDAO {
 
     }
 
-    //TODO
-    @Override
-    public Question createQuestion
-            (Question question, List wikiIDs, List docuIDs, List<User> invitees) {
-
-        return null;
-
-    }
-
 
     @Override
     public void deleteByQuestionID(long questionID) {

@@ -48,17 +48,6 @@ public interface QuestionDAO {
             (Question question , List  wikiIDs , List docuIDs);
 
 
-    /**
-     * 保存一个带引用，带邀请的问题
-     * @param question
-     * @param wikiIDs
-     * @param docuIDs
-     * @param invitees  被邀请回答问题的用户列表,如果没有邀请列表就为null
-     * @return
-     */
-    Question createQuestion
-            (Question question , List wikiIDs , List docuIDs , List<User> invitees);
-
 
     /**
      * 根据问题ID删除一个问题
