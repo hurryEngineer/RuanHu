@@ -396,12 +396,14 @@ $question.content
                             });
                         });
                    });
+
                     $("#btn_cancel_question").click(function(){
                         quesEditormd.editor.remove();
                         $("#question-show-area").show();
                         $("#btn_submit_question").css('display','none');
                         $("#btn_cancel_question").css('display','none');
                     });
+
                     $("#btn_submit_question").click(function(){
                         alert("submit question change");
                         var markdown = quesEditormd.getMarkdown();
@@ -409,16 +411,17 @@ $question.content
                         quesEditormd.editor.remove();
                         $("#btn_submit_question").css('display','none');
                         $("#btn_cancel_question").css('display','none');
-//                        window.location.href="/editQuestion.action?id="+myQuestionId+"&title="+mytitle+"&description="+markdown;
+
                         $.ajax({
                             type: "POST",
-                            url:"/editQuestion",
-                            data: {questionId:myQuestionId, title:mytitle,description:markdown},
+                            url:"/question/edit",
+                            data: {id:myQuestionId, title:mytitle,description:markdown},
                             success: function(msg){
                                 console.log(msg);
-                                location.reload(true);
+//                                location.reload(true);
                             }
                         });
+
                     });
                 });
 
