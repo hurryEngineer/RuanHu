@@ -30,5 +30,28 @@
 </div>
 
 <script>
-	initDocumentSelection();
+
+	var docItemHtml = ' <tr> \
+	    <td>$title</td> \
+	    <td> \
+	    	<a href="$url" > \
+	    		<span class="badge bg-red"> \
+	    			<i class="ion ion-ios-cloud-download-outline"> \
+	    			</i> \
+	    		</span> \
+	    	</a> \
+	    </td> \
+	</tr> ';
+	var docSelectionHtml = '<img src="$icon" alt="a" width=20px height=20px ></img> <h3 class="selection-title">$title</h3>';
+	
+	var docSelect =initSelect({
+		selectClass : "doc-selection",
+		url: "/json/doc/search",
+		idList : [],
+		itemBox : $(".doc-box"),
+		itemContainer : $(".doc-box").children(".box-body").children(".table").children("tbody"),
+		itemHtml : docItemHtml,
+		selectionItemHtml : docSelectionHtml
+	});
+
 </script>
