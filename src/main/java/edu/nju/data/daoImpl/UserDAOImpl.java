@@ -114,7 +114,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public List<Message> getAllMessage(Long userID) {
 
-        Query query = em.createQuery(" from Message m where m.receiver.id = ?1 ");
+        Query query = em.createQuery(" from Message m where m.receiver.id = ?1 order by m.createdAt desc ");
         query.setParameter(1,userID);
         List<Message> messages = query.getResultList();
         return messages;
