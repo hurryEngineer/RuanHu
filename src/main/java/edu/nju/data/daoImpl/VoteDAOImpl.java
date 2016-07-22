@@ -46,17 +46,31 @@ public class VoteDAOImpl implements VoteDAO {
         query.setParameter(2,vote.getAnswerId());
         query.setParameter(3,vote.getQuestionId());
         List<Vote> resultList = query.getResultList();
+        int result = getVoteCount(vote);
         /**
          * 该用户从未对该问题或者答案做出Vote
          */
         if(resultList==null){
              System.err.println("Vote！！！！");
              save(vote);
+            if(vote.getVoteType()==VoteType.up)
+            {
+                result++;
 
+            }else{
+                result--;
+            }
         }else if(resultList.size()==0){
 
             System.err.println("Vote！！！！");
             save(vote);
+            if(vote.getVoteType()==VoteType.up)
+            {
+                result++;
+
+            }else{
+                result--;
+            }
 
         }else if(resultList.size()>=1){
             /**
@@ -66,16 +80,28 @@ public class VoteDAOImpl implements VoteDAO {
                 System.out.println();
                 System.err.println("重复操作,取消赞！！！！");
                 baseDAO.delete(Vote.class,resultList.get(0).getId());
+                if(vote.getVoteType()==VoteType.up){
+                    result--;
+                }else{
+                    result++;
+                }
 
             }else{
                 System.err.println("改变操作！！！！");
                 baseDAO.delete(Vote.class , resultList.get(0).getId());
                 save(vote);
+                if(vote.getVoteType()==VoteType.up){
+                    result+=2;
+                }else{
+                    result-=2;
+                }
 
             }
         }
 
-        return getVoteCount(vote);
+
+        System.err.println("votecount : "+result);
+        return result;
     }
 
     @Override
