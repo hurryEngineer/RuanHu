@@ -97,7 +97,7 @@ public class AnswerImpl implements AnswerService {
         vote.setLastUpdatedAt(new Timestamp(new Date().getTime()));
         Answer answer = answerDAO.getAnswerByID(Long.valueOf(answerId));
         User sender = userDAO.getUserByID(Long.valueOf(userId));
-        messageDAO.sendMessage(MesType.vote, answer.getId(), sender, answer.getAuthor());
+        messageDAO.sendMessage(MesType.voteAnswer, answer.getId(), sender, answer.getAuthor());
         return voteDAO.vote(vote);
     }
 

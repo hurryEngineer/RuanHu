@@ -120,7 +120,7 @@ public class QuestionImpl implements QuestionService {
         vote.setVoteType(type);
         Question question = questionDAO.getQuestionByID(Long.valueOf(questionId));
         User sender = userDAO.getUserByID(Long.valueOf(userId));
-        messageDAO.sendMessage(MesType.vote, question.getId(), sender, question.getAuthor());
+        messageDAO.sendMessage(MesType.voteQuestion, question.getId(), sender, question.getAuthor());
         return voteDAO.vote(vote);
     }
 
