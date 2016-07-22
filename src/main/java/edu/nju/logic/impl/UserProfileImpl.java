@@ -55,11 +55,12 @@ public class UserProfileImpl implements UserProfileService {
 
     @Override
     public boolean editBirthday(User user, String bitrhday) {
+        User thisUser = userDAO.getUserByID(user.getId());
         try {
             String[] strs = bitrhday.split("/");
             bitrhday = strs[2]+"-"+strs[0]+"-"+strs[1];
-            user.setBirthDate(Date.valueOf(bitrhday));
-            userDAO.update(user);
+            thisUser.setBirthDate(Date.valueOf(bitrhday));
+            userDAO.update(thisUser);
         }catch (IllegalArgumentException e){
             e.printStackTrace();
             return false;
@@ -70,15 +71,17 @@ public class UserProfileImpl implements UserProfileService {
 
     @Override
     public boolean editDescription(User user, String description) {
-        user.setDescription(description);
-        userDAO.update(user);
+        User thisUser = userDAO.getUserByID(user.getId());
+        thisUser.setDescription(description);
+        userDAO.update(thisUser);
         return true;
     }
 
     @Override
     public boolean editLocation(User user, String location) {
-        user.setLocation(location);
-        userDAO.update(user);
+        User thisUser = userDAO.getUserByID(user.getId());
+        thisUser.setLocation(location);
+        userDAO.update(thisUser);
         return true;
     }
 
