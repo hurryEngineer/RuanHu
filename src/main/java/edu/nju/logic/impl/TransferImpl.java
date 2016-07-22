@@ -5,12 +5,14 @@ import edu.nju.data.dao.QuestionDAO;
 import edu.nju.data.dao.VoteDAO;
 import edu.nju.data.dao.http.Wiki_httpDAO;
 import edu.nju.data.entity.Answer;
+import edu.nju.data.entity.Message;
 import edu.nju.data.entity.Question;
 import edu.nju.data.entity.api.WikiItem;
 import edu.nju.data.util.VoteType;
 import edu.nju.logic.service.TimeService;
 import edu.nju.logic.service.TransferService;
 import edu.nju.logic.vo.AnswerVO;
+import edu.nju.logic.vo.MessageVO;
 import edu.nju.logic.vo.QuestionVO;
 import org.aspectj.weaver.ast.ITestVisitor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,5 +64,26 @@ public class TransferImpl implements TransferService {
         answerVO.setWikiItems(answerDAO.getRelatedWikiItems(answer.getId()));
         answerVO.setDocuments(answerDAO.getRelatedDocuments(answer.getId()));
         return answerVO;
+    }
+
+    @Override
+    public List<MessageVO> transferMessage(List<Message> messages) {
+        List<MessageVO> messageVOs = new ArrayList<>();
+        for (Message message: messages) {
+            Answer answer = null;
+            Question question = null;
+            MessageVO messageVO = new MessageVO(message);
+            switch (message.getMesgType()) {
+                case voteAnswer:
+                    answer = answerDAO.getAnswerByID(message.getSourceId());
+                    break;
+                default:
+                    question = questionDAO.getQuestionByID(message.getSourceId());
+            }
+            messageVO.setAnswer(answer);
+            messageVO.setQuestion(question);
+            messageVOs.add(messageVO);
+        }
+        return messageVOs;
     }
 }
