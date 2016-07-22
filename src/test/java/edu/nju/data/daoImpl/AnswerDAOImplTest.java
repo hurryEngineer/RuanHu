@@ -92,7 +92,7 @@ public class AnswerDAOImplTest {
     public void createAnswer() throws Exception {
         Answer answer = new Answer();
         answer.setAuthorId(new Long(2));
-        answer.setQuestionId(new Long(333));
+        answer.setQuestionId(new Long(337));
         answer.setContent("加速起跑，半蹲，后脚踮起，重心压在后脚尖，前脚翻韧90°迅速蹬出");
         List wikiIDs = new ArrayList();
         List docuIDs = new ArrayList();

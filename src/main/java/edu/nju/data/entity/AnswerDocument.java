@@ -3,16 +3,26 @@ package edu.nju.data.entity;
 import javax.persistence.*;
 
 /**
- * Created by ss14 on 2016/7/20.
+ * Created by ss14 on 2016/7/22.
  */
 @Entity
 @Table(name = "answer_document", schema = "RuanHu", catalog = "")
+@IdClass(AnswerDocumentPK.class)
 public class AnswerDocument {
     private long answerId;
     private long documentId;
-    private Long id;
 
-    @Basic
+
+    public AnswerDocument(){}
+
+    public AnswerDocument(AnswerDocumentPK pk){
+        this.answerId = pk.getAnswerId();
+        this.documentId = pk.getDocumentId();
+    }
+
+
+
+    @Id
     @Column(name = "answer_id")
     public long getAnswerId() {
         return answerId;
@@ -22,7 +32,7 @@ public class AnswerDocument {
         this.answerId = answerId;
     }
 
-    @Basic
+    @Id
     @Column(name = "document_id")
     public long getDocumentId() {
         return documentId;
@@ -30,17 +40,6 @@ public class AnswerDocument {
 
     public void setDocumentId(long documentId) {
         this.documentId = documentId;
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override
@@ -52,7 +51,6 @@ public class AnswerDocument {
 
         if (answerId != that.answerId) return false;
         if (documentId != that.documentId) return false;
-        if (id != that.id) return false;
 
         return true;
     }
@@ -61,7 +59,6 @@ public class AnswerDocument {
     public int hashCode() {
         int result = (int) (answerId ^ (answerId >>> 32));
         result = 31 * result + (int) (documentId ^ (documentId >>> 32));
-        result = 31 * result + (int) (id ^ (id >>> 32));
         return result;
     }
 }
