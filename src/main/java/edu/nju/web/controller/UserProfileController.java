@@ -1,6 +1,7 @@
 package edu.nju.web.controller;
 
 import edu.nju.data.entity.User;
+import edu.nju.logic.service.TransferService;
 import edu.nju.logic.service.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,9 @@ import javax.servlet.http.HttpSession;
 public class UserProfileController {
     @Autowired
     private UserProfileService profileService;
+
+    @Autowired
+    private TransferService transferService;
 
     /**
      * 显示用户信息
@@ -45,8 +49,7 @@ public class UserProfileController {
 
     @RequestMapping(value = "/userProfile/message")
     String showUserMessage(@RequestParam("userId") String userId, Model model, HttpSession session) {
-        model.addAttribute("message",profileService.getUserMessage(Long.valueOf(userId)));
-        System.out.println(profileService.getUserMessage(Long.valueOf(userId)));
+        model.addAttribute("message",transferService.transferMessage(profileService.getUserMessage(Long.valueOf(userId))));
         return "user/user_notificationList";
     }
 
