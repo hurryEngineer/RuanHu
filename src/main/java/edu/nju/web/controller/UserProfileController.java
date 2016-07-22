@@ -46,6 +46,7 @@ public class UserProfileController {
     @RequestMapping(value = "/userProfile/message")
     String showUserMessage(@RequestParam("userId") String userId, Model model, HttpSession session) {
         model.addAttribute("message",profileService.getUserMessage(Long.valueOf(userId)));
+        System.out.println(profileService.getUserMessage(Long.valueOf(userId)));
         return "user/user_notificationList";
     }
 
