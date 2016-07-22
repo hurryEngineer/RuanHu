@@ -54,6 +54,6 @@ public class ApiController {
         if (inetAddress!=null) {
             ip = inetAddress.getHostAddress();
         }
-        return ip+"8080:/ask?wikiId="+wikiId;
+        return ip+":8080/ask?wikiId="+wikiId;
     }
 }
