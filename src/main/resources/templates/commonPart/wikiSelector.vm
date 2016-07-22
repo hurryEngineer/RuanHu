@@ -2,6 +2,15 @@
 	<p>添加wiki引用</p>
 </div>
 
+<div class="row">
+	<div class="col-md-6">
+		<div class="form-group">
+			<select class="form-control wiki-selection" multiple="multiple" data-placeholder="引用wiki" style="width: 100%;">
+			</select>
+		</div>
+	</div>
+</div>
+
 #if(!$wiki)
 <div class="box box-solid wiki-box" style="display: none;">
 	<div class="box-header with-border">
@@ -28,14 +37,6 @@
 </div>
 #end
 
-<div class="row">
-	<div class="col-md-6">
-		<div class="form-group">
-			<select class="form-control wiki-selection" multiple="multiple" data-placeholder="引用wiki" style="width: 100%;">
-			</select>
-		</div>
-	</div>
-</div>
 
 <script>
 	var wikiItemHtml = ' <blockquote> \
