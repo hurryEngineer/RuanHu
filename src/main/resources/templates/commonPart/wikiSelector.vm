@@ -38,5 +38,21 @@
 </div>
 
 <script>
-	initWikiSelection();
+	var wikiItemHtml = ' <blockquote> \
+			<h4><a href="#" >$title</a><h4> \
+	    	<p>$content</p> \
+			</blockquote> ' ;
+	var wikiSelectionHtml = '<i class="fa fa-text-width"></i> <h3 class="selection-title">$title</h3>';
+	
+
+	var wikiSelect = initSelect({
+		selectClass : "wiki-selection",
+		url: "/json/wiki/search",
+		idList : [],
+		itemBox : $(".wiki-box"),
+		itemContainer : $(".wiki-box").children(".box-body"),
+		itemHtml : wikiItemHtml,
+		selectionItemHtml : wikiSelectionHtml
+	});
+
 </script>

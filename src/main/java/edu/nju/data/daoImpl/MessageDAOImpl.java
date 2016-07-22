@@ -64,6 +64,7 @@ public class MessageDAOImpl implements MessageDAO {
         }catch (DataIntegrityViolationException e) {
             // Duplicate entry
             System.out.println("history already exist");
+            return null;
         }
 
 
