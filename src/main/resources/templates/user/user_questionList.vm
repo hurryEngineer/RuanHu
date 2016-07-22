@@ -25,7 +25,11 @@
                         <h3 class="timeline-header"> 提出了问题 <a href='/question/${one.id}'>${one.title}</a></h3>
 
                         <div class="timeline-body">
-                            ${one.content}
+                            <div id="user-answerlist-answer-markdown-area-$!one.id" class="pure-markdown q-ltop-content">
+                						<textarea style="display:none;" id="question-textarea">
+$!{one.content}
+               	 						</textarea>
+                            </div>
                         </div>
 
     ##                    <div class="timeline-footer">
@@ -38,3 +42,4 @@
         </ul>
     </div><!-- /.box-body -->
 </div><!-- /.box -->
+<script>parseAllMarkDown();</script>

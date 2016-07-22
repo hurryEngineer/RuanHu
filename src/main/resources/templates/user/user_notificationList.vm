@@ -24,8 +24,8 @@
                         <span class="time"><i class="fa fa-clock-o"></i> $one.createdAt</span>
 
 
-                            <h3 class="timeline-header">  <a href='/userProfile/${one.sender.userName}'>${one.sender.userName}</a>
-                                <a href='/question/${one.sourceId}'>邀请我回答问题</a>
+                            <h3 class="timeline-header">  <a href='/userProfile/${one.sender.userName}'>${one.sender.userName}</a> 邀请我回答问题
+                                <a href='/question/${one.question.id}'>$one.question.title</a>
                             </h3>
 
 ##                            <div class="timeline-body">
@@ -40,18 +40,22 @@
 
                 #elseif($one.mesgType=='voteAnswer')
                     <li>
-                        <i class="fa fa-thumbs-o-up bg-blue"></i>
+                        <i class="fa fa-thumbs-o-up bg-olive"></i>
                         <div class="timeline-item">
                             <span class="time"><i class="fa fa-clock-o"></i> $one.createdAt</span>
 
 
-                            <h3 class="timeline-header">  <a href='/userProfile/${one.sender.userName}'>${one.sender.userName}</a>
-                                <a href='/question/${one.sourceId}'>赞了我的回答</a>
+                            <h3 class="timeline-header">  <a href='/userProfile/${one.sender.userName}'>${one.sender.userName}</a> 赞了我的回答
+                                <a href='/question/${one.answer.question.id}'>${one.answer.question.title}</a>
                             </h3>
 
-##                            <div class="timeline-body">
-##                                ${one.content}
-##                            </div>
+                            <div class="timeline-body">
+                                <div id="user-answerlist-answer-markdown-area-$!one.id" class="pure-markdown q-ltop-content">
+                						<textarea style="display:none;" id="question-textarea">
+$!{one.answer.content}
+               	 						</textarea>
+                                </div>
+                            </div>
 
 
 
@@ -63,11 +67,12 @@
 
                 #elseif($one.mesgType=='voteQuestion')
                     <li>
-                        <i class="fa fa-thumbs-o-up bg-blue"></i>
+                        <i class="fa fa-thumbs-o-up bg-yellow"></i>
                         <div class="timeline-item">
                             <span class="time"><i class="fa fa-clock-o"></i> $one.createdAt</span>
 
-                            <h3 class="timeline-header">  <a href='/userProfile/${one.sender.userName}'>${one.sender.userName}</a> 赞了我的问题</h3>
+                            <h3 class="timeline-header">  <a href='/userProfile/${one.sender.userName}'>${one.sender.userName}</a> 赞了我的问题
+                                <a href='/question/${one.question.id}'>${one.question.title}</a></h3>
 
                         ##                            <div class="timeline-body">
                         ##                                ${one.content}
@@ -88,3 +93,4 @@
         </ul>
     </div><!-- /.box-body -->
 </div><!-- /.box -->
+<script>parseAllMarkDown();</script>

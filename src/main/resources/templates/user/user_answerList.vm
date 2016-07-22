@@ -22,10 +22,14 @@
                     <div class="timeline-item">
                         <span class="time"><i class="fa fa-clock-o"></i> $one.createAtForView</span>
 
-                        <h3 class="timeline-header"> 回答了问题 <a href='/questions/$!{one.question.id}'>$!{one.question.title}</a></h3>
+                        <h3 class="timeline-header"> 回答了问题 <a href='/question/$!{one.question.id}'>$!{one.question.title}</a></h3>
 
                         <div class="timeline-body">
-                            $!{one.content}
+                            <div id="user-answerlist-answer-markdown-area-$!one.id" class="pure-markdown q-ltop-content">
+                						<textarea style="display:none;" id="question-textarea">
+$!{one.content}
+               	 						</textarea>
+                            </div>
                         </div>
 
                     ##                    <div class="timeline-footer">
@@ -38,3 +42,4 @@
         </ul>
     </div><!-- /.box-body -->
 </div><!-- /.box -->
+<script>parseAllMarkDown();</script>

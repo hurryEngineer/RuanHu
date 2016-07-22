@@ -52,6 +52,7 @@
     <!-- ./wrapper -->
 
     #parse("/templates/commonPart/addtionalJs.vm")
+    #parse("commonPart/editormdCssJs.vm")
 
 
     <script src="/plugins/datepicker/bootstrap-datepicker.js"></script>
@@ -146,7 +147,7 @@
         var trigger = window.location.search.substring(1);
         if(trigger=='trigger') {
 //            表示是从用户消息下拉列表跳转来
-            $("#current").load("/userProfile/massage?userId=" + '$!{userInfo.id}');
+            $("#current").load("/userProfile/message?userId=" + '$!{userInfo.id}');
         }else {
             $("#current").load("/userProfile/showQuestion?userName=" + '$!{userInfo.userName}');
         }
@@ -160,6 +161,7 @@
             $("#current").append('<div class="overlay" > <i class="fa fa-refresh fa-spin"></i> </div>');
             $("#current").load("/userProfile/showAnswers?userName=" + '$!{userInfo.userName}');
         });
+
 
 
     </script>
