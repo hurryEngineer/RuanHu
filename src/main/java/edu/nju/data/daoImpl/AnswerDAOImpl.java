@@ -4,7 +4,6 @@ import edu.nju.data.dao.*;
 import edu.nju.data.dao.http.Tss_httpDAO;
 import edu.nju.data.dao.http.Wiki_httpDAO;
 import edu.nju.data.entity.Answer;
-import edu.nju.data.entity.AnswerDocument;
 import edu.nju.data.entity.api.Document;
 import edu.nju.data.entity.api.WikiItem;
 import edu.nju.data.util.CommonParas;
@@ -184,6 +183,8 @@ public class AnswerDAOImpl implements AnswerDAO {
             return null;
         }else if(result.size()==0){
             return null;
+        }else{
+            return result.get(0);
         }
     }
 
