@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by cuihao on 2016/7/12.
@@ -51,6 +52,12 @@ public class UserProfileController {
     String showUserMessage(@RequestParam("userId") String userId, Model model, HttpSession session) {
         model.addAttribute("message",transferService.transferMessage(profileService.getUserMessage(Long.valueOf(userId))));
         return "user/user_notificationList";
+    }
+
+    @RequestMapping(value = "/userProfile/readMessage", method = RequestMethod.POST)
+    String readMessage(@RequestParam("messageIds")List<Long> messageIds) {
+        profileService.readMessage(messageIds);
+        return "user/userProfile";
     }
 
     @RequestMapping(value = "/userProfile/showAnswers")
