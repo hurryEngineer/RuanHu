@@ -13,30 +13,30 @@
 		<li class="dropdown notifications-menu">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 				<i class="fa fa-bell-o"></i>
-				<span class="label label-warning">10</span>
+				<span id="message-bell" class="label label-warning"></span>
 			</a>
 			<ul class="dropdown-menu">
 ##				<li class="header">You have 10 notifications</li>
-				<li>
-					<!-- inner menu: contains the actual data -->
-					<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: auto;">
-						<ul class="menu" style="overflow: hidden; width: 100%; height: auto;">
-							<li>
-								<a href="#">
-									<i class="fa fa-envelope-o text-aqua"></i> 3 个邀请我回答的问题
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<i class="fa fa-thumbs-o-up text-yellow"></i> 1 个收到的赞
-								</a>
-							</li>
-						</ul>
+##				<li>
+##					<!-- inner menu: contains the actual data -->
+##					<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: auto;">
+##						<ul class="menu" style="overflow: hidden; width: 100%; height: auto;">
+##							<li>
+##								<a href="#">
+##									<i class="fa fa-envelope-o text-aqua"></i> 3 个邀请我回答的问题
+##								</a>
+##							</li>
+##							<li>
+##								<a href="#">
+##									<i class="fa fa-thumbs-o-up text-yellow"></i> 1 个收到的赞
+##								</a>
+##							</li>
+##						</ul>
 ##						<div class="slimScrollBar" style="width: 3px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; background: rgb(0, 0, 0);"></div>
 ##						<div class="slimScrollRail" style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(51, 51, 51);"></div>
-					</div>
-				</li>
-				<li class="footer"><a href="/userProfile/$user.userName?trigger">View all</a></li>
+##					</div>
+##				</li>
+				<li class="footer"><a href="/userProfile/$user.userName?trigger">查看全部</a></li>
 			</ul>
 		</li>
 		
@@ -80,6 +80,8 @@
 		#end
 		
 		<script>
+
+
 			function loginForm(){
 				var url = window.location.pathname;
 				$.stdGet("/login",{formerUrl:url});
@@ -89,7 +91,8 @@
 				var url = window.location.pathname;
 				$.stdGet("/logout",{formerUrl:url});
 			}
-			
+
+            $('#message-bell').load("/json/user/messageCount?userId="+'$user.id');
 		</script>
 		
 
