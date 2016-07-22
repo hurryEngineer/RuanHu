@@ -137,7 +137,7 @@
 
             $('#notification-nav').click(function() {
                 $("#current").append('<div class="overlay" > <i class="fa fa-refresh fa-spin"></i> </div>');
-                $("#current").load("/userProfile/showAnswers?userName=" + '$!{userInfo.userName}');
+                $("#current").load("/userProfile/message?userId=" + '$!{userInfo.id}');
             });
 
         }
@@ -146,7 +146,7 @@
         var trigger = window.location.search.substring(1);
         if(trigger=='trigger') {
 //            表示是从用户消息下拉列表跳转来
-            $("#current").load("/userProfile/showAnswers?userName=" + '$!{userInfo.userName}');
+            $("#current").load("/userProfile/massage?userId=" + '$!{userInfo.id}');
         }else {
             $("#current").load("/userProfile/showQuestion?userName=" + '$!{userInfo.userName}');
         }
@@ -158,7 +158,7 @@
 
         $('#answer-nav').click(function() {
             $("#current").append('<div class="overlay" > <i class="fa fa-refresh fa-spin"></i> </div>');
-            $("#current").load("/json/user/message?userName=" + '$!{userInfo.userName}');
+            $("#current").load("/userProfile/showAnswers?userName=" + '$!{userInfo.userName}');
         });
 
 
