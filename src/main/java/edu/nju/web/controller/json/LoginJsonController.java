@@ -3,6 +3,7 @@ package edu.nju.web.controller.json;
 import edu.nju.data.entity.User;
 import edu.nju.data.util.VerifyResult;
 import edu.nju.logic.service.LoginService;
+import edu.nju.logic.service.TransferService;
 import edu.nju.logic.vo.LoginStatus;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,9 @@ public class LoginJsonController {
     @Autowired
     LoginService loginService;
 
+    @Autowired
+    TransferService transferService;
+
 
     /**
      * 登陆验证
@@ -47,8 +51,8 @@ public class LoginJsonController {
         LoginStatus status = new LoginStatus();
         if (result.equals(VerifyResult.SUCCESS)) {
             User users = loginService.getCurrentUser(username);
-            session.setAttribute("user", users);
-            model.addAttribute("user", users);
+            session.setAttribute("user", transferService.transferUser(users));
+            model.addAttribute("user", transferService.transferUser(users));
 
             status.setResult(result);
             status.setFormerUrl(session.getAttribute("formerUrl").toString());

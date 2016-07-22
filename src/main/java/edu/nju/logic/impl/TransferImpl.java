@@ -7,6 +7,7 @@ import edu.nju.data.dao.http.Wiki_httpDAO;
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Message;
 import edu.nju.data.entity.Question;
+import edu.nju.data.entity.User;
 import edu.nju.data.entity.api.WikiItem;
 import edu.nju.data.util.VoteType;
 import edu.nju.logic.service.TimeService;
@@ -14,6 +15,7 @@ import edu.nju.logic.service.TransferService;
 import edu.nju.logic.vo.AnswerVO;
 import edu.nju.logic.vo.MessageVO;
 import edu.nju.logic.vo.QuestionVO;
+import edu.nju.logic.vo.UserVO;
 import org.aspectj.weaver.ast.ITestVisitor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -85,5 +87,10 @@ public class TransferImpl implements TransferService {
             messageVOs.add(messageVO);
         }
         return messageVOs;
+    }
+
+    @Override
+    public UserVO transferUser(User user) {
+        return new UserVO(user);
     }
 }
