@@ -15,7 +15,7 @@ public interface QuestionService {
 
     QuestionVO showQuestion(long ID, long userId);
 
-    QuestionVO saveQuestion(Question question, long userId, List wikiIds, List docIds, List<String> iniviteNames);
+    QuestionVO saveQuestion(Question question, long userId, List wikiIds, List docIds, List<Long> iniviteNames);
 
     boolean updateQustion(long questionId, String title, String description);
 

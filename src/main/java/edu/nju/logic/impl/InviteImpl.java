@@ -23,12 +23,12 @@ public class InviteImpl implements InviteService {
     private UserDAO userDAO;
 
     @Override
-    public void inivite(long questionId, long userId, List<String> inviteNames) {
+    public void inivite(long questionId, long userId, List<Long> inviteIds) {
         User sender = userDAO.getUserByID(userId);
-        if (inviteNames!=null && inviteNames.size()>0) {
+        if (inviteIds!=null && inviteIds.size()>0) {
             List<User> users = new ArrayList<>();
-            for (String inviteName: inviteNames) {
-                User user = userDAO.getUserByName(inviteName);
+            for (Long inviteName: inviteIds) {
+                User user = userDAO.getUserByID(inviteName);
                 if (user!=null)
                     users.add(user);
             }

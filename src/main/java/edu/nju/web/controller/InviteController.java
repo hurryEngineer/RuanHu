@@ -18,8 +18,8 @@ public class InviteController {
     private InviteService inviteService;
 
     @RequestMapping(value = "/invite", method = RequestMethod.POST)
-    public String invite(String questionId, String userId, List<String> inviteNames) {
-        inviteService.inivite(Long.valueOf(questionId),Long.valueOf(userId),inviteNames);
+    public String invite(String questionId, String userId, List<Long> inviteIds) {
+        inviteService.inivite(Long.valueOf(questionId),Long.valueOf(userId),inviteIds);
         return "redirect:/question/"+questionId;
     }
 

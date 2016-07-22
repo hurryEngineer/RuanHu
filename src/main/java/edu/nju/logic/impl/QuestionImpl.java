@@ -64,9 +64,9 @@ public class QuestionImpl implements QuestionService {
     }
 
     @Override
-    public QuestionVO saveQuestion(Question question, long userId, List wikiIds, List docIds, List<String> inviteNames) {
+    public QuestionVO saveQuestion(Question question, long userId, List wikiIds, List docIds, List<Long> inviteIds) {
         QuestionVO questionVO =  timeService.transferQuestion(questionDAO.createQuestion(question,wikiIds,docIds),userId);
-        inviteService.inivite(question.getId(), userId, inviteNames);
+        inviteService.inivite(question.getId(), userId, inviteIds);
         return questionVO;
     }
 

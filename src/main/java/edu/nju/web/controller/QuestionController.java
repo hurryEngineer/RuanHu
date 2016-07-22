@@ -91,7 +91,7 @@ public class QuestionController {
     String newQuestion(String title, String description,
                        @RequestParam(defaultValue = "") List<Long> wikiIds,
                        @RequestParam(defaultValue = "") List<Long> docIds,
-                       @RequestParam(defaultValue = "") List<String> inviteNames,
+                       @RequestParam(defaultValue = "") List<Long> inviteIds,
                        HttpSession session, @ModelAttribute("user")User user){
         
         System.out.println(wikiIds);
@@ -110,7 +110,7 @@ public class QuestionController {
             question.setCreatedAt(new Timestamp(new Date().getTime()));
             question.setContent(description);
 
-            question = service.saveQuestion(question, user.getId(), wikiIds, docIds, inviteNames);
+            question = service.saveQuestion(question, user.getId(), wikiIds, docIds, inviteIds);
             QuestionVO questionVO = timeService.transferQuestion(question, user.getId());
             session.setAttribute("question",questionVO);
 
