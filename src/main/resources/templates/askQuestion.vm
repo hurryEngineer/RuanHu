@@ -120,8 +120,8 @@
 				testEditor.clearStorage();
 				$.stdPost("/submitQuestion",
 					{title: questionTitle, 
-					 wikiIds : wikiIdList,
-					 docIds : docIdList,
+					 wikiIds : wikiSelect.idList,
+					 docIds : docSelect.idList,
 					 description: questionDescript
 				});
 			}
