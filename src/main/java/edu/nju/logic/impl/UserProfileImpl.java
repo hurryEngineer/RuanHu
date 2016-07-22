@@ -1,6 +1,7 @@
 package edu.nju.logic.impl;
 
 import edu.nju.data.dao.AnswerDAO;
+import edu.nju.data.dao.MessageDAO;
 import edu.nju.data.dao.QuestionDAO;
 import edu.nju.data.dao.UserDAO;
 import edu.nju.data.entity.Answer;
@@ -40,6 +41,8 @@ public class UserProfileImpl implements UserProfileService {
     private AnswerDAO answerDAO;
     @Autowired
     private TransferService timeService;
+    @Autowired
+    private MessageDAO messageDAO;
 
     @Override
     public boolean editProfile(User user, String description, String location, String bitrhday) {
@@ -150,4 +153,12 @@ public class UserProfileImpl implements UserProfileService {
     public long getMessageCount(long userId) {
         return userDAO.getMessageCount(userId);
     }
+
+    @Override
+    public void readMessage(List<Long> messageIds) {
+        for (Long messageId: messageIds) {
+            messageDAO.markChecked(messageId);
+        }
+    }
+
 }

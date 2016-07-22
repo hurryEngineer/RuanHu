@@ -2,13 +2,16 @@ package edu.nju.web.controller.json;
 
 import edu.nju.data.entity.Message;
 import edu.nju.data.entity.User;
+import edu.nju.logic.service.TransferService;
 import edu.nju.logic.service.UserProfileService;
+import edu.nju.logic.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +26,9 @@ public class UserProfileJsonController {
     @Autowired
     private UserProfileService profileService;
 
+    @Autowired
+    private TransferService transferService;
+
 
     /**
      * 搜索用户（邀请回答时用）
@@ -31,8 +37,15 @@ public class UserProfileJsonController {
      */
     @RequestMapping(value = "/user/search", method = RequestMethod.GET)
     @ResponseBody
-    List<User> getUserByNameKey(@RequestParam("key")String nameKey) {
-        return profileService.getSearchUser(nameKey);
+    List<UserVO> getUserByNameKey(@RequestParam("key")String nameKey) {
+        List<UserVO> userVOs = new ArrayList<>();
+        List<User> users = profileService.getSearchUser(nameKey);
+        if (users!=null) {
+            for (User user: users) {
+                userVOs.add(transferService.transferUser(user));
+            }
+        }
+        return userVOs;
     }
 
     /**

@@ -9,7 +9,7 @@
     <property name="current_session_context_class">thread</property>
     <property name="packagesToScan" >entity</property>
 
-      <mapping class="edu.nju.data.entity.Answer"/>
+    <mapping class="edu.nju.data.entity.Answer"/>
     <mapping class="edu.nju.data.entity.Comment"/>
     <mapping class="edu.nju.data.entity.Question"/>
     <mapping class="edu.nju.data.entity.Vote"/>
@@ -20,9 +20,8 @@
     <mapping class="edu.nju.data.entity.QuestionDocument"/>
     <mapping class="edu.nju.data.entity.QuestionWiki"/>
     <mapping class="edu.nju.data.entity.Message"/>
-      <mapping class="edu.nju.data.entity.Test"/>
 
-      <!-- <property name="hbm2ddl.auto">update</property> -->
+      <!--<property name="hbm2ddl.auto">update</property>-->
      <!--DB schema will be updated if needed-->
      <!--<property name="hbm2ddl.auto">update</property>-->
 

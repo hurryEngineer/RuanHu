@@ -43,35 +43,75 @@ function parseAllMarkDown() {
 	);
 }
 
-//初始化wiki和doc的选择框
-function initSelection(){
-	initWikiSelection();
-	initDocumentSelection();
+function replaceHtml(html,item){
+	for(name in item){
+		html = html.replace("\$"+name,item[name]);
+	}
+	return html;
 }
 
-var wikiIdList=[];
-var docIdList=[];
+function initSelect(data){
+//	selectClass,url,idList,itemBox,itemContainer,itemHtml,selectionItemHtml
+	var selectClass = data.selectClass;
+	var url = data.url;
+	var idList = data.idList;
+	var itemBox = data.itemBox;
+	var itemContainer = data.itemContainer;
+	var itemHtml = data.itemHtml;
+	var selectionItemHtml = data.selectionItemHtml;
+	var selection = new Object();
 
-//维基条目搜索框的class是 wiki-selection
-function initWikiSelection() {
-	console.log("init wiki selection");
 	$(function() {
+		
+		$.extend(selection,
+			$("."+selectClass).select2({
+				tags: false,
+			})
+		);
+		
+		selection.idList = idList||[];
+		selection.showBox = function(box) {
+			if(box.css("display") == "none") {
+				box.css("display", "");
+			}
+			return box;
+		}
+		
+		selection.addItemSelection = function(item){
+			this.idList.push(item.id);
+			this.showBox(itemBox);
+			var html = itemHtml;
+			html = this.replaceHtml(html,item);
+			itemContainer.append(html);
+		}
+		
+		selection.replaceHtml = replaceHtml;
+		
+		selection.removeByIdList = function(data, idList) {
+			for(var i = 0; i < data.length; i++) {
+				if($.inArray(data[i].id, idList) != -1) {
+					$.remove(data, data[i]);
+					i -= 1;
+				}
+			}
+		}
+		
+		selection.formatSelection = function(item){
+			var html = selectionItemHtml;
+			return selection.replaceHtml(html,item);
+		}
 
-		var wikiSelection = $(".wiki-selection").select2({
-			tags: false,
-		});
-
-		wikiSelection.on("select2:selecting",
+		selection.on("select2:selecting",
 			function(e) {
-				wikiSelection.select2("close");
+				selection.select2("close");
 				//e.params.args.data是一个wiki item
-				addWikiSelection(e.params.args.data);
+				selection.addItemSelection(e.params.args.data);
 				e.preventDefault();
 			});
 
-		wikiSelection.select2({
+		selection.select2({
 			ajax: {
-				url: "/json/wiki/search",
+				url: url,
 				dataType: 'json',
 				delay: 250,
 				data: function(params) {
@@ -83,7 +123,7 @@ function initWikiSelection() {
 				processResults: function(data, params) {
 					params.page = params.page || 1;
 					
-					removeByIdList(data,wikiIdList);
+					selection.removeByIdList(data,selection.idList);
 					
 					return {
 						results: data,
@@ -100,124 +140,11 @@ function initWikiSelection() {
 				return markup;
 			},
 			minimumInputLength: 1,
-			templateResult: formatWikiItem,
+			templateResult: selection.formatSelection,
 		});
 
 	});
-
+	
+	return selection;
 }
 
-function formatWikiItem(wikiItem){
-	var html = '<i class="fa fa-text-width"></i> <h3 class="selection-title">$title</h3>';
-	return html.replace("\$title",wikiItem.title);
-}
-
-function addWikiSelection(wikiItem){
-	
-	wikiIdList.push(wikiItem.id);
-	var wikiBox = showBox("wiki-box");
-	
-	var html = '<blockquote> \
-		<h4><a href="#" >$title</a><h4> \
-	    <p>$content</p> \
-	</blockquote> ';
-	
-	html = html.replace("\$title",wikiItem.title);
-	html = html.replace("\$content",wikiItem.content);
-	
-	wikiBox.children(".box-body").append(html);
-	
-}
-
-//document搜索框的class是 doc-selection
-function initDocumentSelection() {
-	$(function() {
-
-		var docSelection = $(".doc-selection").select2({
-			tags: false
-		});
-
-		docSelection.on("select2:selecting",
-			function(e) {
-				docSelection.select2("close");
-				addDocSelection(e.params.args.data);
-				e.preventDefault();
-			});
-
-		docSelection.select2({
-			ajax: {
-				url: "/json/doc/search",
-				dataType: 'json',
-				delay: 250,
-				data: function(params) {
-					return {
-						key: params.term||"", 
-						page: params.page||1
-					};
-				},
-				processResults: function(data, params) {
-					params.page = params.page || 1;
-					removeByIdList(data,docIdList);
-					return {
-						results: data,
-						pagination: {
-							more: (params.page * 30) < data.length
-						}
-					};
-				},
-				cache: true
-			},
-			tags: false,
-			escapeMarkup: function(markup) {
-				return markup;
-			},
-			language : "zh-CN",
-			minimumInputLength: 1,
-			templateResult: formatDocItem
-		});
-
-	});
-
-}
-
-function formatDocItem(docItem){
-
-    var html = '<img src="$icon" alt="a" width=20px height=20px ></img> <h3 class="selection-title">$title</h3>';
-//	return html.replace("\$icon",docItem.icon).replace("\$title",docItem.title);
-	for(name in docItem){
-		html = html.replace("\$"+name,docItem[name]);
-	}
-	return html;
-}
-
-function addDocSelection(docItem){
-	
-	docIdList.push(docItem.id);
-	
-	docBox = showBox("doc-box");
-	
-	var html = ' <tr> \
-	    <td>$title</td> \
-	    <td> \
-	    	<a href="$url" > \
-	    		<span class="badge bg-red"> \
-	    			<i class="ion ion-ios-cloud-download-outline"> \
-	    			</i> \
-	    		</span> \
-	    	</a> \
-	    </td> \
-	</tr> ';
-	
-	html = html.replace("\$title",docItem.title);
-	html = html.replace("\$url",docItem.url);
-	
-	docBox.children(".box-body").children(".table").children("tbody").append(html);
-}
-
-function showBox(classStr){
-	var box = $("."+classStr);
-	if(box.css("display") == "none"){
-		box.css("display","");
-	}
-	return box;
-}

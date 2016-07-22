@@ -49,4 +49,6 @@ public interface UserProfileService {
 
     long getMessageCount(long userId);
 
+    void readMessage(List<Long> messageIds);
+
 }
