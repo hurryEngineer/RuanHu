@@ -86,6 +86,17 @@ $!{one.answer.content}
                         </div>
                     </li>
 
+                #elseif($one.mesgType=='answer')
+                    <li>
+                        <i class="fa fa-thumbs-o-up bg-yellow"></i>
+                        <div class="timeline-item">
+                            <span class="time"><i class="fa fa-clock-o"></i> $one.createdAt</span>
+
+                            <h3 class="timeline-header">  <a href='/userProfile/${one.sender.userName}'>${one.sender.userName}</a> 回答了我的问题
+                                <a href='/question/${one.question.id}'>${one.question.title}</a></h3>
+                        </div>
+                    </li>
+
                 #elseif($one.mesgType=='comment')
 
                 #end

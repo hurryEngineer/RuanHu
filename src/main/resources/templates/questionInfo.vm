@@ -187,6 +187,24 @@ $question.content
 									<p><b>$question.answerCount 个回答</b></p>
 								</div>
 							</div>
+
+                            <!-- /.form-group -->
+                            <div class="form-group">
+                                <label>Multiple</label>
+                                <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
+##                                    <optgroup label="Group Name">
+##                                        <option>Nested option</option>
+##                                    </optgroup>
+                                    <option>Alabama</option>
+##                                    <option>Alaska</option>
+##                                    <option>California</option>
+##                                    <option>Delaware</option>
+##                                    <option>Tennessee</option>
+##                                    <option>Texas</option>
+##                                    <option>Washington</option>
+                                </select>
+                            </div>
+                            <!-- /.form-group -->
 							<hr/>
 							
 							
@@ -506,6 +524,37 @@ $question.content
 
                 }
 
+                //Initialize Select2 Elements
+                var select2 = $(".select2").select2({
+                    ajax: {
+//                        url: function (params) {
+//                            return '/json/user/search?key=' + params.term;
+//                        },
+                        url : "/json/user/search",
+                        dataType: 'json',
+                        data : function (params) {
+                            return {
+                                key : params.term
+                            }
+                        },
+                        processResults: function (data,params) {
+//                            console.log("test:"+data.length);
+                            console.log(data);
+                            return {
+                                results: data
+//                                results: [1,2,3,4]
+                            };
+
+                        },
+                        tags: false,
+                        language: "zh-CN",
+                        templateResult: function (item) {
+                            console.log(item);
+                            var html = '<img src="$photoUri" alt="a" width=20px height=20px ></img> <h3 class="selection-title">$userName</h3>';
+                            return html.replace("\$photoUri",item.photoUri).replace("\$userName",item.userName);
+                        }
+                    }
+                });
 
 
 			</script>
