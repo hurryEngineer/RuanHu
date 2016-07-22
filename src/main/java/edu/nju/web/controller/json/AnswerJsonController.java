@@ -34,8 +34,8 @@ public class AnswerJsonController {
     @ResponseBody
     public boolean saveAnswer(@RequestParam("questionId") String questionId,
                               @RequestParam("markedText") String markedText,
-                              @RequestParam("wikis")List wikiIds,
-                              @RequestParam("docs")List docIds, HttpSession session){
+                              @RequestParam(value="wikis",defaultValue="")List<Long> wikiIds,
+                              @RequestParam(value="docs",defaultValue="")List<Long> docIds, HttpSession session){
         User user = (User) session.getAttribute("user");
         return answerService.saveAnswer(Long.valueOf(questionId), user.getId(), markedText, wikiIds, docIds);
     }
