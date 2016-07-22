@@ -1,29 +1,18 @@
 package edu.nju.data.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * Created by ss14 on 2016/7/22.
  */
-@Entity
-@Table(name = "answer_wiki", schema = "RuanHu", catalog = "")
-@IdClass(AnswerWikiPK.class)
-public class AnswerWiki {
+public class AnswerWikiPK implements Serializable {
     private long answerId;
     private long wikiId;
 
-    public AnswerWiki(){}
-
-    public AnswerWiki(AnswerWikiPK pk ){
-
-        this.answerId = pk.getAnswerId();
-        this.wikiId = pk.getWikiId();
-
-    }
-
-
-    @Id
     @Column(name = "answer_id")
+    @Id
     public long getAnswerId() {
         return answerId;
     }
@@ -32,8 +21,8 @@ public class AnswerWiki {
         this.answerId = answerId;
     }
 
-    @Id
     @Column(name = "wiki_id")
+    @Id
     public long getWikiId() {
         return wikiId;
     }
@@ -47,7 +36,7 @@ public class AnswerWiki {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        AnswerWiki that = (AnswerWiki) o;
+        AnswerWikiPK that = (AnswerWikiPK) o;
 
         if (answerId != that.answerId) return false;
         if (wikiId != that.wikiId) return false;

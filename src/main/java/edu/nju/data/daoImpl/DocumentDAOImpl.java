@@ -3,7 +3,9 @@ package edu.nju.data.daoImpl;
 import edu.nju.data.dao.BaseDAO;
 import edu.nju.data.dao.DocumentDAO;
 import edu.nju.data.entity.AnswerDocument;
+import edu.nju.data.entity.AnswerDocumentPK;
 import edu.nju.data.entity.QuestionDocument;
+import edu.nju.data.entity.QuestionDocumentPK;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -64,10 +66,11 @@ public class DocumentDAOImpl implements DocumentDAO {
 
             for(int i=0 ; i<docuIDs.size();i++){
 
-                QuestionDocument qd = new QuestionDocument();
-                qd.setId(null);
-                qd.setQuestionId(questionID);
-                qd.setDocumentId((Long) docuIDs.get(i));
+                QuestionDocumentPK pk = new QuestionDocumentPK();
+                pk.setQuestionId(questionID);
+                pk.setDocumentId((Long) docuIDs.get(i));
+
+                QuestionDocument qd = new QuestionDocument(pk);
                 baseDAO.insert(qd);
             }
         }
@@ -80,11 +83,11 @@ public class DocumentDAOImpl implements DocumentDAO {
         }else {
 
             for(int i=0 ; i<docuIDs.size();i++){
+                AnswerDocumentPK pk = new AnswerDocumentPK();
+                pk.setAnswerId(answerID);
+                pk.setDocumentId((Long) docuIDs.get(i));
 
-                AnswerDocument ad = new AnswerDocument();
-                ad.setId(null);
-                ad.setAnswerId(answerID);
-                ad.setDocumentId((Long) docuIDs.get(i));
+                AnswerDocument ad = new AnswerDocument(pk);
                 baseDAO.insert(ad);
             }
         }

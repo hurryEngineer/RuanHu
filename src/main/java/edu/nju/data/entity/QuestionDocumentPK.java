@@ -1,27 +1,18 @@
 package edu.nju.data.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * Created by ss14 on 2016/7/22.
  */
-@Entity
-@Table(name = "question_document", schema = "RuanHu", catalog = "")
-@IdClass(QuestionDocumentPK.class)
-public class QuestionDocument {
+public class QuestionDocumentPK implements Serializable {
     private long questionId;
     private long documentId;
 
-    public QuestionDocument(){}
-
-    public QuestionDocument(QuestionDocumentPK pk){
-        this.questionId = pk.getQuestionId();
-        this.documentId = pk.getDocumentId();
-    }
-
-
-    @Id
     @Column(name = "question_id")
+    @Id
     public long getQuestionId() {
         return questionId;
     }
@@ -30,8 +21,8 @@ public class QuestionDocument {
         this.questionId = questionId;
     }
 
-    @Id
     @Column(name = "document_id")
+    @Id
     public long getDocumentId() {
         return documentId;
     }
@@ -45,7 +36,7 @@ public class QuestionDocument {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        QuestionDocument that = (QuestionDocument) o;
+        QuestionDocumentPK that = (QuestionDocumentPK) o;
 
         if (questionId != that.questionId) return false;
         if (documentId != that.documentId) return false;
