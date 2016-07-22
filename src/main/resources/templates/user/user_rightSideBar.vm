@@ -19,16 +19,16 @@
 				<a href="#" id="notification-nav">
 					<i class="fa fa-bullhorn"></i>
 					<span>  通  知</span>
-                    <span class="label label-warning pull-right">10</span>
+                    <span id="message-count" class="label label-warning pull-right"></span>
 				</a>
 			</li>
-			<li>
-				<a href="#">
-					<i class="fa fa-pie-chart"></i>
-					<span>  关  注</span>
-##                    <span class="label label-warning pull-right">65</span>
-				</a>
-			</li>
+##			<li>
+##				<a href="#">
+##					<i class="fa fa-pie-chart"></i>
+##					<span>  关  注</span>
+####                    <span class="label label-warning pull-right">65</span>
+##				</a>
+##			</li>
 ##			<li>
 ##				<a href="#">
 ##					<i class="fa fa-laptop"></i>
@@ -40,3 +40,5 @@
 	</section>
 
 </div>
+
+<script>$('#message-count').load("/json/user/messageCount?userId="+'$user.id');</script>
