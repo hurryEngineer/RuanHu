@@ -7,11 +7,14 @@ import edu.nju.data.entity.User;
 import edu.nju.data.util.MesType;
 import edu.nju.data.util.Mesg_Helper.MesFactoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 /**
  * Created by ss14 on 2016/7/21.
@@ -53,10 +56,16 @@ public class MessageDAOImpl implements MessageDAO {
     @Override
     public Message save_Message(Message mes) {
 
-        mes.setId(null);
-        em.persist(mes);
-        em.flush();
-        return mes;
+        try{
+            mes.setId(null);
+            em.persist(mes);
+            em.flush();
+            return mes;
+        }catch (DataIntegrityViolationException e) {
+            // Duplicate entry
+            System.out.println("history already exist");
+        }
+
 
     }
 

@@ -35,8 +35,8 @@ public class MessageDAOImplTest {
     public void save_Message() throws Exception {
 
         Message message = new Message();
-        MesType type = MesType.invite;
-        Long srcId = new Long (283);
+        MesType type = MesType.voteQuestion;
+        Long srcId = new Long (284);
         Long senderId = new Long(2);
         Long receiverId = new Long (3);
         message.setMesgType(type);
