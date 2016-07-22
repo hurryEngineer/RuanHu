@@ -113,48 +113,48 @@ $question.content
                                     </div>
 
 
-                                    <div class="box box-solid" id="wiki-quest-box">
-                                        <div class="box-header with-border">
-                                            <i class="fa fa-text-width"></i>
-                                            <h3 class="box-title">wiki</h3>
-                                        </div>
-                                        <!-- /.box-header -->
-                                        <div class="box-body">
-                                            #foreach($oneWiki in $question.wikiItems)
+                                    #if(!$question.wikiItems.isEmpty())
+                                        <div class="box box-solid" id="wiki-quest-box">
+                                            <div class="box-header with-border">
+                                                <i class="fa fa-text-width"></i>
+                                                <h3 class="box-title">wiki</h3>
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <div class="box-body">
+                                                #foreach($oneWiki in $question.wikiItems)
                                                 #parse("listItem/wikiListItem.vm")
                                             #end
+                                            </div>
+                                            <!-- /.box-body -->
                                         </div>
-                                        <!-- /.box-body -->
-                                    </div>
+                                    #end
 
 
 
-                                    <div class="box" id="ppt-quest-box">
-                                        <div class="box-header">
-                                            <h3 class="box-title">相关ppt</h3>
+
+                                    #if(!$question.documents.isEmpty())
+                                        <div class="box" id="ppt-quest-box">
+                                            <div class="box-header">
+                                                <h3 class="box-title">相关ppt</h3>
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <div class="box-body no-padding">
+                                                <table class="table table-striped">
+                                                    <tbody>
+                                                    <tr>
+                                                        <th>文件名</th>
+                                                        <th style="width: 60px">下载</th>
+                                                    </tr>
+                                                        #foreach($onePpt in $question.documents)
+                                                            #parse("listItem/pptListItem.vm")
+                                                        #end
+
+                                                    </tbody></table>
+                                            </div>
+                                            <!-- /.box-body -->
                                         </div>
-                                        <!-- /.box-header -->
-                                        <div class="box-body no-padding">
-                                            <table class="table table-striped">
-                                                <tbody>
-                                                <tr>
-                                                    <th>文件名</th>
-                                                    <th style="width: 60px">下载</th>
-                                                </tr>
-                                                    #foreach($onePpt in $question.documents)
-                                                        #parse("listItem/pptListItem.vm")
-                                                    #end
+                                    #end
 
-                                                <tr>
-                                                    <td>软工二第二章</td>
-                                                    <td><a href="#" ><span class="badge bg-red"><i class="ion ion-ios-cloud-download-outline"></i></span></a></td>
-                                                    <!--<td><span class="badge bg-red">55%</span></td>-->
-                                                </tr>
-
-                                                </tbody></table>
-                                        </div>
-                                        <!-- /.box-body -->
-                                    </div>
 
 
                                     <div class="q-lbtm-content">
@@ -234,20 +234,6 @@ $question.content
 				#else
 					var myQuestionId = "newQuestion";
 				#end
-
-                $(function() {
-##                    alert($question.documents+"is null");
-                    if(!$question.documents){
-                        alert("documents "+$question.documents+" is null");
-                        $("#ppt-quest-box").hide();
-                    }
-
-                    if($question.wikiItems){
-                        alert("wiki "+$question.documents+" is null");
-                        $("#wiki-quest-box").hide();
-                    }
-
-                });
 
 
 
