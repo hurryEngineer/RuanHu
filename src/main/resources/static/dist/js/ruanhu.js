@@ -183,8 +183,11 @@ function initDocumentSelection() {
 function formatDocItem(docItem){
 
     var html = '<img src="$icon" alt="a" width=20px height=20px ></img> <h3 class="selection-title">$title</h3>';
-	return html.replace("\$icon",docItem.icon).replace("\$title",docItem.title);
-	
+//	return html.replace("\$icon",docItem.icon).replace("\$title",docItem.title);
+	for(name in docItem){
+		html = html.replace("\$"+name,docItem[name]);
+	}
+	return html;
 }
 
 function addDocSelection(docItem){
