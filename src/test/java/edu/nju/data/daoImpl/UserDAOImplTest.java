@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.annotation.SystemProfileValueSource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
@@ -145,6 +146,19 @@ public class UserDAOImplTest {
             for(Message message : messages){
                 System.out.println(message.getMesgType().toString() +"  "+message.getContent() );
             }
+        }
+
+    }
+
+
+    @Test
+    public void getMessageCount() throws Exception {
+        Long receiverID = new Long (3);
+        long count = userDAO.getMessageCount(receiverID);
+        if(count==0){
+            fail();
+        }else{
+            System.err.println("message count: "+count);
         }
 
     }

@@ -46,6 +46,12 @@ public class UserProfileJsonController {
         return profileService.getUserMessage(userId);
     }
 
+    @RequestMapping(value = "/user/messageCount", method = RequestMethod.GET)
+    @ResponseBody
+    long getUserMessageCount(@RequestParam("userId")String userId) {
+        return profileService.getMessageCount(Long.valueOf(userId));
+    }
+
     @RequestMapping(value = "/editBirthday", method = RequestMethod.POST)
     @ResponseBody
     void editBirthday(String birthday, HttpSession session){

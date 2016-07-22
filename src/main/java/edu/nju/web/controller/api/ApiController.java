@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,7 +42,18 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/ask",method = RequestMethod.GET)
+    @ResponseBody
     String askQuestionByWiki(@RequestParam("wikiId")String wikiId) {
-        return "redirect:/ask?wikiId="+wikiId;
+        InetAddress inetAddress = null;
+        try {
+            inetAddress = InetAddress.getLocalHost();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        String ip = "localhost:8080";
+        if (inetAddress!=null) {
+            ip = inetAddress.getHostAddress();
+        }
+        return ip+":8080/ask?wikiId="+wikiId;
     }
 }

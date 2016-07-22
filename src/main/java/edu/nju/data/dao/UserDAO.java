@@ -38,4 +38,6 @@ public interface UserDAO {
 
     List<Message> getAllMessage(Long userID);
 
+    long getMessageCount(Long userID);
+
 }

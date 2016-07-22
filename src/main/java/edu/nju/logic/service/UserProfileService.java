@@ -47,4 +47,6 @@ public interface UserProfileService {
 
     List<User> getSearchUser(String keyword);
 
+    long getMessageCount(long userId);
+
 }
