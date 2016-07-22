@@ -2,6 +2,7 @@
 	<p>添加wiki引用</p>
 </div>
 
+#if(!$wiki)
 <div class="box box-solid wiki-box" style="display: none;">
 	<div class="box-header with-border">
 		<i class="fa fa-text-width"></i>

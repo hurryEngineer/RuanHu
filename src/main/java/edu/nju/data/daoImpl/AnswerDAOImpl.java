@@ -13,7 +13,6 @@ import edu.nju.data.util.HQL_Helper.Enums.OrderByPara;
 import edu.nju.data.util.HQL_Helper.Enums.WherePara;
 import edu.nju.data.util.HQL_Helper.Impl.QueryHqlMaker;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -179,7 +178,14 @@ public class AnswerDAOImpl implements AnswerDAO {
     public Answer getAnswerByID(long answerID) {
         Query query = em.createQuery("from Answer a where a.id =?1");
         query.setParameter(1,answerID);
-        return (Answer) query.getResultList().get(0);
+        List<Answer> result = query.getResultList();
+        if(result == null){
+            return null;
+        }else if(result.size()==0){
+            return null;
+        }else{
+            return result.get(0);
+        }
     }
 
     @Override

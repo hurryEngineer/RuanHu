@@ -1,29 +1,18 @@
 package edu.nju.data.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * Created by ss14 on 2016/7/22.
  */
-@Entity
-@Table(name = "answer_wiki", schema = "RuanHu", catalog = "")
-@IdClass(AnswerWikiPK.class)
-public class AnswerWiki {
+public class AnswerDocumentPK implements Serializable {
     private long answerId;
-    private long wikiId;
+    private long documentId;
 
-    public AnswerWiki(){}
-
-    public AnswerWiki(AnswerWikiPK pk ){
-
-        this.answerId = pk.getAnswerId();
-        this.wikiId = pk.getWikiId();
-
-    }
-
-
-    @Id
     @Column(name = "answer_id")
+    @Id
     public long getAnswerId() {
         return answerId;
     }
@@ -32,14 +21,14 @@ public class AnswerWiki {
         this.answerId = answerId;
     }
 
+    @Column(name = "document_id")
     @Id
-    @Column(name = "wiki_id")
-    public long getWikiId() {
-        return wikiId;
+    public long getDocumentId() {
+        return documentId;
     }
 
-    public void setWikiId(long wikiId) {
-        this.wikiId = wikiId;
+    public void setDocumentId(long documentId) {
+        this.documentId = documentId;
     }
 
     @Override
@@ -47,10 +36,10 @@ public class AnswerWiki {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        AnswerWiki that = (AnswerWiki) o;
+        AnswerDocumentPK that = (AnswerDocumentPK) o;
 
         if (answerId != that.answerId) return false;
-        if (wikiId != that.wikiId) return false;
+        if (documentId != that.documentId) return false;
 
         return true;
     }
@@ -58,7 +47,7 @@ public class AnswerWiki {
     @Override
     public int hashCode() {
         int result = (int) (answerId ^ (answerId >>> 32));
-        result = 31 * result + (int) (wikiId ^ (wikiId >>> 32));
+        result = 31 * result + (int) (documentId ^ (documentId >>> 32));
         return result;
     }
 }

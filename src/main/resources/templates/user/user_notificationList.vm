@@ -1,7 +1,7 @@
 <div class="box box-primary">
 
     <div class="box-header with-border">
-        <h3 class="box-title"> ${userName} 提出的问题</h3>
+        <h3 class="box-title"> ${user.userName} 最近的通知</h3>
 ##        <div class="box-tools pull-right">
 ##            <span class="label label-primary">Label</span>
 ##        </div><!-- /.box-tools -->
@@ -9,31 +9,81 @@
 
     <div class="box-body">
         <ul class="timeline">
-            #foreach($one in $activities)
+            #foreach($one in $message)
                 <!-- timeline time label -->
-                <li class="time-label">
-                    <span class="bg-red">
-                        $one.createAtForView
-                    </span>
-                </li>
+##                <li class="time-label">
+##                    <span class="bg-red">
+##                        $one.mesgType
+##                    </span>
+##                </li>
 
+                #if($one.mesgType=='invite')
                 <li>
-                    <i class="fa fa-question-circle bg-blue"></i>
+                    <i class="fa fa-envelope-o bg-blue"></i>
                     <div class="timeline-item">
-                        <span class="time"><i class="fa fa-clock-o"></i> $one.createAtForView</span>
+                        <span class="time"><i class="fa fa-clock-o"></i> $one.createdAt</span>
 
-                        <h3 class="timeline-header"> 提出了问题 <a href='/question/${one.id}'>${one.title}</a></h3>
 
-                        <div class="timeline-body">
-                            ${one.content}
-                        </div>
+                            <h3 class="timeline-header">  <a href='/userProfile/${one.sender.userName}'>${one.sender.userName}</a>
+                                <a href='/question/${one.sourceId}'>邀请我回答问题</a>
+                            </h3>
+
+##                            <div class="timeline-body">
+##                                ${one.content}
+##                            </div>
 
     ##                    <div class="timeline-footer">
     ##                        <a class="btn btn-primary btn-xs">...</a>
     ##                    </div>
                     </div>
                 </li>
-                <!-- END timeline item -->
+
+                #elseif($one.mesgType=='voteAnswer')
+                    <li>
+                        <i class="fa fa-thumbs-o-up bg-blue"></i>
+                        <div class="timeline-item">
+                            <span class="time"><i class="fa fa-clock-o"></i> $one.createdAt</span>
+
+
+                            <h3 class="timeline-header">  <a href='/userProfile/${one.sender.userName}'>${one.sender.userName}</a>
+                                <a href='/question/${one.sourceId}'>赞了我的回答</a>
+                            </h3>
+
+##                            <div class="timeline-body">
+##                                ${one.content}
+##                            </div>
+
+
+
+                        ##                    <div class="timeline-footer">
+                        ##                        <a class="btn btn-primary btn-xs">...</a>
+                        ##                    </div>
+                        </div>
+                    </li>
+
+                #elseif($one.mesgType=='voteQuestion')
+                    <li>
+                        <i class="fa fa-thumbs-o-up bg-blue"></i>
+                        <div class="timeline-item">
+                            <span class="time"><i class="fa fa-clock-o"></i> $one.createdAt</span>
+
+                            <h3 class="timeline-header">  <a href='/userProfile/${one.sender.userName}'>${one.sender.userName}</a> 赞了我的问题</h3>
+
+                        ##                            <div class="timeline-body">
+                        ##                                ${one.content}
+                        ##                            </div>
+
+
+
+                        ##                    <div class="timeline-footer">
+                        ##                        <a class="btn btn-primary btn-xs">...</a>
+                        ##                    </div>
+                        </div>
+                    </li>
+
+                #elseif($one.mesgType=='comment')
+
+                #end
             #end
         </ul>
     </div><!-- /.box-body -->

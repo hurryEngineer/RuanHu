@@ -145,4 +145,9 @@ public class UserProfileImpl implements UserProfileService {
     public List<User> getSearchUser(String keyword) {
         return userDAO.search(keyword);
     }
+
+    @Override
+    public long getMessageCount(long userId) {
+        return userDAO.getMessageCount(userId);
+    }
 }

@@ -155,4 +155,18 @@ public class Message {
     public void setSender(User sender) {
         this.sender = sender;
     }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id=" + id +
+                ", mesgType=" + mesgType +
+                ", sourceId=" + sourceId +
+                ", content='" + content + '\'' +
+                ", createdAt=" + createdAt +
+                ", checked=" + checked +
+                ", receiver=" + receiver +
+                ", sender=" + sender +
+                '}';
+    }
 }

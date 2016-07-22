@@ -1,11 +1,14 @@
 package edu.nju.web.controller.api;
 
 import edu.nju.logic.service.RelationService;
+import edu.nju.web.config.HostConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +21,9 @@ public class ApiController {
 
     @Autowired
     private RelationService relationService;
+
+    @Autowired
+    private HostConfig hostConfig;
 
     @RequestMapping(value = "/relation/ppt/{id}", method = RequestMethod.GET)
     @ResponseBody
@@ -40,7 +46,8 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/ask",method = RequestMethod.GET)
+    @ResponseBody
     String askQuestionByWiki(@RequestParam("wikiId")String wikiId) {
-        return "redirect:/ask?wikiId="+wikiId;
+        return hostConfig.getIpAddress()+":"+hostConfig.getPort()+"/ask?wikiId="+wikiId;
     }
 }

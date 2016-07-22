@@ -121,5 +121,13 @@ public class UserDAOImpl implements UserDAO {
 
     }
 
+    @Override
+    public long getMessageCount(Long userID) {
+        Query query = em.createQuery("select count(m) from Message m where m.receiver.id = ?1 ");
+        query.setParameter(1,userID);
+        Long result  = (Long) query.getSingleResult();
+        return result;
+    }
+
 
 }
