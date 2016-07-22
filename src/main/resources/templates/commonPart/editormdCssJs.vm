@@ -1,3 +1,5 @@
+##这里不导入这个样式会出现一些问题,比如emoji表情特别大
+<link rel="stylesheet" href="/dist/css/editormd.css" />
 <script src="/editor.md-master/editormd.js"></script>
 <script src="/dist/js/tempSave.js"></script>
 <script src="/editor.md-master/lib/marked.min.js"></script>
