@@ -1,5 +1,6 @@
 package edu.nju.data.daoImpl;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import edu.nju.data.dao.BaseDAO;
 import edu.nju.data.dao.MessageDAO;
 import edu.nju.data.entity.Message;
@@ -13,8 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.validation.ConstraintViolationException;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.List;
 
 /**
  * Created by ss14 on 2016/7/21.
@@ -46,27 +50,19 @@ public class MessageDAOImpl implements MessageDAO {
     @Override
     public long save_id(Message mes) {
 
-        mes.setId(null);
-        em.persist(mes);
-        em.flush();
-        return mes.getId();
-
+            mes.setId(null);
+            em.persist(mes);
+            em.flush();
+            return mes.getId();
     }
 
     @Override
     public Message save_Message(Message mes) {
 
-        try{
             mes.setId(null);
             em.persist(mes);
             em.flush();
             return mes;
-        }catch (DataIntegrityViolationException e) {
-            // Duplicate entry
-            System.out.println("history already exist");
-            return null;
-        }
-
 
     }
 
@@ -111,7 +107,21 @@ public class MessageDAOImpl implements MessageDAO {
     public void sendMessage(MesType type, Long scrId, User sender, User receiver) {
 
         Message message = mesFactory.createMessage(type,scrId,sender,receiver);
-        save_id(message);
+
+        Query query = em.createQuery(" from Message m where m.mesgType = ?1 and m.sourceId = ?2 and m.sender.id= ?3 and m.receiver.id = ?4 ");
+        query.setParameter(1,type);
+        query.setParameter(2,scrId);
+        query.setParameter(3,sender.getId());
+        query.setParameter(4,receiver.getId());
+        List<Message> result = query.getResultList();
+        if(result==null){
+            save(message);
+        }else if(result.size()==0){
+            save(message);
+        }else{
+            System.out.println("Duplicate!!!");
+        }
+
 
     }
 }
