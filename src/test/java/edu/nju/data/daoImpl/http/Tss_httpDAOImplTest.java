@@ -20,13 +20,13 @@ import static org.junit.Assert.*;
 public class Tss_httpDAOImplTest {
     @Test
     public void getDocumentById() throws Exception {
-        System.out.println(dao.getDocumentById(1));
+        System.out.println(dao.getDocumentById(Long.parseLong("16072000000")));
     }
 
 
     @Test
     public void searchDocumentsByKeyword() throws Exception {
-        System.out.println(dao.searchDocumentsByKeyword("",1,1));
+        System.out.println(dao.searchDocumentsByKeyword("ppt",1,1));
     }
 
     @Test

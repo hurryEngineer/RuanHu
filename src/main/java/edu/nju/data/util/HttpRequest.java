@@ -25,7 +25,7 @@ import java.util.List;
 public class HttpRequest {
 
     public static String sendGet(String url) throws IOException {
-        String newUrl = "https://" + url;
+        String newUrl = "http://" + url;
         HttpClient client = new DefaultHttpClient();
         HttpGet request = new HttpGet(newUrl);
         HttpResponse response = client.execute(request);

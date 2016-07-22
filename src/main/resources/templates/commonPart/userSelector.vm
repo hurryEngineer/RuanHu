@@ -1,0 +1,46 @@
+<select class="form-control select2" multiple="multiple" data-placeholder="搜索用户" style="width: 100%;">
+</select>
+
+<script>
+    $(function(){
+        var userSelect = $(".select2").select2({
+            tags:false
+        });
+
+        userSelect.select2({
+            ajax: {
+                url : "/json/user/search",
+                dataType: 'json',
+                delay: 250,
+                data : function (params) {
+                    return {
+                        key : params.term ||""
+                    }
+                },
+                processResults: function (data,params) {
+                    console.log(data);
+                    return {
+                        results: data
+                    };
+                },
+                cache : true
+            },
+            tags: false,
+            language: "zh-CN",
+            escapeMarkup: function(markup) {
+                return markup;
+            },
+            minimumInputLength: 1,
+            templateResult: function (item) {
+                if(item.loading){
+                    return item.text;
+                }
+                var html = '<img src="$photoUri" alt="a" width=20px height=20px ></img> <h3 class="selection-title">$userName</h3>';
+                return html.replace("\$photoUri",item.photoUri).replace("\$userName",item.userName);
+            },
+            templateSelection: function(item){
+                return item.userName;
+            }
+        });
+    });
+</script>
