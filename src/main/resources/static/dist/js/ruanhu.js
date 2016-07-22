@@ -59,7 +59,6 @@ function initWikiSelection() {
 
 		var wikiSelection = $(".wiki-selection").select2({
 			tags: false,
-			
 		});
 
 		wikiSelection.on("select2:selecting",
