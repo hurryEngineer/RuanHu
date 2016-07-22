@@ -195,7 +195,7 @@ $question.content
 ##                                    <input type="text" class="form-control">
                                     #parse("commonPart/userSelector.vm")
                                     <span class="input-group-btn">
-                                      <button type="button" class="btn btn-info btn-flat">Go!</button>
+                                      <button id ='button-invite' onclick="submitInvite()" type="button" class="btn btn-info btn-flat">Go!</button>
                                     </span>
                                 </div>
 
@@ -215,8 +215,11 @@ $question.content
 									<p><b>添加我的回答</b></p>
 								</div>
 							</div>
-							<hr/>
-							
+##							<hr/>
+							<br>
+                            #parse("commonPart/wikiSelector.vm")
+
+                            #parse("commonPart/docSelector.vm")
 							
 							<div class="row">
 								<div id="editormd">
@@ -373,10 +376,16 @@ $question.content
                 function submitAnswer() {
 					var markdown = testEditor.getMarkdown();
 					testEditor.clearStorage();
+
+
+
                     $.ajax({
                         type: "POST",
                         url:"/json/answer/saveAnswer",
-                        data: {questionId:myQuestionId, markedText:markdown},
+                        data: {questionId:myQuestionId,
+                            markedText:markdown,
+                            wikis: wikiSelect.idList,
+                            docs : docSelect.idList,},
                         success: function(msg){
                             console.log(msg);
                             location.reload(true);
@@ -518,6 +527,10 @@ $question.content
                         }
                     });
 
+                }
+
+                function submitInvite() {
+                    console.log($('.select2').val());
                 }
 
 

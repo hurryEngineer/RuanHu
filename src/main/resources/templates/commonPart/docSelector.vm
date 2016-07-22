@@ -34,7 +34,7 @@
 	var docItemHtml = ' <tr> \
 	    <td>$title</td> \
 	    <td> \
-	    	<a href="$url" > \
+	    	<a href="http://$url" > \
 	    		<span class="badge bg-red"> \
 	    			<i class="ion ion-ios-cloud-download-outline"> \
 	    			</i> \
