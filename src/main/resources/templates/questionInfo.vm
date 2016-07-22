@@ -79,7 +79,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" data-toggle="tooltip" data-original-title="Delete" data-name="delete" class="post-delete-qes action">
+                                            <a href="#" data-toggle="tooltip" onclick="delQuestion()" data-original-title="Delete" data-name="delete" class="post-delete-qes action">
                                                 <i class="fa fa-trash-o"></i>
                                             </a>
                                         </li>
@@ -99,7 +99,7 @@
                                     <div id="edit-question">
                                         <div id="edit-question-field">
                                         </div>
-                                        <button id="btn_submit_question" class="answer-btn" style="display: none">提交问题</button>
+                                        <button id="btn_submit_question" class="answer-btn" style="display: none">提交问题修改</button>
                                         <button id="btn_cancel_question" class="answer-btn" style="display: none">取消修改</button>
 
                                     </div>
@@ -395,7 +395,9 @@ $question.content
                                 },
                             });
                         });
-                   });
+                        quesEditormd.setToolbarAutoFixed(true);
+                    });
+
 
                     $("#btn_cancel_question").click(function(){
                         quesEditormd.editor.remove();
@@ -405,12 +407,13 @@ $question.content
                     });
 
                     $("#btn_submit_question").click(function(){
-                        alert("submit question change");
                         var markdown = quesEditormd.getMarkdown();
                         var mytitle=$("#question-title-h").text();
                         quesEditormd.editor.remove();
                         $("#btn_submit_question").css('display','none');
                         $("#btn_cancel_question").css('display','none');
+                        $("#question-show-area").html(quesEditormd.getPreviewedHTML());
+                        $("#question-show-area").show();
 
                         $.ajax({
                             type: "POST",
@@ -418,7 +421,7 @@ $question.content
                             data: {id:myQuestionId, title:mytitle,description:markdown},
                             success: function(msg){
                                 console.log(msg);
-//                                location.reload(true);
+                                location.reload(true);
                             }
                         });
 
@@ -458,11 +461,50 @@ $question.content
 
                     });
                     $("#btn_submit_answer-"+answerIdThis).click(function(){
+                        var markdown = answerEditormd.getMarkdown();
+                        answerEditormd.editor.remove();
+                        $("#btn_submit_answer-"+answerIdThis).css('display','none');
+                        $("#btn_cancel_answer-"+answerIdThis).css('display','none');
+                        $("#answer-show-area-"+answerIdThis).html(answerEditormd.getPreviewedHTML());
                         $("#answer-show-area-"+answerIdThis).show();
 
+                        $.ajax({
+                            type: "POST",
+                            url:"/answer/edit",
+                            data: {qid:myQuestionId, aid:answerIdThis,text:markdown},
+                            success: function(msg){
+                                console.log(msg);
+                                location.reload(true);
+                            }
+                        });
                     });
                 }
 
+
+                function delQuestion() {
+                    var userIdThis = $user.id;
+                    alert("delete userId "+userIdThis);
+                    $.stdPost("/question/delete",
+                            {
+                                questionId:myQuestionId, userId:userIdThis
+                            });
+                }
+
+                function delAnswer(obj) {
+                    var userIdThis = $user.id;
+                    var answerIdThis = obj.getAttribute("answerid");
+                    alert("delete userId "+userIdThis+"");
+                    $.ajax({
+                        type: "POST",
+                        url:"/answer/delete",
+                        data: {aid:answerIdThis,userId:userIdThis,qid:myQuestionId,},
+                        success: function(msg){
+                            console.log(msg);
+                            location.reload(true);
+                        }
+                    });
+
+                }
 
 
 
