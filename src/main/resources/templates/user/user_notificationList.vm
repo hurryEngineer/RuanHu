@@ -2,14 +2,16 @@
 
     <div class="box-header with-border">
         <h3 class="box-title"> ${user.userName} 最近的通知</h3>
-##        <div class="box-tools pull-right">
-##            <span class="label label-primary">Label</span>
-##        </div><!-- /.box-tools -->
+        <div class="box-tools pull-right">
+			  <button type="button" id="clear" class="btn btn-block btn-default pull-right">清除全部</button>
+      	</div><!-- /.box-tools -->
     </div><!-- /.box-header -->
 
     <div class="box-body">
+    	
         <ul class="timeline">
-            <button type="button" id="clear" class="btn btn-block btn-default btn-lg">清除全部</button>
+        	
+            
 
             #foreach($one in $message)
                 <!-- timeline time label -->
