@@ -27,8 +27,10 @@ public class LoginController {
     LoginService loginService;
 
     @RequestMapping("/login")
-    public String login(String formerUrl, HttpSession session) {
-        session.setAttribute("formerUrl", formerUrl);
+    public String login(@RequestParam(defaultValue="") String formerUrl, HttpSession session) {
+        if(!formerUrl.equals("")) {
+            session.setAttribute("formerUrl", formerUrl);
+        }
         return "login";
     }
 

@@ -35,7 +35,7 @@
 		
 					<section class="content-header">
 					<div class="col-md-9 col-sm-9 col-xs-12">
-						<h3>$question.title
+						<h3 id="question-title-h">$question.title
 			       		</h3>
 			       	</div>
 					</section>
@@ -113,7 +113,7 @@ $question.content
                                     </div>
 
 
-                                    <div class="box box-solid">
+                                    <div class="box box-solid" id="wiki-quest-box">
                                         <div class="box-header with-border">
                                             <i class="fa fa-text-width"></i>
                                             <h3 class="box-title">wiki</h3>
@@ -129,7 +129,7 @@ $question.content
 
 
 
-                                    <div class="box">
+                                    <div class="box" id="ppt-quest-box">
                                         <div class="box-header">
                                             <h3 class="box-title">相关ppt</h3>
                                         </div>
@@ -234,6 +234,21 @@ $question.content
 				#else
 					var myQuestionId = "newQuestion";
 				#end
+
+                $(function() {
+##                    alert($question.documents+"is null");
+                    if(!$question.documents){
+                        alert("documents "+$question.documents+" is null");
+                        $("#ppt-quest-box").hide();
+                    }
+
+                    if($question.wikiItems){
+                        alert("wiki "+$question.documents+" is null");
+                        $("#wiki-quest-box").hide();
+                    }
+
+                });
+
 
 
                 $('.vote-up').each(function () {
@@ -398,10 +413,26 @@ $question.content
                     $("#btn_cancel_question").click(function(){
                         quesEditormd.editor.remove();
                         $("#question-show-area").show();
-                        $("#edit-question").hide();
+                        $("#btn_submit_question").css('display','none');
+                        $("#btn_cancel_question").css('display','none');
                     });
                     $("#btn_submit_question").click(function(){
-                        $("#question-show-area").show();
+                        alert("submit question change");
+                        var markdown = quesEditormd.getMarkdown();
+                        var mytitle=$("#question-title-h").text();
+                        quesEditormd.editor.remove();
+                        $("#btn_submit_question").css('display','none');
+                        $("#btn_cancel_question").css('display','none');
+//                        window.location.href="/editQuestion.action?id="+myQuestionId+"&title="+mytitle+"&description="+markdown;
+                        $.ajax({
+                            type: "POST",
+                            url:"/editQuestion",
+                            data: {questionId:myQuestionId, title:mytitle,description:markdown},
+                            success: function(msg){
+                                console.log(msg);
+                                location.reload(true);
+                            }
+                        });
                     });
                 });
 
@@ -433,11 +464,13 @@ $question.content
 
                         answerEditormd.editor.remove();
                         $("#answer-show-area-"+answerIdThis).show();
-                        $("#edit-answer-"+answerIdThis).hide();
+                        $("#btn_submit_answer-"+answerIdThis).css('display','none');
+                        $("#btn_cancel_answer-"+answerIdThis).css('display','none');
 
                     });
                     $("#btn_submit_answer-"+answerIdThis).click(function(){
                         $("#answer-show-area-"+answerIdThis).show();
+
                     });
                 }
 

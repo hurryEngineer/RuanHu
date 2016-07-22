@@ -19,6 +19,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 //                .excludePathPatterns("/landing")
 //                .excludePathPatterns("/register")
 //                .excludePathPatterns("/registerVerify");
+        registry.addInterceptor(new LoginInterceptor())
+                  .addPathPatterns("/ask")
+                  .addPathPatterns("/saveAnswer");
     }
 
 
