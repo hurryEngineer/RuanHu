@@ -29,7 +29,7 @@ public class MessageFactoryTest {
 
     @Test
     public void createMessage() throws Exception {
-        MesType type = MesType.vote;
+        MesType type = MesType.voteQuestion;
         Long srcID = new Long (283);
         User sender = new User();
         sender.setId(new Long(2));
@@ -52,7 +52,7 @@ public class MessageFactoryTest {
 
     @Test
     public void createMessage1() throws Exception {
-        MesType[] types = {MesType.answer,MesType.invite , MesType.comment ,MesType.vote};
+        MesType[] types = {MesType.answer,MesType.invite , MesType.comment ,MesType.voteQuestion};
 
         Long srcID = new Long (283);
         User sender = new User();
