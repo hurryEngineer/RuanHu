@@ -118,9 +118,11 @@ public class QuestionImpl implements QuestionService {
         vote.setLastUpdatedAt(new Timestamp(new Date().getTime()));
         vote.setQuestionId(Long.valueOf(questionId));
         vote.setVoteType(type);
-        Question question = questionDAO.getQuestionByID(Long.valueOf(questionId));
-        User sender = userDAO.getUserByID(Long.valueOf(userId));
-        messageDAO.sendMessage(MesType.voteQuestion, question.getId(), sender, question.getAuthor());
+        if (type==VoteType.up && voteDAO.hasVoteQuestion(Long.valueOf(userId),Long.valueOf(questionId))==0) {
+            Question question = questionDAO.getQuestionByID(Long.valueOf(questionId));
+            User sender = userDAO.getUserByID(Long.valueOf(userId));
+            messageDAO.sendMessage(MesType.voteQuestion, question.getId(), sender, question.getAuthor());
+        }
         return voteDAO.vote(vote);
     }
 
