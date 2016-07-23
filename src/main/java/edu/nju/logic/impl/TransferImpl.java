@@ -52,6 +52,7 @@ public class TransferImpl implements TransferService {
         questionVO.setIsVote(voteDAO.hasVoteQuestion(userId, question.getId()));
         questionVO.setWikiItems(questionDAO.getRelatedWikiItems(question.getId()));
         questionVO.setDocuments(questionDAO.getRelatedDocuments(question.getId()));
+        questionVO.setCreateAuthor(question.getAuthor().getId()==userId);
         return questionVO;
     }
 
@@ -65,6 +66,7 @@ public class TransferImpl implements TransferService {
         answerVO.setIsVote(voteDAO.hasVoteAnswer(userId, answer.getId()));
         answerVO.setWikiItems(answerDAO.getRelatedWikiItems(answer.getId()));
         answerVO.setDocuments(answerDAO.getRelatedDocuments(answer.getId()));
+        answerVO.setCreateAuthor(answer.getAuthor().getId()==userId);
         return answerVO;
     }
 
