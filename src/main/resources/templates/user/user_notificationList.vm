@@ -35,13 +35,6 @@
                                 <a href='/question/${one.question.id}'>$one.question.title</a>
                             </h3>
 
-##                            <div class="timeline-body">
-##                                ${one.content}
-##                            </div>
-
-    ##                    <div class="timeline-footer">
-    ##                        <a class="btn btn-primary btn-xs">...</a>
-    ##                    </div>
                     </div>
                 </li>
 
@@ -63,12 +56,6 @@ $!{one.answer.content}
                	 						</textarea>
                                 </div>
                             </div>
-
-
-
-                        ##                    <div class="timeline-footer">
-                        ##                        <a class="btn btn-primary btn-xs">...</a>
-                        ##                    </div>
                         </div>
                     </li>
 
@@ -80,16 +67,6 @@ $!{one.answer.content}
 
                             <h3 class="timeline-header">  <a href='/userProfile/${one.sender.userName}'>${one.sender.userName}</a> 赞了我的问题
                                 <a href='/question/${one.question.id}'>${one.question.title}</a></h3>
-
-                        ##                            <div class="timeline-body">
-                        ##                                ${one.content}
-                        ##                            </div>
-
-
-
-                        ##                    <div class="timeline-footer">
-                        ##                        <a class="btn btn-primary btn-xs">...</a>
-                        ##                    </div>
                         </div>
                     </li>
 
@@ -126,8 +103,6 @@ $!{one.answer.content}
                 console.log(msg);
             }
         });
-        $("#current").append('<div class="overlay" > <i class="fa fa-refresh fa-spin"></i> </div>');
-        $("#current").load("/userProfile/message?userId=" + '$!{user.id}');
-
+        location.reload();
     });
 </script>
