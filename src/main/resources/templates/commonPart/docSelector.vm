@@ -43,7 +43,7 @@
 	    	</a> \
 	    </td> \
 	</tr> ';
-	var docSelectionHtml = '<img src="$icon" alt="a" width=20px height=20px ></img> <h3 class="selection-title">$title</h3>';
+	var docSelectionHtml = '<img src="http://$icon" alt="a" width=20px height=20px ></img> <h3 class="selection-title">$title</h3>';
 	
 	var docSelect =initSelect({
 		selectClass : "doc-selection",
