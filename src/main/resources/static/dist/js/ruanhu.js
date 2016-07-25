@@ -45,7 +45,7 @@ function parseAllMarkDown() {
 
 function replaceHtml(html,item){
 	for(name in item){
-		html = html.replace("\$"+name,item[name]);
+		html = html.replace("\$"+name,item[name]||"");
 	}
 	return html;
 }
