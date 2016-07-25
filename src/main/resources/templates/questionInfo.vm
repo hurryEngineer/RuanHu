@@ -490,15 +490,12 @@ $question.content
                 function delAnswer(obj) {
                     var userIdThis = $user.id;
                     var answerIdThis = obj.getAttribute("answerid");
-                    $.ajax({
-                        type: "POST",
-                        url:"/answer/delete",
-                        data: {aid:answerIdThis,userId:userIdThis,qid:myQuestionId,},
-                        success: function(msg){
-                            console.log(msg);
-                            location.reload(true);
-                        }
-                    });
+
+					$.stdPost("/answer/delete",{
+						aid:answerIdThis,
+						userId:userIdThis,
+						qid:myQuestionId
+					});
 
                 }
 

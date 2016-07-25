@@ -38,7 +38,7 @@
                 #end
                 #if($oneAnswer.canDelete)
                 <li>
-                    <a href="#" onclick="delAnswer(this)" answerid="$oneAnswer.id" id="answer-delbtn-$oneAnswer.id" data-toggle="tooltip" data-original-title="Delete" data-name="delete" class="post-delete action">
+                    <a href="javascript:void(0)" onclick="delAnswer(this)" answerid="$oneAnswer.id" id="answer-delbtn-$oneAnswer.id" data-toggle="tooltip" data-original-title="Delete" data-name="delete" class="post-delete action">
                         <i class="fa fa-trash-o"></i>
                     </a>
                 </li>
