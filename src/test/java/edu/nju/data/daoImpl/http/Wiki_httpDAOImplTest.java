@@ -20,18 +20,18 @@ import static org.junit.Assert.*;
 public class Wiki_httpDAOImplTest {
     @Test
     public void getWikiById() throws Exception {
-        System.out.println(dao.getWikiById(1));
+        System.out.println(dao.getWikiById(170));
     }
 
 
     @Test
     public void searchWikiByKeyword() throws Exception {
-        System.out.println(dao.searchWikiByKeyword("",1,1));
+        System.out.println(dao.searchWikiByKeyword("a",1,1));
     }
 
     @Test
     public void addKeyMatch() throws Exception {
-
+        System.out.println(dao.addKeyMatch("这样就可以通过测试了吗"));
     }
 
     @Autowired

@@ -56,7 +56,7 @@ public class Tss_httpDAOImpl implements Tss_httpDAO {
 
     @Override
     public boolean sendNotification(Notification notification) throws IOException {
-        String s = HttpRequest.sendPost(apiConfig.getTssApiAddress(),notification);
+        String s = HttpRequest.sendPost(apiConfig.getTssApiAddress()+"notification",notification);
         if(s != null)
             return true;
         return false;

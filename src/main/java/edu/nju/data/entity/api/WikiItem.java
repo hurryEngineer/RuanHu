@@ -1,6 +1,7 @@
 package edu.nju.data.entity.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Created by Dora on 2016/7/20.
@@ -10,6 +11,7 @@ public class WikiItem {
 
     private long id;
     private String title;
+    @JsonProperty("summary")
     private String content;
 
     public long getId() {
