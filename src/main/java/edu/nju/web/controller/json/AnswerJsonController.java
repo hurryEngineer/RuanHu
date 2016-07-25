@@ -36,8 +36,10 @@ public class AnswerJsonController {
     @ResponseBody
     public boolean saveAnswer(@RequestParam("questionId") String questionId,
                               @RequestParam("markedText") String markedText,
-                              @RequestParam(value="wikis",defaultValue="")List<Long> wikiIds,
-                              @RequestParam(value="docs",defaultValue="")List<Long> docIds, HttpSession session){
+                              @RequestParam(defaultValue="")List<Long> wikiIds,
+                              @RequestParam(defaultValue="")List<Long> docIds, HttpSession session){
+       System.out.println("wikiIDs:"+wikiIds);
+       System.out.println("docIDs:"+docIds);
         User user = (User) session.getAttribute("user");
         return answerService.saveAnswer(Long.valueOf(questionId), user.getId(), markedText, wikiIds, docIds);
     }

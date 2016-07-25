@@ -377,7 +377,6 @@
             var settings         = this.settings     = $.extend(true, editormd.defaults, options);
             
             id                   = (typeof id === "object") ? settings.id : id;
-            
             var editor           = this.editor       = $("#" + id);
             
             this.id              = id;
@@ -3932,7 +3931,13 @@
         
         editormd.$marked  = marked;
 
-        var div           = $("#" + id);
+		var div = null;
+		if(id instanceof jQuery){
+			div = id;
+		}else{
+			div = $("#" + id);
+		}
+        
         var settings      = div.settings = $.extend(true, defaults, options || {});
         var saveTo        = div.find("textarea");
         

@@ -25,9 +25,9 @@ function removeByIdList(data,idList){
 }
 
 //还未转化为html的带class: pure-markdown
-function parseMarkdownToHtmlById(id) {
-	$("#" + id).removeClass("pure-markdown");
-	editormd.markdownToHTML(id, {
+function parseMarkdownToHtmlByWapper(wapper) {
+	wapper.removeClass("pure-markdown");
+	editormd.markdownToHTML(wapper, {
 		markdownSourceCode: true,
 		emoji: true,
 		taskList: true,
@@ -38,7 +38,7 @@ function parseMarkdownToHtmlById(id) {
 function parseAllMarkDown() {
 	$(".pure-markdown").each(
 		function() {
-			parseMarkdownToHtmlById(this.id);
+			parseMarkdownToHtmlByWapper($(this));
 		}
 	);
 }
