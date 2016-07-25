@@ -4,10 +4,7 @@ import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Message;
 import edu.nju.data.entity.Question;
 import edu.nju.data.entity.User;
-import edu.nju.logic.vo.AnswerVO;
-import edu.nju.logic.vo.MessageVO;
-import edu.nju.logic.vo.QuestionVO;
-import edu.nju.logic.vo.UserVO;
+import edu.nju.logic.vo.*;
 
 import java.util.List;
 
@@ -19,4 +16,5 @@ public interface TransferService {
     AnswerVO transferAnswer(Answer answer, long userId);
     List<MessageVO> transferMessage(List<Message> message);
     UserVO transferUser(User user);
+    QuestionApiVO transferApiQuestion(Question question);
 }

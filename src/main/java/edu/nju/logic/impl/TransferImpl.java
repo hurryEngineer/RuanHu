@@ -13,10 +13,8 @@ import edu.nju.data.util.VoteType;
 import edu.nju.logic.service.AuthService;
 import edu.nju.logic.service.TimeService;
 import edu.nju.logic.service.TransferService;
-import edu.nju.logic.vo.AnswerVO;
-import edu.nju.logic.vo.MessageVO;
-import edu.nju.logic.vo.QuestionVO;
-import edu.nju.logic.vo.UserVO;
+import edu.nju.logic.vo.*;
+import edu.nju.web.config.HostConfig;
 import org.aspectj.weaver.ast.ITestVisitor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -45,6 +43,9 @@ public class TransferImpl implements TransferService {
 
     @Autowired
     private AnswerDAO answerDAO;
+
+    @Autowired
+    private HostConfig hostConfig;
 
     @Override
     public QuestionVO transferQuestion(Question question, long userId) {
@@ -100,5 +101,14 @@ public class TransferImpl implements TransferService {
     @Override
     public UserVO transferUser(User user) {
         return new UserVO(user);
+    }
+
+    @Override
+    public QuestionApiVO transferApiQuestion(Question question) {
+        QuestionApiVO questionApiVO = new QuestionApiVO(question);
+        questionApiVO.setCreateAt(timeService.timeToString(question.getCreatedAt()));
+        questionApiVO.setUpdateAt(timeService.timeToString(question.getLastUpdatedAt()));
+        questionApiVO.setQuestionUrl(hostConfig.getIpAddress()+":"+hostConfig.getPort()+"/question/"+question.getId());
+        return questionApiVO;
     }
 }
