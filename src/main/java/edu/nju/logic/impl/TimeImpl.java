@@ -27,10 +27,18 @@ public class TimeImpl implements TimeService {
         if (now.get(Calendar.YEAR)!=calendar.get(Calendar.YEAR)) result+=calendar.get(Calendar.YEAR)+"-";
         String[] day = {"今天 ","昨天 "};
         if (now.getTimeInMillis()-calendar.getTimeInMillis()>=86400000)
-            result+=(calendar.get(Calendar.MONTH)+1)+"-"+calendar.get(Calendar.DATE)+" ";
+            result+=(calendar.get(Calendar.MONTH)+1)+"-"+(calendar.get(Calendar.DATE))+" ";
         else
             result+=day[now.get(Calendar.DATE)-calendar.get(Calendar.DATE)];
-        result+=calendar.get(Calendar.HOUR_OF_DAY)+":"+calendar.get(Calendar.MINUTE);
+        result+=twoDigit(calendar.get(Calendar.HOUR_OF_DAY))+":"+twoDigit(calendar.get(Calendar.MINUTE));
+        return result;
+    }
+
+    private String twoDigit(int num){
+        String result = num+"";
+        if (result.length() == 1) {
+            result = "0"+result;
+        }
         return result;
     }
 

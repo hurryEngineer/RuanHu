@@ -15,6 +15,7 @@ import edu.nju.logic.service.QuestionService;
 import edu.nju.logic.service.TimeService;
 import edu.nju.logic.service.TransferService;
 import edu.nju.logic.vo.AnswerVO;
+import edu.nju.logic.vo.QuestionApiVO;
 import edu.nju.logic.vo.QuestionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -49,6 +50,9 @@ public class QuestionImpl implements QuestionService {
     InviteService inviteService;
 
     @Autowired
+    TransferService transferService;
+
+    @Autowired
     WikiDAO wikiDAO;
 
     @Autowired
@@ -56,6 +60,16 @@ public class QuestionImpl implements QuestionService {
 
     @Autowired
     UserDAO userDAO;
+
+    @Override
+    public QuestionApiVO getApiQuestion(long questionId) {
+        Question question = questionDAO.getQuestionByID(questionId);
+        QuestionApiVO questionApiVO = null;
+        if (question!=null) {
+            questionApiVO = transferService.transferApiQuestion(question);
+        }
+        return questionApiVO;
+    }
 
     @Override
     public QuestionVO showQuestion(long id, long userId) {

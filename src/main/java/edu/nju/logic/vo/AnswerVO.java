@@ -15,7 +15,8 @@ public class AnswerVO extends Answer implements ViewTime{
     private int isVote;
     private List<WikiItem> wikiItems;
     private List<Document> documents;
-    private boolean isCreateAuthor;
+    private boolean canDelete;
+    private boolean canEdit;
 
     public AnswerVO(Answer answer) {
         this.setAuthor(answer.getAuthor());
@@ -72,13 +73,20 @@ public class AnswerVO extends Answer implements ViewTime{
         this.wikiItems = wikiItems;
     }
 
-
-    public boolean isCreateAuthor() {
-        return isCreateAuthor;
+    public boolean isCanDelete() {
+        return canDelete;
     }
 
-    public void setCreateAuthor(boolean createAuthor) {
-        isCreateAuthor = createAuthor;
+    public void setCanDelete(boolean canDelete) {
+        this.canDelete = canDelete;
+    }
+
+    public boolean isCanEdit() {
+        return canEdit;
+    }
+
+    public void setCanEdit(boolean canEdit) {
+        this.canEdit = canEdit;
     }
 
     @Override

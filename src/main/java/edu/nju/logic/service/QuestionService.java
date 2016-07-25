@@ -4,6 +4,7 @@ import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
 import edu.nju.data.util.VoteType;
 import edu.nju.logic.vo.AnswerVO;
+import edu.nju.logic.vo.QuestionApiVO;
 import edu.nju.logic.vo.QuestionVO;
 
 import java.util.List;
@@ -12,6 +13,8 @@ import java.util.List;
  * Created by Dora on 2016/7/13.
  */
 public interface QuestionService {
+
+    QuestionApiVO getApiQuestion(long questionId);
 
     QuestionVO showQuestion(long ID, long userId);
 

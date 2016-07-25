@@ -122,8 +122,24 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public List<Message> getUnCheckedMessage(Long userID) {
+        Query query = em.createQuery(" from Message m where m.receiver.id = ?1 and m.checked = 0 order by m.createdAt desc ");
+        query.setParameter(1,userID);
+        List<Message> messages = query.getResultList();
+        return messages;
+    }
+
+    @Override
     public long getMessageCount(Long userID) {
         Query query = em.createQuery("select count(m) from Message m where m.receiver.id = ?1 ");
+        query.setParameter(1,userID);
+        Long result  = (Long) query.getSingleResult();
+        return result;
+    }
+
+    @Override
+    public long getUnCheckedMessageCount(Long userID) {
+        Query query = em.createQuery("select count(m) from Message m where m.receiver.id = ?1 and m.checked = 0 ");
         query.setParameter(1,userID);
         Long result  = (Long) query.getSingleResult();
         return result;
