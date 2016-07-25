@@ -1,0 +1,13 @@
+    <div class="box box-solid" id="wiki-quest-box">
+        <div class="box-header with-border">
+            <i class="fa fa-text-width"></i>
+            <h3 class="box-title">wiki</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            #parse("listItem/wikiListItem.vm")
+        #end
+        </div>
+        <!-- /.box-body -->
+    </div>
+#end

@@ -117,50 +117,12 @@ $question.content
 									</div>
                                     </div>
 
-
-                                    #if(!$question.wikiItems.isEmpty())
-                                        <div class="box box-solid" id="wiki-quest-box">
-                                            <div class="box-header with-border">
-                                                <i class="fa fa-text-width"></i>
-                                                <h3 class="box-title">wiki</h3>
-                                            </div>
-                                            <!-- /.box-header -->
-                                            <div class="box-body">
-                                                #foreach($oneWiki in $question.wikiItems)
-                                                #parse("listItem/wikiListItem.vm")
-                                            #end
-                                            </div>
-                                            <!-- /.box-body -->
-                                        </div>
-                                    #end
+									#set($wikiItems = $question.wikiItems)
+									#parse("commonPart/wikiTable.vm")
 
 
-
-
-                                    #if(!$question.documents.isEmpty())
-                                        <div class="box" id="ppt-quest-box">
-                                            <div class="box-header">
-                                                <h3 class="box-title">相关ppt</h3>
-                                            </div>
-                                            <!-- /.box-header -->
-                                            <div class="box-body no-padding">
-                                                <table class="table table-striped">
-                                                    <tbody>
-                                                    <tr>
-                                                        <th>文件名</th>
-                                                        <th style="width: 60px">下载</th>
-                                                    </tr>
-                                                        #foreach($onePpt in $question.documents)
-                                                            #parse("listItem/pptListItem.vm")
-                                                        #end
-
-                                                    </tbody></table>
-                                            </div>
-                                            <!-- /.box-body -->
-                                        </div>
-                                    #end
-
-
+									#set($documents = $question.documents)
+									#parse("commonPart/docTable.vm")
 
                                     <div class="q-lbtm-content">
 
@@ -381,19 +343,22 @@ $question.content
 					var markdown = testEditor.getMarkdown();
 					testEditor.clearStorage();
 
-
+					var data = {
+                        	questionId : myQuestionId,
+                            markedText : markdown,
+                            wikiIds: wikiSelect.idList,
+                            docIds : docSelect.idList
+                       };
+                       console.log(data);
 
                     $.ajax({
                         type: "POST",
                         url:"/json/answer/saveAnswer",
-                        data: {questionId:myQuestionId,
-                            markedText:markdown,
-                            wikis: wikiSelect.idList,
-                            docs : docSelect.idList,},
+                        data: data,
                         success: function(msg){
-                            console.log(msg);
                             location.reload(true);
-                        }
+                        },
+                        traditional:true
                     });
                 }
 				

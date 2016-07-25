@@ -62,47 +62,12 @@ $!oneAnswer.content
 		</div>
         </div>
 
-#if(!$oneAnswer.wikiItems.isEmpty())
-        <div class="box box-solid">
-            <div class="box-header with-border">
-                <i class="fa fa-text-width"></i>
-                <h3 class="box-title">WIKI</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-				#foreach($oneWiki in $oneAnswer.wikiItems)
-					#parse("listItem/wikiListItem.vm")
-				#end
-            </div>
-            <!-- /.box-body -->
-        </div>
-#end
+#set($wikiItems = $oneAnswer.wikiItems)
+#parse("commonPart/wikiTable.vm")
 
 
-#if(!$oneAnswer.documents.isEmpty())
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">相关ppt</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body no-padding">
-                <table class="table table-striped">
-                    <tbody>
-                    <tr>
-                        <th>文件名</th>
-                        <th style="width: 60px">下载</th>
-                    </tr>
-						#foreach($onePpt in $oneAnswer.documents)
-							#parse("listItem/pptListItem.vm")
-						#end
-
-
-
-                    </tbody></table>
-            </div>
-            <!-- /.box-body -->
-        </div>
-#end
+#set($documents = $oneAnswer.documents)
+#parse("commonPart/docTable.vm")
 
 
 
