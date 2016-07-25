@@ -1,3 +1,4 @@
+#if(!$documents.isEmpty())
     <div class="box" id="ppt-quest-box">
         <div class="box-header">
             <h3 class="box-title">相关ppt</h3>
@@ -10,6 +11,7 @@
                     <th>文件名</th>
                     <th style="width: 60px">下载</th>
                 </tr>
+                    #foreach($onePpt in $documents)
                         #parse("listItem/pptListItem.vm")
                     #end
 

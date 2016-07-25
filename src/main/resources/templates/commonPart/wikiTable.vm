@@ -1,3 +1,4 @@
+#if(!$wikiItems.isEmpty())
     <div class="box box-solid" id="wiki-quest-box">
         <div class="box-header with-border">
             <i class="fa fa-text-width"></i>
@@ -5,6 +6,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
+        #foreach($oneWiki in $wikiItems)
             #parse("listItem/wikiListItem.vm")
         #end
         </div>
