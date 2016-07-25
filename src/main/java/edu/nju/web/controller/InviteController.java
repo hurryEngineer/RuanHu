@@ -22,8 +22,6 @@ public class InviteController {
     @RequestMapping(value = "/invite", method = RequestMethod.POST)
     @ResponseBody void invite(String questionId, String userId,
                               @RequestParam(value="inviteIds",defaultValue="")List<Long> inviteIds) {
-        System.out.println("in 0 "+inviteIds.get(0));
-        System.out.println(questionId+" "+userId+" "+inviteIds);
         inviteService.inivite(Long.valueOf(questionId),Long.valueOf(userId),inviteIds);
 //        return "redirect:/question/"+questionId;
     }
