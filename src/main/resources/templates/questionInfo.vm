@@ -257,10 +257,6 @@ $question.content
 					var myQuestionId = "newQuestion";
 				#end
 
-                    var canDel="$question.canDelete"
-                $(function(){
-                    alert(canDel);
-                });
 
                 $('.vote-up').each(function () {
                     if($(this).parent().parent().attr('isVote')==1){
