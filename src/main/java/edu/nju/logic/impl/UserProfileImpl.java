@@ -144,7 +144,7 @@ public class UserProfileImpl implements UserProfileService {
 
     @Override
     public List<Message> getUserMessage(long userId) {
-        return userDAO.getAllMessage(userId);
+        return userDAO.getUnCheckedMessage(userId);
     }
 
     @Override
@@ -154,7 +154,7 @@ public class UserProfileImpl implements UserProfileService {
 
     @Override
     public long getMessageCount(long userId) {
-        return userDAO.getMessageCount(userId);
+        return userDAO.getUnCheckedMessageCount(userId);
     }
 
     @Override
