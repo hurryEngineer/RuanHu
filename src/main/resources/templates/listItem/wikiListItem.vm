@@ -1,6 +1,6 @@
 ## 一个wiki叫oneWiki
 <blockquote>
-	<h4><a href="#" >$oneWiki.title</a><h4>
+	<h4><a href="oneWiki.url" target="view_frame">$oneWiki.title</a><h4>
     <div id="question-wiki-markdown-$oneWiki.id" class="pure-markdown q-ltop-content">
         <textarea style="display:none;">
 $oneWiki.content 这是一段内容

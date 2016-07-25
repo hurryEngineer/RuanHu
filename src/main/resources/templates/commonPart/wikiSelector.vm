@@ -37,10 +37,19 @@
 </div>
 #end
 
+<script type="text/javascript">
+	var wikiIds = [];
+	
+	#if($wiki)
+	   wikiIds.push( $wiki.id );
+	#end
+	
+</script>
+
 
 <script>
 	var wikiItemHtml = ' <blockquote> \
-			<h4><a href="#" >$title</a><h4> \
+			<h4><a href="$url" target="view_frame">$title</a><h4> \
 	    	<p>$content</p> \
 			</blockquote> ' ;
 	var wikiSelectionHtml = '<i class="fa fa-text-width"></i> <h3 class="selection-title">$title</h3>';
@@ -49,7 +58,7 @@
 	var wikiSelect = initSelect({
 		selectClass : "wiki-selection",
 		url: "/json/wiki/search",
-		idList : [],
+		idList : wikiIds,
 		itemBox : $(".wiki-box"),
 		itemContainer : $(".wiki-box").children(".box-body"),
 		itemHtml : wikiItemHtml,
