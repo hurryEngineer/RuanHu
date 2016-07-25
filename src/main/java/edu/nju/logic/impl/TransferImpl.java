@@ -10,6 +10,7 @@ import edu.nju.data.entity.Question;
 import edu.nju.data.entity.User;
 import edu.nju.data.entity.api.WikiItem;
 import edu.nju.data.util.VoteType;
+import edu.nju.logic.service.AuthService;
 import edu.nju.logic.service.TimeService;
 import edu.nju.logic.service.TransferService;
 import edu.nju.logic.vo.AnswerVO;
@@ -34,6 +35,9 @@ public class TransferImpl implements TransferService {
     private TimeService timeService;
 
     @Autowired
+    private AuthService authService;
+
+    @Autowired
     private VoteDAO voteDAO;
 
     @Autowired
@@ -52,7 +56,8 @@ public class TransferImpl implements TransferService {
         questionVO.setIsVote(voteDAO.hasVoteQuestion(userId, question.getId()));
         questionVO.setWikiItems(questionDAO.getRelatedWikiItems(question.getId()));
         questionVO.setDocuments(questionDAO.getRelatedDocuments(question.getId()));
-        questionVO.setCreateAuthor(question.getAuthor().getId()==userId);
+        questionVO.setCanDelete(authService.canDeleteQuestion(userId,question));
+        questionVO.setCanEdit(authService.canEditQuestion(userId,question));
         return questionVO;
     }
 
@@ -66,7 +71,8 @@ public class TransferImpl implements TransferService {
         answerVO.setIsVote(voteDAO.hasVoteAnswer(userId, answer.getId()));
         answerVO.setWikiItems(answerDAO.getRelatedWikiItems(answer.getId()));
         answerVO.setDocuments(answerDAO.getRelatedDocuments(answer.getId()));
-        answerVO.setCreateAuthor(answer.getAuthor().getId()==userId);
+        answerVO.setCanDelete(authService.canDeleteAnswer(userId,answer));
+        answerVO.setCanEdit(authService.canEditAnswer(userId,answer));
         return answerVO;
     }
 
