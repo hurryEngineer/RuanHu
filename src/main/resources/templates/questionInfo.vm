@@ -195,7 +195,7 @@ $question.content
 ##                                    <input type="text" class="form-control">
                                     #parse("commonPart/userSelector.vm")
                                     <span class="input-group-btn">
-                                      <button id ='button-invite' onclick="submitInvite()" type="button" class="btn btn-info btn-flat">Go!</button>
+                                      <button id ='button-invite' onclick="submitInvite()" type="button" class="btn btn-info btn-flat">邀请</button>
                                     </span>
                                 </div>
 
@@ -530,7 +530,32 @@ $question.content
                 }
 
                 function submitInvite() {
-                    console.log($('.select2').val());
+                    var ids =[];
+
+                    $.each($('.select2').val(), function(){
+                        ids.push(Number(this));
+                    });
+                    console.log(ids);
+                    var data = {questionId: aQuestionId,
+                        userId: $user.id,
+                        inviteIds: ids};
+                    console.log(data);
+                    $.ajax({
+                        type:"POST",
+                        url:"/invite",
+                        traditional: true,
+                        data: data,
+                        dataType:'json',
+                        success:function (msg) {
+                            console.log(msg);
+                        },
+                        error:function (msg) {
+                            console.log(msg);
+                        }
+                    });
+//                    $.post("/userProfile/readMessage",{messageIds: messageIds},function (msg) {
+//                        $('.timeline').innerHTML='';
+//                    },'json');
                 }
 
 

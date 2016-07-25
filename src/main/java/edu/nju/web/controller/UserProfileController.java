@@ -55,9 +55,10 @@ public class UserProfileController {
     }
 
     @RequestMapping(value = "/userProfile/readMessage", method = RequestMethod.POST)
-    String readMessage(@RequestParam("messageIds")List<Long> messageIds) {
+    @ResponseBody
+    void readMessage(@RequestParam("messageIds")List<Long> messageIds) {
+        System.out.println("readMessage:"+messageIds);
         profileService.readMessage(messageIds);
-        return "user/userProfile";
     }
 
     @RequestMapping(value = "/userProfile/showAnswers")
