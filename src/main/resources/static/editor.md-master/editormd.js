@@ -2609,6 +2609,8 @@
          * @returns {editormd}         返回editormd的实例对象
          */
         
+        //因为全屏时有一些东西隐藏不掉,所以需要手动隐藏
+        
         fullscreen : function() {
             
             var _this            = this;
@@ -2638,7 +2640,8 @@
                 state.fullscreen = true;
 
                 $("html,body").css("overflow", "hidden");
-                $(".main-header,.sidebar").hide();
+                $(".main-header,.sidebar,input,button").hide();
+
                 
                 editor.css({
                     width    : $(window).width(),
@@ -2681,7 +2684,7 @@
             }
 
             $("html,body").css("overflow", "");
-            $(".main-header,.sidebar").show();
+            $(".main-header,.sidebar,input,button").show();
 
             editor.css({
                 width    : editor.data("oldWidth"),

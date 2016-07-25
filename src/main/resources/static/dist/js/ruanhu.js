@@ -97,6 +97,9 @@ function initSelect(data){
 		}
 		
 		selection.formatSelection = function(item){
+			if(item.loading){
+        	    return item.text;
+            }
 			var html = selectionItemHtml;
 			return selection.replaceHtml(html,item);
 		}

@@ -73,6 +73,7 @@
 								<div>
 
                                     <ul class="post-controls">
+
                                     #if($question.author.id==$user.id)
 
                                         <li>
@@ -256,7 +257,10 @@ $question.content
 					var myQuestionId = "newQuestion";
 				#end
 
-
+                    var canDel="$question.canDelete"
+                $(function(){
+                    alert(canDel);
+                });
 
                 $('.vote-up').each(function () {
                     if($(this).parent().parent().attr('isVote')==1){
@@ -421,8 +425,9 @@ $question.content
                                     return editormd.toolbarModes["simple"]
                                 },
                             });
+                            quesEditormd.setToolbarAutoFixed(false);
                         });
-                        quesEditormd.setToolbarAutoFixed(true);
+
                     });
 
 
