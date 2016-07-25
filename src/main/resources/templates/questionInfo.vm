@@ -73,7 +73,7 @@
 								<div>
 
                                     <ul class="post-controls">
-                                    #if($question.author.id==$user.id)
+                                    #if($question.canEdit)
 
                                         <li>
                                             <a href="#"  data-toggle="tooltip" data-original-title="Edit" data-name="edit" class="post-edit-qes action">
