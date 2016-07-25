@@ -42,12 +42,21 @@ public class WikiItem {
         this.content = content;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     @Override
     public String toString() {
         return "WikiItem{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
+                ", url='" + url + '\'' +
                 '}';
     }
 }
