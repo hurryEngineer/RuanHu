@@ -38,6 +38,11 @@ public interface UserDAO {
 
     List<Message> getAllMessage(Long userID);
 
+    List<Message> getUnCheckedMessage(Long userID);
+
+
     long getMessageCount(Long userID);
+
+    long getUnCheckedMessageCount(Long userID);
 
 }
