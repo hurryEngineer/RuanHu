@@ -1,6 +1,8 @@
 package edu.nju.web.controller.api;
 
+import edu.nju.logic.service.QuestionService;
 import edu.nju.logic.service.RelationService;
+import edu.nju.logic.vo.QuestionApiVO;
 import edu.nju.web.config.HostConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,9 @@ public class ApiController {
 
     @Autowired
     private RelationService relationService;
+
+    @Autowired
+    private QuestionService questionService;
 
     @Autowired
     private HostConfig hostConfig;
@@ -50,4 +55,11 @@ public class ApiController {
     String askQuestionByWiki(@RequestParam("wikiId")String wikiId) {
         return hostConfig.getIpAddress()+":"+hostConfig.getPort()+"/ask?wikiId="+wikiId;
     }
+
+    @RequestMapping(value = "/question",method = RequestMethod.GET)
+    @ResponseBody
+    QuestionApiVO getQuestionById(@RequestParam("id")String id){
+        return questionService.getApiQuestion(Long.valueOf(id));
+    }
+
 }

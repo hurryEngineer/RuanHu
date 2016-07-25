@@ -73,17 +73,22 @@
 								<div>
 
                                     <ul class="post-controls">
+
+                                    #if($question.author.id==$user.id)
+
                                         <li>
                                             <a href="#"  data-toggle="tooltip" data-original-title="Edit" data-name="edit" class="post-edit-qes action">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
                                         </li>
+                                    #end
+                                    #if($question.canDelete)
                                         <li>
                                             <a href="#" data-toggle="tooltip" onclick="delQuestion()" data-original-title="Delete" data-name="delete" class="post-delete-qes action">
                                                 <i class="fa fa-trash-o"></i>
                                             </a>
                                         </li>
-
+                                    #end
                                     </ul>
 
 
@@ -252,7 +257,10 @@ $question.content
 					var myQuestionId = "newQuestion";
 				#end
 
-
+                    var canDel="$question.canDelete"
+                $(function(){
+                    alert(canDel);
+                });
 
                 $('.vote-up').each(function () {
                     if($(this).parent().parent().attr('isVote')==1){
@@ -417,8 +425,9 @@ $question.content
                                     return editormd.toolbarModes["simple"]
                                 },
                             });
+                            quesEditormd.setToolbarAutoFixed(false);
                         });
-                        quesEditormd.setToolbarAutoFixed(true);
+
                     });
 
 
@@ -506,7 +515,6 @@ $question.content
 
                 function delQuestion() {
                     var userIdThis = $user.id;
-                    alert("delete userId "+userIdThis);
                     $.stdPost("/question/delete",
                             {
                                 questionId:myQuestionId, userId:userIdThis
@@ -516,7 +524,6 @@ $question.content
                 function delAnswer(obj) {
                     var userIdThis = $user.id;
                     var answerIdThis = obj.getAttribute("answerid");
-                    alert("delete userId "+userIdThis+"");
                     $.ajax({
                         type: "POST",
                         url:"/answer/delete",
