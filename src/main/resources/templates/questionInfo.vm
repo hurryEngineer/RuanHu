@@ -438,21 +438,25 @@ $question.content
                     $("#btn_submit_question").click(function(){
                         var markdown = quesEditormd.getMarkdown();
                         var mytitle=$("#question-title-h").text();
-                        quesEditormd.editor.remove();
-                        $("#btn_submit_question").css('display','none');
-                        $("#btn_cancel_question").css('display','none');
-                        $("#question-show-area").html(quesEditormd.getPreviewedHTML());
-                        $("#question-show-area").show();
-
-                        $.ajax({
-                            type: "POST",
-                            url:"/question/edit",
-                            data: {id:myQuestionId, title:mytitle,description:markdown},
-                            success: function(msg){
-                                console.log(msg);
-                                location.reload(true);
-                            }
-                        });
+                        $.stdPost("/question/edit",
+                                {
+                                    id:myQuestionId, title:mytitle,description:markdown
+                                });
+//                        quesEditormd.editor.remove();
+//                        $("#btn_submit_question").css('display','none');
+//                        $("#btn_cancel_question").css('display','none');
+//                        $("#question-show-area").html(quesEditormd.getPreviewedHTML());
+//                        $("#question-show-area").show();
+//
+//                        $.ajax({
+//                            type: "POST",
+//                            url:"/question/edit",
+//                            data: {id:myQuestionId, title:mytitle,description:markdown},
+//                            success: function(msg){
+//                                console.log(msg);
+//                                location.reload(true);
+//                            }
+//                        });
 
                     });
                 });
