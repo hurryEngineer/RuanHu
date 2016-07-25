@@ -49,7 +49,7 @@ public class Wiki_httpDAOImpl implements Wiki_httpDAO {
 
     @Override
     public Pager<WikiItem> searchWikiByKeyword(String keyword, int page, int size) throws IOException {
-        String s = HttpRequest.sendGet(apiConfig.getWikiApiAddress()+"entry/search?q="+keyword);
+        String s = HttpRequest.sendGet(apiConfig.getWikiApiAddress()+"search?q="+keyword);
         List<WikiItem> list = new ArrayList<>();
         ObjectMapper mapper = new ObjectMapper();
         list = mapper.readValue(s, new TypeReference<List<WikiItem>>() {});

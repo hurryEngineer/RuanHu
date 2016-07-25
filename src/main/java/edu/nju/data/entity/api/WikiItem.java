@@ -10,9 +10,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class WikiItem {
 
     private long id;
+
     private String title;
+
     @JsonProperty("summary")
     private String content;
+
+    private String url;
 
     public long getId() {
         return id;
