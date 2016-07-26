@@ -32,7 +32,6 @@ function parseMarkdownToHtmlByWapper(wapper) {
 		emoji: true,
 		taskList: true,
 		tex: true, // 默认不解析
-		htmlDecode: "a",
 	});
 }
 
