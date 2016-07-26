@@ -25,7 +25,12 @@ import java.util.List;
 public class HttpRequest {
 
     public static String sendGet(String url) throws IOException {
-        String newUrl = "http://" + url;
+
+        String newUrl = url;
+        if(!newUrl.startsWith("http://")) {
+            newUrl = "http://" + url;
+        }
+        
         HttpClient client = new DefaultHttpClient();
         HttpGet request = new HttpGet(newUrl);
         HttpResponse response = client.execute(request);
@@ -34,7 +39,10 @@ public class HttpRequest {
     }
 
     public static String sendPost(String url, Object json) throws IOException {
-        url = "https://" + url;
+        if(!url.startsWith("http://")) {
+            url = "http://" + url;
+        }
+        
         String result = null;
         HttpPost httpRequest = new HttpPost(url);//创建HttpPost对象
         StringEntity entity = new StringEntity(json.toString(), "utf-8");//解决中文乱码问题

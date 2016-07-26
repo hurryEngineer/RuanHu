@@ -73,7 +73,9 @@ public class Wiki_httpDAOImpl implements Wiki_httpDAO {
 
     @Override
     public String addKeyMatch(String content) throws IOException {
-        String s = HttpRequest.sendGet(apiConfig.getWikiApiAddress()+"keymatch");
-        return s;
+//        String s = HttpRequest.sendGet(apiConfig.getWikiApiAddress()+"keymatch");
+//        HttpRequest.sendPost(content, content);
+//        return s;
+        return null;
     }
 }

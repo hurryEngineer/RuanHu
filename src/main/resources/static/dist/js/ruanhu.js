@@ -31,7 +31,8 @@ function parseMarkdownToHtmlByWapper(wapper) {
 		markdownSourceCode: true,
 		emoji: true,
 		taskList: true,
-		tex: true // 默认不解析
+		tex: true, // 默认不解析
+		htmlDecode: "a",
 	});
 }
 
