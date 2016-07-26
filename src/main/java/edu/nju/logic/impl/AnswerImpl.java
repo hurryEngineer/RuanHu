@@ -1,6 +1,7 @@
 package edu.nju.logic.impl;
 
 import edu.nju.data.dao.*;
+import edu.nju.data.dao.http.Wiki_httpDAO;
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
 import edu.nju.data.entity.User;
@@ -12,6 +13,7 @@ import edu.nju.logic.vo.AnswerVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -37,6 +39,9 @@ public class AnswerImpl implements AnswerService {
     @Autowired
     private MessageDAO messageDAO;
 
+    @Autowired
+    private Wiki_httpDAO wiki_httpDAO;
+
     @Override
     public boolean markAsSolution(User user, long questionId, long answerId) {
         Question question = questionDAO.getQuestionByID(questionId);
@@ -54,6 +59,11 @@ public class AnswerImpl implements AnswerService {
         Answer answer = new Answer();
         answer.setQuestionId(questionId);
         answer.setAuthorId(userId);
+        try {
+            text = wiki_httpDAO.addKeyMatch(text);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         answer.setContent(text);
         answer.setCreatedAt(new Timestamp(new Date().getTime()));
         answer.setLastUpdatedAt(new Timestamp(new Date().getTime()));
