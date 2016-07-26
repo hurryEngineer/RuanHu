@@ -1,6 +1,6 @@
 package edu.nju.data.util;
 
-import net.sf.json.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -10,12 +10,15 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,24 +41,25 @@ public class HttpRequest {
         return responseString;
     }
 
-    public static String sendPost(String url, Object json) throws IOException {
+    private static final String APPLICATION_JSON = "application/json";
+
+    private static final String CONTENT_TYPE_TEXT_JSON = "text/json";
+
+    public static String sendPost(String url, KeyMatch keyMatch) throws IOException {
         if(!url.startsWith("http://")) {
             url = "http://" + url;
         }
-        
-        String result = null;
-        HttpPost httpRequest = new HttpPost(url);//创建HttpPost对象
-        StringEntity entity = new StringEntity(json.toString(), "utf-8");//解决中文乱码问题
-        entity.setContentEncoding("UTF-8");
-        entity.setContentType("application/json");
-        httpRequest.setEntity(entity);
 
-        HttpResponse httpResponse = new DefaultHttpClient().execute(httpRequest);
-        if (httpResponse.getStatusLine().getStatusCode() == 200) {
-            HttpEntity httpEntity = httpResponse.getEntity();
-            result = EntityUtils.toString(httpEntity);//取出应答字符串
-        }
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost(url);
+        List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+        nvps.add(new BasicNameValuePair("content", keyMatch.getContent()));
+        nvps.add(new BasicNameValuePair("type", keyMatch.getType()));
 
+        httpPost.setEntity(new UrlEncodedFormEntity(nvps,HTTP.UTF_8));
+
+        HttpResponse response = httpClient.execute(httpPost);
+        String result = new BasicResponseHandler().handleResponse(response);
 
         return result;
     }
