@@ -1,6 +1,7 @@
 package edu.nju.logic.impl;
 
 import edu.nju.data.dao.*;
+import edu.nju.data.dao.http.Wiki_httpDAO;
 import edu.nju.data.entity.Answer;
 import edu.nju.data.entity.Question;
 import edu.nju.data.entity.User;
@@ -20,6 +21,7 @@ import edu.nju.logic.vo.QuestionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -61,6 +63,9 @@ public class QuestionImpl implements QuestionService {
     @Autowired
     UserDAO userDAO;
 
+    @Autowired
+    Wiki_httpDAO wiki_httpDAO;
+
     @Override
     public QuestionApiVO getApiQuestion(long questionId) {
         Question question = questionDAO.getQuestionByID(questionId);
@@ -79,6 +84,13 @@ public class QuestionImpl implements QuestionService {
 
     @Override
     public QuestionVO saveQuestion(Question question, long userId, List wikiIds, List docIds, List<Long> inviteIds) {
+        String content = question.getContent();
+        try {
+            content = wiki_httpDAO.addKeyMatch(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        question.setContent(content);
         QuestionVO questionVO =  timeService.transferQuestion(questionDAO.createQuestion(question,wikiIds,docIds),userId);
         inviteService.inivite(question.getId(), userId, inviteIds);
         return questionVO;
