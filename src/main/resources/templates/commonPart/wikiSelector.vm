@@ -50,7 +50,7 @@
 <script>
 	var wikiItemHtml = ' <blockquote> \
 			<h4><a href="$url" target="view_frame">$title</a><h4> \
-	    	<p>$content</p> \
+	    	<p>$summary</p> \
 			</blockquote> ' ;
 	var wikiSelectionHtml = '<i class="fa fa-text-width"></i> <h3 class="selection-title">$title</h3>';
 	

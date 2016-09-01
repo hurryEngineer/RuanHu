@@ -13,8 +13,8 @@ public class WikiItem {
 
     private String title;
 
-    @JsonProperty("summary")
-    private String content;
+//    @JsonProperty("summary")
+    private String summary;
 
     private String url;
 
@@ -34,12 +34,12 @@ public class WikiItem {
         this.title = title;
     }
 
-    public String getContent() {
-        return content;
+    public String getSummary() {
+        return summary;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setSummary(String content) {
+        this.summary = content;
     }
 
     public String getUrl() {
@@ -55,7 +55,7 @@ public class WikiItem {
         return "WikiItem{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
+                ", content='" + summary + '\'' +
                 ", url='" + url + '\'' +
                 '}';
     }

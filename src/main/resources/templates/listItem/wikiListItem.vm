@@ -3,7 +3,7 @@
 	<h4><a href="$oneWiki.url" target="view_frame">$!oneWiki.title</a><h4>
     <div id="question-wiki-markdown-$oneWiki.id" class="pure-markdown q-ltop-content">
         <textarea style="display:none;">
-$!oneWiki.content
+$!oneWiki.summary
         </textarea>
     </div>
 
